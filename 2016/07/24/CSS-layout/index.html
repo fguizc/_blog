@@ -1,0 +1,165 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="fguizc"><title>HTML&CSS Layout · Fguizc</title><meta name="description" content="HTML&amp;amp;CSS Layout
+
+布局·HTML标签语义化
+什么是html标签语义化
+web语义化是指通过HTML标记表示页面包含的信息，包含了HTML标签的语义化和css命名的语义化。 HTML标签的语义化是指：通过使用包含语义的标签（如h1-h6）恰当地表示文档结构 css命名的语义化是"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><h3 title=""><a href="/">Fguizc</a></h3><div class="description"><p>不会Ai的前端不是好设计/所以更加熟练Photoshop/记录code中的问题/私人生活的吐槽</p></div></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>HTML&amp;CSS Layout</a></h3></div><div class="post-content"><h1>HTML&amp;CSS Layout</h1>
+<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/html_css.png" alt=""></p>
+<h2>布局·HTML标签语义化</h2>
+<h3>什么是html标签语义化</h3>
+<p>web语义化是指通过HTML标记表示页面包含的信息，包含了HTML标签的语义化和css命名的语义化。 HTML标签的语义化是指：通过使用包含语义的标签（如h1-h6）恰当地表示文档结构 css命名的语义化是指：为html标签添加有意义的class，id补充未表达的语义。</p>
+<h3>为什么要使用语义化标签</h3>
+<ul>
+<li>去掉样式后页面呈现清晰的结构</li>
+<li>盲人使用读屏器更好地阅读</li>
+<li>搜索引擎更好地理解页面，有利于收录</li>
+<li>便团队项目的可持续运作及维护</li>
+</ul>
+<h2>布局·元素类型</h2>
+<h3>HTML元素可以分为两类</h3>
+<ul>
+<li>块级元素(block level element)</li>
+<li>行级元素(inline element)</li>
+</ul>
+<p><strong>两者区别</strong></p>
+<ol>
+<li>块级元素会独占一行(即某一块级元素后紧跟的元素会另起一行布局)</li>
+<li>块级元素可以设置width/height 属性,而行级元素设置无效(tip:margin:0 auto;对块级元素生效)</li>
+<li>块级元素 width normal=100%,而行级元素根据自身内容或者子元素决定其宽度</li>
+</ol>
+<p>让我们来举个栗子</p>
+<p>若既想让元素在行内显示，又能设置宽高，可以设置：</p>
+<pre><code>display:inline-block
+</code></pre>
+<p>此外 <strong>设置元素的position(absolute|fixed)/float也会将元素转换为block.</strong></p>
+<h2>盒模型</h2>
+<p>页面上每一个元素(<strong>!包含 行内元素</strong>)都可以看做一个盒子,即盒模型(box model).</p>
+<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/box.PNG" alt=""></p>
+<h3>Margin值的继承</h3>
+<ol>
+<li>margin值的增加不会影响背景颜色的尺寸</li>
+<li>margin传递与叠加</li>
+</ol>
+<blockquote>
+<p>子元素的<strong>上下margin</strong>会传递给父级，但<strong>父级如果有边框就会阻止子级margin传递</strong>，父级是BFC也会阻止margin的传递。</p>
+</blockquote>
+<h3>BFC(Block formatting contexts)</h3>
+<h4>什么是BFC</h4>
+<p>在一个Web页面的CSS渲染中，块级格式化上下文 (Block Fromatting Context)是按照块级盒子布局的</p>
+<blockquote>
+<p>浮动元素和绝对定位元素，非块级盒子的块级容器（例如 inline-blocks, table-cells, 和 table-captions），以及overflow值不为“visiable”的块级盒子，都会为他们的内容创建新的BFC（块级格式上下文）。</p>
+</blockquote>
+<p>一个HTML元素要创建BFC，则满足下列的任意一个或多个条件即可：</p>
+<ol>
+<li><code>float value != none</code></li>
+<li><code>position value !=static|relative</code></li>
+<li><code>display value === inline-block|table-cell|flex|table-caption|inline-flex</code></li>
+<li><code>overflow !=visiable</code></li>
+</ol>
+<h4>BFC可以干什么</h4>
+<ol>
+<li>清除浮动</li>
+<li><strong>解决外边距折叠</strong></li>
+</ol>
+<h2>Position property</h2>
+<h3>position 属性值</h3>
+<ul>
+<li>static (Defaults)</li>
+<li>relative (相对定位)</li>
+<li>absolute	(绝对定位)</li>
+<li>fixed	(绝对定位-根据浏览器窗口定位)</li>
+</ul>
+<hr>
+<ol>
+<li>
+<p>relative 元素在文档流中占有一个位置,相对定位就是将元素偏离元素的默认位置,但是在文档流中依然保持着原有位置,并未脱离文档流,即便对元素设置偏移量,元素的下一个兄弟元素位置也不受影响而补位.
+如图所示,设置相对偏移量后,DIV .C 依旧没有补位
+<img src="http://7xv8p5.com1.z0.glb.clouddn.com/Document.png" alt="">
+<img src="http://7xv8p5.com1.z0.glb.clouddn.com/Document1.png" alt="">
+<img src="http://7xv8p5.com1.z0.glb.clouddn.com/code1.PNG" alt=""></p>
+</li>
+<li>
+<p>absolute 设置position:absolute的元素会根据节点树中的父(祖)来进行定位,若节点树往上查找均无设置position:relative的元素,则绝对定位会根据<body>/<html>来进行定位</html></body></p>
+</li>
+<li>
+<p>fixed fixed可视为一种特殊的absolute,但其与absolute最大的不同在于 <strong>absolute的&quot;根元素&quot;可以设置,而fixed的&quot;根元素&quot;始终是浏览器的窗口</strong></p>
+</li>
+</ol>
+<p><strong>( ! tip:absolute|fixed均会脱离文档流)</strong></p>
+<h3>position设置带来的后果</h3>
+<ol>
+<li>块状元素在position(relative/static)的情况下width为100%，但是设置了position: absolute之后，会将width变成auto（会受到父元素的宽度影响）。</li>
+<li>应用了position: relative/absolute的元素，margin属性仍然有效，以position:relative来举例。如果设置了left、top、bottom、right的属性 。</li>
+<li>position: absolute忽略根元素的padding。</li>
+<li>在IE6/7中设置position属性后会导致z-index属性失效</li>
+<li>行内元素在应用了position：absolute之后会改变display。</li>
+<li>应用了position: absolute / relative之后，会覆盖其他非定位元素（即position为static的元素），如果你不想覆盖到其他元素，也可以将z-index设置成-1。</li>
+</ol>
+<p><a href="http://www.cnblogs.com/coffeedeveloper/p/3145790.html" target="_blank" rel="external">参考自CoffeeDeveloper的博客</a></p>
+<h2>Float</h2>
+<h3>float 属性值</h3>
+<ul>
+<li>right</li>
+<li>left</li>
+<li>none</li>
+<li>inherit</li>
+</ul>
+<h3>float 要点</h3>
+<ol>
+<li>只能左右浮动没有上下浮动</li>
+<li>元素设置float后,会 <strong>脱离文档流</strong> (和absolute一样) ,不再占据原有空间位置</li>
+<li>浮动不会作用该元素的上一个兄弟元素</li>
+<li>浮动后,该元素的下一个兄弟元素会补齐浮动元素原有位置</li>
+<li>浮动后,该元素会变为 <strong>块级元素</strong></li>
+<li><strong>清除浮动</strong></li>
+</ol>
+<h4>清除浮动</h4>
+<p>方法一</p>
+<pre><code>.clearfix:after {
+	 content: &quot;.&quot;;
+	 display: block;
+	 height:0;
+	 clear: both;
+	 visibility:hidden;
+}
+.clearfix{*+height:1%;}
+</code></pre>
+<p><strong>!注意此方法会改变原html的结构会产生:after,当最为常用</strong></p>
+<p>方法二:</p>
+<pre><code>.clearfix{overflow:auto;height:1%;}
+</code></pre>
+<p>##布局——水平垂直居中</p>
+<h3>水平/垂直居中可以分为两类</h3>
+<ol>
+<li>块级元素的水平垂直/居中(如div)</li>
+<li>行级元素的水平垂直/居中(如a/img/span)</li>
+</ol>
+<ol>
+<li>
+<p>absolute + transform<br></p>
+<pre><code>.parent{position:relative;}
+.child{position:absolute;
+       top:50%;
+       left:50%;
+       transform:translate(-50%,-50%);}
+</code></pre>
+</li>
+<li>
+<p>inline-block+text-align+tabel-cell+vertical-align</p>
+<pre><code>.parent{text-align:center;
+		display:tabel-cell;
+		vertical-align:middle;}
+.child{display:inline-block;}
+</code></pre>
+</li>
+<li>
+<p>flex+justify-content+align-items</p>
+<pre><code>.parent{display:flex;
+		justify-content:center;
+		align-items:center;}
+</code></pre>
+</li>
+</ol>
+<h2>响应式</h2>
+<h3>响应式布局关键字</h3>
+<p>CSS实现样式，响应式中<code>@media screen and (min|max-width-value)</code> (待补充完)</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2016-07-24</span><i class="fa fa-tag"></i><a href="/categories/前端/" title="前端" class="tag">前端 </a><a href="/tags/CSS/" title="CSS" class="tag">CSS </a></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://fguizc.me/2016/07/24/CSS-layout/,Fguizc,HTML&amp;CSS Layout,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2016/08/08/JS-Scope/" title="JS-Scope" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/2016/07/20/CSS笔记/" title="CSS笔记" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

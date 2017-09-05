@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="fguizc"><title>hexo搭建时的问题及解决办法 · Fguizc</title><meta name="description" content="问题一：修改了random主题下的文件后,git pull报错
+
+
+此时可以git checkout -f 再git pull
+
+此时要记得重新配置themes/themes-name/_config.yml
+2.问题二：deploy会导致README文件和CNAME文件被删
+
+Github的版本库"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><h3 title=""><a href="/">Fguizc</a></h3><div class="description"><p>不会Ai的前端不是好设计/所以更加熟练Photoshop/记录code中的问题/私人生活的吐槽</p></div></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>hexo搭建时的问题及解决办法</a></h3></div><div class="post-content"><ol>
+<li>问题一：修改了random主题下的文件后,git pull报错</li>
+</ol>
+<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20160610151125.png" alt=""></p>
+<p>此时可以git checkout -f 再git pull</p>
+<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20160610151136.png" alt=""></p>
+<p>此时要记得重新配置<br><code>themes/themes-name/_config.yml</code></p>
+<p>2.问题二：deploy会导致README文件和CNAME文件被删</p>
+<blockquote>
+<p>Github的版本库通常建议同时附上README.md说明文件，但是hexo默认情况下会把所有md文件解析成html文件，<a href="http://xn--README-2e8ijzs7a3iy79ap9kbw9abtaw87tng6a.md" target="_blank" rel="external">所以即使你在线生成了README.md</a>，它也会在你下一次部署时被删去。怎么解决呢？</p>
+</blockquote>
+<blockquote>
+<p>在执行hexo deploy前把在本地写好的README.md文件复制到.deploy文件夹中，再去执行hexo deploy。</p>
+</blockquote>
+<blockquote>
+<p>文／CnFeat（简书作者）
+原文链接：<a href="http://www.jianshu.com/p/05289a4bc8b2#" target="_blank" rel="external">http://www.jianshu.com/p/05289a4bc8b2#</a></p>
+</blockquote>
+<p>我自己的解决差不多，把两个文件放在了source文件内，一个思路<br></p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2016-06-10</span><i class="fa fa-tag"></i><a href="/categories/Internet/" title="Internet" class="tag">Internet </a><a href="/tags/hexo/" title="hexo" class="tag">hexo </a></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://fguizc.me/2016/06/10/hexo搭建时的问题及解决办法/,Fguizc,hexo搭建时的问题及解决办法,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2016/06/10/一个小心意/" title="一个小心意" class="btn">上一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

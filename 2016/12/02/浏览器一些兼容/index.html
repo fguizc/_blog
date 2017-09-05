@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="fguizc"><title>一点微小的polyfill · Fguizc</title><meta name="description" content="-----------2017/1/25 1:47:23 upadate------------
+主要添加记录html5.1及以上新特性
+##响应式
+html支持了响应式图片，在不依赖JS脚本的情况下能够根据媒体查询响应加载不同的图片
+&amp;lt;picture&amp;gt;
+	&amp;lt;source srcs"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><h3 title=""><a href="/">Fguizc</a></h3><div class="description"><p>不会Ai的前端不是好设计/所以更加熟练Photoshop/记录code中的问题/私人生活的吐槽</p></div></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>一点微小的polyfill</a></h3></div><div class="post-content"><p><strong>-----------2017/1/25 1:47:23 upadate------------</strong></p>
+<p>主要添加记录html5.1及以上新特性</p>
+<p>##响应式</p>
+<p>html支持了响应式图片，在不依赖JS脚本的情况下能够根据媒体查询响应加载不同的图片</p>
+<pre><code>&lt;picture&gt;
+	&lt;source srcset='mobile.png' media='(max-width: 480px)'&gt;
+	&lt;source srcset='desk.png' media='(min-width:1080px)'&gt;
+&lt;/picture&gt;
+</code></pre>
+<p>主要是根据<code>picture</code>中的<code>srcset</code>属性来实现。允许添加一个或者多个条件来判断。</p>
+<p>##布局</p>
+<p>允许创建一个空的<code>option</code>元素，用于不在主观上建议用户默认选项</p>
+<pre><code>&lt;select&gt;
+	&lt;option&gt;&lt;/option&gt;
+	&lt;option&gt;demo1&lt;/option&gt;
+	&lt;option&gt;demo2&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+<p><strong>-----------2016/12.12 updata-----------</strong></p>
+<p>平滑滚动</p>
+<pre><code>-webkit-overflow-scrolling: touch
+</code></pre>
+<p>-----------2016/12/02 23:13:43 upadate------------</p>
+<p>主要记录常见实用的PC端与移动端上遇到的兼容适配问题。一切不调研用户群体占有兼容低版本IE都是耍流氓。</p>
+<p>##样式</p>
+<p>Chrome下默认最小字体为12px，为了兼容统一rem</p>
+<p><code>.css{ -webkit-text-size-adjust: none }</code></p>
+<p>取消移动端中用户点选时的高亮</p>
+<p><code>.css{ -webkit-tap-highlight-color: none }</code></p>
+<p>重置input表单中placeholder颜色</p>
+<p><code>input::-webkit-input-placeholder{ color: ... }</code></p>
+<p><code>input:focus::-webkit-input-placeholder{ color: ... }</code></p>
+<p>改变单复选框默认勾选样式</p>
+<p><code>.css{ -webkit-appearance: none; -moz-appearance: none; appearance: none; background-image: url(...) } //edge 14 也已部分兼容 2016,12,2</code></p>
+<p>重置input表单默认填充淡黄色背景</p>
+<p><code>input::-webkit-autofill { -webkit-box-shadow: 0 0 0 1000px white inset 	!important } //Chrome默认定义的bg-color,bg-image.color不能用!important</code></p>
+<p>隐藏滚动条</p>
+<p><code>::-webkit-scrollbar{ display : none }</code></p>
+<p><code>{-webkit-overflow-scrolling: touch}</code></p>
+<p>or</p>
+<p><code>.css{ margin-right: -20px ; padding-left: 20px;}</code></p>
+<p><strong>粘性布局</strong></p>
+<ol>
+<li>
+<p>当页面内容会溢出屏幕时</p>
+<p><code>postion : sticky</code> //不推荐，限制条件多，且多数不支持
+<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161203_151807.png" alt="">
+<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161203_151815.png" alt=""></p>
+</li>
+</ol>
+<ol start="2">
+<li>.<code>parent{display: flex} .stickyChild{flex:1}</code></li>
+</ol>
+<p>##行为</p>
+<p>禁止用户缩放</p>
+<p><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&quot;&gt;</code></p>
+<p>禁止用户选择文字</p>
+<p><code>.css{ -webkit-user-select:none }</code></p>
+<p>禁止HTML5中新加入input的type类型的浏览器默认提示</p>
+<p><code>&lt;input type=&quot;num&quot; autocomplete=&quot;false&quot;&gt;</code></p>
+<p>模拟实现textarea文本编辑框</p>
+<p><code>-webkit-user-modify: read-write( 支持富文本 ) | read-only ( 只读 ) | read-write-plaintext-only (只支持文本)</code></p>
+<p>##判断IE
+判断IE9及以下<br>
+<code>var ie = !-[1,]</code><br>
+<code>&lt;!-[if lte IE 9]&gt;...&lt;![endif]&gt;</code></p>
+<p>IE9及以下</p>
+<ul>
+<li>不支持帧动画，动画续降级</li>
+<li>Flex布局失效(使用float或者flex.css去兼容)</li>
+<li>img显示异常（同时设定width和height)</li>
+<li>:after伪元素失效</li>
+<li>jQuery1.x才支持</li>
+</ul>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2016-12-02</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://fguizc.me/2016/12/02/浏览器一些兼容/,Fguizc,一点微小的polyfill,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2016/12/03/test-emoji/" title="test_emoji" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/2016/08/29/JS-Array-String/" title="JS Array &amp; String " class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

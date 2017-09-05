@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="fguizc"><title>JS中的遍历方法 · Fguizc</title><meta name="description" content="记录JS中主要的循环方法(forEach、map、reduce、for of、for in)之间的异同
+笔记中的“循环”并非严格意义上的循环，包括像 Array.prototype.reduce() 这种 累加器 也一并记录，应该用 [遍历] 更符合。
+Array.prototype.forEach"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><h3 title=""><a href="/">Fguizc</a></h3><div class="description"><p>不会Ai的前端不是好设计/所以更加熟练Photoshop/记录code中的问题/私人生活的吐槽</p></div></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>JS中的遍历方法</a></h3></div><div class="post-content"><h1>记录JS中主要的循环方法(forEach、map、reduce、for of、for in)之间的异同</h1>
+<p>笔记中的“循环”并非严格意义上的循环，包括像 <code>Array.prototype.reduce()</code> 这种 <code>累加器</code> 也一并记录，应该用 [遍历] 更符合。</p>
+<h2>Array.prototype.forEach()</h2>
+<p>先看🌰再说话</p>
+<pre><code>//假定我们有一个数组
+let arr = [1,2,undefined,'a','b',{key1:'val1',key2:'val2'}]
+arr.forEach(function(value){
+	console.log(value)
+	//1,2,'a','b',Object {key1: &quot;val1&quot;,key2: &quot;val2&quot;}
+})
+</code></pre>
+<h4>语法</h4>
+<blockquote>
+<p>Array.forEach(callback[, thisArg])</p>
+</blockquote>
+<h4>参数</h4>
+<p>callback<br>
+　　函数为数组中的每个元素执行方法，并接受最多三个参数<br>
+　　currentValue,index,array<br>
+　　<strong>currentValue</strong>　代表callback正在处理的数组的当前元素<br>
+　　<strong>index</strong> 　　　　 代表其索引<br>
+　　<strong>array</strong>　　　　　代表正在应用forEach()的数组</p>
+<p>thisArg<br>
+　　当callback执行时，this的指向</p>
+<h4>理解</h4>
+<p>forEach()为数组每一个有效元素 <strong>(包括值为undefined)</strong> 进行遍历并执行callback</p>
+<h2>Array.prototype.map()</h2>
+<pre><code>let arr = [1,2,undefined,'a','b',{key1:'val1',key2:'val2'}]
+const new_arr = arr.map(val=&gt;val)
+console.log(new_arr)
+//1,2,'a','b',Object {key1: &quot;val1&quot;,key2: &quot;val2&quot;}
+</code></pre>
+<p>粗略看map()似乎和forEach()方法没有不同，再看一个栗子</p>
+<pre><code>let arr = [1,2,3,4]
+arr.map(val=&gt;val += 1)
+//[2,3,4,5]
+console.log(arr)
+//[1,2,3,4]
+</code></pre>
+<p>可见map()返回了一个新数组，新数组是由回调函数的返回值组成<br>
+例如</p>
+<pre><code>let ele = document.querySelectorAll('input:checked')
+let val = Array.prototype.map.call(ele,function (obj) {
+	return obj.value
+})
+</code></pre>
+<p>通过map()来取得所有复选框的值</p>
+<h2>Array.prototype.reduce()</h2>
+<pre><code>let arr = [23,315,67,2]
+arr.reduce((a,b)=&gt;{return a+b})
+//407
+</code></pre>
+<h4>语法</h4>
+<blockquote>
+<p>arr.prototype.reduce(callback[,initialValue])</p>
+</blockquote>
+<h4>参数</h4>
+<p>callback<br>
+　　callback提供最多四个参数prev,currentValue,index,array<br>
+　　prev 代表上一次调用回调返回的值或者提供的初始值<strong>initialValue</strong><br>
+　　currentValue 代表当前callback处理的array的元素<br>
+　　index 代表其在数组中的索引值<br>
+　　array 代表调用的数组</p>
+<p>initialValue<br>
+　　第一次调用callback时callback的第一个参数值</p>
+<h2>for…of</h2>
+<p>for…of作为在<strong>可迭代对象</strong>上创建一个迭代循环</p>
+<h4>语法</h4>
+<blockquote>
+<p>for (variable of obj) {
+	statement
+}</p>
+</blockquote>
+<h4>参数</h4>
+<p>variable<br>
+　　每一次迭代不同属性的属性值会被赋值给该变量</p>
+<p>obj<br>
+　　一个可以迭代的对象</p>
+<h4>理解</h4>
+<p>for…of相比forEach()支持了 <code>break,continue,return</code> 语句
+，for…of不仅仅支持对数组的遍历，还支持遍历 <strong>字符串、类数组（如DOM对象合集）等</strong></p>
+<h2>for…in</h2>
+<pre><code>//依旧使用上面的数组
+let arr = [1,2,undefined,'a','b',{key1:'val1',key2:'val2'}]
+for( let i in arr ) { console.log( i ) }
+//0,1,2,3,4,5
+for( let j in arr[5]) {console.log( j ) }
+//key1,key2
+</code></pre>
+<h4>语法</h4>
+<blockquote>
+<p>for( variable in object ) {…}</p>
+</blockquote>
+<h4>参数</h4>
+<p>variable<br>
+　　每次迭代，一个不同的属性名将会赋予 variable</p>
+<p>object<br>
+　　可枚举属性被迭代的对象</p>
+<h4>理解</h4>
+<p>for…in循环只遍历可枚举属性，for…in更适合用于迭代一个对象的属性，如果用for…in在数组中，迭代的是index值</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-01-08</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://fguizc.me/2017/01/08/JS中的遍历方法/,Fguizc,JS中的遍历方法,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2017/01/13/什么姿势才能得到正确微博时间线/" title="什么姿势才能得到正确微博时间线" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/2017/01/01/http-header/" title="httP_header" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

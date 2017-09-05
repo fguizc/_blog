@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="fguizc"><title>对网易前端微专业大作业的总结 · Fguizc</title><meta name="description" content="一点思考
+萌新对自己在做网易云前端微专业大作业时的一些总结和思考，记录方便自己更好理解以及规避错误。
+布局 HTML+CSS
+
+主要是对一些语义化的理解，之前通常只会用
+div + ul&amp;gt;li + input + a/p非常基础的标签来写页面布局。
+大作业参考了网易教育产品部的原网页发现使用n"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><h3 title=""><a href="/">Fguizc</a></h3><div class="description"><p>不会Ai的前端不是好设计/所以更加熟练Photoshop/记录code中的问题/私人生活的吐槽</p></div></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>对网易前端微专业大作业的总结</a></h3></div><div class="post-content"><h1>一点思考</h1>
+<p>萌新对自己在做网易云前端微专业大作业时的一些总结和思考，记录方便自己更好理解以及规避错误。</p>
+<h2>布局 HTML+CSS</h2>
+<ol>
+<li>主要是对一些语义化的理解，之前通常只会用
+<code>div + ul&gt;li + input + a/p</code>非常基础的标签来写页面布局。
+大作业参考了网易教育产品部的原网页发现使用<code>nav/header/footer</code> 更加有效地帮助阅读源码和梳理结构。</li>
+<li>对于ID/CLASS的命名规则真是十分重要，在没有经验直接上手时，往往取名偏向于使命名有意义，但是没有考虑到维护CSS时候需要找到其中一个类名时真的太累，应该由外向内层级递进的命名规则，而且可以结合html标签，例如<code>nav</code>中的类名就可以为<code>hd-navkBox-Link</code>，即为<code>header</code>导航栏中的超链接。</li>
+<li>垂直水平居中的实现，个人喜欢通过<code>transform+translate（）</code>实现，以及<code>flex</code>实现弹性布局，幸好是个人作业不需要考虑太多向下兼容，广泛支持的新特性使用真是让人十分愉快。</li>
+<li>不足的是没有尽量多地贴合响应式布局，按照百分比设置长高会出现莫名其妙的布局bug。</li>
+</ol>
+<h2>Javascript</h2>
+<ol>
+<li>组件的思想真的太重要，就拿轮播组件来说，在网页中应该有两处使用，但是由于个人能力以及嫌麻烦，并没有进行封装，只是简单些了个逻辑，导致意识到需要第二次调用轮播组件时候整个人都是懵逼状态。研究了下组件，觉得以后很有必要按照 需求-&gt;原型-&gt;抽象-&gt;组件 这样的思路来写，凡事动工前应该考虑清楚，不仅仅是功能需求上，还有一些意外情况都应该在内。</li>
+<li>DOM基础知识在写作业中就暴露出很多问题，更多的是对于一些操作不熟练，表现在最根本的节点插入,甚至一些语法都忘记（querySelector/All 这一项就完全没有印象，恰恰忘记了一个十分强大的原生DOM操作）。不得不得边写的时候停下来google语法，效率相当低，总结起来就是实操不够，学习的时候理解也不够深入。</li>
+</ol>
+<h2>补充</h2>
+<ol>
+<li>其实这次大作业让我看到的问题不仅仅是上面，最重要的是认识到 <strong>如何思考书写浏览器能够识别的代码</strong> 。在实现一些样式或者交互的过程中，发现很多东西并不是眼见为实，例如很多时候CSS是通过层叠让呈现效果看起来是一体，设置边框为周围的颜色或者设置透明度，通过借用一个1px 100%的无内容填充实现布局的居中，图片的淡入淡出通过控制透明度，图片的轮播通过改变图片的位置，轮播中自动翻页是靠绑定一个点击事件，在没有接触到前端时很多看起理所当然的事情，在现在都发生了改变，欺骗了眼睛但是却让人感觉效果流畅，整体一致。这种思考方面帮我解决了一些最开始接触完全没有方向的问题。</li>
+</ol>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2016-07-12</span><i class="fa fa-tag"></i><a href="/categories/总结/" title="总结" class="tag">总结 </a><a href="/tags/前端/" title="前端" class="tag">前端 </a></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://fguizc.me/2016/07/12/一点思考/,Fguizc,对网易前端微专业大作业的总结,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2016/07/20/CSS笔记/" title="CSS笔记" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/2016/06/10/一个小心意/" title="一个小心意" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

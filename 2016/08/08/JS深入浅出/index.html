@@ -1,0 +1,70 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="fguizc"><title>JS深入浅出 · Fguizc</title><meta name="description" content="JS类型
+JS六种数据类型
+五种原始类型
+
+string
+null
+undefined
+number
+boolean
+
+一种对象
+object
+
+Function
+array
+Date
+
+隐式转换
+关于JavaScript 中的相等性判断可以参考超链
+严格等于“===”
+严格等于下需要判断等号两边类"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><h3 title=""><a href="/">Fguizc</a></h3><div class="description"><p>不会Ai的前端不是好设计/所以更加熟练Photoshop/记录code中的问题/私人生活的吐槽</p></div></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>JS深入浅出</a></h3></div><div class="post-content"><h2>JS类型</h2>
+<h3>JS六种数据类型</h3>
+<p>五种原始类型</p>
+<ul>
+<li>string</li>
+<li>null</li>
+<li>undefined</li>
+<li>number</li>
+<li>boolean</li>
+</ul>
+<p>一种对象
+object</p>
+<ul>
+<li>Function</li>
+<li>array</li>
+<li>Date</li>
+</ul>
+<h3>隐式转换</h3>
+<p>关于JavaScript 中的相等性判断可以参考<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Equality_comparisons_and_sameness" target="_blank" rel="external">超链</a></p>
+<h4>严格等于“===”</h4>
+<p><strong>严格等于下需要判断等号两边类型</strong><br>
+null === null <br>
+undefined === undefined <br>
+Nan != Nan <br>
+new Object != new Object</p>
+<h4>非严格&quot;==&quot;</h4>
+<p>null == undefined 相等<br>
+number == string 转换number 1 == “1.0” //true<br>
+boolean == ? 转换number 1 == true //true<br>
+object == number|string 尝试对象转换为基本类型 new String<br>
+(‘hi’) == ‘hi’ //true  <br>
+其他 :false</p>
+<h3>类型检测</h3>
+<ol>
+<li>typeof
+<img src="http://7xv8p5.com1.z0.glb.clouddn.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20160801223340.png" alt=""><br>
+<strong>注意用typeof 检测 typeof null == “object”</strong> <br></li>
+<li>instanceof<br>
+<strong>instanceof基于原型链</strong><br></li>
+<li>Object.prototype.toString
+<img src="http://7xv8p5.com1.z0.glb.clouddn.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20160801224236.png" alt=""></li>
+</ol>
+<p><strong>类型检测总结</strong></p>
+<p><strong>typeof</strong><br>
+适合基本类型及function检测，遇到null失效<br>
+<strong>Object.prototype.toString</strong><br>
+通过{}.toString拿到，适合内置对象和基元类型，遇到null和undefined失效<br>
+<strong>instanceof</strong><br>
+适合自定义对象，也可以用来检测原生对象，但在不同iframe和window下失效</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2016-08-08</span><i class="fa fa-tag"></i><a href="/categories/学习笔记/" title="学习笔记" class="tag">学习笔记 </a><a href="/categories/学习笔记/JS/" title="JS" class="tag">JS </a><a href="/tags/javascript/" title="javascript" class="tag">javascript </a></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://fguizc.me/2016/08/08/JS深入浅出/,Fguizc,JS深入浅出,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2016/08/29/Javascript-Event/" title="Javascript Event" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/2016/08/08/JS-Scope/" title="JS-Scope" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

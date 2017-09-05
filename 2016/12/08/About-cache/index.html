@@ -1,0 +1,117 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="fguizc"><title>About_cache · Fguizc</title><meta name="description" content="简单总结一下前端的缓存策略
+
+浏览器缓存
+服务器缓存
+
+Web缓存的作用
+
+减少HTTP请求降低服务器压力
+减少带宽小号
+减少延迟，加快页面打开速度
+
+##浏览器缓存
+浏览器缓存中，以缓存命中率来衡量缓存的有效性，根据 得到数据请求次数 / 总请求次数，缓存个命中率高表明数据很大比率是从缓存中读取。"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><h3 title=""><a href="/">Fguizc</a></h3><div class="description"><p>不会Ai的前端不是好设计/所以更加熟练Photoshop/记录code中的问题/私人生活的吐槽</p></div></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>About_cache</a></h3></div><div class="post-content"><p>简单总结一下前端的缓存策略</p>
+<ul>
+<li>浏览器缓存</li>
+<li>服务器缓存</li>
+</ul>
+<p>Web缓存的作用</p>
+<ul>
+<li>减少HTTP请求降低服务器压力</li>
+<li>减少带宽小号</li>
+<li>减少延迟，加快页面打开速度</li>
+</ul>
+<p>##浏览器缓存</p>
+<p>浏览器缓存中，以<strong>缓存命中率</strong>来衡量缓存的有效性，根据 <code>得到数据请求次数 / 总请求次数</code>，缓存个命中率高表明数据很大比率是从缓存中读取。</p>
+<p>###HTTP请求头中的缓存
+<code>HTTP1.1</code>引入<code>Cache-Control</code>来设置缓存，当用户发起一个资源请求时</p>
+<ol>
+<li>去本地查找资源，如果资源存在且资源未过期，直接使用不发送HTTP请求</li>
+<li>如果资源存在，但不清楚资源是否过期或已过期，发送HTTP请求到服务器判断请求，如果资源未被改动返回304，让浏览器在本地找到该资源</li>
+<li>当服务器处理HTTP请求时发现资源已修改，或者是新请求（在本来没有该资源），服务器返回200并返回资源，若服务器上没有该资源返回404</li>
+</ol>
+<p>####Cache-Control</p>
+<ol>
+<li>
+<p>max-age(单位:s)</p>
+<p>指定缓存最大有效时间，定义时间的长短，当浏览器向服务器发送请求，根据设置max-age来判断缓存是否过期，当在有效期内及时服务器上资源发生变化浏览器也不会得到通知，当存在max-age和Expires时，max-age的优先级更高</p>
+</li>
+<li>
+<p>s-maxage(单位:s)</p>
+<p>用于共享缓存（代理缓存），如果存在s-maxage则会覆盖max-age和Expires header</p>
+</li>
+<li>
+<p>no-cache</p>
+<p>指明文件不被缓存，常应用于搜索或者翻页，因为同一URL页面上的资源可能会变动</p>
+</li>
+<li>
+<p>no-store</p>
+<p>指明文件<strong>绝对禁止缓存</strong>，每次请求资源都要从服务器重新获取</p>
+</li>
+</ol>
+<p>####Expires
+缓存过期时间，用来指定资源到期时间，是<strong>服务器端的具体时间点</strong>，Expires = max-age + 请求时间，需要和Last-modified结合使用，但max-age优先级更高，</p>
+<p>####Last-modified
+last-modified是Web <strong>服务器</strong> 认为对象的最后修改时间，比如文件/动态页面的最后修改时间
+<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161208_205816.png" alt=""></p>
+<p>####Etag
+在一些特殊情况，如服务器时间发生错误 / 修改，则会引起通过Last-modified来判断文件版本的出错。
+或者某些文件修改频繁，或者周期性修改（但内容不变）。
+Etag通过为每一个文件生成唯一的标识符（类似于HASH)，只要文件发生改变标识符也会改变。Etag的优先级比Last-modified高。</p>
+<p>通过Etag/Last-modified判断过程如下</p>
+<ol>
+<li>客户端请求数据，例如index.html</li>
+<li>服务器返回index.html,并加上一个Etag/Last-modified</li>
+<li>客户端展示页面，并将页面连同Etag/Last-modified一起缓存</li>
+<li>客户端再次请求index.html，并将Etag/Last-modified一起传回服务器</li>
+<li>服务器检查传回信息，判断出自上次请求后文件是否被修改，若未被修改则返回304和一个空响应体。</li>
+</ol>
+<p>####HTML5中的LoacalStorage和SessionStorage
+二者均为HTML5带来的新特性，主要区别在于过期时间，<code>SessionStorage</code>在会话窗口关闭时过期。而且二者不会把数据发送给服务器，仅在本地存储。</p>
+<p>####manifest离线缓存
+HTML5离线缓存是基于新建一个**.appcache**文件的缓存机智，通过该文件上的解析清单来离线资源，当网络离线时，浏览器使用这些资源。</p>
+<ul>
+<li>在有网络的环境下，浏览器通过解析html发现<code>&lt;html lang=&quot;en&quot; manifest=&quot;index.manifest&quot;&gt;</code>来请求该文件，并根据文件内容下载对应资源，如果已经下载过就会用新的文件与旧文件对比，来判断是否重新下载<code>index.manifest</code>中的资源进行离线存储</li>
+<li>在无网络的环境下，直接使用离线存储的资源</li>
+</ul>
+<p>如果用户清除浏览器数据，会重新下载manifest，
+manifest文件结构通常如下</p>
+<pre><code>CACHE MANIFEST
+#version x.x
+
+CACHE:
+	XXX.XX(test.css) （要被缓存的文件，可绝对/相对路径
+	http://example.com/test.css
+
+NETWORK:
+	XXX.XX(test.js)  （绝不被缓存的文件
+
+FALLBACK:
+	*.html /404.html （若无法联网，用404.html替代所有文件
+</code></pre>
+<p>!<strong>下载manifest文件是一次性下载所有，若其中一个文件下载失败，导致本次下次失败，依旧沿用上一次manifest的离线文件</strong></p>
+<p><a href="http://www.alloyteam.com/2016/03/discussion-on-web-caching/#prettyPhoto" target="_blank" rel="external">拿一张图来总结</a>
+<img src="http://7xv8p5.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%8761.png" alt=""></p>
+<p>##服务器的缓存
+###CDN缓存
+CDN缓存也叫网关缓存</p>
+<ol>
+<li>浏览器向CDN网关发送请求</li>
+<li>网关服务器接收到请求，根据服务器上的资源服务器负载情况，动态转发到最适合的源服务器上</li>
+</ol>
+<p>###CDN缓存策略
+通过HTTP响应头中的<code>Cache-Control:max-age</code>来设置CDN节点数据缓存时间，CDN服务商会提供根据<strong>文件类型，目录</strong>等多个条件来指定缓存时间。</p>
+<p>###CDN缓存优缺点</p>
+<ul>
+<li>CDN解决跨运营商跨地域访问中的延时问题</li>
+<li>大部分请求在CDN边缘节点完成，分发流量降低负载</li>
+<li>若网站更新，CDN节点上部署资源未更新会使用户访问异常（开发者通过CDN服务商提供的<code>刷新缓存</code>功能来强制CDN节点上的数据过期，保证用户请求新的数据）</li>
+</ul>
+<p>##HTTP/2
+HTTP/2引入了<code>服务端推（Server push）</code>的概念，即允许服务端在客户端需要数据之前就<strong>主动将数据发送到客户端缓存中</strong>，从而提高性能。</p>
+<p>参考:</p>
+<p><a href="http://imweb.io/topic/55c6f9bac222e3af6ce235b9" target="_blank" rel="external">缓存策略</a><br>
+<a href="http://www.alloyteam.com/2016/03/discussion-on-web-caching/" target="_blank" rel="external">浅谈Web缓存</a>
+<br>
+<a href="http://yanhaijing.com/html/2014/12/28/html5-manifest/" target="_blank" rel="external">HTML5 离线缓存</a></p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2016-12-08</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://fguizc.me/2016/12/08/About-cache/,Fguizc,About_cache,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2016/12/10/About-offset-value/" title="About_offset_value" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/2016/12/05/About Ajax/" title="Ajax" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

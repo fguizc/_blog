@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="fguizc"><title>less · Fguizc</title><meta name="description" content="记录LESS中常用的语法及规则
+定义变量
+@contentBox_width: 20px;
+.contentBox{
+    width: @contentBox_width;
+}
+
+//编译后
+.contentBox{width:20px}
+
+混合
+less中的混合实际上就是调用了已存在的样式
+."><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><h3 title=""><a href="/">Fguizc</a></h3><div class="description"><p>不会Ai的前端不是好设计/所以更加熟练Photoshop/记录code中的问题/私人生活的吐槽</p></div></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>less</a></h3></div><div class="post-content"><p>记录LESS中常用的语法及规则</p>
+<h3>定义变量</h3>
+<pre><code>@contentBox_width: 20px;
+.contentBox{
+    width: @contentBox_width;
+}
+
+//编译后
+.contentBox{width:20px}
+</code></pre>
+<h3>混合</h3>
+<p>less中的混合实际上就是调用了已存在的样式</p>
+<pre><code>.demo_01{color: red}
+.demo_02{.demo_01}
+//编译后
+.demo_01{color: red}
+.demo_02{color: red}
+</code></pre>
+<p>和sass中的mixin类似，可以用变量替代属性的具体值，并且能设定默认值</p>
+<pre><code>.demo_01(@direction: row) {
+ display: flex;
+ flex-direction: @direction;
+}
+.demo_02{
+ .demo_01(column)
+}
+//编译后
+.demo_01{
+ display:flex;
+ flex-direction:row;
+}
+.demo_02{
+  display:flex;
+  flex-direction: column
+}
+</code></pre>
+<p><strong>注意</strong>: 不推荐使用混合来兼容浏览器私有前缀，请使用postcss—autoprefixer</p>
+<h3>匹配模式</h3>
+<p>即判断语句,和sass中的if语句是有略微区别的</p>
+<pre><code>.less
+.pos(r){position: relative}
+.pos(a){position: absolute}
+.demo{.pos(r)}
+//编译后
+.demo{position: relative}
+</code></pre>
+<p>个人觉得less中的匹配模式并非真正意义上的判断，充其量也是基于<code>混合</code>语法来做冗余代码</p>
+<pre><code>.scss
+$fontSize: 10px;
+	p{
+		@if $fontSize == 10px {
+			font-size: 1rem;
+			}
+		@else {
+			font-size: 2rem;
+			}
+	}
+</code></pre>
+<h3>运算</h3>
+<p>less中的运算实际上在<code>css3</code>有一部分支持比如</p>
+<pre><code>.less
+@w:200px
+.content{ width: @w - 20 }
+//编译后
+.content{ width: 180px}
+
+.css
+.content{ calc( 200px -20 ) }
+</code></pre>
+<p>less中的运算也可用于颜色</p>
+<h3>嵌套</h3>
+<p>和scss一致</p>
+<pre><code>.a{
+color:red;
+span{
+    font-size: 20px;
+    &amp;:hover{color: green}
+ }}
+//编译后
+.a{color: red}
+.a span {font-size: 20px}
+.a span:hover{color: green}
+</code></pre>
+<h3>argument</h3>
+<p>语法规则类似于es6中的<code>...</code>展开运算符</p>
+<pre><code>.demo(@w: 10px,@c: #ccc, @s: solid){
+    border: @arguments
+}
+//编译后
+.demo{border: 10px #ccc solid}
+</code></pre>
+<h3>字符串插值</h3>
+<p>类似于ES6中字符串模板
+@base-url: “<a href="//demo.test.com">//demo.test.com</a>”
+.demo{background-image: url(&quot;@{base-url}/img/pic01.png&quot;)}</p>
+<h3>避免编译</h3>
+<p>规则为 [属性名]: ~`属性值`</p>
+<pre><code>.demo{width: ~&quot;calc( 200px -20px )&quot;}
+</code></pre>
+<p>为避免less直接编译</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-03-01</span><i class="fa fa-tag"></i><a href="/tags/css/" title="css" class="tag">css </a></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://fguizc.me/2017/03/01/less/,Fguizc,less,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2017/04/26/基于Node和MongoDB实现简单的JWT单点登录/" title="基于Node和MongoDB实现Vue.js简单的JWT单点登录" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/2017/02/15/async_await&amp;fetchAPI/" title="async&amp;await&amp;fetchAPI" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

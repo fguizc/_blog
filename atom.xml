@@ -1,0 +1,1615 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Fguizc</title>
+  <subtitle>鲜衣白马千街游你从眉梢过</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://fguizc.me/"/>
+  <updated>2017-09-05T09:26:57.082Z</updated>
+  <id>http://fguizc.me/</id>
+  
+  <author>
+    <name>fguizc</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>React-Native踩坑</title>
+    <link href="http://fguizc.me/2017/09/05/React-Native%20%E8%B8%A9%E5%9D%91/"/>
+    <id>http://fguizc.me/2017/09/05/React-Native 踩坑/</id>
+    <published>2017-09-05T08:34:17.000Z</published>
+    <updated>2017-09-05T09:26:57.082Z</updated>
+    
+    <content type="html"><![CDATA[<h1>React-Native踩坑</h1>
+<p>主要总结最近几天在写RN时遇到的一些差异以及坑。</p>
+<h3>百分比</h3>
+<p>在书写样式时，可以使用<code>absolute</code>绝对定位，但是以往在浏览器中使用的百分比无法在RN中使用，可以用另一种折中的方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">import &#123;</div><div class="line">  Dimensions,</div><div class="line">  StyleSheet</div><div class="line">&#125; from &apos;react-native&apos;;</div><div class="line"></div><div class="line">......</div><div class="line"></div><div class="line">const &#123;width,height&#125; = Dimensions.get(&quot;window&quot;);</div><div class="line"></div><div class="line">const styles = StyleSheet.create(&#123;</div><div class="line">  demostyle: &#123;</div><div class="line">    position: &apos;absolute&apos;,</div><div class="line">    left: width*0.5,</div><div class="line">    top: height*0.5</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>在 <a href="https://reactnative.cn/post/3526" target="_blank" rel="external">0.42 版本</a> 中RN支持了样式百分比，属性值为字符串</p>
+<p>目前支持的属性有：padding，margin，width，height，minWidth，minHeight，maxWidth，maxHeight，flexBasis。</p>
+<h3>文字省略-Text</h3>
+<ul>
+<li>
+<p>ellipsizeMode enum(‘head’, ‘middle’, ‘tail’, ‘clip’) 这个功能相当于我们android中的ellipsize，文本很长时，省略号显示的位置，是开头，中间还是末尾显示省略号。</p>
+<blockquote>
+<p>clip是ios上独有的，设置这个属性时，必须先设置text的行数。</p>
+</blockquote>
+</li>
+<li>
+<p>numberOfLines 文本的行数</p>
+</li>
+</ul>
+<h3>用户登录</h3>
+<p>用户在登录界面登录后，轻触返回按钮（安卓）会跳转回登录页面，利用<code>React Navigation</code>去重置路由状态，使得登录跳转后的首页此时状态为首位（<code>index: 0</code>）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// 当前routeName: &apos;Login&apos;</div><div class="line">// 在登录页绑定Press事件去重置路由状态</div><div class="line">import &#123;NavigationActions&#125; from &apos;react-navigation&apos;</div><div class="line">...</div><div class="line">const resetActions = NavigationActions.reset(&#123;</div><div class="line"> 	index: 0,</div><div class="line"> 	actions: [NavigationActions.navigate(&#123;routeName: &apos;Main&apos;&#125;)]</div><div class="line"> &#125;);</div><div class="line"> this.props.navigation.dispatch(resetActions);</div></pre></td></tr></table></figure>
+<h3>图片</h3>
+<p>RN中，本地图片的导入使用<code>require(路径)</code>，多数情况下，会根据一些情况动态替换路径，但在RN中，不能直接使用一个变量传递在require中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">tmp = this.stateisLogin ? &apos;./loout.png&apos; : &apos;./login.png&apos;  // 错误</div><div class="line">&lt;Image source=&#123;tmp&#125; /&gt;  // 错误</div><div class="line">-----------</div><div class="line"></div><div class="line">imgSource = this.state.isLogin ? require(&apos;./logout.png&apos;) : require(&apos;./login.png&apos;)</div><div class="line">&lt;Image source=&#123;imgSource &#125; /&gt;  // 正确</div></pre></td></tr></table></figure>
+<h3>公共样式</h3>
+<p>为方便管理一下样式，减少样板代码，把部分样式单独抽离成一个JS文件，根据项目需求把颜色赋值给变量导出，方便多处使用。
+以及在写组件时，根据参考其他优秀组件库，添加props允许传递样式到子组件，扩充UI组件灵活性。</p>
+<h3>其他</h3>
+<p>最不习惯的是，RN中没有伪类、伪元素也没有类似css3中 <code>fixed</code> 这样的属性，只能依靠<code>absolute</code>定位，导致有时候一些布局的结构没有html简洁。以及 <code>flex-direction</code> 默认值是<code>column</code>而不是 <code>row</code>，好在RN中不存在跨域问题，也可以使用 axios 库来进行请求。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1&gt;React-Native踩坑&lt;/h1&gt;
+&lt;p&gt;主要总结最近几天在写RN时遇到的一些差异以及坑。&lt;/p&gt;
+&lt;h3&gt;百分比&lt;/h3&gt;
+&lt;p&gt;在书写样式时，可以使用&lt;code&gt;absolute&lt;/code&gt;绝对定位，但是以往在浏览器中使用的百分比无法在RN中使用，可以用另一种折
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>AMD&amp;CMD&amp;Native Module</title>
+    <link href="http://fguizc.me/2017/09/05/AMD&amp;CMD&amp;NativeModule/"/>
+    <id>http://fguizc.me/2017/09/05/AMD&amp;CMD&amp;NativeModule/</id>
+    <published>2017-09-05T08:33:48.000Z</published>
+    <updated>2017-09-05T09:26:57.078Z</updated>
+    
+    <content type="html"><![CDATA[<h2>AMD CMD之间的区别</h2>
+<h3>CMD规范</h3>
+<h4>define</h4>
+<p>cmd规范中，一个文件就是一个模块，并通过<code>define</code>关键字来定义模块。
+<code>define</code>是一个全局函数，接受参数factory，factory可以是字符串、对象或函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">define(factory) // string/object/function of factory</div></pre></td></tr></table></figure>
+<p>当factory是函数时，接受三个参数<code>require</code>、<code>exports</code>、<code>module</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports, module)&#123;</div><div class="line">	//...dosomething</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p><code>define.cmd</code>是一个空对象，用来判断当前页面是否存在cmd模块加载器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">if(typeof define === &apos;function&apos; &amp;&amp; define.cmd)&#123;...&#125;</div></pre></td></tr></table></figure>
+<h4>require</h4>
+<p>require是factory中第一个参数，require作为一个<strong>方法</strong>，接受模块标识作为唯一参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports, module)&#123;</div><div class="line">	var a = require(&apos;./a&apos;);</div><div class="line">	a.someFunc(); // 调用a模块中某方法</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>require.async()可以通过异步方式加载模块，并在加载完成后执行callback（*可选）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports, module) &#123;</div><div class="line"></div><div class="line">  // 异步加载一个模块，在加载完成时，执行回调</div><div class="line">  require.async(&apos;./b&apos;, function(b) &#123;</div><div class="line">    b.doSomething();</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  // 异步加载多个模块，在加载完成时，执行回调</div><div class="line">  require.async([&apos;./c&apos;, &apos;./d&apos;], function(c, d) &#123;</div><div class="line">    c.doSomething();</div><div class="line">    d.doSomething();</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>require.resolve使用模块系统内部路径解析机制来解析并返回模块路径。该函数<strong>不会加载模块</strong>，只返回解析后的绝对路径。</p>
+<h4>exports</h4>
+<p>exports 是一个对象，用来对外提供接口。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports) &#123;</div><div class="line">	exports.bar = &apos;hello world&apos; // 对外提供bar属性</div><div class="line"></div><div class="line">	exports.foo = function()&#123;</div><div class="line">		console.log(&apos;javascript&apos;)</div><div class="line">	&#125;	// 对外提供foo方法</div></pre></td></tr></table></figure>
+<p>上面提供一种单个导出功能，亦可使用return直接返回接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports) &#123;</div><div class="line">	</div><div class="line">	return &#123;</div><div class="line">		foo: function()&#123;&#125;,</div><div class="line">		bar: &apos;hello world&apos;</div><div class="line">	&#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>如果return语句是模块中唯一代码，可以简写为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">define(&#123;</div><div class="line">	foo: function()&#123;&#125;,</div><div class="line">	bar: &apos;hello world&apos;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p><strong>tip</strong>: <code>exports</code>是<code>module.exports</code>的引用，在<code>factory</code>中对exports重新赋值不会改变<code>module.exports</code>，只通过 <code>exports</code> 参数来提供接口，有时无法满足开发者的所有需求。 比如当模块的接口是某个类的实例时，需要通过 <code>module.exports</code>实现。</p>
+<h3>参考</h3>
+<ul>
+<li><a href="https://github.com/seajs/seajs/issues/242" target="_blank" rel="external">CMD 模块定义规范</a></li>
+<li><a href="https://div.io/topic/430" target="_blank" rel="external">再谈 SeaJS 与 RequireJS 的差异</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2&gt;AMD CMD之间的区别&lt;/h2&gt;
+&lt;h3&gt;CMD规范&lt;/h3&gt;
+&lt;h4&gt;define&lt;/h4&gt;
+&lt;p&gt;cmd规范中，一个文件就是一个模块，并通过&lt;code&gt;define&lt;/code&gt;关键字来定义模块。
+&lt;code&gt;define&lt;/code&gt;是一个全局函数，接受参数fac
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>React_setState</title>
+    <link href="http://fguizc.me/2017/06/26/React-setState/"/>
+    <id>http://fguizc.me/2017/06/26/React-setState/</id>
+    <published>2017-06-26T15:02:24.000Z</published>
+    <updated>2017-09-05T09:26:57.082Z</updated>
+    
+    <content type="html"><![CDATA[<h2>setState()</h2>
+<p>在使用React编写组件的过程中，几乎就是和props与state打交道的过程。</p>
+<p>维护组件内部state时，直接使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">this.setState(&#123;</div><div class="line">  key: value</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>这样去更新state的值，这样操作的方式有三点值得注意</p>
+<ol>
+<li>setState()操作是异步的</li>
+<li>多次的setState操作会合并，只执行最后一次</li>
+<li>setState通过引起组件更新来使UI层响应</li>
+</ol>
+<p>当出现一种需求，更新完state后去执行一些操作，可以这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">this.setState(&#123;</div><div class="line">  key: value</div><div class="line">&#125;, ()=&gt;&#123;</div><div class="line">  //do something</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>尽管这样完成了需求，但是可能会引发另一个问题，回调地狱。</p>
+<p>另一方面，this.setState()方法内不仅可以传入一个对象，也可以传入一个函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">state = &#123;</div><div class="line">  count: 0</div><div class="line">&#125;</div><div class="line">//参数state是前一刻的state，props是当前的props</div><div class="line">increment = (state, props)=&gt;&#123;</div><div class="line">  return &#123;</div><div class="line">    count: state.count + 1</div><div class="line">  &#125;</div><div class="line">&#125; </div><div class="line"></div><div class="line">incrementMultiple = () =&gt; &#123;</div><div class="line">  this.setState(increment)</div><div class="line">  this.setState(increment)</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;div onClick=&#123;incrementMultiple&#125; /&gt;</div><div class="line">//count: 2</div></pre></td></tr></table></figure>
+<p>类似于这样多次调用函数式setState，React会保证每次<code>increment</code>时，state都得到了更新。</p>
+<p>在<code>setState()</code>过程中，React将传递给<code>setState()</code>的参数对象合并到state对象中，然后启动<strong>Reconciliation</strong>，ji即创建一个新的React Element tree(UI 层面的对象表示)，然后和之前的tree做比较，根据<code>setState()</code>的对象找出变化，更新DOM重绘。</p>
+<p>在直接对<code>setState()</code>传入一个对象参数时，多次<em>调用</em>并不会得到多次执行，如同JS中<code>Object.assign()</code>方法一样，同样的key值合并，最后一次<code>key:value</code>会覆盖之前，<code>setState()</code>的多次调用也只会得到一次执行。</p>
+<p>而函数式的<code>setState()</code>是基于<strong>前一刻的state</strong>来更新当前<strong>state</strong>。</p>
+<h2>组件外部与组件内部</h2>
+<p>在以往的项目中，编写业务逻辑的代码，对state进行改变，函数总是在组件内部声明再调用，而<code>setState()</code>可以在组件外部声明state更新逻辑，在组件内部调用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">const fn (state, props) =&gt; &#123;</div><div class="line">  return &#123;score: state.score + 1&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">class OneComponent extends Component&#123;</div><div class="line">  </div><div class="line">  state = &#123;score: 0&#125;</div><div class="line">  </div><div class="line">  handleOnClick = () =&gt; &#123;</div><div class="line">    this.setState(fn)</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  render()&#123;</div><div class="line">    return(</div><div class="line">    	&lt;div onClick=&#123;this.handleOnClick&#125;&gt;&#123;this.state.score&#125;&lt;/div&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样做有什么好处？当然不是为了炫技，这样<em>声明式</em>地更新组件，组件类无需继续关心state更新实现的逻辑，只需要在需要的时候去声明即可。</p>
+<p>甚至可以将一部分含有公共逻辑的代码抽离成模块，在组件内按需使用。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2&gt;setState()&lt;/h2&gt;
+&lt;p&gt;在使用React编写组件的过程中，几乎就是和props与state打交道的过程。&lt;/p&gt;
+&lt;p&gt;维护组件内部state时，直接使用&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td 
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>基于githook的自动化部署</title>
+    <link href="http://fguizc.me/2017/06/15/%E5%9F%BA%E4%BA%8Egithook%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/"/>
+    <id>http://fguizc.me/2017/06/15/基于githook的自动化部署/</id>
+    <published>2017-06-15T13:48:36.000Z</published>
+    <updated>2017-09-05T09:26:57.085Z</updated>
+    
+    <content type="html"><![CDATA[<h1>基于Express&amp;githook的自动化部署</h1>
+<h2>需求</h2>
+<p>项目有一个简单的静态网站要部署到服务器，由于一些神秘的东方力量，就算是静态页面也需要改动，频繁地(22Commits，当然大多数也是样式的改写)使用SSH登陆到远程服务器，替换源文件，十分没有效率，作为2017年最会造名词搞概念的前端🐶 。懒是解放生产力进步第一要素。</p>
+<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.png" alt="示意图"></p>
+<h2>原理</h2>
+<p>git仓库支持hook（钩子），团队选用了国内开源中国的 <a href="git.oschina.net"><strong>码云</strong></a> 来托管，设置一个url，让git仓库得到push后去自动触发转发POST请求，服务器拿到POST请求后执行shell脚本，shell执行<code>git pull</code>并重启服务器，进行自动部署。</p>
+<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste_20170615_144402.png" alt="码云"></p>
+<h2>Node.js</h2>
+<p>使用express来启动一个服务，并且依赖<code>execa</code>来执行shell脚本，因为需求简单所以直接在js里写了脚本内容去执行<code>git pull</code>一条命令。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">const</span> app = express();</div><div class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>);</div><div class="line"><span class="keyword">const</span> execa = <span class="built_in">require</span>(<span class="string">'execa'</span>);</div><div class="line"><span class="keyword">const</span> PORT = <span class="number">1234</span>;</div><div class="line"><span class="keyword">const</span> PATH = <span class="string">'../projectPath'</span>;</div><div class="line"><span class="keyword">const</span> TOKEN = <span class="string">'something'</span></div><div class="line"></div><div class="line">app.use(bodyParser.json());</div><div class="line"></div><div class="line">app.post(<span class="string">'/'</span>, (req, res)=&gt;&#123;</div><div class="line"></div><div class="line">  <span class="comment">//可以根据post请求内容过滤，确保一些微小的安全性</span></div><div class="line">  <span class="keyword">if</span>(req.body.password === TOKEN)&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'post request was received'</span>)</div><div class="line">    res.send(<span class="string">'post request to server'</span>)</div><div class="line"></div><div class="line">    <span class="keyword">let</span> commands = [</div><div class="line">      <span class="string">`cd <span class="subst">$&#123;PATH&#125;</span>`</span>,</div><div class="line">      <span class="string">'git pull'</span></div><div class="line">    ].join(<span class="string">' &amp;&amp; '</span>)</div><div class="line"></div><div class="line">    execa.shell(commands).catch(<span class="function"><span class="params">err</span> =&gt;</span> <span class="built_in">console</span>.log(err))</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.listen(PORT, ()=&gt;&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`Server running at <span class="subst">$&#123;PORT&#125;</span>`</span>)</div><div class="line"></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2>服务器项目</h2>
+<p>首先需要在git服务器上初始化项目</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git init .</div><div class="line">//为了方便直接clone 托管在码云上的项目</div><div class="line">git clone target_address</div><div class="line">git pull</div></pre></td></tr></table></figure>
+<p>并且在服务器生成SSH，并且码云上配置好对应SSH，在本地仓库push一次然后在服务器项目中<code>git log</code>打印commit日志可以验证是否成功。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1&gt;基于Express&amp;amp;githook的自动化部署&lt;/h1&gt;
+&lt;h2&gt;需求&lt;/h2&gt;
+&lt;p&gt;项目有一个简单的静态网站要部署到服务器，由于一些神秘的东方力量，就算是静态页面也需要改动，频繁地(22Commits，当然大多数也是样式的改写)使用SSH登陆到远程服务器，替换
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Javascript 单例模式</title>
+    <link href="http://fguizc.me/2017/06/15/Javascript-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://fguizc.me/2017/06/15/Javascript-单例模式/</id>
+    <published>2017-06-15T13:48:09.000Z</published>
+    <updated>2017-09-05T09:26:57.081Z</updated>
+    
+    <content type="html"><![CDATA[<h1>Javascript 单例模式</h1>
+<p>本篇为学习《JavaScript设计模式与开发实践》——单例模式笔记。</p>
+<h2>定义</h2>
+<blockquote>
+<p>单例模式定义：保证一个类仅有一个实例，并提供一个访问它的全局访问点</p>
+</blockquote>
+<p>具体的业务应用例如：页面存在一个唯一的登录框，点击button创建登陆框，但无论点击多少次始终只创建一次登录框。</p>
+<h2>基本实现</h2>
+<p>实现的关键在于<strong>使用一个变量来标志是否已经为某个类创建过对象</strong>，如果是则直接返回之前创建过的对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Singleton = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name</div><div class="line">  <span class="keyword">this</span>.instance = <span class="literal">null</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">Singleton.prototype.getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</div><div class="line">&#125;</div><div class="line"></div><div class="line">Singleton.getInstance = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span>(!<span class="keyword">this</span>.instance)&#123;</div><div class="line">    <span class="keyword">this</span>.instance = <span class="keyword">new</span> Singleton(name)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.instance</div><div class="line">  </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = Singleton.getInstance(<span class="string">'tom'</span>)</div><div class="line"><span class="keyword">var</span> b = Singleton.getInstance(<span class="string">'jerry'</span>)</div><div class="line"></div><div class="line">a === b <span class="comment">// a.name === b.name === 'tom'</span></div></pre></td></tr></table></figure>
+<p>通过<code>Singleton.getInstance</code>来获取Singleton类的唯一对象，而不是像以往通过<code>new</code>关键字来获取，使用者必须知道<code>Singleton</code>是一个单例类。</p>
+<h2>透明的单例模式</h2>
+<p>目标是实现像往常一样通过<code>new</code>关键字来实例化一个对象。以下代码的作用是在页面中创建唯一的div</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> CreateDiv = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  </div><div class="line">  <span class="keyword">var</span> instance = <span class="literal">null</span></div><div class="line">  </div><div class="line">  <span class="keyword">var</span> CreateDiv = <span class="function"><span class="keyword">function</span>(<span class="params">html</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (instance) &#123;</div><div class="line">      <span class="keyword">return</span> instance</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">this</span>.html = html</div><div class="line">    <span class="keyword">this</span>.init()</div><div class="line">    <span class="keyword">return</span> instance = <span class="keyword">this</span></div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  CreateDiv.prototype.init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> div = <span class="built_in">document</span>.createElment(<span class="string">'div'</span>)</div><div class="line">    div.innerHTML = <span class="keyword">this</span>.html</div><div class="line">    <span class="built_in">document</span>.body.appendChild(div)</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="keyword">return</span> CreateDiv</div><div class="line">&#125;)()</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> CreateDiv(<span class="string">'demo1'</span>)</div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> CreateDiv(<span class="string">'demo2'</span>)</div><div class="line"></div><div class="line">a === b <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>以上的代码，通过创建一个立执行函数创建了一个局部变量<code>instance</code>，并且让匿名函数返回真正的<code>Singleton</code>构造方法。</p>
+<p>在内部的<code>CreateDiv</code>构造方法中，确定了两件事</p>
+<ul>
+<li>创建对象和执行初始化init方法</li>
+<li>通过一个外层的局部变量确保只创建一个对象</li>
+</ul>
+<p>根据<strong>单一职责</strong>原则，要尽可能解耦逻辑。</p>
+<h2>代理实现的单例模式</h2>
+<p>通过引入<strong>代理类</strong>的方式解决上述问题。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> CreateDiv = <span class="function"><span class="keyword">function</span>(<span class="params">html</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.html = html</div><div class="line">  <span class="keyword">this</span>.init()</div><div class="line">&#125;</div><div class="line"></div><div class="line">CreateDiv.prototype.init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> div = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>)</div><div class="line">  div.innerHTML = <span class="keyword">this</span>.html</div><div class="line">  <span class="built_in">document</span>.body.appendChild(div)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//引入代理类</span></div><div class="line"><span class="keyword">var</span> ProxySingletonCreateDiv = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  </div><div class="line">  <span class="keyword">var</span> instance = <span class="literal">null</span></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">html</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>( !instance )&#123;</div><div class="line">      instance = <span class="keyword">new</span> CreateDiv(html)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> instance</div><div class="line">  &#125;</div><div class="line">&#125;)()</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> ProxySingletonCreateDiv(<span class="string">'tom'</span>)</div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> ProxySingletonCreateDiv(<span class="string">'jerry'</span>)</div><div class="line"></div><div class="line">a === b <span class="comment">//true</span></div></pre></td></tr></table></figure>
+<p>通过引入代理类，解耦逻辑，使代理类负责管理单例的逻辑，同时CreateDiv变成了一个普通的类，通过组合它们达到单例模式的效果。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1&gt;Javascript 单例模式&lt;/h1&gt;
+&lt;p&gt;本篇为学习《JavaScript设计模式与开发实践》——单例模式笔记。&lt;/p&gt;
+&lt;h2&gt;定义&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;单例模式定义：保证一个类仅有一个实例，并提供一个访问它的全局访问点&lt;/p&gt;
+&lt;/bloc
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>DOMContentLoaded</title>
+    <link href="http://fguizc.me/2017/06/01/DOMContentLoaded/"/>
+    <id>http://fguizc.me/2017/06/01/DOMContentLoaded/</id>
+    <published>2017-06-01T13:16:10.000Z</published>
+    <updated>2017-09-05T09:26:57.080Z</updated>
+    
+    <content type="html"><![CDATA[<h1>DOMContentLoaded</h1>
+<p>本篇记录 ：Dom操作中，检测页面是否加载完毕，确保正确执行js。</p>
+<p>页面加载的过程大致可以简单分为</p>
+<ol>
+<li>DOM结构的构建</li>
+<li>解析样式，构建渲染树</li>
+<li>布局渲染树</li>
+<li>绘制渲染树</li>
+<li>加载请求资源</li>
+<li>页面加载完成</li>
+</ol>
+<h2>1. onload 事件</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">window.onload = function() &#123; //do something &#125;</div></pre></td></tr></table></figure>
+<p>以上代码是经常出现的一句，是指等待页面上<strong>所有资源</strong>加载完成后，触发window对象的load事件。</p>
+<p>而且因为浏览器渲染的过程中，代码是从上往下执行，在实际开发过程中，大量引入第三方库，相互调用，依靠onload事件的触发去执行代码。</p>
+<p>但是onload事件实际是在<strong>页面上所有元素加载完毕，并且请求资源也加载完成</strong>才触发，当页面或项目轻量时，并不会带来什么影响，但在页面上存在大量请求资源时，往往一些操作得不到反馈会降低用户体验。</p>
+<h2>2.jQuery  ready</h2>
+<p>jquery中的$(document).ready(function(){})方法，就是对onload事件的一个改良，它被触发是在DOM结构被绘制完成，要先于window.onload。实际上jq就是监听了DOMContentLoaded事件。</p>
+<h2>3.DOMContentLoaded 事件</h2>
+<p>DOMContentLoaded事件是w3c对onload事件的一个补充。当初始 HTML 文档已经完成加载和解析时，DOMContentLoaded 事件将被触发，无需等待样式表、图像和子框架的完全加载。</p>
+<pre><code>window.onload = function() {
+  console.log('页面加载完成')
+}
+
+document.addEventListener('DOMContentLoaded', function(e){
+  console.log('dom绘制完成')
+}, false)
+
+// dom绘制完成  页面加载完成
+</code></pre>
+<p>在现代浏览器中，通过添加事件监听的方式来绑定事件。</p>
+<p>虽然IE不支持<code>DOMContentLoaded</code>，但它支持<code>onreadystatechange</code>事件。同时，为js设置异步加载的“defer”和“async”属性也会影响DOMContentLoaded的执行。在开发中，我们可以使用DOMContentLoaded事件的监听来提升用户体验。</p>
+<p>参考：</p>
+<p><a href="https://segmentfault.com/a/1190000005869515" target="_blank" rel="external"><a href="https://segmentfault.com/a/1190000005869515" target="_blank" rel="external">浅谈DOMContentLoaded事件及其封装方法</a></a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&mid=2651226247&idx=1&sn=8595a53fe98a3225d0cf0ce3f8ff2acc&chksm=bd4959038a3ed015c3d03fcdadcdabf4225a7eee4efb1988becd9ae3cd87f2216a34717383bc&mpshare=1&scene=1&srcid=0403gXzWL8aSq91TuBoqyFtm&key=19bca82a00e28dcd2ee4826d029205065cd6e6bbcc6f97f2da04129789e26a00b82cc9fccc4f838fc1bda9d9935ab03cc482bfcee734dd40c175fe0d882d0518c4ecf63d82e3d78471415eee960f66cc&ascene=0&uin=NzM0NTM5MzQx&devicetype=iMac+MacBookPro12%2C1+OSX+OSX+10.11.6+build(15G31)&version=12020110&nettype=WIFI&fontScale=100&pass_ticket=2uOqWTPNenLxF7wD%2F%2Bi%2F0TK60XMDQLdZ%2Bk2hyDjtKZsM9jitnQM4c%2B5cVfq0SJLP" target="_blank" rel="external">你不知道的 DOMContentLoaded</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1&gt;DOMContentLoaded&lt;/h1&gt;
+&lt;p&gt;本篇记录 ：Dom操作中，检测页面是否加载完毕，确保正确执行js。&lt;/p&gt;
+&lt;p&gt;页面加载的过程大致可以简单分为&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;DOM结构的构建&lt;/li&gt;
+&lt;li&gt;解析样式，构建渲染树&lt;/li&gt;
+&lt;li&gt;布局渲
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>mongoDB</title>
+    <link href="http://fguizc.me/2017/04/30/mongoDB/"/>
+    <id>http://fguizc.me/2017/04/30/mongoDB/</id>
+    <published>2017-04-30T09:40:03.000Z</published>
+    <updated>2017-09-05T09:26:57.083Z</updated>
+    
+    <content type="html"><![CDATA[<h3>阿里云上部署Node.js</h3>
+<p>使用了<strong>xshell</strong> 教育版去远程连接阿里云，如下图所示，填写完相应的主机号和登陆账户密码后即可连接。
+<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20170430_174229.png" alt=""></p>
+<ol>
+<li>首先更新系统</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y update</div></pre></td></tr></table></figure>
+<ol start="2">
+<li>安装开发工具
+因为阿里云的centOS是纯净的所以需要安装开发者工具，此处踩坑，因为第一次没有安装，后面报了丢失<code>g++</code>的错误</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y groupinstall &quot;Development Tools&quot;</div></pre></td></tr></table></figure>
+<ol start="3">
+<li>安装Node.js
+从<a href="http://nodejs.org/dist" target="_blank" rel="external">Node.js的官网</a>上安装压缩包，个人选择版本是最新的版本，因为想用async/awit语法</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//进入对应的文件夹</div><div class="line">cd /usr/src</div><div class="line">//安装Node</div><div class="line">wget http://nodejs.org/dist/latest/node-v7.9.0.tar.gz</div></pre></td></tr></table></figure>
+<ol start="4">
+<li>解压
+等待一段时间下载完成后(暂时没有遇到网络问题，也可通过下载到本地，再推送到阿里云上安装Node)，解压下载的Node压缩文件，(Linux系统中不以文件后缀名区分文件，后缀名仅供用户了解是何种文件以及声明解压方式)</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar zxf node-v7.9.0.tar.gz </div><div class="line">cd node-v7.9.0</div></pre></td></tr></table></figure>
+<ol start="5">
+<li>执行配置脚本和编译</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//执行配置脚本</div><div class="line">./configure</div><div class="line">//完成后编译源码</div><div class="line">//此处可能出现丢失g++等错误!原因如步骤2</div><div class="line">make</div><div class="line">//编译完成后再执行</div><div class="line">make install</div></pre></td></tr></table></figure>
+<ol start="6">
+<li>安装需求模块
+这个时候我们的Node已经安装完成，可以通过npm -v 来查看，然后再通过npm命令行安装模块，此处因为网络问题我用<code>nrm</code>切换到了淘宝源进行安装</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm -g install express forever</div></pre></td></tr></table></figure>
+<ol start="7">
+<li>建立超级连接
+这一步不知道是干什么用的，但是搜了好几个教程都有就老老实实跟着复制粘贴</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sudo ln -s /usr/local/bin/node /usr/bin/node </div><div class="line">sudo ln -s /usr/local/lib/node /usr/lib/node </div><div class="line">sudo ln -s /usr/local/bin/npm /usr/bin/npm </div><div class="line">sudo ln -s /usr/local/bin/node-waf /usr/bin/node-waf </div><div class="line">sudo ln -s /usr/local/bin/forever /usr/bin/forever</div></pre></td></tr></table></figure>
+<p>到此Node就算安装完成</p>
+<h3>安装MongoDB</h3>
+<h3>Node.js操作MongoDB——Mongoose</h3>
+<p>因为没有后端和数据库经验，所以选择容易上手Mongoose库，Mongoose将数据库中的数据转换为JS对象来进行操作。</p>
+<p>参考:</p>
+<p><a href="https://segmentfault.com/a/1190000004051670" target="_blank" rel="external">把Node.js项目部署到阿里云服务器（CentOs）</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3&gt;阿里云上部署Node.js&lt;/h3&gt;
+&lt;p&gt;使用了&lt;strong&gt;xshell&lt;/strong&gt; 教育版去远程连接阿里云，如下图所示，填写完相应的主机号和登陆账户密码后即可连接。
+&lt;img src=&quot;http://7xv8p5.com1.z0.glb.clouddn.co
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>基于Node和MongoDB实现Vue.js简单的JWT单点登录</title>
+    <link href="http://fguizc.me/2017/04/26/%E5%9F%BA%E4%BA%8ENode%E5%92%8CMongoDB%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84JWT%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
+    <id>http://fguizc.me/2017/04/26/基于Node和MongoDB实现简单的JWT单点登录/</id>
+    <published>2017-04-26T13:30:21.000Z</published>
+    <updated>2017-09-05T09:26:57.085Z</updated>
+    
+    <content type="html"><![CDATA[<p>该篇主要记录毕业设计中基于Vue全家桶+Node+MongoDB实现的简单登陆。
+##什么是JWT
+JWT即JSON Web Token，它是一个<strong>规范</strong>，允许我们使用JWT在用户和服务器之间传递信息。
+JWT的组成是由三个部分。</p>
+<ol>
+<li>头部</li>
+<li>载荷</li>
+<li>签名
+载荷(Payload)</li>
+</ol>
+<h2>Vuex</h2>
+<p>本来最开始想着毕业设计这个小项目也没有多复杂，就不上状态管理了，结果…，一天不用浑身难受。
+其实我们主要是实现<strong>登录</strong>，<strong>注销</strong>这两个操作的action分发。
+代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">//action</div><div class="line">import * as types from &apos;./types&apos;</div><div class="line">const actions = &#123;</div><div class="line">    UserLogin(&#123;commit&#125;, data) &#123;</div><div class="line">        commit(types.LOGIN, data)</div><div class="line">    &#125;,</div><div class="line">    UserLogout(&#123;commit&#125;) &#123;</div><div class="line">        commit(types.LOGOUT)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//mutation</div><div class="line">import * as types from &apos;./types&apos;</div><div class="line">const mutations = &#123;</div><div class="line">    [types.LOGIN]: (state, token) =&gt; &#123;</div><div class="line">    localStorage.setItem(&apos;token&apos;, token)</div><div class="line">    state.token = token</div><div class="line">  &#125;,</div><div class="line">  [types.LOGOUT]: (state) =&gt;　&#123;</div><div class="line">    state.token = null</div><div class="line">    localStorage.removeItem(&apos;token&apos;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2>Vue Router</h2>
+<p>使用vue router设置路由的时候，我们依靠<strong>导航钩子</strong>来实现对用户登录信息的检测，**beforeEach(to, from, next)**钩子函数是关键。
+我们如下定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">const router = new VueRouter()</div><div class="line">router.beforeEach((to, from, next) =&gt; &#123;</div><div class="line">// do something    </div><div class="line"> &#125;)</div></pre></td></tr></table></figure>
+<p>此处三个参数<code>to</code>,<code>from</code>,<code>next</code>:
+<code>to: Route</code>: 表示即将要进入的目标的<strong>路由对象</strong>
+<code>from Route</code>: 表示当前导航将要离开的路由
+<code>next Function</code>: 确保要准确调用next()来resolve钩子，可以通过<code>next({path: '/...'})</code>来手动跳转，
+在<strong>路由对象</strong>中，我们可以设置一个<strong>路由元信息</strong>即<code>meta</code>，举个栗子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">const router = new VueRouter(&#123;</div><div class="line">  routes: [</div><div class="line">    &#123;</div><div class="line">      path: &apos;/foo&apos;,</div><div class="line">      component: Foo,</div><div class="line">      children: [</div><div class="line">        &#123;</div><div class="line">          path: &apos;bar&apos;,</div><div class="line">          component: Bar,</div><div class="line">          // a meta field</div><div class="line">          meta: &#123; requiresAuth: true &#125;</div><div class="line">        &#125;</div><div class="line">      ]</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>在这里我们就设置了<code>meta</code>以及它的一个属性<code>requireAuth</code>，结合上面的<code>beforeEach()</code>函数，我们可以去检测，当每一次路由发生改变时的jwt是否合法，如果不合法我们就可以通过<code>next()</code>跳转到登录页。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">router.beforeEach((to, from, next) =&gt; &#123;</div><div class="line">  let token = localStorage.getItem(&apos;token&apos;)  </div><div class="line">  if (to.matched.some(record =&gt; record.meta.requiresAuth)) &#123;</div><div class="line">    // this route requires auth, check if logged in</div><div class="line">    // if not, redirect to login page.</div><div class="line">    if (!token) &#123;</div><div class="line">      next(&#123;</div><div class="line">        path: &apos;/login&apos;,</div><div class="line">        query: &#123; redirect: to.fullPath &#125;</div><div class="line">      &#125;)</div><div class="line">    &#125; else &#123;</div><div class="line">      next()</div><div class="line">    &#125;</div><div class="line">  &#125; else &#123;</div><div class="line">    next() // 确保一定要调用 next()</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>至此，我们就算实现了一个简单的登陆拦截</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;该篇主要记录毕业设计中基于Vue全家桶+Node+MongoDB实现的简单登陆。
+##什么是JWT
+JWT即JSON Web Token，它是一个&lt;strong&gt;规范&lt;/strong&gt;，允许我们使用JWT在用户和服务器之间传递信息。
+JWT的组成是由三个部分。&lt;/p&gt;
+&lt;o
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>less</title>
+    <link href="http://fguizc.me/2017/03/01/less/"/>
+    <id>http://fguizc.me/2017/03/01/less/</id>
+    <published>2017-03-01T12:55:29.000Z</published>
+    <updated>2017-09-05T09:26:57.083Z</updated>
+    
+    <content type="html"><![CDATA[<p>记录LESS中常用的语法及规则</p>
+<h3>定义变量</h3>
+<pre><code>@contentBox_width: 20px;
+.contentBox{
+    width: @contentBox_width;
+}
+
+//编译后
+.contentBox{width:20px}
+</code></pre>
+<h3>混合</h3>
+<p>less中的混合实际上就是调用了已存在的样式</p>
+<pre><code>.demo_01{color: red}
+.demo_02{.demo_01}
+//编译后
+.demo_01{color: red}
+.demo_02{color: red}
+</code></pre>
+<p>和sass中的mixin类似，可以用变量替代属性的具体值，并且能设定默认值</p>
+<pre><code>.demo_01(@direction: row) {
+ display: flex;
+ flex-direction: @direction;
+}
+.demo_02{
+ .demo_01(column)
+}
+//编译后
+.demo_01{
+ display:flex;
+ flex-direction:row;
+}
+.demo_02{
+  display:flex;
+  flex-direction: column
+}
+</code></pre>
+<p><strong>注意</strong>: 不推荐使用混合来兼容浏览器私有前缀，请使用postcss—autoprefixer</p>
+<h3>匹配模式</h3>
+<p>即判断语句,和sass中的if语句是有略微区别的</p>
+<pre><code>.less
+.pos(r){position: relative}
+.pos(a){position: absolute}
+.demo{.pos(r)}
+//编译后
+.demo{position: relative}
+</code></pre>
+<p>个人觉得less中的匹配模式并非真正意义上的判断，充其量也是基于<code>混合</code>语法来做冗余代码</p>
+<pre><code>.scss
+$fontSize: 10px;
+	p{
+		@if $fontSize == 10px {
+			font-size: 1rem;
+			}
+		@else {
+			font-size: 2rem;
+			}
+	}
+</code></pre>
+<h3>运算</h3>
+<p>less中的运算实际上在<code>css3</code>有一部分支持比如</p>
+<pre><code>.less
+@w:200px
+.content{ width: @w - 20 }
+//编译后
+.content{ width: 180px}
+
+.css
+.content{ calc( 200px -20 ) }
+</code></pre>
+<p>less中的运算也可用于颜色</p>
+<h3>嵌套</h3>
+<p>和scss一致</p>
+<pre><code>.a{
+color:red;
+span{
+    font-size: 20px;
+    &amp;:hover{color: green}
+ }}
+//编译后
+.a{color: red}
+.a span {font-size: 20px}
+.a span:hover{color: green}
+</code></pre>
+<h3>argument</h3>
+<p>语法规则类似于es6中的<code>...</code>展开运算符</p>
+<pre><code>.demo(@w: 10px,@c: #ccc, @s: solid){
+    border: @arguments
+}
+//编译后
+.demo{border: 10px #ccc solid}
+</code></pre>
+<h3>字符串插值</h3>
+<p>类似于ES6中字符串模板
+@base-url: “<a href="//demo.test.com">//demo.test.com</a>”
+.demo{background-image: url(&quot;@{base-url}/img/pic01.png&quot;)}</p>
+<h3>避免编译</h3>
+<p>规则为 [属性名]: ~`属性值`</p>
+<pre><code>.demo{width: ~&quot;calc( 200px -20px )&quot;}
+</code></pre>
+<p>为避免less直接编译</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;记录LESS中常用的语法及规则&lt;/p&gt;
+&lt;h3&gt;定义变量&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;@contentBox_width: 20px;
+.contentBox{
+    width: @contentBox_width;
+}
+
+//编译后
+.contentBox{wid
+    
+    </summary>
+    
+    
+      <category term="css" scheme="http://fguizc.me/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>async&amp;await&amp;fetchAPI</title>
+    <link href="http://fguizc.me/2017/02/15/async_await&amp;fetchAPI/"/>
+    <id>http://fguizc.me/2017/02/15/async_await&amp;fetchAPI/</id>
+    <published>2017-02-15T12:51:30.000Z</published>
+    <updated>2017-09-05T09:26:57.082Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>async function 声明了一个异步函数，并返回一个AsyncFunction 对象</p>
+</blockquote>
+<p>async 表示一个 <code>async function</code> , await 只能用在该函数内, 而且await需要<strong>等待Promise返回值后</strong>才会继续执行</p>
+<h4>语法</h4>
+<pre>async function name (arguments) {
+	do something
+}</pre>
+<p>name : 函数名<br>
+arguments: 参数<br></p>
+<pre><code>function printf(val){
+	return new Promise(function(resolve, reject){
+		setTimeout(function(){
+			resolve(val)
+		},2000)
+	})
+}
+
+let fn = async function () {
+	console.log('start')
+	let a = await printf(10)
+	console.log(a)
+	console.log('end')
+}
+
+fn()
+//start
+//等待2s后打印出10
+//end
+</code></pre>
+<p>上面的例子中，写法看起来就像写同步代码一样，而且await虽然等待的是Promise对象，但是不用<code>then(...)</code>就可以得到返回值</p>
+<p>!<strong>注意</strong>:Promise分为三个阶段,<br>分别是 <strong>pending,fulfilled,rejected</strong>,<br>且只能 pending &gt;&gt;&gt; fulfilled 或 pending &gt;&gt;&gt; rejected 状态不可逆</p>
+<pre><code>let fn = (time)=&gt;{
+	return new Promise((resolve, reject)=&gt;{
+		setTimeout(function(){
+			reject('error')
+		},time)
+	})
+}
+
+let start = async function () {
+	try {
+		console.log('start')
+		await fn(2000)
+		// console.log('end') 不会被执行
+		console.log('end')
+	} catch (err) {
+		console.log(err)
+		}
+}
+
+start()
+//start
+//2s后打印 error
+//不会执行console.log('end')
+</code></pre>
+<p>循环中的await<br>
+在es5中我们不使用闭包情况下</p>
+<pre><code>for(var i = 0 ; i &lt; 5 ; i++){
+	setTimeout(function(){
+		console.log(i) //打印5次5
+	},0)
+}
+</code></pre>
+<p>使用await</p>
+<pre><code>let fn1 = function () {
+	return new Promise((resolve)=&gt;{
+		setTimeout(function(){
+			resolve()
+		},1000)
+	})
+}
+
+let fn2 = async function () {
+	for(var i = 0 ; i &lt; 5 ; i++){
+		console.log(`第${i}次输出`)
+		await fn1()
+	}
+}
+
+fn2()
+</code></pre>
+<p>虽然看起来复杂很多，重点其实还是上面提到<strong>await必须在async function 上下文环境中使用</strong></p>
+<hr>
+<p>下次再写fetchAPI</p>
+<p>参考:
+<a href="http://ju.outofmemory.cn/entry/300679" target="_blank" rel="external">1</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;async function 声明了一个异步函数，并返回一个AsyncFunction 对象&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;async 表示一个 &lt;code&gt;async function&lt;/code&gt; , await 只能用在该函数内,
+    
+    </summary>
+    
+    
+      <category term="es7" scheme="http://fguizc.me/tags/es7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>什么姿势才能得到正确微博时间线</title>
+    <link href="http://fguizc.me/2017/01/13/%E4%BB%80%E4%B9%88%E5%A7%BF%E5%8A%BF%E6%89%8D%E8%83%BD%E5%BE%97%E5%88%B0%E6%AD%A3%E7%A1%AE%E5%BE%AE%E5%8D%9A%E6%97%B6%E9%97%B4%E7%BA%BF/"/>
+    <id>http://fguizc.me/2017/01/13/什么姿势才能得到正确微博时间线/</id>
+    <published>2017-01-13T10:57:07.000Z</published>
+    <updated>2017-09-05T09:26:57.084Z</updated>
+    
+    <content type="html"><![CDATA[<h1>如何在[文明用语]的微博下找到刷微博的正确姿势？</h1>
+<p>最近帮助了一些小伙伴重新找回畅快刷微博，为了帮助更多人，由此有了这篇教程，仅仅针对于使用<strong>网页微博</strong>的环境。</p>
+<h2>一.准备工作</h2>
+<p>工欲善其事必先利其器，Chrome或者国内Chrome内核浏览器，以及<strong>自备梯子</strong>。<br>
+在Chrome Appstroe里面找到我们必备的两款插件。</p>
+<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20170113_191539.png" alt=""><br></p>
+<p><a href="https://chrome.google.com/webstore/search/violent%20monkey?utm_source=chrome-ntp-icon" target="_blank" rel="external">Violent monkey</a></p>
+<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20170113_191526.png" alt=""><br></p>
+<p><a href="https://chrome.google.com/webstore/search/Stylish?utm_source=chrome-ntp-icon" target="_blank" rel="external">Stylish</a></p>
+<p>Violent Monkey负责加载第三方JS文件，Stylish负责更改样式。</p>
+<h2>二.少说话看东西</h2>
+<p>在我们安装完上述两款插件后，打开<a href="http://weibo.com" target="_blank" rel="external">weibo</a>并登陆，可以在插件栏上看到这两款图标 <img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20170113_192314.png" alt="">，当然你可以没有角标数字。<br>
+我们先打开<a href="https://tiansh.github.io/yawf/zh-cn.html" target="_blank" rel="external">这个网站</a>(可能需要梯子)，我们可以看到下图，点击安装脚本。
+<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20170113_193040.png" alt=""><br>
+接着我们点击Stylish，找到你觉得合适美观的样式并安装。此处个人推荐<strong>weibo_v6</strong>，当然你如果了解CSS你也可以根据自己的需求来更改。
+<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20170113_193226.png" alt="">
+<br></p>
+<p>我们刷新微博页面。在顶部可以找到下图标记。
+<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20170113_193549.png" alt="">
+<br></p>
+<p>点击后如下图<br>
+<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20170113_193622.png" alt="">
+勾选后，就能使用<strong>正常顺序的时间线</strong>浏览微博，再也不用把所有关注放在一个分组或者其他玄学方法。而且在过滤器设置里面还可以<strong>改造版面</strong>屏蔽微博上莫名其妙活动让ID后面带上的小图标，以及其他功能可以自行探索。<br>
+最后感谢一下 <strong>YAWF脚本脚本</strong> 作者<a href="http://weibo.com/tsh90?profile_ftype=1&amp;is_all=1#_0" target="_blank" rel="external">@tsh90 </a>带来的便利。</p>
+<h2>三.结语和其他</h2>
+<p>对于微博打乱时间线这件事不做评价，但必须说网页微博的体验实在是糟糕，于是有了更清奇的访问方式。</p>
+<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20170113_194847.png" alt="">
+<br></p>
+<p>以及两款插件均可搜索到适配<strong>大部分主流网站(诸如B站)</strong><br>
+最后希望大家早日找回自己想要的时间线。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1&gt;如何在[文明用语]的微博下找到刷微博的正确姿势？&lt;/h1&gt;
+&lt;p&gt;最近帮助了一些小伙伴重新找回畅快刷微博，为了帮助更多人，由此有了这篇教程，仅仅针对于使用&lt;strong&gt;网页微博&lt;/strong&gt;的环境。&lt;/p&gt;
+&lt;h2&gt;一.准备工作&lt;/h2&gt;
+&lt;p&gt;工欲善其事必先利其器
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JS中的遍历方法</title>
+    <link href="http://fguizc.me/2017/01/08/JS%E4%B8%AD%E7%9A%84%E9%81%8D%E5%8E%86%E6%96%B9%E6%B3%95/"/>
+    <id>http://fguizc.me/2017/01/08/JS中的遍历方法/</id>
+    <published>2017-01-08T15:00:46.000Z</published>
+    <updated>2017-09-05T09:26:57.081Z</updated>
+    
+    <content type="html"><![CDATA[<h1>记录JS中主要的循环方法(forEach、map、reduce、for of、for in)之间的异同</h1>
+<p>笔记中的“循环”并非严格意义上的循环，包括像 <code>Array.prototype.reduce()</code> 这种 <code>累加器</code> 也一并记录，应该用 [遍历] 更符合。</p>
+<h2>Array.prototype.forEach()</h2>
+<p>先看🌰再说话</p>
+<pre><code>//假定我们有一个数组
+let arr = [1,2,undefined,'a','b',{key1:'val1',key2:'val2'}]
+arr.forEach(function(value){
+	console.log(value)
+	//1,2,'a','b',Object {key1: &quot;val1&quot;,key2: &quot;val2&quot;}
+})
+</code></pre>
+<h4>语法</h4>
+<blockquote>
+<p>Array.forEach(callback[, thisArg])</p>
+</blockquote>
+<h4>参数</h4>
+<p>callback<br>
+　　函数为数组中的每个元素执行方法，并接受最多三个参数<br>
+　　currentValue,index,array<br>
+　　<strong>currentValue</strong>　代表callback正在处理的数组的当前元素<br>
+　　<strong>index</strong> 　　　　 代表其索引<br>
+　　<strong>array</strong>　　　　　代表正在应用forEach()的数组</p>
+<p>thisArg<br>
+　　当callback执行时，this的指向</p>
+<h4>理解</h4>
+<p>forEach()为数组每一个有效元素 <strong>(包括值为undefined)</strong> 进行遍历并执行callback</p>
+<h2>Array.prototype.map()</h2>
+<pre><code>let arr = [1,2,undefined,'a','b',{key1:'val1',key2:'val2'}]
+const new_arr = arr.map(val=&gt;val)
+console.log(new_arr)
+//1,2,'a','b',Object {key1: &quot;val1&quot;,key2: &quot;val2&quot;}
+</code></pre>
+<p>粗略看map()似乎和forEach()方法没有不同，再看一个栗子</p>
+<pre><code>let arr = [1,2,3,4]
+arr.map(val=&gt;val += 1)
+//[2,3,4,5]
+console.log(arr)
+//[1,2,3,4]
+</code></pre>
+<p>可见map()返回了一个新数组，新数组是由回调函数的返回值组成<br>
+例如</p>
+<pre><code>let ele = document.querySelectorAll('input:checked')
+let val = Array.prototype.map.call(ele,function (obj) {
+	return obj.value
+})
+</code></pre>
+<p>通过map()来取得所有复选框的值</p>
+<h2>Array.prototype.reduce()</h2>
+<pre><code>let arr = [23,315,67,2]
+arr.reduce((a,b)=&gt;{return a+b})
+//407
+</code></pre>
+<h4>语法</h4>
+<blockquote>
+<p>arr.prototype.reduce(callback[,initialValue])</p>
+</blockquote>
+<h4>参数</h4>
+<p>callback<br>
+　　callback提供最多四个参数prev,currentValue,index,array<br>
+　　prev 代表上一次调用回调返回的值或者提供的初始值<strong>initialValue</strong><br>
+　　currentValue 代表当前callback处理的array的元素<br>
+　　index 代表其在数组中的索引值<br>
+　　array 代表调用的数组</p>
+<p>initialValue<br>
+　　第一次调用callback时callback的第一个参数值</p>
+<h2>for…of</h2>
+<p>for…of作为在<strong>可迭代对象</strong>上创建一个迭代循环</p>
+<h4>语法</h4>
+<blockquote>
+<p>for (variable of obj) {
+	statement
+}</p>
+</blockquote>
+<h4>参数</h4>
+<p>variable<br>
+　　每一次迭代不同属性的属性值会被赋值给该变量</p>
+<p>obj<br>
+　　一个可以迭代的对象</p>
+<h4>理解</h4>
+<p>for…of相比forEach()支持了 <code>break,continue,return</code> 语句
+，for…of不仅仅支持对数组的遍历，还支持遍历 <strong>字符串、类数组（如DOM对象合集）等</strong></p>
+<h2>for…in</h2>
+<pre><code>//依旧使用上面的数组
+let arr = [1,2,undefined,'a','b',{key1:'val1',key2:'val2'}]
+for( let i in arr ) { console.log( i ) }
+//0,1,2,3,4,5
+for( let j in arr[5]) {console.log( j ) }
+//key1,key2
+</code></pre>
+<h4>语法</h4>
+<blockquote>
+<p>for( variable in object ) {…}</p>
+</blockquote>
+<h4>参数</h4>
+<p>variable<br>
+　　每次迭代，一个不同的属性名将会赋予 variable</p>
+<p>object<br>
+　　可枚举属性被迭代的对象</p>
+<h4>理解</h4>
+<p>for…in循环只遍历可枚举属性，for…in更适合用于迭代一个对象的属性，如果用for…in在数组中，迭代的是index值</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1&gt;记录JS中主要的循环方法(forEach、map、reduce、for of、for in)之间的异同&lt;/h1&gt;
+&lt;p&gt;笔记中的“循环”并非严格意义上的循环，包括像 &lt;code&gt;Array.prototype.reduce()&lt;/code&gt; 这种 &lt;code&gt;累加器&lt;/c
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>httP_header</title>
+    <link href="http://fguizc.me/2017/01/01/http-header/"/>
+    <id>http://fguizc.me/2017/01/01/http-header/</id>
+    <published>2017-01-01T12:50:34.000Z</published>
+    <updated>2017-09-05T09:26:57.083Z</updated>
+    
+    <content type="html"><![CDATA[<p><code>HTTP消息头</code> 是指在超文本传输协议（HTTP）的请求和响应消息中的消息头部分。它们定义了一个超文本传输协议事务中的操作参数。是在请求（request）或响应（response）行（一条消息的第一行内容）之后传输的。</p>
+<h4>HTTP请求头</h4>
+<table style="text-align:center;">
+	<thead>
+		<th>协议头</th><th>说明</th><th>示例</th><th>状态</th>
+	</thead>
+	<tbody>
+		<tr><td>Accept</td><td>可接受的响应内容类型(Content-Types)</td><td>Accept: text/plain</td><td>固定</td></tr>
+		<tr><td>Accept-Charset</td><td>可接受的字符集</td><td>Accept-Charset: utf-8</td><td>固定</td></tr>
+		<tr><td>Accept-Encoding</td><td>可接受的编码方式</td><td>Accept-Encoding: gzip,deflate/plain</td><td>固定</td></tr>
+		<tr><td>Cache-Control</td><td>指定本次请求/响应链中的缓存机制都必须执行的指令</td><td>Cache-Control: no-cache || max-age = 0</td><td>固定</td></tr>
+		<tr><td>Content-Type</td><td>请求体的多媒体类型</td><td>Content-Type: text/plain;charset=UTF-8</td><td>固定</td></tr>
+		<tr><td>Cookie</td><td>由之前服务器通过Set-Cookie（见下文）设置的一个HTTP协议Cookie</td><td>Cookie: $Version=1; Skin=new;</td><td>固定</td></tr>
+		<tr><td>User-Agent</td><td>用户代理（标记用户浏览器身份的字符串）</td><td>Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.8</td><td>固定</td></tr>
+	</tbody>
+</table>
+<h4>HTTP响应头</h4>
+<table style="text-align:center">
+	<thead>
+		<th>协议头</th><th>说明</th><th>示例</th><th>状态</th>
+	</thead>
+	<tbody>
+		<tr><td>Status</td><td>通用网关接口的响应头字段，用来说明当前HTTP连接的响应状态</td><td>Status: 200 </td><td></td></tr>
+		<tr><td>Server</td><td>服务器的名字</td><td>Server: mw1252.eqiad.wmnet</td><td>固定</td></tr>
+		<tr><td>Date</td><td>此条消息被发送时的日期和时间</td><td>Date: Wed, 15 Feb 2017 14:41:22 GMT</td><td>固定</td></tr>
+		<tr><td>Last-Modified</td><td>所请求的对象的最后修改日期</td><td>Last-Modified: Tue, 15 Nov 1994 12:45:26 GMT</td><td>固定</td></tr>
+	</tbody>
+</table>
+<br>
+<br>
+<p><a href="http://fguizc.xyz/2016/12/08/About-cache/" target="_blank" rel="external">关于缓存</a><br>
+<a href="http://fguizc.xyz/2016/12/05/About%20Ajax/" target="_blank" rel="external">关于常见status code</a></p>
+<p>参考：<a href="https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5%E5%88%97%E8%A1%A8" target="_blank" rel="external">维基百科</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;code&gt;HTTP消息头&lt;/code&gt; 是指在超文本传输协议（HTTP）的请求和响应消息中的消息头部分。它们定义了一个超文本传输协议事务中的操作参数。是在请求（request）或响应（response）行（一条消息的第一行内容）之后传输的。&lt;/p&gt;
+&lt;h4&gt;HTTP请求头
+    
+    </summary>
+    
+    
+      <category term="http" scheme="http://fguizc.me/tags/http/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>About_offset_value</title>
+    <link href="http://fguizc.me/2016/12/10/About-offset-value/"/>
+    <id>http://fguizc.me/2016/12/10/About-offset-value/</id>
+    <published>2016-12-10T06:57:00.000Z</published>
+    <updated>2017-09-05T09:26:57.079Z</updated>
+    
+    <content type="html"><![CDATA[<h1>关于元素在页面的位置</h1>
+<p>元素在页面使用绝对定位<code>position:absolute</code>来获取元素的位置时<code>ele.offsetTop</code>，仅仅获取的是设置的<code>top:value</code>值，但如果使用<code>tranform:translate(x,x)</code>进行偏移后，<code>translate</code>的偏移量<strong>不计入</strong><code>offsetTop</code>中</p>
+<p>举个 🌰 ( windows10 x Chrome55 )</p>
+<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161210_143430.png" alt=""></p>
+<p>简单设置一个模态的位置</p>
+<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161210_143715.png" alt=""></p>
+<p>在控制台中我们打印出整个屏幕的高度为<code>630px</code>,再打印出<code>ele.offsetTop == 315</code>符合第一张图中设置的CSS样式。<br>
+然后我们去给模态添加<code>transform:translate</code>让其在整个屏幕垂直居中。</p>
+<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161210_143813.png" alt=""></p>
+<p>此时打印出<code>ele.offsetTop == 315</code>没有改变，**证明<code>translate</code>**的偏移量没有被计入。</p>
+<p>如果要让元素在屏幕中水平垂直居中，而且能够得到正确的 <code>offsetTop/Left</code> 值的解决办法</p>
+<ul>
+<li>设置<code>top/left</code>属性时计算好，可以用<code>calc</code>来计算</li>
+<li>不在CSS中设置，用JS获取屏幕宽高 - 元素的宽高 / 2，再赋值给元素</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1&gt;关于元素在页面的位置&lt;/h1&gt;
+&lt;p&gt;元素在页面使用绝对定位&lt;code&gt;position:absolute&lt;/code&gt;来获取元素的位置时&lt;code&gt;ele.offsetTop&lt;/code&gt;，仅仅获取的是设置的&lt;code&gt;top:value&lt;/code&gt;值，但如果使用&lt;c
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>About_cache</title>
+    <link href="http://fguizc.me/2016/12/08/About-cache/"/>
+    <id>http://fguizc.me/2016/12/08/About-cache/</id>
+    <published>2016-12-08T10:08:20.000Z</published>
+    <updated>2017-09-05T09:26:57.079Z</updated>
+    
+    <content type="html"><![CDATA[<p>简单总结一下前端的缓存策略</p>
+<ul>
+<li>浏览器缓存</li>
+<li>服务器缓存</li>
+</ul>
+<p>Web缓存的作用</p>
+<ul>
+<li>减少HTTP请求降低服务器压力</li>
+<li>减少带宽小号</li>
+<li>减少延迟，加快页面打开速度</li>
+</ul>
+<p>##浏览器缓存</p>
+<p>浏览器缓存中，以<strong>缓存命中率</strong>来衡量缓存的有效性，根据 <code>得到数据请求次数 / 总请求次数</code>，缓存个命中率高表明数据很大比率是从缓存中读取。</p>
+<p>###HTTP请求头中的缓存
+<code>HTTP1.1</code>引入<code>Cache-Control</code>来设置缓存，当用户发起一个资源请求时</p>
+<ol>
+<li>去本地查找资源，如果资源存在且资源未过期，直接使用不发送HTTP请求</li>
+<li>如果资源存在，但不清楚资源是否过期或已过期，发送HTTP请求到服务器判断请求，如果资源未被改动返回304，让浏览器在本地找到该资源</li>
+<li>当服务器处理HTTP请求时发现资源已修改，或者是新请求（在本来没有该资源），服务器返回200并返回资源，若服务器上没有该资源返回404</li>
+</ol>
+<p>####Cache-Control</p>
+<ol>
+<li>
+<p>max-age(单位:s)</p>
+<p>指定缓存最大有效时间，定义时间的长短，当浏览器向服务器发送请求，根据设置max-age来判断缓存是否过期，当在有效期内及时服务器上资源发生变化浏览器也不会得到通知，当存在max-age和Expires时，max-age的优先级更高</p>
+</li>
+<li>
+<p>s-maxage(单位:s)</p>
+<p>用于共享缓存（代理缓存），如果存在s-maxage则会覆盖max-age和Expires header</p>
+</li>
+<li>
+<p>no-cache</p>
+<p>指明文件不被缓存，常应用于搜索或者翻页，因为同一URL页面上的资源可能会变动</p>
+</li>
+<li>
+<p>no-store</p>
+<p>指明文件<strong>绝对禁止缓存</strong>，每次请求资源都要从服务器重新获取</p>
+</li>
+</ol>
+<p>####Expires
+缓存过期时间，用来指定资源到期时间，是<strong>服务器端的具体时间点</strong>，Expires = max-age + 请求时间，需要和Last-modified结合使用，但max-age优先级更高，</p>
+<p>####Last-modified
+last-modified是Web <strong>服务器</strong> 认为对象的最后修改时间，比如文件/动态页面的最后修改时间
+<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161208_205816.png" alt=""></p>
+<p>####Etag
+在一些特殊情况，如服务器时间发生错误 / 修改，则会引起通过Last-modified来判断文件版本的出错。
+或者某些文件修改频繁，或者周期性修改（但内容不变）。
+Etag通过为每一个文件生成唯一的标识符（类似于HASH)，只要文件发生改变标识符也会改变。Etag的优先级比Last-modified高。</p>
+<p>通过Etag/Last-modified判断过程如下</p>
+<ol>
+<li>客户端请求数据，例如index.html</li>
+<li>服务器返回index.html,并加上一个Etag/Last-modified</li>
+<li>客户端展示页面，并将页面连同Etag/Last-modified一起缓存</li>
+<li>客户端再次请求index.html，并将Etag/Last-modified一起传回服务器</li>
+<li>服务器检查传回信息，判断出自上次请求后文件是否被修改，若未被修改则返回304和一个空响应体。</li>
+</ol>
+<p>####HTML5中的LoacalStorage和SessionStorage
+二者均为HTML5带来的新特性，主要区别在于过期时间，<code>SessionStorage</code>在会话窗口关闭时过期。而且二者不会把数据发送给服务器，仅在本地存储。</p>
+<p>####manifest离线缓存
+HTML5离线缓存是基于新建一个**.appcache**文件的缓存机智，通过该文件上的解析清单来离线资源，当网络离线时，浏览器使用这些资源。</p>
+<ul>
+<li>在有网络的环境下，浏览器通过解析html发现<code>&lt;html lang=&quot;en&quot; manifest=&quot;index.manifest&quot;&gt;</code>来请求该文件，并根据文件内容下载对应资源，如果已经下载过就会用新的文件与旧文件对比，来判断是否重新下载<code>index.manifest</code>中的资源进行离线存储</li>
+<li>在无网络的环境下，直接使用离线存储的资源</li>
+</ul>
+<p>如果用户清除浏览器数据，会重新下载manifest，
+manifest文件结构通常如下</p>
+<pre><code>CACHE MANIFEST
+#version x.x
+
+CACHE:
+	XXX.XX(test.css) （要被缓存的文件，可绝对/相对路径
+	http://example.com/test.css
+
+NETWORK:
+	XXX.XX(test.js)  （绝不被缓存的文件
+
+FALLBACK:
+	*.html /404.html （若无法联网，用404.html替代所有文件
+</code></pre>
+<p>!<strong>下载manifest文件是一次性下载所有，若其中一个文件下载失败，导致本次下次失败，依旧沿用上一次manifest的离线文件</strong></p>
+<p><a href="http://www.alloyteam.com/2016/03/discussion-on-web-caching/#prettyPhoto" target="_blank" rel="external">拿一张图来总结</a>
+<img src="http://7xv8p5.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%8761.png" alt=""></p>
+<p>##服务器的缓存
+###CDN缓存
+CDN缓存也叫网关缓存</p>
+<ol>
+<li>浏览器向CDN网关发送请求</li>
+<li>网关服务器接收到请求，根据服务器上的资源服务器负载情况，动态转发到最适合的源服务器上</li>
+</ol>
+<p>###CDN缓存策略
+通过HTTP响应头中的<code>Cache-Control:max-age</code>来设置CDN节点数据缓存时间，CDN服务商会提供根据<strong>文件类型，目录</strong>等多个条件来指定缓存时间。</p>
+<p>###CDN缓存优缺点</p>
+<ul>
+<li>CDN解决跨运营商跨地域访问中的延时问题</li>
+<li>大部分请求在CDN边缘节点完成，分发流量降低负载</li>
+<li>若网站更新，CDN节点上部署资源未更新会使用户访问异常（开发者通过CDN服务商提供的<code>刷新缓存</code>功能来强制CDN节点上的数据过期，保证用户请求新的数据）</li>
+</ul>
+<p>##HTTP/2
+HTTP/2引入了<code>服务端推（Server push）</code>的概念，即允许服务端在客户端需要数据之前就<strong>主动将数据发送到客户端缓存中</strong>，从而提高性能。</p>
+<p>参考:</p>
+<p><a href="http://imweb.io/topic/55c6f9bac222e3af6ce235b9" target="_blank" rel="external">缓存策略</a><br>
+<a href="http://www.alloyteam.com/2016/03/discussion-on-web-caching/" target="_blank" rel="external">浅谈Web缓存</a>
+<br>
+<a href="http://yanhaijing.com/html/2014/12/28/html5-manifest/" target="_blank" rel="external">HTML5 离线缓存</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;简单总结一下前端的缓存策略&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;浏览器缓存&lt;/li&gt;
+&lt;li&gt;服务器缓存&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Web缓存的作用&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;减少HTTP请求降低服务器压力&lt;/li&gt;
+&lt;li&gt;减少带宽小号&lt;/li&gt;
+&lt;li&gt;减少延迟，加快页面打开速
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Ajax</title>
+    <link href="http://fguizc.me/2016/12/05/About%20Ajax/"/>
+    <id>http://fguizc.me/2016/12/05/About Ajax/</id>
+    <published>2016-12-05T15:13:05.000Z</published>
+    <updated>2017-09-05T09:26:57.078Z</updated>
+    
+    <content type="html"><![CDATA[<h1>面试遇到的一些问题</h1>
+<h2>XMLHttpRequest是什么，描述完整GET请求</h2>
+<ol>
+<li>
+<p>创建XMLHttpRequest请求</p>
+<pre><code>创建时可以考虑兼容IE低版本 new ActiveXObject('Microsoft.XMLHTTP')
+</code></pre>
+</li>
+<li>
+<p>根据xhr.readyState来反馈</p>
+</li>
+<li>
+<p>readyState会触发onreadystatechange事件,如果xhr.status == 200请求成功可以进一步执行回调函数，否则可以返回状态码查看错误</p>
+</li>
+</ol>
+<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/2252768-9aa71d8895170f10.png" alt="">
+图片来自<a href="http://www.jianshu.com/p/3d82e409c5a9" target="_blank" rel="external">http://www.jianshu.com/p/3d82e409c5a9</a></p>
+<p>以及</p>
+<pre><code>[
+    100  Continue   继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息
+    200  OK         正常返回信息
+    201  Created    请求成功并且服务器创建了新的资源
+    202  Accepted   服务器已接受请求，但尚未处理
+    301  Moved Permanently  请求的网页已永久移动到新位置。
+    302 Found       临时性重定向。
+    303 See Other   临时性重定向，且总是使用 GET 请求新的 URI。
+    304  Not Modified 自从上次请求后，请求的网页未修改过。
+
+    400 Bad Request  服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求。
+    401 Unauthorized 请求未授权。
+    403 Forbidden   禁止访问。
+    404 Not Found   找不到如何与 URI 相匹配的资源。
+
+    500 Internal Server Error  最常见的服务器端错误。
+    503 Service Unavailable 服务器端暂时无法处理请求（可能是过载或维护）。
+]
+</code></pre>
+<p><a href="https://github.com/markyun/My-blog/tree/master/Front-end-Developer-Questions/Questions-and-Answers" target="_blank" rel="external">以上来自</a></p>
+<p>然后练手写了个<a href="https://github.com/fguizc/Mobile_learn/tree/master/Ajax" target="_blank" rel="external">简陋的封装</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1&gt;面试遇到的一些问题&lt;/h1&gt;
+&lt;h2&gt;XMLHttpRequest是什么，描述完整GET请求&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;创建XMLHttpRequest请求&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;创建时可以考虑兼容IE低版本 new ActiveXObject(&#39;Mic
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>SASS</title>
+    <link href="http://fguizc.me/2016/12/05/SASS/"/>
+    <id>http://fguizc.me/2016/12/05/SASS/</id>
+    <published>2016-12-04T16:43:27.000Z</published>
+    <updated>2017-09-05T09:26:57.082Z</updated>
+    
+    <content type="html"><![CDATA[<h1>SASS语法</h1>
+<h2>条件语句</h2>
+<p>Sass中条件语句为 <code>@if</code> 和 <code>@else</code>  举个栗子</p>
+<pre><code>$fontSize: 10px;
+	p{
+		@if $fontSize == 10px {
+			font-size: 1rem;
+			}
+		@else {
+			font-size: 2rem;
+			}
+	}
+</code></pre>
+<p>如果处理更负责的逻辑可以使用类似于JS中 <code>@if ... @else if...@else</code> 这样的语法规则</p>
+<h2>循环</h2>
+<h3>for</h3>
+<p><code>@for</code> 指令可以循环输出且常用方式有两种</p>
+<ul>
+<li><code>from start through end</code></li>
+<li><code>from start to end</code></li>
+</ul>
+<p>两者的区别在于，前者遍历范围<code>[start, end]</code> 后者遍历范围 <code>[start, end - 1]</code></p>
+<p><strong>如果要让变量递减循环只需要设置 start &gt; end</strong></p>
+<p><code>@for $i from 1 through 4 { .col-#{$i} { width: 100/4 * $i + % } }</code></p>
+<h3>each</h3>
+<p><code>@each</code> 也可以用来循环，和<code>for</code> 的区别在于，<code>each</code> 通过遍历 <code>list</code> 或者 <code>map</code> 实现循环输出</p>
+<p>举个栗子</p>
+<pre><code>@each $keyword in header, main, footer {
+	.#{$keyword}-bg {
+		background-image: url(../#{$keyword}.png);
+	}
+}
+</code></pre>
+<p>输出结果为
+<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161205_010826.png" alt=""></p>
+<p>当然还可以这样</p>
+<pre><code>$list: {item1:small_pic,item2:big_pic,item3:huge_pic};
+@each $key, $value in $list {
+	.#{$key}-bg {
+		background-image: url(../#{$value}.png};
+	}
+}
+</code></pre>
+<p>结果是
+<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161205_011802.png" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1&gt;SASS语法&lt;/h1&gt;
+&lt;h2&gt;条件语句&lt;/h2&gt;
+&lt;p&gt;Sass中条件语句为 &lt;code&gt;@if&lt;/code&gt; 和 &lt;code&gt;@else&lt;/code&gt;  举个栗子&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$fontSize: 10px;
+	p{
+		@if $fontSize 
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>test_emoji</title>
+    <link href="http://fguizc.me/2016/12/03/test-emoji/"/>
+    <id>http://fguizc.me/2016/12/03/test-emoji/</id>
+    <published>2016-12-03T11:42:36.000Z</published>
+    <updated>2017-09-05T09:26:57.083Z</updated>
+    
+    <content type="html"><![CDATA[<p>#在hexo环境中配置emoji
+😄 😉
+🐊
+🦄
+🐘
+🐼🌚🌝🎃⛄️🌊☔️🎋</p>
+<p><a href="http://emoji.codes/" target="_blank" rel="external">所有emoji编码点击查看</a></p>
+<p>##配置方法
+由于默认markdown渲染器不支持所以要卸载</p>
+<pre><code>npm un hexo-renderer-marked --save
+</code></pre>
+<p>然后重新安装新的</p>
+<pre><code>npm install hexo-renderer-markdown-it --save
+npm install markdown-it-emoji --save
+</code></pre>
+<p>并在博客根目录下配置 <code>_config.yml</code> 文件</p>
+<pre><code>markdown:
+  render:
+    html: true
+	xhtmlOut: false
+	breaks: false
+	linkify: true
+	typographer: true
+	quotes: '“”‘’'
+  plugins:
+	- markdown-it-footnote
+	- markdown-it-sup
+	- markdown-it-sub
+	- markdown-it-abbr
+	- markdown-it-emoji
+  anchors:
+	level: 2
+	collisionSuffix: 'v'
+	permalink: true
+	permalinkClass: header-anchor
+	permalinkSymbol: ¶
+</code></pre>
+<p>最后重新启用hexo server大功告成</p>
+<pre><code>hexo clean &amp;&amp; hexo d -g
+hexo s -p 1234
+</code></pre>
+<p>测试发现部分编码丢失？不确定总之不能显示出例如 🤴 :clown:</p>
+<hr>
+<p>有待捣鼓…</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;#在hexo环境中配置emoji
+😄 😉
+🐊
+🦄
+🐘
+🐼🌚🌝🎃⛄️🌊☔️🎋&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://emoji.codes/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;所有emoji编码点击查看&lt;/a&gt;&lt;/p
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>一点微小的polyfill</title>
+    <link href="http://fguizc.me/2016/12/02/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%80%E4%BA%9B%E5%85%BC%E5%AE%B9/"/>
+    <id>http://fguizc.me/2016/12/02/浏览器一些兼容/</id>
+    <published>2016-12-02T15:13:43.000Z</published>
+    <updated>2017-09-05T09:26:57.085Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>-----------2017/1/25 1:47:23 upadate------------</strong></p>
+<p>主要添加记录html5.1及以上新特性</p>
+<p>##响应式</p>
+<p>html支持了响应式图片，在不依赖JS脚本的情况下能够根据媒体查询响应加载不同的图片</p>
+<pre><code>&lt;picture&gt;
+	&lt;source srcset='mobile.png' media='(max-width: 480px)'&gt;
+	&lt;source srcset='desk.png' media='(min-width:1080px)'&gt;
+&lt;/picture&gt;
+</code></pre>
+<p>主要是根据<code>picture</code>中的<code>srcset</code>属性来实现。允许添加一个或者多个条件来判断。</p>
+<p>##布局</p>
+<p>允许创建一个空的<code>option</code>元素，用于不在主观上建议用户默认选项</p>
+<pre><code>&lt;select&gt;
+	&lt;option&gt;&lt;/option&gt;
+	&lt;option&gt;demo1&lt;/option&gt;
+	&lt;option&gt;demo2&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+<p><strong>-----------2016/12.12 updata-----------</strong></p>
+<p>平滑滚动</p>
+<pre><code>-webkit-overflow-scrolling: touch
+</code></pre>
+<p>-----------2016/12/02 23:13:43 upadate------------</p>
+<p>主要记录常见实用的PC端与移动端上遇到的兼容适配问题。一切不调研用户群体占有兼容低版本IE都是耍流氓。</p>
+<p>##样式</p>
+<p>Chrome下默认最小字体为12px，为了兼容统一rem</p>
+<p><code>.css{ -webkit-text-size-adjust: none }</code></p>
+<p>取消移动端中用户点选时的高亮</p>
+<p><code>.css{ -webkit-tap-highlight-color: none }</code></p>
+<p>重置input表单中placeholder颜色</p>
+<p><code>input::-webkit-input-placeholder{ color: ... }</code></p>
+<p><code>input:focus::-webkit-input-placeholder{ color: ... }</code></p>
+<p>改变单复选框默认勾选样式</p>
+<p><code>.css{ -webkit-appearance: none; -moz-appearance: none; appearance: none; background-image: url(...) } //edge 14 也已部分兼容 2016,12,2</code></p>
+<p>重置input表单默认填充淡黄色背景</p>
+<p><code>input::-webkit-autofill { -webkit-box-shadow: 0 0 0 1000px white inset 	!important } //Chrome默认定义的bg-color,bg-image.color不能用!important</code></p>
+<p>隐藏滚动条</p>
+<p><code>::-webkit-scrollbar{ display : none }</code></p>
+<p><code>{-webkit-overflow-scrolling: touch}</code></p>
+<p>or</p>
+<p><code>.css{ margin-right: -20px ; padding-left: 20px;}</code></p>
+<p><strong>粘性布局</strong></p>
+<ol>
+<li>
+<p>当页面内容会溢出屏幕时</p>
+<p><code>postion : sticky</code> //不推荐，限制条件多，且多数不支持
+<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161203_151807.png" alt="">
+<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161203_151815.png" alt=""></p>
+</li>
+</ol>
+<ol start="2">
+<li>.<code>parent{display: flex} .stickyChild{flex:1}</code></li>
+</ol>
+<p>##行为</p>
+<p>禁止用户缩放</p>
+<p><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&quot;&gt;</code></p>
+<p>禁止用户选择文字</p>
+<p><code>.css{ -webkit-user-select:none }</code></p>
+<p>禁止HTML5中新加入input的type类型的浏览器默认提示</p>
+<p><code>&lt;input type=&quot;num&quot; autocomplete=&quot;false&quot;&gt;</code></p>
+<p>模拟实现textarea文本编辑框</p>
+<p><code>-webkit-user-modify: read-write( 支持富文本 ) | read-only ( 只读 ) | read-write-plaintext-only (只支持文本)</code></p>
+<p>##判断IE
+判断IE9及以下<br>
+<code>var ie = !-[1,]</code><br>
+<code>&lt;!-[if lte IE 9]&gt;...&lt;![endif]&gt;</code></p>
+<p>IE9及以下</p>
+<ul>
+<li>不支持帧动画，动画续降级</li>
+<li>Flex布局失效(使用float或者flex.css去兼容)</li>
+<li>img显示异常（同时设定width和height)</li>
+<li>:after伪元素失效</li>
+<li>jQuery1.x才支持</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;-----------2017/1/25 1:47:23 upadate------------&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;主要添加记录html5.1及以上新特性&lt;/p&gt;
+&lt;p&gt;##响应式&lt;/p&gt;
+&lt;p&gt;html支持了响应式图片，在不依赖JS脚本的情况
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JS Array &amp; String </title>
+    <link href="http://fguizc.me/2016/08/29/JS-Array-String/"/>
+    <id>http://fguizc.me/2016/08/29/JS-Array-String/</id>
+    <published>2016-08-29T14:29:43.000Z</published>
+    <updated>2017-09-05T09:26:57.080Z</updated>
+    
+    <content type="html"><![CDATA[<h2>Javascript String</h2>
+<h3>字符串的操作</h3>
+<ul>
+<li>
+<p>slice()<br>
+参数：start,end,两个参数均为字符串的下标位置<br>
+作用：截取String部分元素,截取位置为end-1，即不能取到下标为end,且不会对原字符串改变<br></p>
+<pre><code>stringObject = '012345';
+stringObject.slice(0,1);// 0 
+</code></pre>
+</li>
+<li>
+<p>concat()<br>
+参数：必需，为一个或多个字符串<br>作用：将一个或者多个字符串拼接起来，也可以使用‘+’号来进行连接，使用‘+’时存在隐式转换</p>
+<pre><code>stringObject.concat(stringX,....,stringN);
+</code></pre>
+</li>
+<li>
+<p>substr() <br>
+参数:指定子字符串的开始位置,start,length<br>
+作用:返回的子字符串的字符个数,创建新的子字符串<br>
+<strong>重要事项：ECMAscript 没有对该方法进行标准化，因此反对使用它。</strong></p>
+</li>
+<li>
+<p>substring() <br>
+参数：start,end<br></p>
+</li>
+<li>
+<p>repeat()<strong>[ES6]</strong><br>
+参数:可填写数字，表示重复的次数<br>
+作用:将原字符串重复n次，如果<strong>传入负数，会报错，传入小数或者NaN等同于传入0</strong></p>
+</li>
+<li>
+<p>lastIndexOf()<br></p>
+</li>
+<li>
+<p>indexOf()<br>
+参数：<br>
+作用：搜索给定子字符串，获得某个指定元素的索引，若找到则返回位置，否则返回-1，两者均执行一次</p>
+</li>
+<li>
+<p>includes()<strong>[ES6]</strong><br>
+参数：传入要搜寻的子字符串,可选开始位置<br>
+作用：返回布尔值，表示是否找寻到子字符串</p>
+</li>
+<li>
+<p>startsWith()<strong>[ES6]</strong><br>
+参数：传入要搜寻的子字符串,可选开始位置<br>
+作用：返回布尔值，表示参数字符串是否在源字符串的头部</p>
+</li>
+<li>
+<p>endsWith()<strong>[ES6]</strong><br>
+参数：传入要搜寻的子字符串,可选开始位置<br>
+作用：返回布尔值，表示参数字符串是否在源字符串的尾部</p>
+</li>
+<li>
+<p>trim()<strong>[ES5]</strong><br>
+参数：/<br>
+作用：方法会删除一个字符串两端的空白字符，且该方法不影响原字符串，返回一个新的字符串</p>
+</li>
+<li>
+<p>fromCharCode()<br>
+<strong>该方法为String构造函数的一个静态方法</strong><br>
+参数：一个或者多个字符串编码
+作用：将字符串编码转换成对应的ASCII码的字符串，该方法与charCodeAt()作用相反<br></p>
+<pre><code>  例如：String.fromCharCode(104) //h
+	   stringObject.charCodeAt(h) //104
+</code></pre>
+</li>
+</ul>
+<h3>字符串的大小写转化</h3>
+<ul>
+<li>toLowerCase(),toUpperCase</li>
+</ul>
+<h3>与正则相关</h3>
+<ul>
+<li>
+<p>match()<br>
+参数：一个正则表达式或者RegExp<br>
+作用：	返回一个数组，本质上与使用的正则表达式有关</p>
+</li>
+<li>
+<p>search()<br>
+参数：一个字符串或者RegExp<br>
+作用：返回参数中的子字符串在字符串中第一个匹配的索引值，若字符串中没有，则返回-1</p>
+</li>
+<li>
+<p>replace()<br>
+参数：String || RegExp ，num <br>
+作用：用传入的第二个参数替换第一个参数，且不影响原字符串，返回一个新的替换后的字符串</p>
+</li>
+<li>
+<p>split()<br>
+参数：参数1-字符串|正则，参数2-（可选）用于指定返回数组的Length<br>
+作用：用于分割字符串，依旧为参数，并<strong>返回数组</strong>，分隔符可以是子字符串或正则</p>
+</li>
+</ul>
+<h2>Javascirpt Array</h2>
+<h3>数组常用操作</h3>
+<ul>
+<li>
+<p>concat()<br>
+语法：arrayObject.concat(arrayX,arrayX,…,arrayX),<br>          其中arrayX为必需,参数可以是具体的值，也可以是数组对象，不限数量<br>
+作用：连接两个或者更多的数组，并返回结果</p>
+</li>
+<li>
+<p>join()<br>
+参数：可选参数，使用参数代表的分隔符对数组分割，返回一个字符串，若参数为空，则默认以<code>,</code>为分隔符<br>
+作用：把所有元素放一个字符串，元素通过制定的分隔符进行分割</p>
+</li>
+<li>
+<p>pop()<br>
+参数：/<br>
+作用：删除并返回数组的最后一个元素</p>
+</li>
+<li>
+<p>push()<br>
+参数：(newelement1,newelement2,…,newelementX)<br>
+其中element1为必需，其余为可选
+作用：向数组的末尾添加一个或更多元素，并返回新的长度</p>
+</li>
+<li>
+<p>shift()<br>
+参数：/<br>
+作用：	删除原数组第一个元素，并返回第一个元素的值</p>
+</li>
+<li>
+<p>unshift()<br>
+参数：(newelement1,newelement2,…,newelementX)
+<br>其中newelement1为必需
+作用：向数组的开头添加一个或更多元素，并返回新的长度。</p>
+</li>
+<li>
+<p>slice()<br>
+参数：(start,end),start为必需，end为可选，且[start,end)<br>
+作用：	返回一个新的数组，包含从 start 到 end （不包括该元素）的 arrayObject 中的元素。</p>
+</li>
+</ul>
+<ul>
+<li>splice()<br>
+参数：(index,length,item1,…,itemX)<br>其中index与length为必需,其余为可选参数，表示向数组中添加的新项目<br>
+作用：	向/从数组中添加/删除项目，然后返回被删除的项目。会改变原数组</li>
+</ul>
+<ul>
+<li>
+<p>toString()<br>
+参数：/<br>
+作用：	可把数组转换为字符串，并返回结果。</p>
+</li>
+<li>
+<p>reverse()<br>
+参数：/<br>
+作用：	用于颠倒数组中元素的顺序。</p>
+</li>
+<li>
+<p>sort()<br>
+参数：sortby,可选<br>
+作用：对数组进行<strong>字符编码排序</strong></p>
+</li>
+</ul>
+<p>利用sort()对数组排序(数组中全为数字)<br>
+升序<br>
+array.sort(function(a,b){return a &gt; b?1:-1});<br>
+降序<br>
+array.sort(function(a,b){return a &lt; b?1:-1});<br>	
+<strong>调用sort()不会生成新的数组，会对原数组进行改变</strong></p>
+<h2>常用排序方法</h2>
+<ul>
+<li>冒泡排序(性能较差)</li>
+<li>快排</li>
+<li>插入排序</li>
+</ul>
+<h3>冒泡排序</h3>
+<pre><code>(1) 比较相邻的元素。如果第一个比第二个大，就交换它们两个；
+(2) 对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对，
+    这样在最后的元素应该会是最大的数；
+(3) 针对所有的元素重复以上的步骤，除了最后一个；
+(4) 重复步骤1~3，直到排序完成
+
+
+function bubbleSort (array) {
+var i = 0,
+len = array.length,
+j, d;
+for (; i &lt; len; i++) {
+    for (j = 0; j &lt; len; j++) {
+        if (array[i] &lt; array[j]) {
+            d = array[j];
+            array[j] = array[i];
+            array[i] = d;
+        }
+    }
+}
+return array;
+}
+</code></pre>
+<h3>快排</h3>
+<pre><code>（1）在数据集之中，选择一个元素作为&quot;基准&quot;（pivot）。（常选取中间位置）
+（2）所有小于&quot;基准&quot;的元素，都移到&quot;基准&quot;的左边；所有大于&quot;基准&quot;的元素，都移到&quot;基准&quot;的右边。
+（3）对&quot;基准&quot;左边和右边的两个子集，不断重复第一步和第二步，直到所有子集只剩下一个元素为止。 			
+
+
+
+var quickSort = function(arr) {
+	if (arr.length &lt;= 1) { return arr; }
+	var pivotIndex = Math.floor(arr.length / 2);
+	var pivot = arr.splice(pivotIndex, 1)[0];
+	var left = [];
+	var right = [];
+	for (var i = 0; i &lt; arr.length; i++){
+		if (arr[i] &lt; pivot) {
+			left.push(arr[i]);
+	  } else {
+			right.push(arr[i]);
+	  		 }
+	}
+return quickSort(left).concat([pivot], quickSort(right));
+};
+</code></pre>
+<h3>插入排序</h3>
+<pre><code> (1) 从第一个元素开始，该元素可以认为已经被排序；
+ (2) 取出下一个元素，在已经排序的元素序列中从后向前扫描；
+ (3) 如果该元素（已排序）大于新元素，将该元素移到下一位置；
+ (4) 重复步骤3，直到找到已排序的元素小于或者等于新元素的位置；
+ (5) 将新元素插入到该位置后；
+ (6) 重复步骤2~5。
+
+
+function insertSort (array) {
+var i = 1,
+j, step, key, len = array.length;
+
+for (; i &lt; len; i++) {
+
+    step = j = i;
+    key = array[j];
+
+    while (--j &gt; -1) {
+        if (array[j] &gt; key) {
+            array[j + 1] = array[j];
+        } else {
+            break;
+        }
+    }
+
+    array[j + 1] = key;
+}
+
+return array;
+}
+</code></pre>
+<h4>补充</h4>
+<p>JS中会改变原数组的方法有:<code>pop,push,reverse,shift,sort,splice,unshift</code></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2&gt;Javascript String&lt;/h2&gt;
+&lt;h3&gt;字符串的操作&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;slice()&lt;br&gt;
+参数：start,end,两个参数均为字符串的下标位置&lt;br&gt;
+作用：截取String部分元素,截取位置为end-1，即不能取到下标为end,且
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>

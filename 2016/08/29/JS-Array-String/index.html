@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="fguizc"><title>JS Array & String  · Fguizc</title><meta name="description" content="Javascript String
+字符串的操作
+
+
+slice()
+参数：start,end,两个参数均为字符串的下标位置
+作用：截取String部分元素,截取位置为end-1，即不能取到下标为end,且不会对原字符串改变
+stringObject = '012345';
+stringObject"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><h3 title=""><a href="/">Fguizc</a></h3><div class="description"><p>不会Ai的前端不是好设计/所以更加熟练Photoshop/记录code中的问题/私人生活的吐槽</p></div></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>JS Array &amp; String </a></h3></div><div class="post-content"><h2>Javascript String</h2>
+<h3>字符串的操作</h3>
+<ul>
+<li>
+<p>slice()<br>
+参数：start,end,两个参数均为字符串的下标位置<br>
+作用：截取String部分元素,截取位置为end-1，即不能取到下标为end,且不会对原字符串改变<br></p>
+<pre><code>stringObject = '012345';
+stringObject.slice(0,1);// 0 
+</code></pre>
+</li>
+<li>
+<p>concat()<br>
+参数：必需，为一个或多个字符串<br>作用：将一个或者多个字符串拼接起来，也可以使用‘+’号来进行连接，使用‘+’时存在隐式转换</p>
+<pre><code>stringObject.concat(stringX,....,stringN);
+</code></pre>
+</li>
+<li>
+<p>substr() <br>
+参数:指定子字符串的开始位置,start,length<br>
+作用:返回的子字符串的字符个数,创建新的子字符串<br>
+<strong>重要事项：ECMAscript 没有对该方法进行标准化，因此反对使用它。</strong></p>
+</li>
+<li>
+<p>substring() <br>
+参数：start,end<br></p>
+</li>
+<li>
+<p>repeat()<strong>[ES6]</strong><br>
+参数:可填写数字，表示重复的次数<br>
+作用:将原字符串重复n次，如果<strong>传入负数，会报错，传入小数或者NaN等同于传入0</strong></p>
+</li>
+<li>
+<p>lastIndexOf()<br></p>
+</li>
+<li>
+<p>indexOf()<br>
+参数：<br>
+作用：搜索给定子字符串，获得某个指定元素的索引，若找到则返回位置，否则返回-1，两者均执行一次</p>
+</li>
+<li>
+<p>includes()<strong>[ES6]</strong><br>
+参数：传入要搜寻的子字符串,可选开始位置<br>
+作用：返回布尔值，表示是否找寻到子字符串</p>
+</li>
+<li>
+<p>startsWith()<strong>[ES6]</strong><br>
+参数：传入要搜寻的子字符串,可选开始位置<br>
+作用：返回布尔值，表示参数字符串是否在源字符串的头部</p>
+</li>
+<li>
+<p>endsWith()<strong>[ES6]</strong><br>
+参数：传入要搜寻的子字符串,可选开始位置<br>
+作用：返回布尔值，表示参数字符串是否在源字符串的尾部</p>
+</li>
+<li>
+<p>trim()<strong>[ES5]</strong><br>
+参数：/<br>
+作用：方法会删除一个字符串两端的空白字符，且该方法不影响原字符串，返回一个新的字符串</p>
+</li>
+<li>
+<p>fromCharCode()<br>
+<strong>该方法为String构造函数的一个静态方法</strong><br>
+参数：一个或者多个字符串编码
+作用：将字符串编码转换成对应的ASCII码的字符串，该方法与charCodeAt()作用相反<br></p>
+<pre><code>  例如：String.fromCharCode(104) //h
+	   stringObject.charCodeAt(h) //104
+</code></pre>
+</li>
+</ul>
+<h3>字符串的大小写转化</h3>
+<ul>
+<li>toLowerCase(),toUpperCase</li>
+</ul>
+<h3>与正则相关</h3>
+<ul>
+<li>
+<p>match()<br>
+参数：一个正则表达式或者RegExp<br>
+作用：	返回一个数组，本质上与使用的正则表达式有关</p>
+</li>
+<li>
+<p>search()<br>
+参数：一个字符串或者RegExp<br>
+作用：返回参数中的子字符串在字符串中第一个匹配的索引值，若字符串中没有，则返回-1</p>
+</li>
+<li>
+<p>replace()<br>
+参数：String || RegExp ，num <br>
+作用：用传入的第二个参数替换第一个参数，且不影响原字符串，返回一个新的替换后的字符串</p>
+</li>
+<li>
+<p>split()<br>
+参数：参数1-字符串|正则，参数2-（可选）用于指定返回数组的Length<br>
+作用：用于分割字符串，依旧为参数，并<strong>返回数组</strong>，分隔符可以是子字符串或正则</p>
+</li>
+</ul>
+<h2>Javascirpt Array</h2>
+<h3>数组常用操作</h3>
+<ul>
+<li>
+<p>concat()<br>
+语法：arrayObject.concat(arrayX,arrayX,…,arrayX),<br>          其中arrayX为必需,参数可以是具体的值，也可以是数组对象，不限数量<br>
+作用：连接两个或者更多的数组，并返回结果</p>
+</li>
+<li>
+<p>join()<br>
+参数：可选参数，使用参数代表的分隔符对数组分割，返回一个字符串，若参数为空，则默认以<code>,</code>为分隔符<br>
+作用：把所有元素放一个字符串，元素通过制定的分隔符进行分割</p>
+</li>
+<li>
+<p>pop()<br>
+参数：/<br>
+作用：删除并返回数组的最后一个元素</p>
+</li>
+<li>
+<p>push()<br>
+参数：(newelement1,newelement2,…,newelementX)<br>
+其中element1为必需，其余为可选
+作用：向数组的末尾添加一个或更多元素，并返回新的长度</p>
+</li>
+<li>
+<p>shift()<br>
+参数：/<br>
+作用：	删除原数组第一个元素，并返回第一个元素的值</p>
+</li>
+<li>
+<p>unshift()<br>
+参数：(newelement1,newelement2,…,newelementX)
+<br>其中newelement1为必需
+作用：向数组的开头添加一个或更多元素，并返回新的长度。</p>
+</li>
+<li>
+<p>slice()<br>
+参数：(start,end),start为必需，end为可选，且[start,end)<br>
+作用：	返回一个新的数组，包含从 start 到 end （不包括该元素）的 arrayObject 中的元素。</p>
+</li>
+</ul>
+<ul>
+<li>splice()<br>
+参数：(index,length,item1,…,itemX)<br>其中index与length为必需,其余为可选参数，表示向数组中添加的新项目<br>
+作用：	向/从数组中添加/删除项目，然后返回被删除的项目。会改变原数组</li>
+</ul>
+<ul>
+<li>
+<p>toString()<br>
+参数：/<br>
+作用：	可把数组转换为字符串，并返回结果。</p>
+</li>
+<li>
+<p>reverse()<br>
+参数：/<br>
+作用：	用于颠倒数组中元素的顺序。</p>
+</li>
+<li>
+<p>sort()<br>
+参数：sortby,可选<br>
+作用：对数组进行<strong>字符编码排序</strong></p>
+</li>
+</ul>
+<p>利用sort()对数组排序(数组中全为数字)<br>
+升序<br>
+array.sort(function(a,b){return a &gt; b?1:-1});<br>
+降序<br>
+array.sort(function(a,b){return a &lt; b?1:-1});<br>	
+<strong>调用sort()不会生成新的数组，会对原数组进行改变</strong></p>
+<h2>常用排序方法</h2>
+<ul>
+<li>冒泡排序(性能较差)</li>
+<li>快排</li>
+<li>插入排序</li>
+</ul>
+<h3>冒泡排序</h3>
+<pre><code>(1) 比较相邻的元素。如果第一个比第二个大，就交换它们两个；
+(2) 对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对，
+    这样在最后的元素应该会是最大的数；
+(3) 针对所有的元素重复以上的步骤，除了最后一个；
+(4) 重复步骤1~3，直到排序完成
+
+
+function bubbleSort (array) {
+var i = 0,
+len = array.length,
+j, d;
+for (; i &lt; len; i++) {
+    for (j = 0; j &lt; len; j++) {
+        if (array[i] &lt; array[j]) {
+            d = array[j];
+            array[j] = array[i];
+            array[i] = d;
+        }
+    }
+}
+return array;
+}
+</code></pre>
+<h3>快排</h3>
+<pre><code>（1）在数据集之中，选择一个元素作为&quot;基准&quot;（pivot）。（常选取中间位置）
+（2）所有小于&quot;基准&quot;的元素，都移到&quot;基准&quot;的左边；所有大于&quot;基准&quot;的元素，都移到&quot;基准&quot;的右边。
+（3）对&quot;基准&quot;左边和右边的两个子集，不断重复第一步和第二步，直到所有子集只剩下一个元素为止。 			
+
+
+
+var quickSort = function(arr) {
+	if (arr.length &lt;= 1) { return arr; }
+	var pivotIndex = Math.floor(arr.length / 2);
+	var pivot = arr.splice(pivotIndex, 1)[0];
+	var left = [];
+	var right = [];
+	for (var i = 0; i &lt; arr.length; i++){
+		if (arr[i] &lt; pivot) {
+			left.push(arr[i]);
+	  } else {
+			right.push(arr[i]);
+	  		 }
+	}
+return quickSort(left).concat([pivot], quickSort(right));
+};
+</code></pre>
+<h3>插入排序</h3>
+<pre><code> (1) 从第一个元素开始，该元素可以认为已经被排序；
+ (2) 取出下一个元素，在已经排序的元素序列中从后向前扫描；
+ (3) 如果该元素（已排序）大于新元素，将该元素移到下一位置；
+ (4) 重复步骤3，直到找到已排序的元素小于或者等于新元素的位置；
+ (5) 将新元素插入到该位置后；
+ (6) 重复步骤2~5。
+
+
+function insertSort (array) {
+var i = 1,
+j, step, key, len = array.length;
+
+for (; i &lt; len; i++) {
+
+    step = j = i;
+    key = array[j];
+
+    while (--j &gt; -1) {
+        if (array[j] &gt; key) {
+            array[j + 1] = array[j];
+        } else {
+            break;
+        }
+    }
+
+    array[j + 1] = key;
+}
+
+return array;
+}
+</code></pre>
+<h4>补充</h4>
+<p>JS中会改变原数组的方法有:<code>pop,push,reverse,shift,sort,splice,unshift</code></p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2016-08-29</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://fguizc.me/2016/08/29/JS-Array-String/,Fguizc,JS Array &amp; String ,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2016/12/02/浏览器一些兼容/" title="一点微小的polyfill" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/2016/08/29/Javascript-Event/" title="Javascript Event" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
