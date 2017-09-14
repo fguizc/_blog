@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://fguizc.me/2017/09/14/css%E5%AE%9E%E7%8E%B0stick%20footer/</loc>
+    
+    <lastmod>2017-09-14T10:42:33.064Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://fguizc.me/about/index.html</loc>
     
     <lastmod>2017-09-05T09:38:53.596Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://fguizc.me/tags/index.html</loc>
+    
+    <lastmod>2017-09-05T09:26:57.086Z</lastmod>
     
   </url>
   
@@ -16,9 +30,9 @@
   </url>
   
   <url>
-    <loc>http://fguizc.me/tags/index.html</loc>
+    <loc>http://fguizc.me/2017/04/26/%E5%9F%BA%E4%BA%8ENode%E5%92%8CMongoDB%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84JWT%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/</loc>
     
-    <lastmod>2017-09-05T09:26:57.086Z</lastmod>
+    <lastmod>2017-09-05T09:26:57.085Z</lastmod>
     
   </url>
   
@@ -37,9 +51,9 @@
   </url>
   
   <url>
-    <loc>http://fguizc.me/2017/04/26/%E5%9F%BA%E4%BA%8ENode%E5%92%8CMongoDB%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84JWT%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/</loc>
+    <loc>http://fguizc.me/2016/07/12/%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/</loc>
     
-    <lastmod>2017-09-05T09:26:57.085Z</lastmod>
+    <lastmod>2017-09-05T09:26:57.084Z</lastmod>
     
   </url>
   
@@ -58,35 +72,7 @@
   </url>
   
   <url>
-    <loc>http://fguizc.me/2016/07/12/%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/</loc>
-    
-    <lastmod>2017-09-05T09:26:57.084Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://fguizc.me/2016/12/03/test-emoji/</loc>
-    
-    <lastmod>2017-09-05T09:26:57.083Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://fguizc.me/2017/04/30/mongoDB/</loc>
-    
-    <lastmod>2017-09-05T09:26:57.083Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://fguizc.me/2017/03/01/less/</loc>
-    
-    <lastmod>2017-09-05T09:26:57.083Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://fguizc.me/2017/01/01/http-header/</loc>
     
     <lastmod>2017-09-05T09:26:57.083Z</lastmod>
     
@@ -100,14 +86,28 @@
   </url>
   
   <url>
-    <loc>http://fguizc.me/2017/09/05/React-Native%20%E8%B8%A9%E5%9D%91/</loc>
+    <loc>http://fguizc.me/2017/04/30/mongoDB/</loc>
     
-    <lastmod>2017-09-05T09:26:57.082Z</lastmod>
+    <lastmod>2017-09-05T09:26:57.083Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://fguizc.me/2017/02/15/async_await&fetchAPI/</loc>
+    <loc>http://fguizc.me/2016/12/03/test-emoji/</loc>
+    
+    <lastmod>2017-09-05T09:26:57.083Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://fguizc.me/2017/01/01/http-header/</loc>
+    
+    <lastmod>2017-09-05T09:26:57.083Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://fguizc.me/2016/12/05/SASS/</loc>
     
     <lastmod>2017-09-05T09:26:57.082Z</lastmod>
     
@@ -121,16 +121,16 @@
   </url>
   
   <url>
-    <loc>http://fguizc.me/2016/12/05/SASS/</loc>
+    <loc>http://fguizc.me/2017/02/15/async_await&fetchAPI/</loc>
     
     <lastmod>2017-09-05T09:26:57.082Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://fguizc.me/2017/06/15/Javascript-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</loc>
+    <loc>http://fguizc.me/2017/09/05/React-Native%20%E8%B8%A9%E5%9D%91/</loc>
     
-    <lastmod>2017-09-05T09:26:57.081Z</lastmod>
+    <lastmod>2017-09-05T09:26:57.082Z</lastmod>
     
   </url>
   
@@ -156,9 +156,9 @@
   </url>
   
   <url>
-    <loc>http://fguizc.me/2016/08/08/JS-Scope/</loc>
+    <loc>http://fguizc.me/2017/06/15/Javascript-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</loc>
     
-    <lastmod>2017-09-05T09:26:57.080Z</lastmod>
+    <lastmod>2017-09-05T09:26:57.081Z</lastmod>
     
   </url>
   
@@ -171,6 +171,13 @@
   
   <url>
     <loc>http://fguizc.me/2017/06/01/DOMContentLoaded/</loc>
+    
+    <lastmod>2017-09-05T09:26:57.080Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://fguizc.me/2016/08/08/JS-Scope/</loc>
     
     <lastmod>2017-09-05T09:26:57.080Z</lastmod>
     
@@ -191,13 +198,6 @@
   </url>
   
   <url>
-    <loc>http://fguizc.me/2016/12/08/About-cache/</loc>
-    
-    <lastmod>2017-09-05T09:26:57.079Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://fguizc.me/2016/12/10/About-offset-value/</loc>
     
     <lastmod>2017-09-05T09:26:57.079Z</lastmod>
@@ -205,14 +205,21 @@
   </url>
   
   <url>
-    <loc>http://fguizc.me/2017/09/05/AMD&CMD&NativeModule/</loc>
+    <loc>http://fguizc.me/2016/12/08/About-cache/</loc>
+    
+    <lastmod>2017-09-05T09:26:57.079Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://fguizc.me/2016/12/05/About%20Ajax/</loc>
     
     <lastmod>2017-09-05T09:26:57.078Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://fguizc.me/2016/12/05/About%20Ajax/</loc>
+    <loc>http://fguizc.me/2017/09/05/AMD&CMD&NativeModule/</loc>
     
     <lastmod>2017-09-05T09:26:57.078Z</lastmod>
     
