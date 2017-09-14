@@ -115,6 +115,10 @@ a:hover, a:active {
   margin-top: 60px;
 }
 
+.blog-desc {
+  text-align: center;
+}
+
 .page-top {
   width: 60%;
   position: fixed;
