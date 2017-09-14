@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://fguizc.me/"/>
-  <updated>2017-09-14T10:42:33.064Z</updated>
+  <updated>2017-09-14T16:02:47.971Z</updated>
   <id>http://fguizc.me/</id>
   
   <author>
@@ -14,6 +14,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>函数防抖与节流</title>
+    <link href="http://fguizc.me/2017/09/14/%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/"/>
+    <id>http://fguizc.me/2017/09/14/函数防抖与节流/</id>
+    <published>2017-09-14T15:58:07.000Z</published>
+    <updated>2017-09-14T16:02:47.971Z</updated>
+    
+    <content type="html"><![CDATA[<p>函数防抖：函数频繁执行的情况下，只有触发时间间隔超过指定间隔，函数才会执行，当等待时间时函数再次被触发则重新计算等待时间
+函数节流：只允许一个函数在n秒内执行一次</p>
+<p>两个概念最常用于onscroll事件的执行，onscroll触发频率高，优化后能得到性能提升。当然也用于诸如onchange，keyup，mousemove等。总之就是限制函数执行的频率，得到更好体验。</p>
+<h2>函数防抖</h2>
+<p>函数防抖这个概念很像搭乘电梯，进入电梯，按下楼层等待比如5秒，电梯开始移动，但如果等待过程中又有人进入，则重新计时。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">*</div><div class="line">* @param &#123;function&#125; fn 执行的函数</div><div class="line">* @param &#123;number&#125; wait 等待时间</div><div class="line">* @param &#123;number&#125; time 时间间隔</div><div class="line">*/</div><div class="line">function _debounce (fn, wait = 500, time = 2000) &#123;</div><div class="line">	let pervious = null;</div><div class="line">	let timer = null;</div><div class="line"></div><div class="line">	return function () &#123;</div><div class="line">		let now = new Date();</div><div class="line"></div><div class="line">		if(!pervious) &#123;</div><div class="line">			pervious = now</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		if(now - pervious &gt; time) &#123;</div><div class="line">			clearTimeout(timer); // 清除上一次的计时</div><div class="line">			fn();</div><div class="line">			pervious = now;</div><div class="line">		&#125; else &#123;</div><div class="line">			clearTime(timer);</div><div class="line">			timer = setTimeout(function()&#123;fn()&#125;, wait);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function print () &#123;</div><div class="line">	console.log(&apos;something&apos;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">window.onscroll = _debounce(print)</div></pre></td></tr></table></figure>
+<h2>函数节流</h2>
+<p>以判断页面是否滚动到底部来举例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">function isBottom () &#123;</div><div class="line">	let viewHeight = document.documentElement.clientHeight // 页面可视高度</div><div class="line">	let pageHeight = document.documentElement.offsetHeight // 页面总高度</div><div class="line">	let scrollTop = document.documentElement.scrollTop || document.body.scrollTop // 滚动高度</div><div class="line"></div><div class="line">	let space = pageHeight - viewHeight - scrollTop  // 间距</div><div class="line">	console.log(&apos;space = &apos;, space)</div><div class="line">&#125;</div><div class="line"></div><div class="line">function throttle (fn, time = 300) &#123;</div><div class="line">	let isRun = true;</div><div class="line">	return function () &#123;</div><div class="line">		if (!isRun) return;</div><div class="line">		</div><div class="line">		isRun = false</div><div class="line">		setTimeout(function()&#123;</div><div class="line">			fn()</div><div class="line">			isRun = true</div><div class="line">		&#125;, time)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">window.onscroll = throttle(isBottom)</div></pre></td></tr></table></figure>
+<p>参考：
+<a href="https://juejin.im/entry/58c0379e44d9040068dc952f" target="_blank" rel="external">函数节流与函数防抖</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;函数防抖：函数频繁执行的情况下，只有触发时间间隔超过指定间隔，函数才会执行，当等待时间时函数再次被触发则重新计算等待时间
+函数节流：只允许一个函数在n秒内执行一次&lt;/p&gt;
+&lt;p&gt;两个概念最常用于onscroll事件的执行，onscroll触发频率高，优化后能得到性能提升。当
+    
+    </summary>
+    
+    
+      <category term="js" scheme="http://fguizc.me/tags/js/"/>
+    
+  </entry>
   
   <entry>
     <title>css实现sticky footer</title>
@@ -1283,101 +1316,6 @@ hexo s -p 1234
 🐘
 🐼🌚🌝🎃⛄️🌊☔️🎋&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://emoji.codes/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;所有emoji编码点击查看&lt;/a&gt;&lt;/p
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>一点微小的polyfill</title>
-    <link href="http://fguizc.me/2016/12/02/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%80%E4%BA%9B%E5%85%BC%E5%AE%B9/"/>
-    <id>http://fguizc.me/2016/12/02/浏览器一些兼容/</id>
-    <published>2016-12-02T15:13:43.000Z</published>
-    <updated>2017-09-05T09:26:57.085Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>-----------2017/1/25 1:47:23 upadate------------</strong></p>
-<p>主要添加记录html5.1及以上新特性</p>
-<p>##响应式</p>
-<p>html支持了响应式图片，在不依赖JS脚本的情况下能够根据媒体查询响应加载不同的图片</p>
-<pre><code>&lt;picture&gt;
-	&lt;source srcset='mobile.png' media='(max-width: 480px)'&gt;
-	&lt;source srcset='desk.png' media='(min-width:1080px)'&gt;
-&lt;/picture&gt;
-</code></pre>
-<p>主要是根据<code>picture</code>中的<code>srcset</code>属性来实现。允许添加一个或者多个条件来判断。</p>
-<p>##布局</p>
-<p>允许创建一个空的<code>option</code>元素，用于不在主观上建议用户默认选项</p>
-<pre><code>&lt;select&gt;
-	&lt;option&gt;&lt;/option&gt;
-	&lt;option&gt;demo1&lt;/option&gt;
-	&lt;option&gt;demo2&lt;/option&gt;
-&lt;/select&gt;
-</code></pre>
-<p><strong>-----------2016/12.12 updata-----------</strong></p>
-<p>平滑滚动</p>
-<pre><code>-webkit-overflow-scrolling: touch
-</code></pre>
-<p>-----------2016/12/02 23:13:43 upadate------------</p>
-<p>主要记录常见实用的PC端与移动端上遇到的兼容适配问题。一切不调研用户群体占有兼容低版本IE都是耍流氓。</p>
-<p>##样式</p>
-<p>Chrome下默认最小字体为12px，为了兼容统一rem</p>
-<p><code>.css{ -webkit-text-size-adjust: none }</code></p>
-<p>取消移动端中用户点选时的高亮</p>
-<p><code>.css{ -webkit-tap-highlight-color: none }</code></p>
-<p>重置input表单中placeholder颜色</p>
-<p><code>input::-webkit-input-placeholder{ color: ... }</code></p>
-<p><code>input:focus::-webkit-input-placeholder{ color: ... }</code></p>
-<p>改变单复选框默认勾选样式</p>
-<p><code>.css{ -webkit-appearance: none; -moz-appearance: none; appearance: none; background-image: url(...) } //edge 14 也已部分兼容 2016,12,2</code></p>
-<p>重置input表单默认填充淡黄色背景</p>
-<p><code>input::-webkit-autofill { -webkit-box-shadow: 0 0 0 1000px white inset 	!important } //Chrome默认定义的bg-color,bg-image.color不能用!important</code></p>
-<p>隐藏滚动条</p>
-<p><code>::-webkit-scrollbar{ display : none }</code></p>
-<p><code>{-webkit-overflow-scrolling: touch}</code></p>
-<p>or</p>
-<p><code>.css{ margin-right: -20px ; padding-left: 20px;}</code></p>
-<p><strong>粘性布局</strong></p>
-<ol>
-<li>
-<p>当页面内容会溢出屏幕时</p>
-<p><code>postion : sticky</code> //不推荐，限制条件多，且多数不支持
-<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161203_151807.png" alt="">
-<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161203_151815.png" alt=""></p>
-</li>
-</ol>
-<ol start="2">
-<li>.<code>parent{display: flex} .stickyChild{flex:1}</code></li>
-</ol>
-<p>##行为</p>
-<p>禁止用户缩放</p>
-<p><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&quot;&gt;</code></p>
-<p>禁止用户选择文字</p>
-<p><code>.css{ -webkit-user-select:none }</code></p>
-<p>禁止HTML5中新加入input的type类型的浏览器默认提示</p>
-<p><code>&lt;input type=&quot;num&quot; autocomplete=&quot;false&quot;&gt;</code></p>
-<p>模拟实现textarea文本编辑框</p>
-<p><code>-webkit-user-modify: read-write( 支持富文本 ) | read-only ( 只读 ) | read-write-plaintext-only (只支持文本)</code></p>
-<p>##判断IE
-判断IE9及以下<br>
-<code>var ie = !-[1,]</code><br>
-<code>&lt;!-[if lte IE 9]&gt;...&lt;![endif]&gt;</code></p>
-<p>IE9及以下</p>
-<ul>
-<li>不支持帧动画，动画续降级</li>
-<li>Flex布局失效(使用float或者flex.css去兼容)</li>
-<li>img显示异常（同时设定width和height)</li>
-<li>:after伪元素失效</li>
-<li>jQuery1.x才支持</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;-----------2017/1/25 1:47:23 upadate------------&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;主要添加记录html5.1及以上新特性&lt;/p&gt;
-&lt;p&gt;##响应式&lt;/p&gt;
-&lt;p&gt;html支持了响应式图片，在不依赖JS脚本的情况
     
     </summary>
     
