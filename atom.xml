@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://fguizc.me/"/>
-  <updated>2017-09-14T16:02:47.971Z</updated>
+  <updated>2017-09-19T15:07:48.972Z</updated>
   <id>http://fguizc.me/</id>
   
   <author>
@@ -14,6 +14,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端性能优化常见方式</title>
+    <link href="http://fguizc.me/2017/09/19/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/"/>
+    <id>http://fguizc.me/2017/09/19/前端性能优化方法/</id>
+    <published>2017-09-19T14:49:52.000Z</published>
+    <updated>2017-09-19T15:07:48.972Z</updated>
+    
+    <content type="html"><![CDATA[<h2>前端性能优化常见方式</h2>
+<p>今天面试小姐姐问我常见前端性能优化举例，想想说了一些自己平常用到或看到的</p>
+<ul>
+<li>合并雪碧图（用来减少ajax请求次数），压缩图片</li>
+<li>base64替代小图片，适当可以用svg或者webp等格式替换.png|.jpg</li>
+<li>服务端开启Gzip</li>
+<li>CDN分发</li>
+<li>HTTP2压缩缓存请求头</li>
+<li>压缩代码，去掉多余空格换行，注释
+…
+随便说一些，然后想想其实还有没说到的缓存…因为马上问了cookie，sessionStorage，localStorage之间区别
+因此优化方式还有</li>
+<li>设置缓存策略（ETag，max-age，Expires，mainifest，localstorage…)</li>
+<li>减少DOM</li>
+<li>优先加载样式表（其实自己每次都是把样式放前面，所以一直忽略掉）</li>
+<li>异步加载JS</li>
+<li>避免使用滤镜（由于之前项目几乎没做过IE兼容，任性，IE用户不是目标群体，没考虑到）</li>
+<li>事件代理</li>
+</ul>
+<p>想到的其实也有部分在用，其实想想还有很多办法，优化代码逻辑之类，也有JS计算结果的缓存之类（譬如1+2的结果缓存到数组中，下次直接拿来用），webpack打包去掉无意义或重复引入。
+面试时候还是考虑欠缺当然也和平时项目实践有关。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2&gt;前端性能优化常见方式&lt;/h2&gt;
+&lt;p&gt;今天面试小姐姐问我常见前端性能优化举例，想想说了一些自己平常用到或看到的&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;合并雪碧图（用来减少ajax请求次数），压缩图片&lt;/li&gt;
+&lt;li&gt;base64替代小图片，适当可以用svg或者webp等格式替换.p
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>函数防抖与节流</title>
@@ -1248,74 +1291,6 @@ HTTP/2引入了<code>服务端推（Server push）</code>的概念，即允许�
 &lt;pre&gt;&lt;code&gt;$fontSize: 10px;
 	p{
 		@if $fontSize 
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>test_emoji</title>
-    <link href="http://fguizc.me/2016/12/03/test-emoji/"/>
-    <id>http://fguizc.me/2016/12/03/test-emoji/</id>
-    <published>2016-12-03T11:42:36.000Z</published>
-    <updated>2017-09-05T09:26:57.083Z</updated>
-    
-    <content type="html"><![CDATA[<p>#在hexo环境中配置emoji
-😄 😉
-🐊
-🦄
-🐘
-🐼🌚🌝🎃⛄️🌊☔️🎋</p>
-<p><a href="http://emoji.codes/" target="_blank" rel="external">所有emoji编码点击查看</a></p>
-<p>##配置方法
-由于默认markdown渲染器不支持所以要卸载</p>
-<pre><code>npm un hexo-renderer-marked --save
-</code></pre>
-<p>然后重新安装新的</p>
-<pre><code>npm install hexo-renderer-markdown-it --save
-npm install markdown-it-emoji --save
-</code></pre>
-<p>并在博客根目录下配置 <code>_config.yml</code> 文件</p>
-<pre><code>markdown:
-  render:
-    html: true
-	xhtmlOut: false
-	breaks: false
-	linkify: true
-	typographer: true
-	quotes: '“”‘’'
-  plugins:
-	- markdown-it-footnote
-	- markdown-it-sup
-	- markdown-it-sub
-	- markdown-it-abbr
-	- markdown-it-emoji
-  anchors:
-	level: 2
-	collisionSuffix: 'v'
-	permalink: true
-	permalinkClass: header-anchor
-	permalinkSymbol: ¶
-</code></pre>
-<p>最后重新启用hexo server大功告成</p>
-<pre><code>hexo clean &amp;&amp; hexo d -g
-hexo s -p 1234
-</code></pre>
-<p>测试发现部分编码丢失？不确定总之不能显示出例如 🤴 :clown:</p>
-<hr>
-<p>有待捣鼓…</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;#在hexo环境中配置emoji
-😄 😉
-🐊
-🦄
-🐘
-🐼🌚🌝🎃⛄️🌊☔️🎋&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://emoji.codes/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;所有emoji编码点击查看&lt;/a&gt;&lt;/p
     
     </summary>
     
