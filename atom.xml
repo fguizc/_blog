@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://fguizc.me/"/>
-  <updated>2017-09-19T15:07:48.972Z</updated>
+  <updated>2017-09-25T06:27:25.544Z</updated>
   <id>http://fguizc.me/</id>
   
   <author>
@@ -14,6 +14,76 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JS发布——订阅模式</title>
+    <link href="http://fguizc.me/2017/09/25/%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F%E2%80%94%E2%80%94JS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
+    <id>http://fguizc.me/2017/09/25/发布订阅模式——JS设计模式阅读笔记/</id>
+    <published>2017-09-25T06:27:40.824Z</published>
+    <updated>2017-09-25T06:27:25.544Z</updated>
+    
+    <content type="html"><![CDATA[<h2>发布——订阅模式</h2>
+<p>全文为阅读《Javascript设计模式与开发实践》一书读书笔记。该篇，发布——订阅模式，在使用前端框架时这种设计理念被大量运用。</p>
+<blockquote>
+<p>发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状 态发生改变时，所有依赖于它的对象都将得到通知。在 JavaScript 开发中，我们一般用事件模型 来替代传统的发布—订阅模式。</p>
+</blockquote>
+<p>发布——订阅模式常应用于异步编程，这是一种代替传递回调函数的方案。例如订阅 ajax 请求的 error、succ 事件（突然想到axios 拦截器功能），总之是用发布——订阅模式可以无需关注异步过程内部状态，只需要订阅特定情况的发生。另外一点，发布——订阅模式不再显示由一个对象调用另一个对象的接口，降低耦合，互不影响，当新增订阅者出现，既不会影响之前订阅者，也不会需要对发布者修改，同样，发布者需要修改时，也不会影响到之前订阅者（前提是两者约定事件名称没有改变）。</p>
+<h3>DOM 事件</h3>
+<p>在接触 JS 的时候会学习到 <code>addEventListener</code> ，绑定事件函数，比起如 <code>onClick</code> 这样的直接绑定，<code>addEventListener</code> 不会覆盖之前绑定事件，实际上它就是一个简单的发布——订阅模式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">document.querySelector(&apos;.btn-submit&apos;).addEventListener(&apos;click&apos;, function () &#123;</div><div class="line">	console.log(&apos;something&apos;);</div><div class="line">&#125;, false);</div><div class="line"></div><div class="line">document.querySelector(&apos;.btn-submit&apos;).click()</div></pre></td></tr></table></figure>
+<p>这里监听了用户点击事件行为，当点击特定的按钮就会触发相应事件，但重要的是无法预知用户何时点击。所以订阅 <code>.btn-submit</code> 这个按钮的 <code>click</code> 事件。当其被点击，便会向订阅者发布消息。</p>
+<h3>自定义事件</h3>
+<p>除去常见 DOM 事件，还会需求实现一些自定义事件，这种依靠自定义事件完成的发布——订阅模式适用性广，无侵入性。
+如何一步步实现发布——订阅模式？</p>
+<ol>
+<li>指定发布者</li>
+<li>为发布者添加缓存列表，用于存储回调函数以便通知订阅者（函数存放在缓存列表中表明同一事件可以依次触发多个回调函数）</li>
+<li>发布消息，发布者遍历缓存列表，依次触发其中存放订阅者回调函数。</li>
+</ol>
+<p>值得一提，为增强功能丰富语义，回调函数可以填入一些参数，订阅者接收这些参数，订阅者接收到后可以进一步处理。</p>
+<p>书中以售楼处为例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"> let salesOffices = &#123;&#125;;</div><div class="line"> salesOffices.clientList = [];</div><div class="line"> salesOffices.listen = function (fn) &#123;</div><div class="line">   this.clientList.push(fn);</div><div class="line"> &#125;;</div><div class="line"></div><div class="line"> salesOffices.trigger = function (...arg) &#123;</div><div class="line">   this.clientList.forEach((fn) =&gt; &#123;</div><div class="line">  fn(...arg);</div><div class="line">&#125;)</div><div class="line"> &#125;;</div><div class="line"></div><div class="line"> salesOffices.listen( function( price, squareMeter )&#123; // 小明订阅消息</div><div class="line">   console.log( &apos;价格= &apos;  +  price );</div><div class="line">   console.log( &apos;squareMeter= &apos;  +  squareMeter );</div><div class="line"> &#125;);</div><div class="line"></div><div class="line"> salesOffices.listen( function( price, squareMeter )&#123; // 小红订阅消息</div><div class="line">console.log( &apos;价格= &apos;  +  price );</div><div class="line">console.log( &apos;squareMeter= &apos;  +  squareMeter );</div><div class="line"> &#125;);</div><div class="line"></div><div class="line"> salesOffices.trigger( 2000000, 88 ); // 输出两次，因为存在两个订阅者，输出：200 万，88 平方米</div><div class="line"></div><div class="line"> salesOffices.trigger( 3000000, 110 ); // 输出两次，输出：300 万，110 平方米</div></pre></td></tr></table></figure>
+<p>书中例子实现一个最简单发布——订阅模式，明显看得出不足，没有针对性，一旦事件发布无论订阅者是否愿意必须接收，最简单改善方法就是给定标识，增加一个标识key来区分订阅者的“兴趣”。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">var salesOffices = &#123;&#125;; // 定义售楼处</div><div class="line"></div><div class="line">salesOffices.clientList = &#123;&#125;; // 缓存列表，存放订阅者的回调函数，注意，此处缓存列表从数组变为对象</div><div class="line"></div><div class="line">salesOffices.listen = function( key, fn )&#123;</div><div class="line"></div><div class="line">  if ( !this.clientList[ key ] )&#123; // 如果还没有订阅过此类消息，给该类消息创建一个缓存列表</div><div class="line">    this.clientList[ key ] = [];</div><div class="line">  &#125;</div><div class="line">  this.clientList[ key ].push( fn ); // 订阅的消息添加进消息缓存列表</div><div class="line">&#125;;</div><div class="line"></div><div class="line">salesOffices.trigger  =  function()&#123; // 发布消息</div><div class="line"></div><div class="line">  var  key  =  Array.prototype.shift.call(arguments), // 取出消息类型</div><div class="line"></div><div class="line">  fns  =  this.clientList[key]; // 取出该消息对应的回调函数集合</div><div class="line"></div><div class="line">  if (!fns  ||  fns.length  ===  0) &#123; // 如果没有订阅该消息，则返回</div><div class="line">    return  false;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  for (var  i  =  0, fn; fn  =  fns[i++];) &#123;</div><div class="line">    fn.apply(this, arguments); // (2) // arguments 是发布消息时附送的参数</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">salesOffices.listen(&apos;squareMeter88&apos;, function (price) &#123; // 小明订阅 88 平方米房子的消息</div><div class="line"></div><div class="line">  console.log(&apos;价格= &apos;  +  price); // 输出： 2000000</div><div class="line">&#125;);</div><div class="line"></div><div class="line">salesOffices.listen(&apos;squareMeter110&apos;, function (price) &#123; // 小红订阅 110 平方米房子的消息</div><div class="line"></div><div class="line">  console.log(&apos;价格= &apos;  +  price); // 输出： 3000000</div><div class="line">&#125;);</div><div class="line"></div><div class="line">salesOffices.trigger(&apos;squareMeter88&apos;, 2000000); // 发布 88 平方米房子的价格</div><div class="line"></div><div class="line">salesOffices.trigger(&apos;squareMeter110&apos;, 3000000); // 发布 110 平方米房子的价格</div></pre></td></tr></table></figure>
+<p>改造后的代码与第一次相差不多，唯一增加判断订阅者感兴趣的“key”值，在发布者缓存列表中找到对应key值的value（value 是数组，数组每一项均是一个可执行的函数，严谨来说，应该在发布者 <code>listen</code> 方法中去判断传入参数是否为函数）</p>
+<h3>通用模式</h3>
+<p>以上基本实现最基本发布——订阅模式，此刻又出现新问题也是最常谈及——代码复用，书上的售楼处实现了模式，但当出现新“售楼处”该如何解决，书中解决的办法非常简单，浅克隆。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">var  event  = &#123;</div><div class="line"></div><div class="line">clientList: [],</div><div class="line"></div><div class="line">	listen:  function (key, fn) &#123;</div><div class="line">	</div><div class="line">		if (!this.clientList[key]) &#123;</div><div class="line">		</div><div class="line">		  this.clientList[key] = [];</div><div class="line">		</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		this.clientList[key].push(fn); // 订阅的消息添加进缓存列表</div><div class="line">	</div><div class="line">	&#125;,</div><div class="line"></div><div class="line">	trigger:  function () &#123;</div><div class="line">	</div><div class="line">		var  key  =  Array.prototype.shift.call(arguments), // (1);</div><div class="line">		</div><div class="line">		fns  =  this.clientList[key];</div><div class="line">		</div><div class="line">		if (!fns  ||  fns.length  ===  0) &#123; // 如果没有绑定对应的消息</div><div class="line">		</div><div class="line">			return  false;</div><div class="line">	</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		for (var  i  =  0, fn; fn  =  fns[i++];) &#123;</div><div class="line">		</div><div class="line">		fn.apply(this, arguments); // (2) // arguments 是 trigger 时带上的参数</div><div class="line">		</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"></div><div class="line">// 再定义一个 installEvent 函数，这个函数可以给所有的对象都动态安装发布—订阅功能</div><div class="line">var installEvent = function( obj )&#123; </div><div class="line">	for ( var i in event )&#123; </div><div class="line">		obj[ i ] = event[ i ]; </div><div class="line">	&#125; </div><div class="line">&#125;;</div><div class="line"></div><div class="line">var  salesOffices  = &#123;&#125;;</div><div class="line"></div><div class="line">installEvent( salesOffices );</div><div class="line"></div><div class="line">salesOffices.listen( &apos;squareMeter88&apos;, function( price )&#123; // 小明订阅消息</div><div class="line"></div><div class="line">	console.log( &apos;价格= &apos;  +  price );</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line">salesOffices.listen( &apos;squareMeter100&apos;, function( price )&#123; // 小红订阅消息</div><div class="line"></div><div class="line">	console.log( &apos;价格= &apos;  +  price );</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line">salesOffices.trigger( &apos;squareMeter88&apos;, 2000000 ); // 输出：2000000</div><div class="line"></div><div class="line">salesOffices.trigger( &apos;squareMeter100&apos;, 3000000 ); // 输出：3000000</div></pre></td></tr></table></figure>
+<h3>取消订阅</h3>
+<p>实现完简单的代码复用后，又抛出另一个问题——如何取消事件订阅，思路大概概括：</p>
+<ol>
+<li>清空发布者缓存列表中对应事件
+1.1 若事件未被订阅直接返回false
+1.2 删除对应订阅者传入的回调函数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">event.remove  =  function (key, fn) &#123;</div><div class="line"></div><div class="line">	var  fns  =  this.clientList[key];</div><div class="line">	</div><div class="line">	if (!fns) &#123; // 如果 key 对应的消息没有被人订阅，则直接返回</div><div class="line">		</div><div class="line">		return  false;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">		</div><div class="line">	if (!fn) &#123; // 如果没有传入具体的回调函数，表示需要取消 key 对应消息的所有订阅</div><div class="line">		</div><div class="line">		fns  &amp;&amp; (fns.length  =  0);</div><div class="line">		</div><div class="line">	&#125; else &#123;</div><div class="line">		</div><div class="line">		for (var  l  =  fns.length  -  1; l  &gt;=  0; l--) &#123; // 反向遍历订阅的回调函数列表</div><div class="line">			</div><div class="line">			var  _fn  =  fns[l];</div><div class="line">			</div><div class="line">			if (_fn  ===  fn) &#123;</div><div class="line">			</div><div class="line">				fns.splice(l, 1); // 删除订阅者的回调函数</div><div class="line">			</div><div class="line">			&#125;</div><div class="line">			</div><div class="line">		&#125;</div><div class="line">	</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"></div><div class="line">var  salesOffices  = &#123;&#125;;</div><div class="line"></div><div class="line">var  installEvent  =  function (obj) &#123;</div><div class="line"></div><div class="line">	for (var  i  in  event) &#123;</div><div class="line">	</div><div class="line">		obj[i] =  event[i];</div><div class="line">	</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">installEvent(salesOffices);</div><div class="line"></div><div class="line">salesOffices.listen(&apos;squareMeter88&apos;, fn1  =  function (price) &#123; // 小明订阅消息</div><div class="line"></div><div class="line">	console.log(&apos;价格= &apos;  +  price);</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line">salesOffices.listen(&apos;squareMeter88&apos;, fn2  =  function (price) &#123; // 小红订阅消息</div><div class="line"></div><div class="line">	console.log(&apos;价格= &apos;  +  price);</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line">salesOffices.remove(&apos;squareMeter88&apos;, fn1); // 删除小明的订阅</div><div class="line"></div><div class="line">salesOffices.trigger(&apos;squareMeter88&apos;, 2000000); // 输出：2000000</div></pre></td></tr></table></figure>
+<h2>实例——登录</h2>
+<p>书中举出在实际项目中，用户登录完成后，用户信息可能需要派发到多个模块，诸如header，购物车等，如果使用过 <code>redux</code> 这一类数据管理库不能更容易，如果不使用框架如何解决？</p>
+<p>首先最粗暴的做法是在ajax请求成功回调里写入每个需要通知模块的接收事件方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">login.succ(function(data) &#123;</div><div class="line">	header.setAvatar(data.avatar); //设置header头像</div><div class="line">	nav.setAvatar(data.avatar);    //设置导航模块头像</div><div class="line">	message.refresh();			   //刷新信息列表</div><div class="line">	cart.refresh();				   //刷新购物车列表</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>试想这样做虽然能解决问题，但当新的功能模块上线时并且也需要用户登录相关信息时，就不得不折回修改 <code>login.succ</code> 函数，为它回调函数内增添新的模块对应接收信息的方法。虽然良好命名规则可以解决一部分代码维护问题，但如果模块接收用户登录信息的方法名更改后，就得疲于应付更改多处，这时改错名或漏掉情况就会出现，所以为什么不偷偷懒？啊！偷懒才是生产力进步的钥匙。</p>
+<p>按照发布——订阅模式来改善一下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">login.succ(function(data) &#123;</div><div class="line">	login.trigger(&apos;loginSucc&apos;, data)</div><div class="line">&#125;;  // 当登录成功后仅仅发布这一事件，并将服务器返回数据当做参数传入</div></pre></td></tr></table></figure>
+<p>而其他模块只需要像所有订阅者一样，订阅这个事件就行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">const header = (function()&#123;</div><div class="line">	login.listen(&apos;loginSucc&apos;, (data) =&gt; &#123;</div><div class="line">		header.setAvatar(data.avatar)</div><div class="line">	&#125;);</div><div class="line">	return &#123;</div><div class="line">		setAvatar (avatar) &#123;</div><div class="line">			console.log(&apos;为顶部栏设置用户头像&apos;)</div><div class="line">		&#125;</div><div class="line">	&#125; // 此处需显示地返回在上方传入的回调函数</div><div class="line">&#125;)()</div></pre></td></tr></table></figure>
+<p>这样一来就解耦登录模块和其他需要登录信息的模块，模块内部维护一个方法当然是更安全省心</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2&gt;发布——订阅模式&lt;/h2&gt;
+&lt;p&gt;全文为阅读《Javascript设计模式与开发实践》一书读书笔记。该篇，发布——订阅模式，在使用前端框架时这种设计理念被大量运用。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，
+    
+    </summary>
+    
+    
+      <category term="js" scheme="http://fguizc.me/tags/js/"/>
+    
+      <category term="设计模式" scheme="http://fguizc.me/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>前端性能优化常见方式</title>
@@ -1223,74 +1293,6 @@ HTTP/2引入了<code>服务端推（Server push）</code>的概念，即允许�
 &lt;li&gt;
 &lt;p&gt;创建XMLHttpRequest请求&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;创建时可以考虑兼容IE低版本 new ActiveXObject(&#39;Mic
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>SASS</title>
-    <link href="http://fguizc.me/2016/12/05/SASS/"/>
-    <id>http://fguizc.me/2016/12/05/SASS/</id>
-    <published>2016-12-04T16:43:27.000Z</published>
-    <updated>2017-09-05T09:26:57.082Z</updated>
-    
-    <content type="html"><![CDATA[<h1>SASS语法</h1>
-<h2>条件语句</h2>
-<p>Sass中条件语句为 <code>@if</code> 和 <code>@else</code>  举个栗子</p>
-<pre><code>$fontSize: 10px;
-	p{
-		@if $fontSize == 10px {
-			font-size: 1rem;
-			}
-		@else {
-			font-size: 2rem;
-			}
-	}
-</code></pre>
-<p>如果处理更负责的逻辑可以使用类似于JS中 <code>@if ... @else if...@else</code> 这样的语法规则</p>
-<h2>循环</h2>
-<h3>for</h3>
-<p><code>@for</code> 指令可以循环输出且常用方式有两种</p>
-<ul>
-<li><code>from start through end</code></li>
-<li><code>from start to end</code></li>
-</ul>
-<p>两者的区别在于，前者遍历范围<code>[start, end]</code> 后者遍历范围 <code>[start, end - 1]</code></p>
-<p><strong>如果要让变量递减循环只需要设置 start &gt; end</strong></p>
-<p><code>@for $i from 1 through 4 { .col-#{$i} { width: 100/4 * $i + % } }</code></p>
-<h3>each</h3>
-<p><code>@each</code> 也可以用来循环，和<code>for</code> 的区别在于，<code>each</code> 通过遍历 <code>list</code> 或者 <code>map</code> 实现循环输出</p>
-<p>举个栗子</p>
-<pre><code>@each $keyword in header, main, footer {
-	.#{$keyword}-bg {
-		background-image: url(../#{$keyword}.png);
-	}
-}
-</code></pre>
-<p>输出结果为
-<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161205_010826.png" alt=""></p>
-<p>当然还可以这样</p>
-<pre><code>$list: {item1:small_pic,item2:big_pic,item3:huge_pic};
-@each $key, $value in $list {
-	.#{$key}-bg {
-		background-image: url(../#{$value}.png};
-	}
-}
-</code></pre>
-<p>结果是
-<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161205_011802.png" alt=""></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1&gt;SASS语法&lt;/h1&gt;
-&lt;h2&gt;条件语句&lt;/h2&gt;
-&lt;p&gt;Sass中条件语句为 &lt;code&gt;@if&lt;/code&gt; 和 &lt;code&gt;@else&lt;/code&gt;  举个栗子&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$fontSize: 10px;
-	p{
-		@if $fontSize 
     
     </summary>
     
