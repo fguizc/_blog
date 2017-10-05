@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://fguizc.me/"/>
-  <updated>2017-10-05T10:08:23.184Z</updated>
+  <updated>2017-10-05T18:10:33.952Z</updated>
   <id>http://fguizc.me/</id>
   
   <author>
@@ -14,6 +14,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>transfrom对fixed影响</title>
+    <link href="http://fguizc.me/2017/10/06/transfrom%E5%AF%B9fixed%E5%BD%B1%E5%93%8D/"/>
+    <id>http://fguizc.me/2017/10/06/transfrom对fixed影响/</id>
+    <published>2017-10-05T18:10:48.350Z</published>
+    <updated>2017-10-05T18:10:33.952Z</updated>
+    
+    <content type="html"><![CDATA[<p>写下这篇笔记是对那个凌晨零两点被 <code>z-index</code> 弄疯夜晚的纪念。</p>
+<h2>问题来了</h2>
+<p>当时在做一个常见 Modal，由 Mask 遮罩层和主体构成，Mask 组件被挂在 body 下，Modal 主体放在一些嵌套里，当点击按钮出发出 Modal 时，本打算写完 Modal 就睡的我那刻心中十万个草泥马在心中奔腾，Modal 主体 <code>z-index</code> 明显大于 Mask 部分，两者皆使用 <code>fixed</code>，但 Modal 被 Mask 遮住！
+为什么！为什么！为什么！</p>
+<h2>Transfrom影响Fixed跟随效果</h2>
+<p>经过一番查找发现是Modal上上上层元素设置了 <code>transfrom: translate3d(0, 0, 0)</code>，我猜是想启动硬件加速（喔是拿别人template改页面，所以并不知道设置了transform，害我一番查找）。</p>
+<p>归根结底是 <code>transfrom</code> 对 <code>fixed</code> 的影响。</p>
+<p>在标准文档流中，页面中 DOM 元素按照其在 HTML 中顺序从上到下，从左到右进行布局排列。但总存在一些属性可以不按套路来。</p>
+<p>transform对改变fixed原有表现，不再根据<s>浏览器窗口来定位（进过一番查看，尽管常说fixed根据浏览器窗口定位，但感觉不准确）</s>，viewport 的 html
+对象来定位（一个页面会创建一个 viewport ），最终效果如同父元素设置 <code>relative</code>，而 <code>fixed</code> 被改变为 <code>absolute</code>，这是因为 transform 对脱离文档流的元素会使其产生一个新的 viewport ，新的 viewport 作为已脱离文档流元素的容器，使得已脱离文档流的元素会根据新产生的 viewport 来作为参考定位，就合理解释了为什么 Modal 虽然 z-index 值大于 Mask 依旧被遮盖。</p>
+<h2>Transfrom对其他元素的影响</h2>
+<h3>Margin负值</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;span class=&quot;demo1&quot;&gt;testDemo1&lt;span&gt;</div><div class="line">&lt;span class=&quot;demo2&quot;&gt;testDemo2&lt;span&gt;</div></pre></td></tr></table></figure>
+<p>如果设置demo2一个负 margin-left，正常情况下会在 demo1 上方，但当 demo1 设置 transfrom 非空值后，demo1 就会在 Z轴上提高，覆盖住 demo2.</p>
+<h3>Overflkow对Absolute限制</h3>
+<p>众所周知，若存在以下 html 结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// html</div><div class="line">.parent&gt;.child</div><div class="line"></div><div class="line">// css</div><div class="line">.parent&#123;</div><div class="line">	overflow: hidden;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.child&#123;</div><div class="line">	position: absolute;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这时父元素的 <code>overflow: hidden</code> 并不会限制到子元素的绝对定位。</p>
+<p>但当父元素加入 <code>transform</code> 属性后，就会使得 <code>overflow: hidden</code> 变得有效果，换一种说法就是子元素的 <code>absolute</code>
+此时被失效。</p>
+<p>参考：</p>
+<p><a href="http://www.zhangxinxu.com/wordpress/2015/05/css3-transform-affect/" target="_blank" rel="external">CSS3 transform对普通元素的N多渲染影响</a></p>
+<p><a href="https://yj1438.github.io/2015/09/08/transform.html" target="_blank" rel="external">CSS3 transform 对HTML文档流带来的影响</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;写下这篇笔记是对那个凌晨零两点被 &lt;code&gt;z-index&lt;/code&gt; 弄疯夜晚的纪念。&lt;/p&gt;
+&lt;h2&gt;问题来了&lt;/h2&gt;
+&lt;p&gt;当时在做一个常见 Modal，由 Mask 遮罩层和主体构成，Mask 组件被挂在 body 下，Modal 主体放在一些嵌套里，当点击按
+    
+    </summary>
+    
+    
+      <category term="css" scheme="http://fguizc.me/tags/css/"/>
+    
+  </entry>
   
   <entry>
     <title>async&amp;defer</title>
@@ -1154,137 +1199,6 @@ for( let j in arr[5]) {console.log( j ) }
     
       &lt;h1&gt;关于元素在页面的位置&lt;/h1&gt;
 &lt;p&gt;元素在页面使用绝对定位&lt;code&gt;position:absolute&lt;/code&gt;来获取元素的位置时&lt;code&gt;ele.offsetTop&lt;/code&gt;，仅仅获取的是设置的&lt;code&gt;top:value&lt;/code&gt;值，但如果使用&lt;c
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>About_cache</title>
-    <link href="http://fguizc.me/2016/12/08/About-cache/"/>
-    <id>http://fguizc.me/2016/12/08/About-cache/</id>
-    <published>2016-12-08T10:08:20.000Z</published>
-    <updated>2017-09-05T09:26:57.079Z</updated>
-    
-    <content type="html"><![CDATA[<p>简单总结一下前端的缓存策略</p>
-<ul>
-<li>浏览器缓存</li>
-<li>服务器缓存</li>
-</ul>
-<p>Web缓存的作用</p>
-<ul>
-<li>减少HTTP请求降低服务器压力</li>
-<li>减少带宽小号</li>
-<li>减少延迟，加快页面打开速度</li>
-</ul>
-<p>##浏览器缓存</p>
-<p>浏览器缓存中，以<strong>缓存命中率</strong>来衡量缓存的有效性，根据 <code>得到数据请求次数 / 总请求次数</code>，缓存个命中率高表明数据很大比率是从缓存中读取。</p>
-<p>###HTTP请求头中的缓存
-<code>HTTP1.1</code>引入<code>Cache-Control</code>来设置缓存，当用户发起一个资源请求时</p>
-<ol>
-<li>去本地查找资源，如果资源存在且资源未过期，直接使用不发送HTTP请求</li>
-<li>如果资源存在，但不清楚资源是否过期或已过期，发送HTTP请求到服务器判断请求，如果资源未被改动返回304，让浏览器在本地找到该资源</li>
-<li>当服务器处理HTTP请求时发现资源已修改，或者是新请求（在本来没有该资源），服务器返回200并返回资源，若服务器上没有该资源返回404</li>
-</ol>
-<p>####Cache-Control</p>
-<ol>
-<li>
-<p>max-age(单位:s)</p>
-<p>指定缓存最大有效时间，定义时间的长短，当浏览器向服务器发送请求，根据设置max-age来判断缓存是否过期，当在有效期内及时服务器上资源发生变化浏览器也不会得到通知，当存在max-age和Expires时，max-age的优先级更高</p>
-</li>
-<li>
-<p>s-maxage(单位:s)</p>
-<p>用于共享缓存（代理缓存），如果存在s-maxage则会覆盖max-age和Expires header</p>
-</li>
-<li>
-<p>no-cache</p>
-<p>指明文件不被缓存，常应用于搜索或者翻页，因为同一URL页面上的资源可能会变动</p>
-</li>
-<li>
-<p>no-store</p>
-<p>指明文件<strong>绝对禁止缓存</strong>，每次请求资源都要从服务器重新获取</p>
-</li>
-</ol>
-<p>####Expires
-缓存过期时间，用来指定资源到期时间，是<strong>服务器端的具体时间点</strong>，Expires = max-age + 请求时间，需要和Last-modified结合使用，但max-age优先级更高，</p>
-<p>####Last-modified
-last-modified是Web <strong>服务器</strong> 认为对象的最后修改时间，比如文件/动态页面的最后修改时间
-<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161208_205816.png" alt=""></p>
-<p>####Etag
-在一些特殊情况，如服务器时间发生错误 / 修改，则会引起通过Last-modified来判断文件版本的出错。
-或者某些文件修改频繁，或者周期性修改（但内容不变）。
-Etag通过为每一个文件生成唯一的标识符（类似于HASH)，只要文件发生改变标识符也会改变。Etag的优先级比Last-modified高。</p>
-<p>通过Etag/Last-modified判断过程如下</p>
-<ol>
-<li>客户端请求数据，例如index.html</li>
-<li>服务器返回index.html,并加上一个Etag/Last-modified</li>
-<li>客户端展示页面，并将页面连同Etag/Last-modified一起缓存</li>
-<li>客户端再次请求index.html，并将Etag/Last-modified一起传回服务器</li>
-<li>服务器检查传回信息，判断出自上次请求后文件是否被修改，若未被修改则返回304和一个空响应体。</li>
-</ol>
-<p>####HTML5中的LoacalStorage和SessionStorage
-二者均为HTML5带来的新特性，主要区别在于过期时间，<code>SessionStorage</code>在会话窗口关闭时过期。而且二者不会把数据发送给服务器，仅在本地存储。</p>
-<p>####manifest离线缓存
-HTML5离线缓存是基于新建一个**.appcache**文件的缓存机智，通过该文件上的解析清单来离线资源，当网络离线时，浏览器使用这些资源。</p>
-<ul>
-<li>在有网络的环境下，浏览器通过解析html发现<code>&lt;html lang=&quot;en&quot; manifest=&quot;index.manifest&quot;&gt;</code>来请求该文件，并根据文件内容下载对应资源，如果已经下载过就会用新的文件与旧文件对比，来判断是否重新下载<code>index.manifest</code>中的资源进行离线存储</li>
-<li>在无网络的环境下，直接使用离线存储的资源</li>
-</ul>
-<p>如果用户清除浏览器数据，会重新下载manifest，
-manifest文件结构通常如下</p>
-<pre><code>CACHE MANIFEST
-#version x.x
-
-CACHE:
-	XXX.XX(test.css) （要被缓存的文件，可绝对/相对路径
-	http://example.com/test.css
-
-NETWORK:
-	XXX.XX(test.js)  （绝不被缓存的文件
-
-FALLBACK:
-	*.html /404.html （若无法联网，用404.html替代所有文件
-</code></pre>
-<p>!<strong>下载manifest文件是一次性下载所有，若其中一个文件下载失败，导致本次下次失败，依旧沿用上一次manifest的离线文件</strong></p>
-<p><a href="http://www.alloyteam.com/2016/03/discussion-on-web-caching/#prettyPhoto" target="_blank" rel="external">拿一张图来总结</a>
-<img src="http://7xv8p5.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%8761.png" alt=""></p>
-<p>##服务器的缓存
-###CDN缓存
-CDN缓存也叫网关缓存</p>
-<ol>
-<li>浏览器向CDN网关发送请求</li>
-<li>网关服务器接收到请求，根据服务器上的资源服务器负载情况，动态转发到最适合的源服务器上</li>
-</ol>
-<p>###CDN缓存策略
-通过HTTP响应头中的<code>Cache-Control:max-age</code>来设置CDN节点数据缓存时间，CDN服务商会提供根据<strong>文件类型，目录</strong>等多个条件来指定缓存时间。</p>
-<p>###CDN缓存优缺点</p>
-<ul>
-<li>CDN解决跨运营商跨地域访问中的延时问题</li>
-<li>大部分请求在CDN边缘节点完成，分发流量降低负载</li>
-<li>若网站更新，CDN节点上部署资源未更新会使用户访问异常（开发者通过CDN服务商提供的<code>刷新缓存</code>功能来强制CDN节点上的数据过期，保证用户请求新的数据）</li>
-</ul>
-<p>##HTTP/2
-HTTP/2引入了<code>服务端推（Server push）</code>的概念，即允许服务端在客户端需要数据之前就<strong>主动将数据发送到客户端缓存中</strong>，从而提高性能。</p>
-<p>参考:</p>
-<p><a href="http://imweb.io/topic/55c6f9bac222e3af6ce235b9" target="_blank" rel="external">缓存策略</a><br>
-<a href="http://www.alloyteam.com/2016/03/discussion-on-web-caching/" target="_blank" rel="external">浅谈Web缓存</a>
-<br>
-<a href="http://yanhaijing.com/html/2014/12/28/html5-manifest/" target="_blank" rel="external">HTML5 离线缓存</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;简单总结一下前端的缓存策略&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;浏览器缓存&lt;/li&gt;
-&lt;li&gt;服务器缓存&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Web缓存的作用&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;减少HTTP请求降低服务器压力&lt;/li&gt;
-&lt;li&gt;减少带宽小号&lt;/li&gt;
-&lt;li&gt;减少延迟，加快页面打开速
     
     </summary>
     
