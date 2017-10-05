@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://fguizc.me/"/>
-  <updated>2017-09-25T06:27:25.544Z</updated>
+  <updated>2017-10-05T10:08:23.184Z</updated>
   <id>http://fguizc.me/</id>
   
   <author>
@@ -14,6 +14,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>async&amp;defer</title>
+    <link href="http://fguizc.me/2017/10/05/async&amp;defer/"/>
+    <id>http://fguizc.me/2017/10/05/async&amp;defer/</id>
+    <published>2017-10-05T10:09:02.152Z</published>
+    <updated>2017-10-05T10:08:23.184Z</updated>
+    
+    <content type="html"><![CDATA[<p>加载js代码主要方法就是在html文件内通过 <code>&lt;script src='...'&gt;&lt;/script&gt;</code> 标签完成。主要有两种方式，一种直接在 <code>script</code> 标签内插入js代码，另一种通过 <code>src</code> 属性值引入，当然也可以通过js代码动态创建script标签。根据现代浏览器解析规则，往往在非必要js代码（例如埋点统计），均将其放置在整个html内容部分后，主要是为了避免阻塞。尽管如此当部分文件体积健壮后，或当前访问网络不佳也会导致浏览器没办法按设想中一样工作。</p>
+<h2>Script</h2>
+<p>通常大多数小型应用无需注意js脚本加载问题，使用 <code>&lt;script src=&quot;example.js&quot;&gt;&lt;/script&gt;</code>，浏览器会立即下载该脚本并在完成后执行脚本。常见就是需要提前加载 jQuery 库，才能在后续编程中使用 $。一定程度上是会阻塞后续脚本加载。</p>
+<h2>Defer</h2>
+<p><code>&lt;script defer src=&quot;example.js&quot;&gt;&lt;/script&gt;</code> HTML4 为script标签定义了一个扩展属性，defer属性的使用带来脚本以异步方式加载（仅仅是加载），当整个文档解析完成后，按照html中脚本顺序执行，也就是说defer不会影响脚本执行顺序。</p>
+<p>上面提到可以利用js动态创建script标签并插入html中，在现代浏览器中，动态创建脚本默认以defer方式加载。值得注意的是，必须显示地通过 <code>createElement</code> 去创建 <code>script</code> 标签，当使用 <code>innerHTML</code> 赋值的方式是无效的（虽然这样做的几率近乎为0）。</p>
+<h2>Async</h2>
+<p><code>&lt;script async src=&quot;example.js&quot;&gt;&lt;/script&gt;</code> 相较于第一种情况，在 <code>script</code> 标签上设置 <code>async</code> 属性，它表示后续文档的加载和渲染和该脚本加载是并行进行，它是异步的。它是html5中新增属性（IE或存在兼容问题），主要为解决加载脚本而阻塞页面的加载。但async特性是加载完成后执行紧跟其后，使得使用具有一定局限性，更适合于没有依赖的脚本，比如埋点统计。</p>
+<p>可以看出无论是defer还是async都以异步方式加载。
+区别在于：</p>
+<ol>
+<li>defer 属性的脚本等待html渲染完成后执行；async 属性脚本为下载完成后立即执行。</li>
+<li>若存在多个defer脚本，它们是按顺序执行；async 属性脚本加载和执行是根据脚本加载完成的先后顺序。</li>
+</ol>
+<h2>ES6 Module</h2>
+<p>Chrome61已经正式支持 <code>&lt;script type='module' src='example'&gt;&lt;/script&gt;</code> 已ES6的方式完成被人诟病多年的模块化，虽然现在仅有高版本现代浏览器支持。</p>
+<p>当在一个html文件中创建 <code>&lt;script type='module' src='example'&gt;&lt;/script&gt;</code> 有几点需要值得注意：</p>
+<ol>
+<li>type=‘module’ 的脚本会存在跨域问题</li>
+<li>服务器可能无法解析 type=‘module’ 该MIME类型</li>
+<li>在JS文中引入其他模块时比如指明相对或绝对路径，直接使用 <code>import something from 'bar.js'</code> 无效</li>
+<li>type=‘module’ 的脚本作用方式类似于 defer</li>
+<li>type=‘module’ 的脚本只会执行一次</li>
+</ol>
+<p>针对第四点举个栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;!-- This script will execute after… --&gt;  </div><div class="line">&lt;script type=&quot;module&quot;  src=&quot;1.js&quot;&gt;&lt;/script&gt;  </div><div class="line"></div><div class="line">&lt;!-- …this script… --&gt;  </div><div class="line">&lt;script src=&quot;2.js&quot;&gt;&lt;/script&gt;  </div><div class="line"></div><div class="line">&lt;!-- …but before this script. --&gt;  </div><div class="line">&lt;script defer  src=&quot;3.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>执行顺序为 2 - 1 - 3</p>
+<p>针对第五点举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 1.js only executes once --&gt;  </div><div class="line">&lt;script type=&quot;module&quot;  src=&quot;1.js&quot;&gt;&lt;/script&gt;  </div><div class="line">&lt;script type=&quot;module&quot;  src=&quot;1.js&quot;&gt;&lt;/script&gt;  </div><div class="line">&lt;script type=&quot;module&quot;&gt;  </div><div class="line">	import  &quot;./1.js&quot;;  </div><div class="line">&lt;/script&gt;  </div><div class="line"></div><div class="line">&lt;!-- Whereas normal scripts execute multiple times --&gt;  </div><div class="line">&lt;script src=&quot;2.js&quot;&gt;&lt;/script&gt;  </div><div class="line">&lt;script src=&quot;2.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>参考：
+<a href="https://jakearchibald.com/2017/es-modules-in-browsers/" target="_blank" rel="external">ECMAScript modules in browsers</a></p>
+<p><a href="http://blog.leanote.com/post/dujuncheng/defer-async-%25E5%258A%25A0%25E8%25BD%25BD%25E7%259A%2584%25E5%258C%25BA%25E5%2588%25AB" target="_blank" rel="external">defer async 加载的区别</a></p>
+<p><a href="http://ued.ctrip.com/blog/script-defer-and-async.html" target="_blank" rel="external">script的defer和async</a></p>
+<p><a href="https://segmentfault.com/q/1010000000640869" target="_blank" rel="external">defer和async的区别</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;加载js代码主要方法就是在html文件内通过 &lt;code&gt;&amp;lt;script src=&#39;...&#39;&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt; 标签完成。主要有两种方式，一种直接在 &lt;code&gt;script&lt;/code&gt; 标签内插入js代码，另一种通过 &lt;code&gt;
+    
+    </summary>
+    
+    
+      <category term="JS" scheme="http://fguizc.me/tags/JS/"/>
+    
+  </entry>
   
   <entry>
     <title>JS发布——订阅模式</title>
@@ -1231,68 +1285,6 @@ HTTP/2引入了<code>服务端推（Server push）</code>的概念，即允许�
 &lt;li&gt;减少HTTP请求降低服务器压力&lt;/li&gt;
 &lt;li&gt;减少带宽小号&lt;/li&gt;
 &lt;li&gt;减少延迟，加快页面打开速
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Ajax</title>
-    <link href="http://fguizc.me/2016/12/05/About%20Ajax/"/>
-    <id>http://fguizc.me/2016/12/05/About Ajax/</id>
-    <published>2016-12-05T15:13:05.000Z</published>
-    <updated>2017-09-05T09:26:57.078Z</updated>
-    
-    <content type="html"><![CDATA[<h1>面试遇到的一些问题</h1>
-<h2>XMLHttpRequest是什么，描述完整GET请求</h2>
-<ol>
-<li>
-<p>创建XMLHttpRequest请求</p>
-<pre><code>创建时可以考虑兼容IE低版本 new ActiveXObject('Microsoft.XMLHTTP')
-</code></pre>
-</li>
-<li>
-<p>根据xhr.readyState来反馈</p>
-</li>
-<li>
-<p>readyState会触发onreadystatechange事件,如果xhr.status == 200请求成功可以进一步执行回调函数，否则可以返回状态码查看错误</p>
-</li>
-</ol>
-<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/2252768-9aa71d8895170f10.png" alt="">
-图片来自<a href="http://www.jianshu.com/p/3d82e409c5a9" target="_blank" rel="external">http://www.jianshu.com/p/3d82e409c5a9</a></p>
-<p>以及</p>
-<pre><code>[
-    100  Continue   继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息
-    200  OK         正常返回信息
-    201  Created    请求成功并且服务器创建了新的资源
-    202  Accepted   服务器已接受请求，但尚未处理
-    301  Moved Permanently  请求的网页已永久移动到新位置。
-    302 Found       临时性重定向。
-    303 See Other   临时性重定向，且总是使用 GET 请求新的 URI。
-    304  Not Modified 自从上次请求后，请求的网页未修改过。
-
-    400 Bad Request  服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求。
-    401 Unauthorized 请求未授权。
-    403 Forbidden   禁止访问。
-    404 Not Found   找不到如何与 URI 相匹配的资源。
-
-    500 Internal Server Error  最常见的服务器端错误。
-    503 Service Unavailable 服务器端暂时无法处理请求（可能是过载或维护）。
-]
-</code></pre>
-<p><a href="https://github.com/markyun/My-blog/tree/master/Front-end-Developer-Questions/Questions-and-Answers" target="_blank" rel="external">以上来自</a></p>
-<p>然后练手写了个<a href="https://github.com/fguizc/Mobile_learn/tree/master/Ajax" target="_blank" rel="external">简陋的封装</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1&gt;面试遇到的一些问题&lt;/h1&gt;
-&lt;h2&gt;XMLHttpRequest是什么，描述完整GET请求&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;创建XMLHttpRequest请求&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;创建时可以考虑兼容IE低版本 new ActiveXObject(&#39;Mic
     
     </summary>
     
