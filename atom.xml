@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://fguizc.me/"/>
-  <updated>2017-10-05T18:10:33.952Z</updated>
+  <updated>2018-03-05T17:05:38.433Z</updated>
   <id>http://fguizc.me/</id>
   
   <author>
@@ -16,11 +16,97 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>页面重绘与回流</title>
+    <link href="http://fguizc.me/2018/03/06/%E9%A1%B5%E9%9D%A2%E9%87%8D%E7%BB%98%E4%B8%8E%E5%9B%9E%E6%B5%81/"/>
+    <id>http://fguizc.me/2018/03/06/页面重绘与回流/</id>
+    <published>2018-03-05T17:04:23.404Z</published>
+    <updated>2018-03-05T17:05:38.433Z</updated>
+    
+    <content type="html"><![CDATA[<h2>浏览器渲染页面</h2>
+<p>在现代浏览器中虽然因为各厂商实现的细节不一直，但大体来说浏览器渲染页面的流程保持了一致。</p>
+<ol>
+<li>浏览器加载 html 资源，并形成 Dom Tree</li>
+<li>浏览器加载 css 样式表，形成样式结构体</li>
+<li>Render Tree
+<ul>
+<li>Render Tree 能识别样式</li>
+<li>Render Tree 不包含隐藏节点（ display: none；属性的节点以及 heade 节点）</li>
+<li>Render Tree 包含 visibility: hidden；属性的节点，因为其会影响布局</li>
+</ul>
+</li>
+<li>浏览器绘制出页面</li>
+</ol>
+<h2>什么是重绘</h2>
+<p>重绘（Repaint）发生在元素外观的可见性发生变化时，但不影响布局。</p>
+<h3>重绘会被什么影响</h3>
+<ul>
+<li>outline</li>
+<li>visibility</li>
+<li>background-color
+…</li>
+</ul>
+<p>也就是 Render Tree 中元素需要更新影响元素外观，风格的样式值时会发生重绘。</p>
+<h2>什么是回流</h2>
+<p>回流（Reflow）当 Render Tree 中的一部分(或全部)因为元素的规模尺寸，布局，隐藏等改变而需要重新构建。</p>
+<h3>回流会被什么影响</h3>
+<ul>
+<li>DOM 操作，DOM 删改</li>
+<li>窗口大小发生变化</li>
+<li>元素内容变动（例如输入控件 input ）</li>
+<li>字体的改变</li>
+<li>css 伪类的激活</li>
+<li>操作 class 属性</li>
+<li>设置 style 内联样式</li>
+</ul>
+<h3>回流带来什么影响</h3>
+<p>回流涉及到部分或整个页面的布局，回流的性能代价是高昂的。一个元素的回流会带来其所有子元素的回流。
+回流的花销跟render tree有多少节点需要重绘有关系（比如在body最前面插入1个元素，会导致整个render tree回流，如果在body后面插入1个元素，则不会影响前面元素的回流）</p>
+<p><strong>回流会带来重绘，但重绘不一定带来回流</strong></p>
+<h2>浏览器如何应对重绘和回流</h2>
+<p>现代浏览器当然会优化重绘和回流的消耗。
+浏览器会维护一个队列，来进行批处理降低性能消耗，但使用 JS 操作 Dom 时，很多属性值为了获得更为精确，浏览器会强行执行队列操作。
+例如：</p>
+<ul>
+<li>offsetTop/Left/Width/Height</li>
+<li>scrollTop/Left</li>
+<li>clientTop/Left</li>
+<li>width/height</li>
+<li>getComputedStyle()</li>
+</ul>
+<h2>如何尽量优化</h2>
+<h3>避免设置多层内联样式</h3>
+<p>避免直接多次更改 style 属性，最好一次性更改或将样式定义为 class，并一次性更改 class。</p>
+<h3>设置动画应用在 postion: fixed 或 position: absolute 的元素上</h3>
+<p>两者皆脱离文档流，因此他们不会影响其他元素的布局，只会导致其重绘，消耗相对低。</p>
+<h3>避免多次操作 DOM</h3>
+<p>避免循环操作dom，可以使用 documentFragment 来代替</p>
+<p>参考：</p>
+<ol>
+<li><a href="http://harttle.land/2015/08/11/reflow-repaint.html" target="_blank" rel="external">减少页面回流与重绘（Reflow &amp; Repaint）</a></li>
+<li><a href="http://www.css88.com/archives/4996" target="_blank" rel="external">页面重绘和回流以及优化</a></li>
+<li><a href="http://www.zhangxinxu.com/wordpress/2010/01/%25E5%259B%259E%25E6%25B5%2581%25E4%25B8%258E%25E9%2587%258D%25E7%25BB%2598%25EF%25BC%259Acss%25E6%2580%25A7%25E8%2583%25BD%25E8%25AE%25A9javascript%25E5%258F%2598%25E6%2585%25A2%25EF%25BC%259F/" target="_blank" rel="external">回流与重绘：CSS性能让JavaScript变慢？</a></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2&gt;浏览器渲染页面&lt;/h2&gt;
+&lt;p&gt;在现代浏览器中虽然因为各厂商实现的细节不一直，但大体来说浏览器渲染页面的流程保持了一致。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;浏览器加载 html 资源，并形成 Dom Tree&lt;/li&gt;
+&lt;li&gt;浏览器加载 css 样式表，形成样式结构体&lt;/li&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>transfrom对fixed影响</title>
     <link href="http://fguizc.me/2017/10/06/transfrom%E5%AF%B9fixed%E5%BD%B1%E5%93%8D/"/>
     <id>http://fguizc.me/2017/10/06/transfrom对fixed影响/</id>
-    <published>2017-10-05T18:10:48.350Z</published>
-    <updated>2017-10-05T18:10:33.952Z</updated>
+    <published>2017-10-05T18:10:48.351Z</published>
+    <updated>2017-10-05T18:10:33.953Z</updated>
     
     <content type="html"><![CDATA[<p>写下这篇笔记是对那个凌晨零两点被 <code>z-index</code> 弄疯夜晚的纪念。</p>
 <h2>问题来了</h2>
@@ -64,7 +150,7 @@
     <title>async&amp;defer</title>
     <link href="http://fguizc.me/2017/10/05/async&amp;defer/"/>
     <id>http://fguizc.me/2017/10/05/async&amp;defer/</id>
-    <published>2017-10-05T10:09:02.152Z</published>
+    <published>2017-10-05T10:09:02.153Z</published>
     <updated>2017-10-05T10:08:23.184Z</updated>
     
     <content type="html"><![CDATA[<p>加载js代码主要方法就是在html文件内通过 <code>&lt;script src='...'&gt;&lt;/script&gt;</code> 标签完成。主要有两种方式，一种直接在 <code>script</code> 标签内插入js代码，另一种通过 <code>src</code> 属性值引入，当然也可以通过js代码动态创建script标签。根据现代浏览器解析规则，往往在非必要js代码（例如埋点统计），均将其放置在整个html内容部分后，主要是为了避免阻塞。尽管如此当部分文件体积健壮后，或当前访问网络不佳也会导致浏览器没办法按设想中一样工作。</p>
@@ -119,7 +205,7 @@
     <link href="http://fguizc.me/2017/09/25/%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F%E2%80%94%E2%80%94JS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
     <id>http://fguizc.me/2017/09/25/发布订阅模式——JS设计模式阅读笔记/</id>
     <published>2017-09-25T06:27:40.824Z</published>
-    <updated>2017-09-25T06:27:25.544Z</updated>
+    <updated>2017-09-25T06:27:25.545Z</updated>
     
     <content type="html"><![CDATA[<h2>发布——订阅模式</h2>
 <p>全文为阅读《Javascript设计模式与开发实践》一书读书笔记。该篇，发布——订阅模式，在使用前端框架时这种设计理念被大量运用。</p>
@@ -232,7 +318,7 @@
     <link href="http://fguizc.me/2017/09/14/%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/"/>
     <id>http://fguizc.me/2017/09/14/函数防抖与节流/</id>
     <published>2017-09-14T15:58:07.000Z</published>
-    <updated>2017-09-14T16:02:47.971Z</updated>
+    <updated>2017-09-14T16:02:47.972Z</updated>
     
     <content type="html"><![CDATA[<p>函数防抖：函数频繁执行的情况下，只有触发时间间隔超过指定间隔，函数才会执行，当等待时间时函数再次被触发则重新计算等待时间
 函数节流：只允许一个函数在n秒内执行一次</p>
@@ -314,7 +400,7 @@
     <link href="http://fguizc.me/2017/09/05/React-Native%20%E8%B8%A9%E5%9D%91/"/>
     <id>http://fguizc.me/2017/09/05/React-Native 踩坑/</id>
     <published>2017-09-05T08:34:17.000Z</published>
-    <updated>2017-09-05T09:26:57.082Z</updated>
+    <updated>2017-09-05T09:26:57.083Z</updated>
     
     <content type="html"><![CDATA[<h1>React-Native踩坑</h1>
 <p>主要总结最近几天在写RN时遇到的一些差异以及坑。</p>
@@ -365,7 +451,7 @@
     <link href="http://fguizc.me/2017/09/05/AMD&amp;CMD&amp;NativeModule/"/>
     <id>http://fguizc.me/2017/09/05/AMD&amp;CMD&amp;NativeModule/</id>
     <published>2017-09-05T08:33:48.000Z</published>
-    <updated>2017-09-05T09:26:57.078Z</updated>
+    <updated>2017-09-05T09:26:57.079Z</updated>
     
     <content type="html"><![CDATA[<h2>AMD CMD之间的区别</h2>
 <h3>CMD规范</h3>
@@ -416,7 +502,7 @@
     <link href="http://fguizc.me/2017/06/26/React-setState/"/>
     <id>http://fguizc.me/2017/06/26/React-setState/</id>
     <published>2017-06-26T15:02:24.000Z</published>
-    <updated>2017-09-05T09:26:57.082Z</updated>
+    <updated>2017-09-05T09:26:57.083Z</updated>
     
     <content type="html"><![CDATA[<h2>setState()</h2>
 <p>在使用React编写组件的过程中，几乎就是和props与state打交道的过程。</p>
@@ -461,7 +547,7 @@
     <link href="http://fguizc.me/2017/06/15/%E5%9F%BA%E4%BA%8Egithook%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/"/>
     <id>http://fguizc.me/2017/06/15/基于githook的自动化部署/</id>
     <published>2017-06-15T13:48:36.000Z</published>
-    <updated>2017-09-05T09:26:57.085Z</updated>
+    <updated>2017-09-05T09:26:57.086Z</updated>
     
     <content type="html"><![CDATA[<h1>基于Express&amp;githook的自动化部署</h1>
 <h2>需求</h2>
@@ -495,7 +581,7 @@
     <link href="http://fguizc.me/2017/06/15/Javascript-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
     <id>http://fguizc.me/2017/06/15/Javascript-单例模式/</id>
     <published>2017-06-15T13:48:09.000Z</published>
-    <updated>2017-09-05T09:26:57.081Z</updated>
+    <updated>2017-09-05T09:26:57.082Z</updated>
     
     <content type="html"><![CDATA[<h1>Javascript 单例模式</h1>
 <p>本篇为学习《JavaScript设计模式与开发实践》——单例模式笔记。</p>
@@ -543,7 +629,7 @@
     <link href="http://fguizc.me/2017/06/01/DOMContentLoaded/"/>
     <id>http://fguizc.me/2017/06/01/DOMContentLoaded/</id>
     <published>2017-06-01T13:16:10.000Z</published>
-    <updated>2017-09-05T09:26:57.080Z</updated>
+    <updated>2017-09-05T09:26:57.081Z</updated>
     
     <content type="html"><![CDATA[<h1>DOMContentLoaded</h1>
 <p>本篇记录 ：Dom操作中，检测页面是否加载完毕，确保正确执行js。</p>
@@ -602,7 +688,7 @@ document.addEventListener('DOMContentLoaded', function(e){
     <link href="http://fguizc.me/2017/04/30/mongoDB/"/>
     <id>http://fguizc.me/2017/04/30/mongoDB/</id>
     <published>2017-04-30T09:40:03.000Z</published>
-    <updated>2017-09-05T09:26:57.083Z</updated>
+    <updated>2017-09-05T09:26:57.084Z</updated>
     
     <content type="html"><![CDATA[<h3>阿里云上部署Node.js</h3>
 <p>使用了<strong>xshell</strong> 教育版去远程连接阿里云，如下图所示，填写完相应的主机号和登陆账户密码后即可连接。
@@ -664,7 +750,7 @@ document.addEventListener('DOMContentLoaded', function(e){
     <link href="http://fguizc.me/2017/04/26/%E5%9F%BA%E4%BA%8ENode%E5%92%8CMongoDB%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84JWT%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
     <id>http://fguizc.me/2017/04/26/基于Node和MongoDB实现简单的JWT单点登录/</id>
     <published>2017-04-26T13:30:21.000Z</published>
-    <updated>2017-09-05T09:26:57.085Z</updated>
+    <updated>2017-09-05T09:26:57.086Z</updated>
     
     <content type="html"><![CDATA[<p>该篇主要记录毕业设计中基于Vue全家桶+Node+MongoDB实现的简单登陆。
 ##什么是JWT
@@ -714,7 +800,7 @@ JWT的组成是由三个部分。&lt;/p&gt;
     <link href="http://fguizc.me/2017/03/01/less/"/>
     <id>http://fguizc.me/2017/03/01/less/</id>
     <published>2017-03-01T12:55:29.000Z</published>
-    <updated>2017-09-05T09:26:57.083Z</updated>
+    <updated>2017-09-05T09:26:57.084Z</updated>
     
     <content type="html"><![CDATA[<p>记录LESS中常用的语法及规则</p>
 <h3>定义变量</h3>
@@ -842,7 +928,7 @@ span{
     <link href="http://fguizc.me/2017/02/15/async_await&amp;fetchAPI/"/>
     <id>http://fguizc.me/2017/02/15/async_await&amp;fetchAPI/</id>
     <published>2017-02-15T12:51:30.000Z</published>
-    <updated>2017-09-05T09:26:57.082Z</updated>
+    <updated>2017-09-05T09:26:57.083Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>async function 声明了一个异步函数，并返回一个AsyncFunction 对象</p>
@@ -952,7 +1038,7 @@ fn2()
     <link href="http://fguizc.me/2017/01/13/%E4%BB%80%E4%B9%88%E5%A7%BF%E5%8A%BF%E6%89%8D%E8%83%BD%E5%BE%97%E5%88%B0%E6%AD%A3%E7%A1%AE%E5%BE%AE%E5%8D%9A%E6%97%B6%E9%97%B4%E7%BA%BF/"/>
     <id>http://fguizc.me/2017/01/13/什么姿势才能得到正确微博时间线/</id>
     <published>2017-01-13T10:57:07.000Z</published>
-    <updated>2017-09-05T09:26:57.084Z</updated>
+    <updated>2017-09-05T09:26:57.085Z</updated>
     
     <content type="html"><![CDATA[<h1>如何在[文明用语]的微博下找到刷微博的正确姿势？</h1>
 <p>最近帮助了一些小伙伴重新找回畅快刷微博，为了帮助更多人，由此有了这篇教程，仅仅针对于使用<strong>网页微博</strong>的环境。</p>
@@ -1003,7 +1089,7 @@ fn2()
     <link href="http://fguizc.me/2017/01/08/JS%E4%B8%AD%E7%9A%84%E9%81%8D%E5%8E%86%E6%96%B9%E6%B3%95/"/>
     <id>http://fguizc.me/2017/01/08/JS中的遍历方法/</id>
     <published>2017-01-08T15:00:46.000Z</published>
-    <updated>2017-09-05T09:26:57.081Z</updated>
+    <updated>2017-09-05T09:26:57.082Z</updated>
     
     <content type="html"><![CDATA[<h1>记录JS中主要的循环方法(forEach、map、reduce、for of、for in)之间的异同</h1>
 <p>笔记中的“循环”并非严格意义上的循环，包括像 <code>Array.prototype.reduce()</code> 这种 <code>累加器</code> 也一并记录，应该用 [遍历] 更符合。</p>
@@ -1122,7 +1208,7 @@ for( let j in arr[5]) {console.log( j ) }
     <link href="http://fguizc.me/2017/01/01/http-header/"/>
     <id>http://fguizc.me/2017/01/01/http-header/</id>
     <published>2017-01-01T12:50:34.000Z</published>
-    <updated>2017-09-05T09:26:57.083Z</updated>
+    <updated>2017-09-05T09:26:57.084Z</updated>
     
     <content type="html"><![CDATA[<p><code>HTTP消息头</code> 是指在超文本传输协议（HTTP）的请求和响应消息中的消息头部分。它们定义了一个超文本传输协议事务中的操作参数。是在请求（request）或响应（response）行（一条消息的第一行内容）之后传输的。</p>
 <h4>HTTP请求头</h4>
@@ -1168,40 +1254,6 @@ for( let j in arr[5]) {console.log( j ) }
     
     
       <category term="http" scheme="http://fguizc.me/tags/http/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>About_offset_value</title>
-    <link href="http://fguizc.me/2016/12/10/About-offset-value/"/>
-    <id>http://fguizc.me/2016/12/10/About-offset-value/</id>
-    <published>2016-12-10T06:57:00.000Z</published>
-    <updated>2017-09-05T09:26:57.079Z</updated>
-    
-    <content type="html"><![CDATA[<h1>关于元素在页面的位置</h1>
-<p>元素在页面使用绝对定位<code>position:absolute</code>来获取元素的位置时<code>ele.offsetTop</code>，仅仅获取的是设置的<code>top:value</code>值，但如果使用<code>tranform:translate(x,x)</code>进行偏移后，<code>translate</code>的偏移量<strong>不计入</strong><code>offsetTop</code>中</p>
-<p>举个 🌰 ( windows10 x Chrome55 )</p>
-<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161210_143430.png" alt=""></p>
-<p>简单设置一个模态的位置</p>
-<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161210_143715.png" alt=""></p>
-<p>在控制台中我们打印出整个屏幕的高度为<code>630px</code>,再打印出<code>ele.offsetTop == 315</code>符合第一张图中设置的CSS样式。<br>
-然后我们去给模态添加<code>transform:translate</code>让其在整个屏幕垂直居中。</p>
-<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161210_143813.png" alt=""></p>
-<p>此时打印出<code>ele.offsetTop == 315</code>没有改变，**证明<code>translate</code>**的偏移量没有被计入。</p>
-<p>如果要让元素在屏幕中水平垂直居中，而且能够得到正确的 <code>offsetTop/Left</code> 值的解决办法</p>
-<ul>
-<li>设置<code>top/left</code>属性时计算好，可以用<code>calc</code>来计算</li>
-<li>不在CSS中设置，用JS获取屏幕宽高 - 元素的宽高 / 2，再赋值给元素</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1&gt;关于元素在页面的位置&lt;/h1&gt;
-&lt;p&gt;元素在页面使用绝对定位&lt;code&gt;position:absolute&lt;/code&gt;来获取元素的位置时&lt;code&gt;ele.offsetTop&lt;/code&gt;，仅仅获取的是设置的&lt;code&gt;top:value&lt;/code&gt;值，但如果使用&lt;c
-    
-    </summary>
-    
     
   </entry>
   

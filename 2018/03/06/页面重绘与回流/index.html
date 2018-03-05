@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="fguizc"><title>页面重绘与回流 · Fguizc</title><meta name="description" content="浏览器渲染页面
+在现代浏览器中虽然因为各厂商实现的细节不一直，但大体来说浏览器渲染页面的流程保持了一致。
+
+浏览器加载 html 资源，并形成 Dom Tree
+浏览器加载 css 样式表，形成样式结构体
+Render Tree
+
+Render Tree 能识别样式
+Render Tree 不包含隐"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><h3 title=""><a href="/">Fguizc</a></h3></div></div><ul class="social-links"><li><a href="http://instagram.com/zcsdt" target="blank"><i class="fa fa-instagram"></i></a></li><li><a href="http://weibo.com/zsuerpaman" target="_blank"><i class="fa fa-weibo"></i></a></li><li><a href="http://github.com/fguizc" target="blank"><i class="fa fa-github"></i></a></li><li><a href="https://git.oschina.net/fguizc" target="blank"><i class="fa fa-code"></i></a></li><li><a href="http://steamcommunity.com/profiles/76561198255058450" target="blank"><i class="fa fa-steam"></i></a></li></ul><div class="blog-desc">时间胶囊</div><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="http://7xv7pp.com1.z0.glb.clouddn.com/avatar_new.jpg"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>页面重绘与回流</a></h3></div><div class="post-content"><h2>浏览器渲染页面</h2>
+<p>在现代浏览器中虽然因为各厂商实现的细节不一直，但大体来说浏览器渲染页面的流程保持了一致。</p>
+<ol>
+<li>浏览器加载 html 资源，并形成 Dom Tree</li>
+<li>浏览器加载 css 样式表，形成样式结构体</li>
+<li>Render Tree
+<ul>
+<li>Render Tree 能识别样式</li>
+<li>Render Tree 不包含隐藏节点（ display: none；属性的节点以及 heade 节点）</li>
+<li>Render Tree 包含 visibility: hidden；属性的节点，因为其会影响布局</li>
+</ul>
+</li>
+<li>浏览器绘制出页面</li>
+</ol>
+<h2>什么是重绘</h2>
+<p>重绘（Repaint）发生在元素外观的可见性发生变化时，但不影响布局。</p>
+<h3>重绘会被什么影响</h3>
+<ul>
+<li>outline</li>
+<li>visibility</li>
+<li>background-color
+…</li>
+</ul>
+<p>也就是 Render Tree 中元素需要更新影响元素外观，风格的样式值时会发生重绘。</p>
+<h2>什么是回流</h2>
+<p>回流（Reflow）当 Render Tree 中的一部分(或全部)因为元素的规模尺寸，布局，隐藏等改变而需要重新构建。</p>
+<h3>回流会被什么影响</h3>
+<ul>
+<li>DOM 操作，DOM 删改</li>
+<li>窗口大小发生变化</li>
+<li>元素内容变动（例如输入控件 input ）</li>
+<li>字体的改变</li>
+<li>css 伪类的激活</li>
+<li>操作 class 属性</li>
+<li>设置 style 内联样式</li>
+</ul>
+<h3>回流带来什么影响</h3>
+<p>回流涉及到部分或整个页面的布局，回流的性能代价是高昂的。一个元素的回流会带来其所有子元素的回流。
+回流的花销跟render tree有多少节点需要重绘有关系（比如在body最前面插入1个元素，会导致整个render tree回流，如果在body后面插入1个元素，则不会影响前面元素的回流）</p>
+<p><strong>回流会带来重绘，但重绘不一定带来回流</strong></p>
+<h2>浏览器如何应对重绘和回流</h2>
+<p>现代浏览器当然会优化重绘和回流的消耗。
+浏览器会维护一个队列，来进行批处理降低性能消耗，但使用 JS 操作 Dom 时，很多属性值为了获得更为精确，浏览器会强行执行队列操作。
+例如：</p>
+<ul>
+<li>offsetTop/Left/Width/Height</li>
+<li>scrollTop/Left</li>
+<li>clientTop/Left</li>
+<li>width/height</li>
+<li>getComputedStyle()</li>
+</ul>
+<h2>如何尽量优化</h2>
+<h3>避免设置多层内联样式</h3>
+<p>避免直接多次更改 style 属性，最好一次性更改或将样式定义为 class，并一次性更改 class。</p>
+<h3>设置动画应用在 postion: fixed 或 position: absolute 的元素上</h3>
+<p>两者皆脱离文档流，因此他们不会影响其他元素的布局，只会导致其重绘，消耗相对低。</p>
+<h3>避免多次操作 DOM</h3>
+<p>避免循环操作dom，可以使用 documentFragment 来代替</p>
+<p>参考：</p>
+<ol>
+<li><a href="http://harttle.land/2015/08/11/reflow-repaint.html" target="_blank" rel="external">减少页面回流与重绘（Reflow &amp; Repaint）</a></li>
+<li><a href="http://www.css88.com/archives/4996" target="_blank" rel="external">页面重绘和回流以及优化</a></li>
+<li><a href="http://www.zhangxinxu.com/wordpress/2010/01/%25E5%259B%259E%25E6%25B5%2581%25E4%25B8%258E%25E9%2587%258D%25E7%25BB%2598%25EF%25BC%259Acss%25E6%2580%25A7%25E8%2583%25BD%25E8%25AE%25A9javascript%25E5%258F%2598%25E6%2585%25A2%25EF%25BC%259F/" target="_blank" rel="external">回流与重绘：CSS性能让JavaScript变慢？</a></li>
+</ol>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2018-03-06</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://fguizc.me/2018/03/06/页面重绘与回流/,Fguizc,页面重绘与回流,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a role="navigation" href="/2017/10/06/transfrom对fixed影响/" title="transfrom对fixed影响" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
