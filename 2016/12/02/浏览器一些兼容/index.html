@@ -1,11 +1,17 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="fguizc"><title>一点微小的polyfill · Fguizc</title><meta name="description" content="-----------2017/1/25 1:47:23 upadate------------
-主要添加记录html5.1及以上新特性
-##响应式
-html支持了响应式图片，在不依赖JS脚本的情况下能够根据媒体查询响应加载不同的图片
-&amp;lt;picture&amp;gt;
-	&amp;lt;source srcs"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><h3 title=""><a href="/">Fguizc</a></h3></div></div><ul class="social-links"><li><a href="http://instagram.com/zcsdt" target="blank"><i class="fa fa-instagram"></i></a></li><li><a href="http://github.com/fguizc" target="blank"><i class="fa fa-github"></i></a></li><li><a href="https://git.oschina.net/fguizc" target="blank"><i class="fa fa-code"></i></a></li><li><a href="http://steamcommunity.com/profiles/76561198255058450" target="blank"><i class="fa fa-steam"></i></a></li></ul><div class="blog-desc">时间胶囊</div><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="http://7xv7pp.com1.z0.glb.clouddn.com/avatar_new.jpg"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>一点微小的polyfill</a></h3></div><div class="post-content"><p><strong>-----------2017/1/25 1:47:23 upadate------------</strong></p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="fguizc"><title>一点微小的polyfill · Fguizc</title><meta name="description" content="-----------2018/3/1814:28:51 upadate------------
+Normalize.css/sanitize.css
+不同浏览器的默认样式存在差异，可以使用 Normalize.css 抹平这些差异。当然，你也可以定制属于自己业务的 reset.css
+normal"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><h3 title=""><a href="/">Fguizc</a></h3></div></div><ul class="social-links"><li><a href="http://instagram.com/zcsdt" target="blank"><i class="fa fa-instagram"></i></a></li><li><a href="http://github.com/fguizc" target="blank"><i class="fa fa-github"></i></a></li><li><a href="https://git.oschina.net/fguizc" target="blank"><i class="fa fa-code"></i></a></li><li><a href="http://steamcommunity.com/profiles/76561198255058450" target="blank"><i class="fa fa-steam"></i></a></li></ul><div class="blog-desc">时间胶囊</div><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="http://7xv7pp.com1.z0.glb.clouddn.com/avatar_new.jpg"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>一点微小的polyfill</a></h3></div><div class="post-content"><p><strong>-----------2018/3/1814:28:51 upadate------------</strong></p>
+<h2>Normalize.css/sanitize.css</h2>
+<p>不同浏览器的默认样式存在差异，可以使用 <code>Normalize.css</code> 抹平这些差异。当然，你也可以定制属于自己业务的 <code>reset.css</code></p>
+<p><a href="https://github.com/necolas/normalize.css" target="_blank" rel="external">normalize.css</a></p>
+<p><a href="https://github.com/jonathantneal/sanitize.css" target="_blank" rel="external">sanitize.css</a></p>
+<h2>html5shiv.js</h2>
+<p>解决 <code>ie9</code> 以下浏览器对 <code>html5</code> 新增标签不识别的问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;!--[if lt IE 9]&gt; </div><div class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js&quot;&gt;&lt;/script&gt; </div><div class="line">&lt;![endif]--&gt;</div></pre></td></tr></table></figure>
+<p><strong>-----------2017/1/25 1:47:23 upadate------------</strong></p>
 <p>主要添加记录html5.1及以上新特性</p>
-<p>##响应式</p>
+<h2>响应式</h2>
 <p>html支持了响应式图片，在不依赖JS脚本的情况下能够根据媒体查询响应加载不同的图片</p>
 <pre><code>&lt;picture&gt;
 	&lt;source srcset='mobile.png' media='(max-width: 480px)'&gt;
@@ -13,7 +19,9 @@ html支持了响应式图片，在不依赖JS脚本的情况下能够根据媒�
 &lt;/picture&gt;
 </code></pre>
 <p>主要是根据<code>picture</code>中的<code>srcset</code>属性来实现。允许添加一个或者多个条件来判断。</p>
-<p>##布局</p>
+<p>其中<code>picturefill.js</code>解决 <code>IE 9 10 11</code> 等浏览器不支持 <code>&lt;picture&gt;</code> 标签的问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;https://cdn.bootcss.com/picturefill/3.0.3/picturefill.min.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h2>布局</h2>
 <p>允许创建一个空的<code>option</code>元素，用于不在主观上建议用户默认选项</p>
 <pre><code>&lt;select&gt;
 	&lt;option&gt;&lt;/option&gt;
@@ -27,7 +35,7 @@ html支持了响应式图片，在不依赖JS脚本的情况下能够根据媒�
 </code></pre>
 <p>-----------2016/12/02 23:13:43 upadate------------</p>
 <p>主要记录常见实用的PC端与移动端上遇到的兼容适配问题。一切不调研用户群体占有兼容低版本IE都是耍流氓。</p>
-<p>##样式</p>
+<h2>样式</h2>
 <p>Chrome下默认最小字体为12px，为了兼容统一rem</p>
 <p><code>.css{ -webkit-text-size-adjust: none }</code></p>
 <p>取消移动端中用户点选时的高亮</p>
@@ -48,15 +56,15 @@ html支持了响应式图片，在不依赖JS脚本的情况下能够根据媒�
 <ol>
 <li>
 <p>当页面内容会溢出屏幕时</p>
-<p><code>postion : sticky</code> //不推荐，限制条件多，且多数不支持
-<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161203_151807.png" alt="">
-<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161203_151815.png" alt=""></p>
+<p><code>postion : sticky</code> //不推荐，限制条件多，且多数不支持</p>
+<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161203_151807.png" alt=""></p>
+<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20161203_151815.png" alt=""></p>
 </li>
 </ol>
 <ol start="2">
 <li>.<code>parent{display: flex} .stickyChild{flex:1}</code></li>
 </ol>
-<p>##行为</p>
+<h2>行为</h2>
 <p>禁止用户缩放</p>
 <p><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&quot;&gt;</code></p>
 <p>禁止用户选择文字</p>
@@ -65,8 +73,8 @@ html支持了响应式图片，在不依赖JS脚本的情况下能够根据媒�
 <p><code>&lt;input type=&quot;num&quot; autocomplete=&quot;false&quot;&gt;</code></p>
 <p>模拟实现textarea文本编辑框</p>
 <p><code>-webkit-user-modify: read-write( 支持富文本 ) | read-only ( 只读 ) | read-write-plaintext-only (只支持文本)</code></p>
-<p>##判断IE
-判断IE9及以下<br>
+<h2>判断IE</h2>
+<p>判断IE9及以下<br>
 <code>var ie = !-[1,]</code><br>
 <code>&lt;!-[if lte IE 9]&gt;...&lt;![endif]&gt;</code></p>
 <p>IE9及以下</p>
