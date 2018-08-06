@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://fguizc.xyz/"/>
-  <updated>2018-08-05T16:00:02.576Z</updated>
+  <updated>2018-06-03T09:22:43.910Z</updated>
   <id>http://fguizc.xyz/</id>
   
   <author>
@@ -17,87 +17,6 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="http://fguizc.xyz/2018/08/05/2018%E5%B9%B47%E6%9C%8830%20-%208%E6%9C%885%E6%97%A5%20GIVE543%E5%91%A8%E6%8A%A5/"/>
-    <id>http://fguizc.xyz/2018/08/05/2018年7月30 - 8月5日 GIVE543周报/</id>
-    <published>2018-08-05T15:02:32.444Z</published>
-    <updated>2018-08-05T16:00:02.576Z</updated>
-    
-    <content type="html"><![CDATA[<h1>2018年7月30 - 8月5日 GIVE543周報</h1><h2>PC版</h2><h3>父親節活動</h3><ul><li>完成父親節活動主頁、得獎資訊兩個頁面的二次開發</li><li>提供一級導航欄的父親節入口</li><li>提供簡單數據埋點在父親節活動主頁</li><li>提供新的圖片上傳接口</li></ul><h3>預約按鈕</h3><ul><li>優化  按鈕出現的時機，當活動達到後臺管理系統配置的【發送郵件】時間後不再顯示【預約】按鈕</li></ul><h3>掌櫃</h3><ul><li>修復  掌櫃物流無法進入編輯頁面的問題</li><li>優化  掌櫃物流在交互卡中不必要的寄送資訊（寄件地址），修改【寄送歷程】為【追蹤包裹】</li></ul><h3>索取流程</h3><ul><li>修復  前端代碼造成的索取流程中最後一步顯示【索取錯誤，請稍後再試】的錯誤提示，實際請求已發送成功的問題</li></ul><h3>其他</h3><ul><li>優化  刪除首頁跳轉到新半移動端的舊邏輯（通過react框架內做計算跳轉）及tip彈窗</li><li>優化  刪除路由文件冗余的路由邏輯</li></ul><h2>移動端</h2><h3>父親節活動</h3><ul><li>完成父親節活動主頁、發布、得獎資訊三個頁面的開發（淇嘉 完成頁面布局）</li><li>修改首頁<strong>活動icon</strong>跳轉到父親節</li><li>提供簡單數據埋點</li><li>提供新的圖片上傳接口</li><li>替換主頁內icon為父親節活動icon（暫未上線）</li></ul><h3>手機驗證</h3><ul><li>修復  手機驗證在輸入手機號和正確驗證碼後未跳轉到認證成功頁面</li></ul><h3>分享</h3><ul><li>修復  FB分享錯誤的api-url</li><li>修復  FB分享成功後卻點擊無效的問題</li></ul><h3>掌櫃</h3><ul><li>優化  修改【寄送歷程】為【追蹤包裹】</li></ul><h3>用戶引導（暫未上線 8.6更新測試環境）</h3><ul><li>完成  移動端用戶引導整套流程的開發（淇嘉）</li></ul><h3>其他</h3><ul><li>優化  部分頁面標題欄為滾動貼附頂端</li><li>優化  部分頁面在iOS下滾動不順暢的問題</li><li>修復  指定贈送頁面因變量錯誤阻塞頁面的問題</li><li>修復  手機註冊密碼輸入框自動失焦的問題</li><li>修復  將測試環境和正式環境ga統計分離</li></ul><h2>問題</h2><ol><li>在PC端索取流程中，出現了【請求成功】但界面提示【失敗】的問題，導致部分用戶多次索取。 在優化代碼時錯誤地選中了相同變量名，導致兩處變量均被替換，而第二處替換掉的變量名無法找到對應的聲明，因此報錯，被上層錯誤處理函數捕獲，從而顯示【索取失敗，請稍後再試】語句。</li></ol><p>該問題十分低級，eslint已報出，由於PC項目代碼長期存在大量不符合配置產生的eslint報錯未多加留心。git代碼提交時應該檢查當次代碼是否存在eslint拋出的【定義未使用變量】等關鍵提示，同時逐步配置修復PC版本的代碼檢查工具，添加precommit來阻止含有eslint錯誤提示的提交</p><h3>下週代辦事項</h3><ol><li>愛箱送月報的虛擬數據的填充及頁面的展示</li><li>解決PHP郵件模板的樣式修改及內容空白的問題</li><li>禮物需求及個人頁面，換行沒有作用</li><li>掌櫃的寄送狀態的服務端每天三次檢查更新</li><li>PC掌櫃幾件碼未彈出</li><li>移動端互动卡title 显示会员姓名</li><li>「交接預告」功能發開（允許政府、公益團體），點擊後是一個彈窗</li></ol><blockquote><p>填寫交接的資訊：交接日期（必填）、接替人姓名（必填）、市話（必填）、手機（非必填）、mail（非必填），填寫送出后續發送郵件給543相關工作人員（小胖）</p></blockquote><ol start="8"><li>兩端的预设掌柜柜机</li><li>公益團體專屬的頭像信息（暱稱展示：聯絡人，新增「單位全名」＋擔任「職稱」subtitle）上線</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1&gt;2018年7月30 - 8月5日 GIVE543周報&lt;/h1&gt;
-&lt;h2&gt;PC版&lt;/h2&gt;
-&lt;h3&gt;父親節活動&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;完成父親節活動主頁、得獎資訊兩個頁面的二次開發&lt;/li&gt;
-&lt;li&gt;提供一級導航欄的父親節入口&lt;/li&gt;
-&lt;li&gt;提供簡單數據埋點在父親
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://fguizc.xyz/2018/07/29/2018-07-29-untitled/"/>
-    <id>http://fguizc.xyz/2018/07/29/2018-07-29-untitled/</id>
-    <published>2018-07-29T04:17:00.166Z</published>
-    <updated>2018-07-29T05:07:00.302Z</updated>
-    
-    <content type="html"><![CDATA[<h2>移动端</h2><p><strong>主要改動：</strong>修復  索取流程，匯運費給贈送者，當贈送者決定送給索取者時，贈送者的匯款銀行可能未正常發給服務器（因為未填寫相關）的問題修復  索取禮物流程，選擇掌櫃時展示當前掌櫃櫃機詳細地址修復  索取流程/需求贈送 選擇新竹時下午5點的攔截邏輯修復  掌櫃交互卡銀行全稱不顯示的問題修復  賀盟物流價位表連接跳轉不正確的問題修復  新竹物流未正確上傳【上門收件日期】的問題</p><p>優化  去除郵箱註冊優化  全局掌櫃優惠促銷文案優化  發布禮物/需求時，導航欄根據當前步驟判斷攔截跳轉優化  掌櫃寄送歷程的顯示優化  掌櫃物流方式的及時提示「寄件碼」優化  停權用戶的登錄提示更明顯優化  新增如何使用掌櫃頁面優化  新增移動端常見問題頁面優化  全家店鋪選擇組件（下周依舊需要優化，當前交互依舊不便）優化  去掉登錄頁面部分文案（關於推薦團體使用email註冊）優化  增加首頁「合作夥伴」——「掌櫃」</p><h2>PC端</h2><p><strong>主要改動：</strong>修復  交互卡「掌櫃」-「寄送歷程」引起的報錯；修復  寄送資訊在「掌櫃」物流情況下，在不正確的寄送流程自動打開了「寄件碼」彈窗修復  個人中心數據在跳轉他人頁面時未被刷新的問題；修復  掌櫃櫃機數據冗餘的可能的問題</p><p>優化  映射PC版禮物池、禮物詳情頁、需求池、需求詳情頁、讀故事、故事詳情頁、關於我們等對應的移動端頁面優化  去掉掌櫃索取時默認帶入的市區信息；優化  修改掌櫃優惠信息優化  新增全局下「如何使用掌櫃」的站內頁面；優化  新增首頁合作夥伴「掌櫃」優化  新增針對IE瀏覽器的攔截跳轉（具體頁面參見https://www.give543.com/static/oldversion/index.html)優化  隱藏郵箱註冊優化  移動設備訪問PC版本默認跳轉到移動新版優化  去除移動設備訪問PC版時跳轉到特定的（RWD版）交互卡的邏輯優化  交互卡寄件資訊關於掌櫃的相關提示；優化  新增個人中心「好人點」、「感謝率」hover時title提示</p><h2>本週問題</h2><ol><li>在開發過程中，頁面佈局完整，在打包后上線到正式環境發現移動端個人中心頁面樣式不正確，禮物詳情頁樣式不正確原因：開發人員不規範的代碼書寫，引起了樣式的洩漏解決辦法：上線前將打包后的文件再次放入本地服務器跑一邊，同時更應該在平時開發流程中注意到代碼規範</li></ol><h2>下週工作計劃</h2><ol><li>父親節的測試與上線并做好兩端的映射（維超</li><li>手機版的引導至少上測試環境（淇嘉</li><li>【如何使用掌柜】的差异化展示（維超</li><li>贈送者負擔運費跳過匯款修正（暫定，不確定因素較大</li></ol><p>下週優先保證父親節活動相關正常上線</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2&gt;移动端&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;主要改動：&lt;/strong&gt;
-修復  索取流程，匯運費給贈送者，當贈送者決定送給索取者時，贈送者的匯款銀行可能未正常發給服務器（因為未填寫相關）的問題
-修復  索取禮物流程，選擇掌櫃時展示當前掌櫃櫃機詳細地址
-修復  索取流程/需求
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://fguizc.xyz/2018/07/07/%E7%AC%94%E8%AF%95%E9%A2%98%20v.1/"/>
-    <id>http://fguizc.xyz/2018/07/07/笔试题 v.1/</id>
-    <published>2018-07-07T12:50:53.543Z</published>
-    <updated>2018-07-08T04:43:40.733Z</updated>
-    
-    <content type="html"><![CDATA[<ol><li><p>display: none 和 visibility: hidden 及 opacity: 0 的区别</p></li><li><p>如何实现一个水平垂直居中（不使用table布局）</p></li></ol><body><div class="parent"><div class="child"></div></div></body><ol start="3"><li><p>JS基本类型有哪些，引用类型有哪些？</p></li><li><p>请描述dom事件的流程，即从触发到结束的整个过程</p></li><li><p>数组的常用方法有哪些（不限于es5、es6）；如果有一个“对象”如何判断它是否是一个数组（请至少写出两种方法）</p></li><li><p>简单讲解一下JS中的this，其中call,apply,bind三者有什么区别</p></li><li><p>下面方法调用输出的结果是？</p></li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const person = &#123;</span><br><span class="line">name: &apos;tom&apos;,</span><br><span class="line">say: function ()&#123;</span><br><span class="line">return function ()&#123;</span><br><span class="line">console.log(this.name);</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line">person.say()();</span><br></pre></td></tr></table></figure><ol start="8"><li>如何实现以下效果</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const a = [1,2,3,4]</span><br><span class="line">/* do something */</span><br><span class="line">console.log(a); // [1,2,3,4,5]</span><br></pre></td></tr></table></figure><ol start="9"><li>下面的输出结果是？</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(() =&gt; console.log(&apos;a&apos;), 0);</span><br><span class="line">var p = new Promise((resolve) =&gt; &#123;</span><br><span class="line">console.log(&apos;b&apos;);</span><br><span class="line">resolve();</span><br><span class="line">&#125;);</span><br><span class="line">p.then(() =&gt; console.log(&apos;c&apos;)).catch((err) =&gt; console.log(&apos;d&apos;));</span><br><span class="line">console.log(&apos;e&apos;);</span><br></pre></td></tr></table></figure><ol start="10"><li>HTTP 状态码有哪些？分别代表什么意思？</li></ol><ol start="11"><li>一个页面从输入URL到页面加载显示完成，这个过程中都发生了什么？</li></ol><ol start="12"><li>常用的http缓存策略有哪些，请列举一些常见的http header</li></ol><ol start="13"><li>你用过或了解哪些前端性能优化的方法？</li></ol><ol start="14"><li><p>（选）Vue的生命周期有哪些 / React （v.15.x 及以下的版本）的生命周期有哪些</p></li><li><p>（选）Vue/React如何实现父子组件通讯</p></li><li><p>是否有使用过vuex或react-redux或mobx这类数据管理的库？请简单说明一下他们的工作流程</p></li><li><p>简单写一下你最近了解的新东西或看的书（不限于前端）</p></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;display: none 和 visibility: hidden 及 opacity: 0 的区别&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;如何实现一个水平垂直居中（不使用table布局）&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;body&gt;&lt;div class
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>vue-loader 原理</title>
     <link href="http://fguizc.xyz/2018/06/03/vue-loader%20%E5%8E%9F%E7%90%86/"/>
     <id>http://fguizc.xyz/2018/06/03/vue-loader 原理/</id>
@@ -105,28 +24,6 @@
     <updated>2018-06-03T09:22:43.910Z</updated>
     
     <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://fguizc.xyz/2018/06/02/2018-06-02-untitled/"/>
-    <id>http://fguizc.xyz/2018/06/02/2018-06-02-untitled/</id>
-    <published>2018-06-01T17:26:25.609Z</published>
-    <updated>2018-06-03T15:17:23.066Z</updated>
-    
-    <content type="html"><![CDATA[<h2>为什么会发生</h2><p>起因是在本周优化接口过程中，发现旧代码还存在已弃用的接口，于是删除了这部分顺带改动了现有部分逻辑较为复杂的接口（需求相关请求），需求相关请求代码中存在多个判断，想梳理一下，因此简化了一部分判断逻辑，但在简化过程中，同时又合并了新接口，个人人为因素使得个人中心的请求逻辑跳到了属于需求池的请求。</p><h2>为什么没测试</h2><p>接口的请求有在测试环境下测试，但为优化新接口过程中发布了多项需求，导致需求池的所有需求被带入个人中心，使数据看起来没错，而实际上并非如此，</p><h2>如何进一步降低避免固定模块的接口出错几率</h2><ol><li>加强与后端的沟通</li><li>测试环境下功能的开发确认完成后再进行下一个功能的开发</li><li>逐步将测试流程中在测试环境下已确认的部分，放入预发布环境测试（数据更全，更容易发现问题），并在发布正式上线后跟踪当前发布版本对应功能</li><li>前端功能模块代码的互相review</li><li>加入UI层面的代码测试</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2&gt;为什么会发生&lt;/h2&gt;
-&lt;p&gt;起因是在本周优化接口过程中，发现旧代码还存在已弃用的接口，于是删除了这部分顺带改动了现有部分逻辑较为复杂的接口（需求相关请求），需求相关请求代码中存在多个判断，想梳理一下，因此简化了一部分判断逻辑，但在简化过程中，同时又合并了新接口，个人人为
-      
     
     </summary>
     
@@ -498,6 +395,107 @@
         &lt;h1&gt;基于Express&amp;amp;githook的自动化部署&lt;/h1&gt;
 &lt;h2&gt;需求&lt;/h2&gt;
 &lt;p&gt;项目有一个简单的静态网站要部署到服务器，由于一些神秘的东方力量，就算是静态页面也需要改动，频繁地(22Commits，当然大多数也是样式的改写)使用SSH登陆到远程服务器，替换
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Javascript 单例模式</title>
+    <link href="http://fguizc.xyz/2017/06/15/Javascript-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://fguizc.xyz/2017/06/15/Javascript-单例模式/</id>
+    <published>2017-06-15T13:48:09.000Z</published>
+    <updated>2017-09-05T09:26:57.082Z</updated>
+    
+    <content type="html"><![CDATA[<h1>Javascript 单例模式</h1><p>本篇为学习《JavaScript设计模式与开发实践》——单例模式笔记。</p><h2>定义</h2><blockquote><p>单例模式定义：保证一个类仅有一个实例，并提供一个访问它的全局访问点</p></blockquote><p>具体的业务应用例如：页面存在一个唯一的登录框，点击button创建登陆框，但无论点击多少次始终只创建一次登录框。</p><h2>基本实现</h2><p>实现的关键在于<strong>使用一个变量来标志是否已经为某个类创建过对象</strong>，如果是则直接返回之前创建过的对象。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Singleton = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name</span><br><span class="line">  <span class="keyword">this</span>.instance = <span class="literal">null</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Singleton.prototype.getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Singleton.getInstance = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!<span class="keyword">this</span>.instance)&#123;</span><br><span class="line">    <span class="keyword">this</span>.instance = <span class="keyword">new</span> Singleton(name)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.instance</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = Singleton.getInstance(<span class="string">'tom'</span>)</span><br><span class="line"><span class="keyword">var</span> b = Singleton.getInstance(<span class="string">'jerry'</span>)</span><br><span class="line"></span><br><span class="line">a === b <span class="comment">// a.name === b.name === 'tom'</span></span><br></pre></td></tr></table></figure><p>通过<code>Singleton.getInstance</code>来获取Singleton类的唯一对象，而不是像以往通过<code>new</code>关键字来获取，使用者必须知道<code>Singleton</code>是一个单例类。</p><h2>透明的单例模式</h2><p>目标是实现像往常一样通过<code>new</code>关键字来实例化一个对象。以下代码的作用是在页面中创建唯一的div</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> CreateDiv = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> instance = <span class="literal">null</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> CreateDiv = <span class="function"><span class="keyword">function</span>(<span class="params">html</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (instance) &#123;</span><br><span class="line">      <span class="keyword">return</span> instance</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">this</span>.html = html</span><br><span class="line">    <span class="keyword">this</span>.init()</span><br><span class="line">    <span class="keyword">return</span> instance = <span class="keyword">this</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  CreateDiv.prototype.init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> div = <span class="built_in">document</span>.createElment(<span class="string">'div'</span>)</span><br><span class="line">    div.innerHTML = <span class="keyword">this</span>.html</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(div)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> CreateDiv</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> CreateDiv(<span class="string">'demo1'</span>)</span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> CreateDiv(<span class="string">'demo2'</span>)</span><br><span class="line"></span><br><span class="line">a === b <span class="comment">// true</span></span><br></pre></td></tr></table></figure><p>以上的代码，通过创建一个立执行函数创建了一个局部变量<code>instance</code>，并且让匿名函数返回真正的<code>Singleton</code>构造方法。</p><p>在内部的<code>CreateDiv</code>构造方法中，确定了两件事</p><ul><li>创建对象和执行初始化init方法</li><li>通过一个外层的局部变量确保只创建一个对象</li></ul><p>根据<strong>单一职责</strong>原则，要尽可能解耦逻辑。</p><h2>代理实现的单例模式</h2><p>通过引入<strong>代理类</strong>的方式解决上述问题。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> CreateDiv = <span class="function"><span class="keyword">function</span>(<span class="params">html</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.html = html</span><br><span class="line">  <span class="keyword">this</span>.init()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CreateDiv.prototype.init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> div = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>)</span><br><span class="line">  div.innerHTML = <span class="keyword">this</span>.html</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(div)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//引入代理类</span></span><br><span class="line"><span class="keyword">var</span> ProxySingletonCreateDiv = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> instance = <span class="literal">null</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">html</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>( !instance )&#123;</span><br><span class="line">      instance = <span class="keyword">new</span> CreateDiv(html)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> instance</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> ProxySingletonCreateDiv(<span class="string">'tom'</span>)</span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> ProxySingletonCreateDiv(<span class="string">'jerry'</span>)</span><br><span class="line"></span><br><span class="line">a === b <span class="comment">//true</span></span><br></pre></td></tr></table></figure><p>通过引入代理类，解耦逻辑，使代理类负责管理单例的逻辑，同时CreateDiv变成了一个普通的类，通过组合它们达到单例模式的效果。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1&gt;Javascript 单例模式&lt;/h1&gt;
+&lt;p&gt;本篇为学习《JavaScript设计模式与开发实践》——单例模式笔记。&lt;/p&gt;
+&lt;h2&gt;定义&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;单例模式定义：保证一个类仅有一个实例，并提供一个访问它的全局访问点&lt;/p&gt;
+&lt;/bloc
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>DOMContentLoaded</title>
+    <link href="http://fguizc.xyz/2017/06/01/DOMContentLoaded/"/>
+    <id>http://fguizc.xyz/2017/06/01/DOMContentLoaded/</id>
+    <published>2017-06-01T13:16:10.000Z</published>
+    <updated>2017-09-05T09:26:57.081Z</updated>
+    
+    <content type="html"><![CDATA[<h1>DOMContentLoaded</h1><p>本篇记录 ：Dom操作中，检测页面是否加载完毕，确保正确执行js。</p><p>页面加载的过程大致可以简单分为</p><ol><li>DOM结构的构建</li><li>解析样式，构建渲染树</li><li>布局渲染树</li><li>绘制渲染树</li><li>加载请求资源</li><li>页面加载完成</li></ol><h2>1. onload 事件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.onload = function() &#123; //do something &#125;</span><br></pre></td></tr></table></figure><p>以上代码是经常出现的一句，是指等待页面上<strong>所有资源</strong>加载完成后，触发window对象的load事件。</p><p>而且因为浏览器渲染的过程中，代码是从上往下执行，在实际开发过程中，大量引入第三方库，相互调用，依靠onload事件的触发去执行代码。</p><p>但是onload事件实际是在<strong>页面上所有元素加载完毕，并且请求资源也加载完成</strong>才触发，当页面或项目轻量时，并不会带来什么影响，但在页面上存在大量请求资源时，往往一些操作得不到反馈会降低用户体验。</p><h2>2.jQuery  ready</h2><p>jquery中的$(document).ready(function(){})方法，就是对onload事件的一个改良，它被触发是在DOM结构被绘制完成，要先于window.onload。实际上jq就是监听了DOMContentLoaded事件。</p><h2>3.DOMContentLoaded 事件</h2><p>DOMContentLoaded事件是w3c对onload事件的一个补充。当初始 HTML 文档已经完成加载和解析时，DOMContentLoaded 事件将被触发，无需等待样式表、图像和子框架的完全加载。</p><pre><code>window.onload = function() {  console.log('页面加载完成')}document.addEventListener('DOMContentLoaded', function(e){  console.log('dom绘制完成')}, false)// dom绘制完成  页面加载完成</code></pre><p>在现代浏览器中，通过添加事件监听的方式来绑定事件。</p><p>虽然IE不支持<code>DOMContentLoaded</code>，但它支持<code>onreadystatechange</code>事件。同时，为js设置异步加载的“defer”和“async”属性也会影响DOMContentLoaded的执行。在开发中，我们可以使用DOMContentLoaded事件的监听来提升用户体验。</p><p>参考：</p><p><a href="https://segmentfault.com/a/1190000005869515" target="_blank" rel="noopener"><a href="https://segmentfault.com/a/1190000005869515" target="_blank" rel="noopener">浅谈DOMContentLoaded事件及其封装方法</a></a></p><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&mid=2651226247&idx=1&sn=8595a53fe98a3225d0cf0ce3f8ff2acc&chksm=bd4959038a3ed015c3d03fcdadcdabf4225a7eee4efb1988becd9ae3cd87f2216a34717383bc&mpshare=1&scene=1&srcid=0403gXzWL8aSq91TuBoqyFtm&key=19bca82a00e28dcd2ee4826d029205065cd6e6bbcc6f97f2da04129789e26a00b82cc9fccc4f838fc1bda9d9935ab03cc482bfcee734dd40c175fe0d882d0518c4ecf63d82e3d78471415eee960f66cc&ascene=0&uin=NzM0NTM5MzQx&devicetype=iMac+MacBookPro12%2C1+OSX+OSX+10.11.6+build(15G31)&version=12020110&nettype=WIFI&fontScale=100&pass_ticket=2uOqWTPNenLxF7wD%2F%2Bi%2F0TK60XMDQLdZ%2Bk2hyDjtKZsM9jitnQM4c%2B5cVfq0SJLP" target="_blank" rel="noopener">你不知道的 DOMContentLoaded</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1&gt;DOMContentLoaded&lt;/h1&gt;
+&lt;p&gt;本篇记录 ：Dom操作中，检测页面是否加载完毕，确保正确执行js。&lt;/p&gt;
+&lt;p&gt;页面加载的过程大致可以简单分为&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;DOM结构的构建&lt;/li&gt;
+&lt;li&gt;解析样式，构建渲染树&lt;/li&gt;
+&lt;li&gt;布局渲
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>mongoDB</title>
+    <link href="http://fguizc.xyz/2017/04/30/mongoDB/"/>
+    <id>http://fguizc.xyz/2017/04/30/mongoDB/</id>
+    <published>2017-04-30T09:40:03.000Z</published>
+    <updated>2017-09-05T09:26:57.084Z</updated>
+    
+    <content type="html"><![CDATA[<h3>阿里云上部署Node.js</h3><p>使用了<strong>xshell</strong> 教育版去远程连接阿里云，如下图所示，填写完相应的主机号和登陆账户密码后即可连接。<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20170430_174229.png" alt=""></p><ol><li>首先更新系统</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y update</span><br></pre></td></tr></table></figure><ol start="2"><li>安装开发工具因为阿里云的centOS是纯净的所以需要安装开发者工具，此处踩坑，因为第一次没有安装，后面报了丢失<code>g++</code>的错误</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y groupinstall &quot;Development Tools&quot;</span><br></pre></td></tr></table></figure><ol start="3"><li>安装Node.js从<a href="http://nodejs.org/dist" target="_blank" rel="noopener">Node.js的官网</a>上安装压缩包，个人选择版本是最新的版本，因为想用async/awit语法</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//进入对应的文件夹</span><br><span class="line">cd /usr/src</span><br><span class="line">//安装Node</span><br><span class="line">wget http://nodejs.org/dist/latest/node-v7.9.0.tar.gz</span><br></pre></td></tr></table></figure><ol start="4"><li>解压等待一段时间下载完成后(暂时没有遇到网络问题，也可通过下载到本地，再推送到阿里云上安装Node)，解压下载的Node压缩文件，(Linux系统中不以文件后缀名区分文件，后缀名仅供用户了解是何种文件以及声明解压方式)</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar zxf node-v7.9.0.tar.gz </span><br><span class="line">cd node-v7.9.0</span><br></pre></td></tr></table></figure><ol start="5"><li>执行配置脚本和编译</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//执行配置脚本</span><br><span class="line">./configure</span><br><span class="line">//完成后编译源码</span><br><span class="line">//此处可能出现丢失g++等错误!原因如步骤2</span><br><span class="line">make</span><br><span class="line">//编译完成后再执行</span><br><span class="line">make install</span><br></pre></td></tr></table></figure><ol start="6"><li>安装需求模块这个时候我们的Node已经安装完成，可以通过npm -v 来查看，然后再通过npm命令行安装模块，此处因为网络问题我用<code>nrm</code>切换到了淘宝源进行安装</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm -g install express forever</span><br></pre></td></tr></table></figure><ol start="7"><li>建立超级连接这一步不知道是干什么用的，但是搜了好几个教程都有就老老实实跟着复制粘贴</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /usr/local/bin/node /usr/bin/node </span><br><span class="line">sudo ln -s /usr/local/lib/node /usr/lib/node </span><br><span class="line">sudo ln -s /usr/local/bin/npm /usr/bin/npm </span><br><span class="line">sudo ln -s /usr/local/bin/node-waf /usr/bin/node-waf </span><br><span class="line">sudo ln -s /usr/local/bin/forever /usr/bin/forever</span><br></pre></td></tr></table></figure><p>到此Node就算安装完成</p><h3>安装MongoDB</h3><h3>Node.js操作MongoDB——Mongoose</h3><p>因为没有后端和数据库经验，所以选择容易上手Mongoose库，Mongoose将数据库中的数据转换为JS对象来进行操作。</p><p>参考:</p><p><a href="https://segmentfault.com/a/1190000004051670" target="_blank" rel="noopener">把Node.js项目部署到阿里云服务器（CentOs）</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3&gt;阿里云上部署Node.js&lt;/h3&gt;
+&lt;p&gt;使用了&lt;strong&gt;xshell&lt;/strong&gt; 教育版去远程连接阿里云，如下图所示，填写完相应的主机号和登陆账户密码后即可连接。
+&lt;img src=&quot;http://7xv8p5.com1.z0.glb.clouddn.co
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>基于Node和MongoDB实现Vue.js简单的JWT单点登录</title>
+    <link href="http://fguizc.xyz/2017/04/26/%E5%9F%BA%E4%BA%8ENode%E5%92%8CMongoDB%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84JWT%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
+    <id>http://fguizc.xyz/2017/04/26/基于Node和MongoDB实现简单的JWT单点登录/</id>
+    <published>2017-04-26T13:30:21.000Z</published>
+    <updated>2017-09-05T09:26:57.086Z</updated>
+    
+    <content type="html"><![CDATA[<p>该篇主要记录毕业设计中基于Vue全家桶+Node+MongoDB实现的简单登陆。##什么是JWTJWT即JSON Web Token，它是一个<strong>规范</strong>，允许我们使用JWT在用户和服务器之间传递信息。JWT的组成是由三个部分。</p><ol><li>头部</li><li>载荷</li><li>签名载荷(Payload)</li></ol><h2>Vuex</h2><p>本来最开始想着毕业设计这个小项目也没有多复杂，就不上状态管理了，结果…，一天不用浑身难受。其实我们主要是实现<strong>登录</strong>，<strong>注销</strong>这两个操作的action分发。代码如下</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//action</span><br><span class="line">import * as types from &apos;./types&apos;</span><br><span class="line">const actions = &#123;</span><br><span class="line">    UserLogin(&#123;commit&#125;, data) &#123;</span><br><span class="line">        commit(types.LOGIN, data)</span><br><span class="line">    &#125;,</span><br><span class="line">    UserLogout(&#123;commit&#125;) &#123;</span><br><span class="line">        commit(types.LOGOUT)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//mutation</span><br><span class="line">import * as types from &apos;./types&apos;</span><br><span class="line">const mutations = &#123;</span><br><span class="line">    [types.LOGIN]: (state, token) =&gt; &#123;</span><br><span class="line">    localStorage.setItem(&apos;token&apos;, token)</span><br><span class="line">    state.token = token</span><br><span class="line">  &#125;,</span><br><span class="line">  [types.LOGOUT]: (state) =&gt;　&#123;</span><br><span class="line">    state.token = null</span><br><span class="line">    localStorage.removeItem(&apos;token&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2>Vue Router</h2><p>使用vue router设置路由的时候，我们依靠<strong>导航钩子</strong>来实现对用户登录信息的检测，**beforeEach(to, from, next)**钩子函数是关键。我们如下定义</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const router = new VueRouter()</span><br><span class="line">router.beforeEach((to, from, next) =&gt; &#123;</span><br><span class="line">// do something    </span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure><p>此处三个参数<code>to</code>,<code>from</code>,<code>next</code>:<code>to: Route</code>: 表示即将要进入的目标的<strong>路由对象</strong><code>from Route</code>: 表示当前导航将要离开的路由<code>next Function</code>: 确保要准确调用next()来resolve钩子，可以通过<code>next({path: '/...'})</code>来手动跳转，在<strong>路由对象</strong>中，我们可以设置一个<strong>路由元信息</strong>即<code>meta</code>，举个栗子</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const router = new VueRouter(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: &apos;/foo&apos;,</span><br><span class="line">      component: Foo,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          path: &apos;bar&apos;,</span><br><span class="line">          component: Bar,</span><br><span class="line">          // a meta field</span><br><span class="line">          meta: &#123; requiresAuth: true &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>在这里我们就设置了<code>meta</code>以及它的一个属性<code>requireAuth</code>，结合上面的<code>beforeEach()</code>函数，我们可以去检测，当每一次路由发生改变时的jwt是否合法，如果不合法我们就可以通过<code>next()</code>跳转到登录页。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach((to, from, next) =&gt; &#123;</span><br><span class="line">  let token = localStorage.getItem(&apos;token&apos;)  </span><br><span class="line">  if (to.matched.some(record =&gt; record.meta.requiresAuth)) &#123;</span><br><span class="line">    // this route requires auth, check if logged in</span><br><span class="line">    // if not, redirect to login page.</span><br><span class="line">    if (!token) &#123;</span><br><span class="line">      next(&#123;</span><br><span class="line">        path: &apos;/login&apos;,</span><br><span class="line">        query: &#123; redirect: to.fullPath &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      next()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    next() // 确保一定要调用 next()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>至此，我们就算实现了一个简单的登陆拦截</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;该篇主要记录毕业设计中基于Vue全家桶+Node+MongoDB实现的简单登陆。
+##什么是JWT
+JWT即JSON Web Token，它是一个&lt;strong&gt;规范&lt;/strong&gt;，允许我们使用JWT在用户和服务器之间传递信息。
+JWT的组成是由三个部分。&lt;/p&gt;
+&lt;o
       
     
     </summary>
