@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Fguizc</title>
+  
   <subtitle>鲜衣白马千街游你从眉梢过</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://fguizc.me/"/>
-  <updated>2018-03-05T17:05:38.433Z</updated>
+  <updated>2018-08-05T16:00:02.576Z</updated>
   <id>http://fguizc.me/</id>
   
   <author>
@@ -16,85 +17,240 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title></title>
+    <link href="http://fguizc.me/2018/08/05/2018%E5%B9%B47%E6%9C%8830%20-%208%E6%9C%885%E6%97%A5%20GIVE543%E5%91%A8%E6%8A%A5/"/>
+    <id>http://fguizc.me/2018/08/05/2018年7月30 - 8月5日 GIVE543周报/</id>
+    <published>2018-08-05T15:02:32.444Z</published>
+    <updated>2018-08-05T16:00:02.576Z</updated>
+    
+    <content type="html"><![CDATA[<h1>2018年7月30 - 8月5日 GIVE543周報</h1><h2>PC版</h2><h3>父親節活動</h3><ul><li>完成父親節活動主頁、得獎資訊兩個頁面的二次開發</li><li>提供一級導航欄的父親節入口</li><li>提供簡單數據埋點在父親節活動主頁</li><li>提供新的圖片上傳接口</li></ul><h3>預約按鈕</h3><ul><li>優化  按鈕出現的時機，當活動達到後臺管理系統配置的【發送郵件】時間後不再顯示【預約】按鈕</li></ul><h3>掌櫃</h3><ul><li>修復  掌櫃物流無法進入編輯頁面的問題</li><li>優化  掌櫃物流在交互卡中不必要的寄送資訊（寄件地址），修改【寄送歷程】為【追蹤包裹】</li></ul><h3>索取流程</h3><ul><li>修復  前端代碼造成的索取流程中最後一步顯示【索取錯誤，請稍後再試】的錯誤提示，實際請求已發送成功的問題</li></ul><h3>其他</h3><ul><li>優化  刪除首頁跳轉到新半移動端的舊邏輯（通過react框架內做計算跳轉）及tip彈窗</li><li>優化  刪除路由文件冗余的路由邏輯</li></ul><h2>移動端</h2><h3>父親節活動</h3><ul><li>完成父親節活動主頁、發布、得獎資訊三個頁面的開發（淇嘉 完成頁面布局）</li><li>修改首頁<strong>活動icon</strong>跳轉到父親節</li><li>提供簡單數據埋點</li><li>提供新的圖片上傳接口</li><li>替換主頁內icon為父親節活動icon（暫未上線）</li></ul><h3>手機驗證</h3><ul><li>修復  手機驗證在輸入手機號和正確驗證碼後未跳轉到認證成功頁面</li></ul><h3>分享</h3><ul><li>修復  FB分享錯誤的api-url</li><li>修復  FB分享成功後卻點擊無效的問題</li></ul><h3>掌櫃</h3><ul><li>優化  修改【寄送歷程】為【追蹤包裹】</li></ul><h3>用戶引導（暫未上線 8.6更新測試環境）</h3><ul><li>完成  移動端用戶引導整套流程的開發（淇嘉）</li></ul><h3>其他</h3><ul><li>優化  部分頁面標題欄為滾動貼附頂端</li><li>優化  部分頁面在iOS下滾動不順暢的問題</li><li>修復  指定贈送頁面因變量錯誤阻塞頁面的問題</li><li>修復  手機註冊密碼輸入框自動失焦的問題</li><li>修復  將測試環境和正式環境ga統計分離</li></ul><h2>問題</h2><ol><li>在PC端索取流程中，出現了【請求成功】但界面提示【失敗】的問題，導致部分用戶多次索取。 在優化代碼時錯誤地選中了相同變量名，導致兩處變量均被替換，而第二處替換掉的變量名無法找到對應的聲明，因此報錯，被上層錯誤處理函數捕獲，從而顯示【索取失敗，請稍後再試】語句。</li></ol><p>該問題十分低級，eslint已報出，由於PC項目代碼長期存在大量不符合配置產生的eslint報錯未多加留心。git代碼提交時應該檢查當次代碼是否存在eslint拋出的【定義未使用變量】等關鍵提示，同時逐步配置修復PC版本的代碼檢查工具，添加precommit來阻止含有eslint錯誤提示的提交</p><h3>下週代辦事項</h3><ol><li>愛箱送月報的虛擬數據的填充及頁面的展示</li><li>解決PHP郵件模板的樣式修改及內容空白的問題</li><li>禮物需求及個人頁面，換行沒有作用</li><li>掌櫃的寄送狀態的服務端每天三次檢查更新</li><li>PC掌櫃幾件碼未彈出</li><li>移動端互动卡title 显示会员姓名</li><li>「交接預告」功能發開（允許政府、公益團體），點擊後是一個彈窗</li></ol><blockquote><p>填寫交接的資訊：交接日期（必填）、接替人姓名（必填）、市話（必填）、手機（非必填）、mail（非必填），填寫送出后續發送郵件給543相關工作人員（小胖）</p></blockquote><ol start="8"><li>兩端的预设掌柜柜机</li><li>公益團體專屬的頭像信息（暱稱展示：聯絡人，新增「單位全名」＋擔任「職稱」subtitle）上線</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1&gt;2018年7月30 - 8月5日 GIVE543周報&lt;/h1&gt;
+&lt;h2&gt;PC版&lt;/h2&gt;
+&lt;h3&gt;父親節活動&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;完成父親節活動主頁、得獎資訊兩個頁面的二次開發&lt;/li&gt;
+&lt;li&gt;提供一級導航欄的父親節入口&lt;/li&gt;
+&lt;li&gt;提供簡單數據埋點在父親
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://fguizc.me/2018/07/29/2018-07-29-untitled/"/>
+    <id>http://fguizc.me/2018/07/29/2018-07-29-untitled/</id>
+    <published>2018-07-29T04:17:00.166Z</published>
+    <updated>2018-07-29T05:07:00.302Z</updated>
+    
+    <content type="html"><![CDATA[<h2>移动端</h2><p><strong>主要改動：</strong>修復  索取流程，匯運費給贈送者，當贈送者決定送給索取者時，贈送者的匯款銀行可能未正常發給服務器（因為未填寫相關）的問題修復  索取禮物流程，選擇掌櫃時展示當前掌櫃櫃機詳細地址修復  索取流程/需求贈送 選擇新竹時下午5點的攔截邏輯修復  掌櫃交互卡銀行全稱不顯示的問題修復  賀盟物流價位表連接跳轉不正確的問題修復  新竹物流未正確上傳【上門收件日期】的問題</p><p>優化  去除郵箱註冊優化  全局掌櫃優惠促銷文案優化  發布禮物/需求時，導航欄根據當前步驟判斷攔截跳轉優化  掌櫃寄送歷程的顯示優化  掌櫃物流方式的及時提示「寄件碼」優化  停權用戶的登錄提示更明顯優化  新增如何使用掌櫃頁面優化  新增移動端常見問題頁面優化  全家店鋪選擇組件（下周依舊需要優化，當前交互依舊不便）優化  去掉登錄頁面部分文案（關於推薦團體使用email註冊）優化  增加首頁「合作夥伴」——「掌櫃」</p><h2>PC端</h2><p><strong>主要改動：</strong>修復  交互卡「掌櫃」-「寄送歷程」引起的報錯；修復  寄送資訊在「掌櫃」物流情況下，在不正確的寄送流程自動打開了「寄件碼」彈窗修復  個人中心數據在跳轉他人頁面時未被刷新的問題；修復  掌櫃櫃機數據冗餘的可能的問題</p><p>優化  映射PC版禮物池、禮物詳情頁、需求池、需求詳情頁、讀故事、故事詳情頁、關於我們等對應的移動端頁面優化  去掉掌櫃索取時默認帶入的市區信息；優化  修改掌櫃優惠信息優化  新增全局下「如何使用掌櫃」的站內頁面；優化  新增首頁合作夥伴「掌櫃」優化  新增針對IE瀏覽器的攔截跳轉（具體頁面參見https://www.give543.com/static/oldversion/index.html)優化  隱藏郵箱註冊優化  移動設備訪問PC版本默認跳轉到移動新版優化  去除移動設備訪問PC版時跳轉到特定的（RWD版）交互卡的邏輯優化  交互卡寄件資訊關於掌櫃的相關提示；優化  新增個人中心「好人點」、「感謝率」hover時title提示</p><h2>本週問題</h2><ol><li>在開發過程中，頁面佈局完整，在打包后上線到正式環境發現移動端個人中心頁面樣式不正確，禮物詳情頁樣式不正確原因：開發人員不規範的代碼書寫，引起了樣式的洩漏解決辦法：上線前將打包后的文件再次放入本地服務器跑一邊，同時更應該在平時開發流程中注意到代碼規範</li></ol><h2>下週工作計劃</h2><ol><li>父親節的測試與上線并做好兩端的映射（維超</li><li>手機版的引導至少上測試環境（淇嘉</li><li>【如何使用掌柜】的差异化展示（維超</li><li>贈送者負擔運費跳過匯款修正（暫定，不確定因素較大</li></ol><p>下週優先保證父親節活動相關正常上線</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2&gt;移动端&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;主要改動：&lt;/strong&gt;
+修復  索取流程，匯運費給贈送者，當贈送者決定送給索取者時，贈送者的匯款銀行可能未正常發給服務器（因為未填寫相關）的問題
+修復  索取禮物流程，選擇掌櫃時展示當前掌櫃櫃機詳細地址
+修復  索取流程/需求
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://fguizc.me/2018/07/07/%E7%AC%94%E8%AF%95%E9%A2%98%20v.1/"/>
+    <id>http://fguizc.me/2018/07/07/笔试题 v.1/</id>
+    <published>2018-07-07T12:50:53.543Z</published>
+    <updated>2018-07-08T04:43:40.733Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li><p>display: none 和 visibility: hidden 及 opacity: 0 的区别</p></li><li><p>如何实现一个水平垂直居中（不使用table布局）</p></li></ol><body><div class="parent"><div class="child"></div></div></body><ol start="3"><li><p>JS基本类型有哪些，引用类型有哪些？</p></li><li><p>请描述dom事件的流程，即从触发到结束的整个过程</p></li><li><p>数组的常用方法有哪些（不限于es5、es6）；如果有一个“对象”如何判断它是否是一个数组（请至少写出两种方法）</p></li><li><p>简单讲解一下JS中的this，其中call,apply,bind三者有什么区别</p></li><li><p>下面方法调用输出的结果是？</p></li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const person = &#123;</span><br><span class="line">name: &apos;tom&apos;,</span><br><span class="line">say: function ()&#123;</span><br><span class="line">return function ()&#123;</span><br><span class="line">console.log(this.name);</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line">person.say()();</span><br></pre></td></tr></table></figure><ol start="8"><li>如何实现以下效果</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const a = [1,2,3,4]</span><br><span class="line">/* do something */</span><br><span class="line">console.log(a); // [1,2,3,4,5]</span><br></pre></td></tr></table></figure><ol start="9"><li>下面的输出结果是？</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(() =&gt; console.log(&apos;a&apos;), 0);</span><br><span class="line">var p = new Promise((resolve) =&gt; &#123;</span><br><span class="line">console.log(&apos;b&apos;);</span><br><span class="line">resolve();</span><br><span class="line">&#125;);</span><br><span class="line">p.then(() =&gt; console.log(&apos;c&apos;)).catch((err) =&gt; console.log(&apos;d&apos;));</span><br><span class="line">console.log(&apos;e&apos;);</span><br></pre></td></tr></table></figure><ol start="10"><li>HTTP 状态码有哪些？分别代表什么意思？</li></ol><ol start="11"><li>一个页面从输入URL到页面加载显示完成，这个过程中都发生了什么？</li></ol><ol start="12"><li>常用的http缓存策略有哪些，请列举一些常见的http header</li></ol><ol start="13"><li>你用过或了解哪些前端性能优化的方法？</li></ol><ol start="14"><li><p>（选）Vue的生命周期有哪些 / React （v.15.x 及以下的版本）的生命周期有哪些</p></li><li><p>（选）Vue/React如何实现父子组件通讯</p></li><li><p>是否有使用过vuex或react-redux或mobx这类数据管理的库？请简单说明一下他们的工作流程</p></li><li><p>简单写一下你最近了解的新东西或看的书（不限于前端）</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;display: none 和 visibility: hidden 及 opacity: 0 的区别&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如何实现一个水平垂直居中（不使用table布局）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;body&gt;&lt;div class
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>vue-loader 原理</title>
+    <link href="http://fguizc.me/2018/06/03/vue-loader%20%E5%8E%9F%E7%90%86/"/>
+    <id>http://fguizc.me/2018/06/03/vue-loader 原理/</id>
+    <published>2018-06-03T09:21:48.601Z</published>
+    <updated>2018-06-03T09:22:43.910Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://fguizc.me/2018/06/02/2018-06-02-untitled/"/>
+    <id>http://fguizc.me/2018/06/02/2018-06-02-untitled/</id>
+    <published>2018-06-01T17:26:25.609Z</published>
+    <updated>2018-06-03T15:17:23.066Z</updated>
+    
+    <content type="html"><![CDATA[<h2>为什么会发生</h2><p>起因是在本周优化接口过程中，发现旧代码还存在已弃用的接口，于是删除了这部分顺带改动了现有部分逻辑较为复杂的接口（需求相关请求），需求相关请求代码中存在多个判断，想梳理一下，因此简化了一部分判断逻辑，但在简化过程中，同时又合并了新接口，个人人为因素使得个人中心的请求逻辑跳到了属于需求池的请求。</p><h2>为什么没测试</h2><p>接口的请求有在测试环境下测试，但为优化新接口过程中发布了多项需求，导致需求池的所有需求被带入个人中心，使数据看起来没错，而实际上并非如此，</p><h2>如何进一步降低避免固定模块的接口出错几率</h2><ol><li>加强与后端的沟通</li><li>测试环境下功能的开发确认完成后再进行下一个功能的开发</li><li>逐步将测试流程中在测试环境下已确认的部分，放入预发布环境测试（数据更全，更容易发现问题），并在发布正式上线后跟踪当前发布版本对应功能</li><li>前端功能模块代码的互相review</li><li>加入UI层面的代码测试</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2&gt;为什么会发生&lt;/h2&gt;
+&lt;p&gt;起因是在本周优化接口过程中，发现旧代码还存在已弃用的接口，于是删除了这部分顺带改动了现有部分逻辑较为复杂的接口（需求相关请求），需求相关请求代码中存在多个判断，想梳理一下，因此简化了一部分判断逻辑，但在简化过程中，同时又合并了新接口，个人人为
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>网络协议</title>
+    <link href="http://fguizc.me/2018/05/30/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/"/>
+    <id>http://fguizc.me/2018/05/30/网络协议/</id>
+    <published>2018-05-29T17:20:02.160Z</published>
+    <updated>2018-05-29T17:24:13.888Z</updated>
+    
+    <content type="html"><![CDATA[<h2>域名解析的过程</h2><h2>TCP为什么是三次握手，而不能是两次或者四次</h2><h2>为什么有了ip地址，还要有mac地址</h2>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2&gt;域名解析的过程&lt;/h2&gt;
+&lt;h2&gt;TCP为什么是三次握手，而不能是两次或者四次&lt;/h2&gt;
+&lt;h2&gt;为什么有了ip地址，还要有mac地址&lt;/h2&gt;
+
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>职责链模式</title>
+    <link href="http://fguizc.me/2018/05/20/%E8%81%8C%E8%B4%A3%E9%93%BE%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://fguizc.me/2018/05/20/职责链模式/</id>
+    <published>2018-05-20T08:27:19.958Z</published>
+    <updated>2018-05-20T09:01:44.183Z</updated>
+    
+    <content type="html"><![CDATA[<h2>定义</h2><blockquote><p>职责链模式的定义是：使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间 的耦合关系，将这些对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。</p></blockquote><h2>应用</h2><p>在重构项目时，由于历史久转手多，代码风格不统一质量也参差不齐，其中在部分reducer和container组件里存在大量的<code>if else</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2&gt;定义&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;职责链模式的定义是：使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间 的耦合关系，将这些对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;应用&lt;/h2
+      
+    
+    </summary>
+    
+    
+      <category term="设计模式" scheme="http://fguizc.me/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>移动端常见小问题</title>
+    <link href="http://fguizc.me/2018/05/20/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%B8%B8%E8%A7%81%E5%B0%8F%E9%97%AE%E9%A2%98/"/>
+    <id>http://fguizc.me/2018/05/20/移动端常见小问题/</id>
+    <published>2018-05-20T07:37:39.455Z</published>
+    <updated>2018-05-20T07:52:09.830Z</updated>
+    
+    <content type="html"><![CDATA[<p>记录最近一段时间移动端开发遇到的一些值得注意的事项</p><h2>moment</h2><p>项目为移动端开发，为尽量减少打包后的体积大小<strong>不允许使用moment</strong>，如须格式化时间使用<a href="https://github.com/date-fns/date-fns" target="_blank" rel="noopener">date-fns</a></p><h2>iPhoneX适配</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// 1.viewport meta 标签增加属性viewport-fit=cover</span><br><span class="line"></span><br><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, viewport-fit=cover, xxxx&quot;&gt;</span><br><span class="line"></span><br><span class="line">// 2.body元素增加样式</span><br><span class="line"></span><br><span class="line">body &#123;</span><br><span class="line"></span><br><span class="line">padding-bottom: constant(safe-area-inset-bottom);</span><br><span class="line"></span><br><span class="line">padding-bottom: env(safe-area-inset-bottom);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 3.如有fixed底部的元素，也增加上面样式</span><br><span class="line"></span><br><span class="line">xxx &#123;</span><br><span class="line"></span><br><span class="line">padding-bottom: constant(safe-area-inset-bottom);</span><br><span class="line"></span><br><span class="line">padding-bottom: env(safe-area-inset-bottom);</span><br><span class="line"></span><br><span class="line">background-color: #fff; // 记得添加background-color，不然会出现透明镂空的情况</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2>iOS 时间格式</h2><p>兼容iOS时间格式应为 yyyy/mm/dd，不能为 yyyy-mm-dd（此问题也可能在firefox上出现）</p><h2>user-scale 在iOS下不生效的问题</h2><p><a href="https://stackoverflow.com/questions/37808180/disable-viewport-zooming-ios-10-safari" target="_blank" rel="noopener">From the iOS 10 beta 1 release notes</a>:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">To improve accessibility on websites in Safari, users can now pinch-to-zoom even when a website sets user-scalable=no in the viewport.</span><br><span class="line"></span><br><span class="line">I expect we&apos;re going to see a JS add-on soon to disable this in some way.</span><br></pre></td></tr></table></figure><h2>禁止保存或拷贝图像</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img&#123; -webkit-touch-callout: none;&#125;</span><br></pre></td></tr></table></figure><h2>去除type为number的箭头</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">input::-webkit-outer-spin-button,input::-webkit-inner-spin-button&#123;</span><br><span class="line">     -webkit-appearance: none !important;</span><br><span class="line">     margin: 0; </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure><h2>iOS拍照上传</h2><p>为解决该问题主要是引入第三方exif.js来获取拍照图片的<code>exif</code>信息，通过判断图片的方向，利用canvas重新绘制转换成base64或blob再上传给服务器，但是会有一个局限，仅限于留有exif信息的jpg图片</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line">import EXIF from  &apos;exif-js&apos;</span><br><span class="line"></span><br><span class="line">import dataURLtoBlob from  &apos;blueimp-canvas-to-blob&apos;</span><br><span class="line">// exif-orientation 拍摄照片非“正”时</span><br><span class="line"></span><br><span class="line">const  checkPic  =  function (file, uploadcb) &#123;</span><br><span class="line"></span><br><span class="line">let orientation =  &apos;&apos;</span><br><span class="line"></span><br><span class="line">EXIF.getData(file, function () &#123;</span><br><span class="line"></span><br><span class="line">orientation =  EXIF.getTag(this, &apos;Orientation&apos;)</span><br><span class="line"></span><br><span class="line">if (!orientation || orientation ===  1) &#123;</span><br><span class="line"></span><br><span class="line">return  uploadcb(file)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// exif-orientation 拍摄照片非“正”时</span><br><span class="line"></span><br><span class="line">const canvas = document.createElement(&apos;canvas&apos;)</span><br><span class="line"></span><br><span class="line">const ctx = canvas.getContext(&apos;2d&apos;)</span><br><span class="line"></span><br><span class="line">const reader =  new  FileReader()</span><br><span class="line"></span><br><span class="line">const img =  new  Image()</span><br><span class="line"></span><br><span class="line">let imgWidth =  &apos;&apos;</span><br><span class="line"></span><br><span class="line">let imgHeight =  &apos;&apos;</span><br><span class="line"></span><br><span class="line">reader.readAsDataURL(file)</span><br><span class="line"></span><br><span class="line">reader.onload  =  function (e) &#123;</span><br><span class="line"></span><br><span class="line">img.src = e.target.result</span><br><span class="line"></span><br><span class="line">img.onload  =  function () &#123;</span><br><span class="line"></span><br><span class="line">imgWidth = this.width</span><br><span class="line"></span><br><span class="line">imgHeight = this.height</span><br><span class="line"></span><br><span class="line">canvas.width = imgWidth</span><br><span class="line"></span><br><span class="line">canvas.height = imgHeight</span><br><span class="line"></span><br><span class="line">console.log(&apos;orientation&apos;, orientation)</span><br><span class="line"></span><br><span class="line">if (orientation !==  1) &#123;</span><br><span class="line"></span><br><span class="line">switch (orientation) &#123;</span><br><span class="line"></span><br><span class="line">case  3:</span><br><span class="line"></span><br><span class="line">ctx.rotate(Math.PI)</span><br><span class="line"></span><br><span class="line">ctx.drawImage(this, -imgWidth, -imgHeight, imgWidth, imgHeight)</span><br><span class="line"></span><br><span class="line">break</span><br><span class="line"></span><br><span class="line">case  6:</span><br><span class="line"></span><br><span class="line">canvas.width = imgHeight</span><br><span class="line"></span><br><span class="line">canvas.height = imgWidth</span><br><span class="line"></span><br><span class="line">ctx.rotate(Math.PI / 2)</span><br><span class="line"></span><br><span class="line">ctx.drawImage(this, 0, -imgHeight, imgWidth, imgHeight)</span><br><span class="line"></span><br><span class="line">break</span><br><span class="line"></span><br><span class="line">case  8:</span><br><span class="line"></span><br><span class="line">canvas.width = imgHeight</span><br><span class="line"></span><br><span class="line">canvas.height = imgWidth</span><br><span class="line"></span><br><span class="line">ctx.rotate(3 * Math.PI / 2)</span><br><span class="line"></span><br><span class="line">ctx.drawImage(this, -imgWidth, 0, imgWidth, imgHeight)</span><br><span class="line"></span><br><span class="line">break</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">uploadcb(dataURLtoBlob(canvas.toDataURL(&apos;image/jpeg&apos;, 0.9)))</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default checkPic</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;记录最近一段时间移动端开发遇到的一些值得注意的事项&lt;/p&gt;
+&lt;h2&gt;moment&lt;/h2&gt;
+&lt;p&gt;项目为移动端开发，为尽量减少打包后的体积大小&lt;strong&gt;不允许使用moment&lt;/strong&gt;，如须格式化时间使用&lt;a href=&quot;https://github.com/
+      
+    
+    </summary>
+    
+    
+      <category term="css" scheme="http://fguizc.me/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>React 小记</title>
+    <link href="http://fguizc.me/2018/04/30/React%E5%B0%8F%E8%AE%B0/"/>
+    <id>http://fguizc.me/2018/04/30/React小记/</id>
+    <published>2018-04-30T10:01:00.748Z</published>
+    <updated>2018-05-20T08:14:35.077Z</updated>
+    
+    <content type="html"><![CDATA[<h2>key值的作用</h2><p>在使用react jsx语法过程中，例如</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;List.map((item, index) =&gt; (</span><br><span class="line">&lt;div key=&#123;index&#125;&gt;&#123;item.text&#125;&lt;/div&gt;</span><br><span class="line">)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>会在组件子元素上绑定一个<code>key</code>值，否则 React 会提示警告<img src="https://user-gold-cdn.xitu.io/2017/9/3/dd914fe9176a8cf016e1ba462a07b87f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt=""></p><p>key 是为了保证React正确渲染DOM的一个手段。再举个栗子</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const ary = [1,2,3,4,4,5,5]</span><br><span class="line">const render = () =&gt; (ary.map(item =&gt; (&lt;span key=&#123;item&#125;&gt;value -&gt; &#123;itme&#125;&lt;/span&gt;)))</span><br></pre></td></tr></table></figure><p>事实上只会渲染出5个子节点。</p><p>React 本质上只是一个 UI = Render(state)，当组件内的<code>state</code>或<code>props</code>发生改变就会重新去渲染React组件(此处为Component不谈PureComponent)，在React中，render方法返回的即是最新的元素树。JSX语法的本质就是React.createElement的语法糖，最后生成一个React元素。而React组件是一个方法或class。</p><p>因为一旦<code>state</code>或<code>props</code>发生改变就会重新渲染UI，此时将会产生一个问题，如何在最大程度上减少不必要的渲染。减少了不必要的渲染意味着避免了大部分重绘和回流，因而我们说React虚拟DOM性能好。</p><h2>启发算法</h2><pre><code>启发式算法指人在解决问题时所采取的一种根据经验规则进行发现的方法。其特点是在解决问题时,利用过去的经验,选择已经行之有效的方法，而不是系统地、以确定的步骤去寻求答案。</code></pre><p>启发算法应用在React中主要有两点：</p><ol><li>不同两个元素会产生不同的树2.可以使用key属性表明不同的渲染中相同的部分</li></ol><h3>元素的比较</h3><p>React比较两颗不同的树的过程是同步的。当比较到某同一位置时，如果前后元素的类型不同，则以当前元素及其后代节点都会销毁重绘。</p><p>例如</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;&lt;Component /&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;span&gt;&lt;Component /&gt;&lt;/span&gt;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2&gt;key值的作用&lt;/h2&gt;
+&lt;p&gt;在使用react jsx语法过程中，例如&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>页面重绘与回流</title>
     <link href="http://fguizc.me/2018/03/06/%E9%A1%B5%E9%9D%A2%E9%87%8D%E7%BB%98%E4%B8%8E%E5%9B%9E%E6%B5%81/"/>
     <id>http://fguizc.me/2018/03/06/页面重绘与回流/</id>
     <published>2018-03-05T17:04:23.404Z</published>
     <updated>2018-03-05T17:05:38.433Z</updated>
     
-    <content type="html"><![CDATA[<h2>浏览器渲染页面</h2>
-<p>在现代浏览器中虽然因为各厂商实现的细节不一直，但大体来说浏览器渲染页面的流程保持了一致。</p>
-<ol>
-<li>浏览器加载 html 资源，并形成 Dom Tree</li>
-<li>浏览器加载 css 样式表，形成样式结构体</li>
-<li>Render Tree
-<ul>
-<li>Render Tree 能识别样式</li>
-<li>Render Tree 不包含隐藏节点（ display: none；属性的节点以及 heade 节点）</li>
-<li>Render Tree 包含 visibility: hidden；属性的节点，因为其会影响布局</li>
-</ul>
-</li>
-<li>浏览器绘制出页面</li>
-</ol>
-<h2>什么是重绘</h2>
-<p>重绘（Repaint）发生在元素外观的可见性发生变化时，但不影响布局。</p>
-<h3>重绘会被什么影响</h3>
-<ul>
-<li>outline</li>
-<li>visibility</li>
-<li>background-color
-…</li>
-</ul>
-<p>也就是 Render Tree 中元素需要更新影响元素外观，风格的样式值时会发生重绘。</p>
-<h2>什么是回流</h2>
-<p>回流（Reflow）当 Render Tree 中的一部分(或全部)因为元素的规模尺寸，布局，隐藏等改变而需要重新构建。</p>
-<h3>回流会被什么影响</h3>
-<ul>
-<li>DOM 操作，DOM 删改</li>
-<li>窗口大小发生变化</li>
-<li>元素内容变动（例如输入控件 input ）</li>
-<li>字体的改变</li>
-<li>css 伪类的激活</li>
-<li>操作 class 属性</li>
-<li>设置 style 内联样式</li>
-</ul>
-<h3>回流带来什么影响</h3>
-<p>回流涉及到部分或整个页面的布局，回流的性能代价是高昂的。一个元素的回流会带来其所有子元素的回流。
-回流的花销跟render tree有多少节点需要重绘有关系（比如在body最前面插入1个元素，会导致整个render tree回流，如果在body后面插入1个元素，则不会影响前面元素的回流）</p>
-<p><strong>回流会带来重绘，但重绘不一定带来回流</strong></p>
-<h2>浏览器如何应对重绘和回流</h2>
-<p>现代浏览器当然会优化重绘和回流的消耗。
-浏览器会维护一个队列，来进行批处理降低性能消耗，但使用 JS 操作 Dom 时，很多属性值为了获得更为精确，浏览器会强行执行队列操作。
-例如：</p>
-<ul>
-<li>offsetTop/Left/Width/Height</li>
-<li>scrollTop/Left</li>
-<li>clientTop/Left</li>
-<li>width/height</li>
-<li>getComputedStyle()</li>
-</ul>
-<h2>如何尽量优化</h2>
-<h3>避免设置多层内联样式</h3>
-<p>避免直接多次更改 style 属性，最好一次性更改或将样式定义为 class，并一次性更改 class。</p>
-<h3>设置动画应用在 postion: fixed 或 position: absolute 的元素上</h3>
-<p>两者皆脱离文档流，因此他们不会影响其他元素的布局，只会导致其重绘，消耗相对低。</p>
-<h3>避免多次操作 DOM</h3>
-<p>避免循环操作dom，可以使用 documentFragment 来代替</p>
-<p>参考：</p>
-<ol>
-<li><a href="http://harttle.land/2015/08/11/reflow-repaint.html" target="_blank" rel="external">减少页面回流与重绘（Reflow &amp; Repaint）</a></li>
-<li><a href="http://www.css88.com/archives/4996" target="_blank" rel="external">页面重绘和回流以及优化</a></li>
-<li><a href="http://www.zhangxinxu.com/wordpress/2010/01/%25E5%259B%259E%25E6%25B5%2581%25E4%25B8%258E%25E9%2587%258D%25E7%25BB%2598%25EF%25BC%259Acss%25E6%2580%25A7%25E8%2583%25BD%25E8%25AE%25A9javascript%25E5%258F%2598%25E6%2585%25A2%25EF%25BC%259F/" target="_blank" rel="external">回流与重绘：CSS性能让JavaScript变慢？</a></li>
-</ol>
-]]></content>
+    <content type="html"><![CDATA[<h2>浏览器渲染页面</h2><p>在现代浏览器中虽然因为各厂商实现的细节不一直，但大体来说浏览器渲染页面的流程保持了一致。</p><ol><li>浏览器加载 html 资源，并形成 Dom Tree</li><li>浏览器加载 css 样式表，形成样式结构体</li><li>Render Tree<ul><li>Render Tree 能识别样式</li><li>Render Tree 不包含隐藏节点（ display: none；属性的节点以及 heade 节点）</li><li>Render Tree 包含 visibility: hidden；属性的节点，因为其会影响布局</li></ul></li><li>浏览器绘制出页面</li></ol><h2>什么是重绘</h2><p>重绘（Repaint）发生在元素外观的可见性发生变化时，但不影响布局。</p><h3>重绘会被什么影响</h3><ul><li>outline</li><li>visibility</li><li>background-color…</li></ul><p>也就是 Render Tree 中元素需要更新影响元素外观，风格的样式值时会发生重绘。</p><h2>什么是回流</h2><p>回流（Reflow）当 Render Tree 中的一部分(或全部)因为元素的规模尺寸，布局，隐藏等改变而需要重新构建。</p><h3>回流会被什么影响</h3><ul><li>DOM 操作，DOM 删改</li><li>窗口大小发生变化</li><li>元素内容变动（例如输入控件 input ）</li><li>字体的改变</li><li>css 伪类的激活</li><li>操作 class 属性</li><li>设置 style 内联样式</li></ul><h3>回流带来什么影响</h3><p>回流涉及到部分或整个页面的布局，回流的性能代价是高昂的。一个元素的回流会带来其所有子元素的回流。回流的花销跟render tree有多少节点需要重绘有关系（比如在body最前面插入1个元素，会导致整个render tree回流，如果在body后面插入1个元素，则不会影响前面元素的回流）</p><p><strong>回流会带来重绘，但重绘不一定带来回流</strong></p><h2>浏览器如何应对重绘和回流</h2><p>现代浏览器当然会优化重绘和回流的消耗。浏览器会维护一个队列，来进行批处理降低性能消耗，但使用 JS 操作 Dom 时，很多属性值为了获得更为精确，浏览器会强行执行队列操作。例如：</p><ul><li>offsetTop/Left/Width/Height</li><li>scrollTop/Left</li><li>clientTop/Left</li><li>width/height</li><li>getComputedStyle()</li></ul><h2>如何尽量优化</h2><h3>避免设置多层内联样式</h3><p>避免直接多次更改 style 属性，最好一次性更改或将样式定义为 class，并一次性更改 class。</p><h3>设置动画应用在 postion: fixed 或 position: absolute 的元素上</h3><p>两者皆脱离文档流，因此他们不会影响其他元素的布局，只会导致其重绘，消耗相对低。</p><h3>避免多次操作 DOM</h3><p>避免循环操作dom，可以使用 documentFragment 来代替</p><p>参考：</p><ol><li><a href="http://harttle.land/2015/08/11/reflow-repaint.html" target="_blank" rel="external">减少页面回流与重绘（Reflow &amp; Repaint）</a></li><li><a href="http://www.css88.com/archives/4996" target="_blank" rel="external">页面重绘和回流以及优化</a></li><li><a href="http://www.zhangxinxu.com/wordpress/2010/01/%25E5%259B%259E%25E6%25B5%2581%25E4%25B8%258E%25E9%2587%258D%25E7%25BB%2598%25EF%25BC%259Acss%25E6%2580%25A7%25E8%2583%25BD%25E8%25AE%25A9javascript%25E5%258F%2598%25E6%2585%25A2%25EF%25BC%259F/" target="_blank" rel="external">回流与重绘：CSS性能让JavaScript变慢？</a></li></ol>]]></content>
     
     <summary type="html">
     
-      &lt;h2&gt;浏览器渲染页面&lt;/h2&gt;
+      
+      
+        &lt;h2&gt;浏览器渲染页面&lt;/h2&gt;
 &lt;p&gt;在现代浏览器中虽然因为各厂商实现的细节不一直，但大体来说浏览器渲染页面的流程保持了一致。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;浏览器加载 html 资源，并形成 Dom Tree&lt;/li&gt;
 &lt;li&gt;浏览器加载 css 样式表，形成样式结构体&lt;/li&gt;
+      
     
     </summary>
     
@@ -108,36 +264,16 @@
     <published>2017-10-05T18:10:48.351Z</published>
     <updated>2017-10-05T18:10:33.953Z</updated>
     
-    <content type="html"><![CDATA[<p>写下这篇笔记是对那个凌晨零两点被 <code>z-index</code> 弄疯夜晚的纪念。</p>
-<h2>问题来了</h2>
-<p>当时在做一个常见 Modal，由 Mask 遮罩层和主体构成，Mask 组件被挂在 body 下，Modal 主体放在一些嵌套里，当点击按钮出发出 Modal 时，本打算写完 Modal 就睡的我那刻心中十万个草泥马在心中奔腾，Modal 主体 <code>z-index</code> 明显大于 Mask 部分，两者皆使用 <code>fixed</code>，但 Modal 被 Mask 遮住！
-为什么！为什么！为什么！</p>
-<h2>Transfrom影响Fixed跟随效果</h2>
-<p>经过一番查找发现是Modal上上上层元素设置了 <code>transfrom: translate3d(0, 0, 0)</code>，我猜是想启动硬件加速（喔是拿别人template改页面，所以并不知道设置了transform，害我一番查找）。</p>
-<p>归根结底是 <code>transfrom</code> 对 <code>fixed</code> 的影响。</p>
-<p>在标准文档流中，页面中 DOM 元素按照其在 HTML 中顺序从上到下，从左到右进行布局排列。但总存在一些属性可以不按套路来。</p>
-<p>transform对改变fixed原有表现，不再根据<s>浏览器窗口来定位（进过一番查看，尽管常说fixed根据浏览器窗口定位，但感觉不准确）</s>，viewport 的 html
-对象来定位（一个页面会创建一个 viewport ），最终效果如同父元素设置 <code>relative</code>，而 <code>fixed</code> 被改变为 <code>absolute</code>，这是因为 transform 对脱离文档流的元素会使其产生一个新的 viewport ，新的 viewport 作为已脱离文档流元素的容器，使得已脱离文档流的元素会根据新产生的 viewport 来作为参考定位，就合理解释了为什么 Modal 虽然 z-index 值大于 Mask 依旧被遮盖。</p>
-<h2>Transfrom对其他元素的影响</h2>
-<h3>Margin负值</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;span class=&quot;demo1&quot;&gt;testDemo1&lt;span&gt;</div><div class="line">&lt;span class=&quot;demo2&quot;&gt;testDemo2&lt;span&gt;</div></pre></td></tr></table></figure>
-<p>如果设置demo2一个负 margin-left，正常情况下会在 demo1 上方，但当 demo1 设置 transfrom 非空值后，demo1 就会在 Z轴上提高，覆盖住 demo2.</p>
-<h3>Overflkow对Absolute限制</h3>
-<p>众所周知，若存在以下 html 结构：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// html</div><div class="line">.parent&gt;.child</div><div class="line"></div><div class="line">// css</div><div class="line">.parent&#123;</div><div class="line">	overflow: hidden;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.child&#123;</div><div class="line">	position: absolute;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这时父元素的 <code>overflow: hidden</code> 并不会限制到子元素的绝对定位。</p>
-<p>但当父元素加入 <code>transform</code> 属性后，就会使得 <code>overflow: hidden</code> 变得有效果，换一种说法就是子元素的 <code>absolute</code>
-此时被失效。</p>
-<p>参考：</p>
-<p><a href="http://www.zhangxinxu.com/wordpress/2015/05/css3-transform-affect/" target="_blank" rel="external">CSS3 transform对普通元素的N多渲染影响</a></p>
-<p><a href="https://yj1438.github.io/2015/09/08/transform.html" target="_blank" rel="external">CSS3 transform 对HTML文档流带来的影响</a></p>
-]]></content>
+    <content type="html"><![CDATA[<p>写下这篇笔记是对那个凌晨零两点被 <code>z-index</code> 弄疯夜晚的纪念。</p><h2>问题来了</h2><p>当时在做一个常见 Modal，由 Mask 遮罩层和主体构成，Mask 组件被挂在 body 下，Modal 主体放在一些嵌套里，当点击按钮出发出 Modal 时，本打算写完 Modal 就睡的我那刻心中十万个草泥马在心中奔腾，Modal 主体 <code>z-index</code> 明显大于 Mask 部分，两者皆使用 <code>fixed</code>，但 Modal 被 Mask 遮住！为什么！为什么！为什么！</p><h2>Transfrom影响Fixed跟随效果</h2><p>经过一番查找发现是Modal上上上层元素设置了 <code>transfrom: translate3d(0, 0, 0)</code>，我猜是想启动硬件加速（喔是拿别人template改页面，所以并不知道设置了transform，害我一番查找）。</p><p>归根结底是 <code>transfrom</code> 对 <code>fixed</code> 的影响。</p><p>在标准文档流中，页面中 DOM 元素按照其在 HTML 中顺序从上到下，从左到右进行布局排列。但总存在一些属性可以不按套路来。</p><p>transform对改变fixed原有表现，不再根据<s>浏览器窗口来定位（进过一番查看，尽管常说fixed根据浏览器窗口定位，但感觉不准确）</s>，viewport 的 html对象来定位（一个页面会创建一个 viewport ），最终效果如同父元素设置 <code>relative</code>，而 <code>fixed</code> 被改变为 <code>absolute</code>，这是因为 transform 对脱离文档流的元素会使其产生一个新的 viewport ，新的 viewport 作为已脱离文档流元素的容器，使得已脱离文档流的元素会根据新产生的 viewport 来作为参考定位，就合理解释了为什么 Modal 虽然 z-index 值大于 Mask 依旧被遮盖。</p><h2>Transfrom对其他元素的影响</h2><h3>Margin负值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;span class=&quot;demo1&quot;&gt;testDemo1&lt;span&gt;</div><div class="line">&lt;span class=&quot;demo2&quot;&gt;testDemo2&lt;span&gt;</div></pre></td></tr></table></figure><p>如果设置demo2一个负 margin-left，正常情况下会在 demo1 上方，但当 demo1 设置 transfrom 非空值后，demo1 就会在 Z轴上提高，覆盖住 demo2.</p><h3>Overflkow对Absolute限制</h3><p>众所周知，若存在以下 html 结构：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// html</div><div class="line">.parent&gt;.child</div><div class="line"></div><div class="line">// css</div><div class="line">.parent&#123;</div><div class="line">overflow: hidden;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.child&#123;</div><div class="line">position: absolute;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>这时父元素的 <code>overflow: hidden</code> 并不会限制到子元素的绝对定位。</p><p>但当父元素加入 <code>transform</code> 属性后，就会使得 <code>overflow: hidden</code> 变得有效果，换一种说法就是子元素的 <code>absolute</code>此时被失效。</p><p>参考：</p><p><a href="http://www.zhangxinxu.com/wordpress/2015/05/css3-transform-affect/" target="_blank" rel="external">CSS3 transform对普通元素的N多渲染影响</a></p><p><a href="https://yj1438.github.io/2015/09/08/transform.html" target="_blank" rel="external">CSS3 transform 对HTML文档流带来的影响</a></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;写下这篇笔记是对那个凌晨零两点被 &lt;code&gt;z-index&lt;/code&gt; 弄疯夜晚的纪念。&lt;/p&gt;
+      
+      
+        &lt;p&gt;写下这篇笔记是对那个凌晨零两点被 &lt;code&gt;z-index&lt;/code&gt; 弄疯夜晚的纪念。&lt;/p&gt;
 &lt;h2&gt;问题来了&lt;/h2&gt;
 &lt;p&gt;当时在做一个常见 Modal，由 Mask 遮罩层和主体构成，Mask 组件被挂在 body 下，Modal 主体放在一些嵌套里，当点击按
+      
     
     </summary>
     
@@ -153,45 +289,14 @@
     <published>2017-10-05T10:09:02.153Z</published>
     <updated>2017-10-05T10:08:23.184Z</updated>
     
-    <content type="html"><![CDATA[<p>加载js代码主要方法就是在html文件内通过 <code>&lt;script src='...'&gt;&lt;/script&gt;</code> 标签完成。主要有两种方式，一种直接在 <code>script</code> 标签内插入js代码，另一种通过 <code>src</code> 属性值引入，当然也可以通过js代码动态创建script标签。根据现代浏览器解析规则，往往在非必要js代码（例如埋点统计），均将其放置在整个html内容部分后，主要是为了避免阻塞。尽管如此当部分文件体积健壮后，或当前访问网络不佳也会导致浏览器没办法按设想中一样工作。</p>
-<h2>Script</h2>
-<p>通常大多数小型应用无需注意js脚本加载问题，使用 <code>&lt;script src=&quot;example.js&quot;&gt;&lt;/script&gt;</code>，浏览器会立即下载该脚本并在完成后执行脚本。常见就是需要提前加载 jQuery 库，才能在后续编程中使用 $。一定程度上是会阻塞后续脚本加载。</p>
-<h2>Defer</h2>
-<p><code>&lt;script defer src=&quot;example.js&quot;&gt;&lt;/script&gt;</code> HTML4 为script标签定义了一个扩展属性，defer属性的使用带来脚本以异步方式加载（仅仅是加载），当整个文档解析完成后，按照html中脚本顺序执行，也就是说defer不会影响脚本执行顺序。</p>
-<p>上面提到可以利用js动态创建script标签并插入html中，在现代浏览器中，动态创建脚本默认以defer方式加载。值得注意的是，必须显示地通过 <code>createElement</code> 去创建 <code>script</code> 标签，当使用 <code>innerHTML</code> 赋值的方式是无效的（虽然这样做的几率近乎为0）。</p>
-<h2>Async</h2>
-<p><code>&lt;script async src=&quot;example.js&quot;&gt;&lt;/script&gt;</code> 相较于第一种情况，在 <code>script</code> 标签上设置 <code>async</code> 属性，它表示后续文档的加载和渲染和该脚本加载是并行进行，它是异步的。它是html5中新增属性（IE或存在兼容问题），主要为解决加载脚本而阻塞页面的加载。但async特性是加载完成后执行紧跟其后，使得使用具有一定局限性，更适合于没有依赖的脚本，比如埋点统计。</p>
-<p>可以看出无论是defer还是async都以异步方式加载。
-区别在于：</p>
-<ol>
-<li>defer 属性的脚本等待html渲染完成后执行；async 属性脚本为下载完成后立即执行。</li>
-<li>若存在多个defer脚本，它们是按顺序执行；async 属性脚本加载和执行是根据脚本加载完成的先后顺序。</li>
-</ol>
-<h2>ES6 Module</h2>
-<p>Chrome61已经正式支持 <code>&lt;script type='module' src='example'&gt;&lt;/script&gt;</code> 已ES6的方式完成被人诟病多年的模块化，虽然现在仅有高版本现代浏览器支持。</p>
-<p>当在一个html文件中创建 <code>&lt;script type='module' src='example'&gt;&lt;/script&gt;</code> 有几点需要值得注意：</p>
-<ol>
-<li>type=‘module’ 的脚本会存在跨域问题</li>
-<li>服务器可能无法解析 type=‘module’ 该MIME类型</li>
-<li>在JS文中引入其他模块时比如指明相对或绝对路径，直接使用 <code>import something from 'bar.js'</code> 无效</li>
-<li>type=‘module’ 的脚本作用方式类似于 defer</li>
-<li>type=‘module’ 的脚本只会执行一次</li>
-</ol>
-<p>针对第四点举个栗子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;!-- This script will execute after… --&gt;  </div><div class="line">&lt;script type=&quot;module&quot;  src=&quot;1.js&quot;&gt;&lt;/script&gt;  </div><div class="line"></div><div class="line">&lt;!-- …this script… --&gt;  </div><div class="line">&lt;script src=&quot;2.js&quot;&gt;&lt;/script&gt;  </div><div class="line"></div><div class="line">&lt;!-- …but before this script. --&gt;  </div><div class="line">&lt;script defer  src=&quot;3.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
-<p>执行顺序为 2 - 1 - 3</p>
-<p>针对第五点举例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 1.js only executes once --&gt;  </div><div class="line">&lt;script type=&quot;module&quot;  src=&quot;1.js&quot;&gt;&lt;/script&gt;  </div><div class="line">&lt;script type=&quot;module&quot;  src=&quot;1.js&quot;&gt;&lt;/script&gt;  </div><div class="line">&lt;script type=&quot;module&quot;&gt;  </div><div class="line">	import  &quot;./1.js&quot;;  </div><div class="line">&lt;/script&gt;  </div><div class="line"></div><div class="line">&lt;!-- Whereas normal scripts execute multiple times --&gt;  </div><div class="line">&lt;script src=&quot;2.js&quot;&gt;&lt;/script&gt;  </div><div class="line">&lt;script src=&quot;2.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
-<p>参考：
-<a href="https://jakearchibald.com/2017/es-modules-in-browsers/" target="_blank" rel="external">ECMAScript modules in browsers</a></p>
-<p><a href="http://blog.leanote.com/post/dujuncheng/defer-async-%25E5%258A%25A0%25E8%25BD%25BD%25E7%259A%2584%25E5%258C%25BA%25E5%2588%25AB" target="_blank" rel="external">defer async 加载的区别</a></p>
-<p><a href="http://ued.ctrip.com/blog/script-defer-and-async.html" target="_blank" rel="external">script的defer和async</a></p>
-<p><a href="https://segmentfault.com/q/1010000000640869" target="_blank" rel="external">defer和async的区别</a></p>
-]]></content>
+    <content type="html"><![CDATA[<p>加载js代码主要方法就是在html文件内通过 <code>&lt;script src='...'&gt;&lt;/script&gt;</code> 标签完成。主要有两种方式，一种直接在 <code>script</code> 标签内插入js代码，另一种通过 <code>src</code> 属性值引入，当然也可以通过js代码动态创建script标签。根据现代浏览器解析规则，往往在非必要js代码（例如埋点统计），均将其放置在整个html内容部分后，主要是为了避免阻塞。尽管如此当部分文件体积健壮后，或当前访问网络不佳也会导致浏览器没办法按设想中一样工作。</p><h2>Script</h2><p>通常大多数小型应用无需注意js脚本加载问题，使用 <code>&lt;script src=&quot;example.js&quot;&gt;&lt;/script&gt;</code>，浏览器会立即下载该脚本并在完成后执行脚本。常见就是需要提前加载 jQuery 库，才能在后续编程中使用 $。一定程度上是会阻塞后续脚本加载。</p><h2>Defer</h2><p><code>&lt;script defer src=&quot;example.js&quot;&gt;&lt;/script&gt;</code> HTML4 为script标签定义了一个扩展属性，defer属性的使用带来脚本以异步方式加载（仅仅是加载），当整个文档解析完成后，按照html中脚本顺序执行，也就是说defer不会影响脚本执行顺序。</p><p>上面提到可以利用js动态创建script标签并插入html中，在现代浏览器中，动态创建脚本默认以defer方式加载。值得注意的是，必须显示地通过 <code>createElement</code> 去创建 <code>script</code> 标签，当使用 <code>innerHTML</code> 赋值的方式是无效的（虽然这样做的几率近乎为0）。</p><h2>Async</h2><p><code>&lt;script async src=&quot;example.js&quot;&gt;&lt;/script&gt;</code> 相较于第一种情况，在 <code>script</code> 标签上设置 <code>async</code> 属性，它表示后续文档的加载和渲染和该脚本加载是并行进行，它是异步的。它是html5中新增属性（IE或存在兼容问题），主要为解决加载脚本而阻塞页面的加载。但async特性是加载完成后执行紧跟其后，使得使用具有一定局限性，更适合于没有依赖的脚本，比如埋点统计。</p><p>可以看出无论是defer还是async都以异步方式加载。区别在于：</p><ol><li>defer 属性的脚本等待html渲染完成后执行；async 属性脚本为下载完成后立即执行。</li><li>若存在多个defer脚本，它们是按顺序执行；async 属性脚本加载和执行是根据脚本加载完成的先后顺序。</li></ol><h2>ES6 Module</h2><p>Chrome61已经正式支持 <code>&lt;script type='module' src='example'&gt;&lt;/script&gt;</code> 已ES6的方式完成被人诟病多年的模块化，虽然现在仅有高版本现代浏览器支持。</p><p>当在一个html文件中创建 <code>&lt;script type='module' src='example'&gt;&lt;/script&gt;</code> 有几点需要值得注意：</p><ol><li>type=‘module’ 的脚本会存在跨域问题</li><li>服务器可能无法解析 type=‘module’ 该MIME类型</li><li>在JS文中引入其他模块时比如指明相对或绝对路径，直接使用 <code>import something from 'bar.js'</code> 无效</li><li>type=‘module’ 的脚本作用方式类似于 defer</li><li>type=‘module’ 的脚本只会执行一次</li></ol><p>针对第四点举个栗子：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;!-- This script will execute after… --&gt;  </div><div class="line">&lt;script type=&quot;module&quot;  src=&quot;1.js&quot;&gt;&lt;/script&gt;  </div><div class="line"></div><div class="line">&lt;!-- …this script… --&gt;  </div><div class="line">&lt;script src=&quot;2.js&quot;&gt;&lt;/script&gt;  </div><div class="line"></div><div class="line">&lt;!-- …but before this script. --&gt;  </div><div class="line">&lt;script defer  src=&quot;3.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure><p>执行顺序为 2 - 1 - 3</p><p>针对第五点举例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 1.js only executes once --&gt;  </div><div class="line">&lt;script type=&quot;module&quot;  src=&quot;1.js&quot;&gt;&lt;/script&gt;  </div><div class="line">&lt;script type=&quot;module&quot;  src=&quot;1.js&quot;&gt;&lt;/script&gt;  </div><div class="line">&lt;script type=&quot;module&quot;&gt;  </div><div class="line">import  &quot;./1.js&quot;;  </div><div class="line">&lt;/script&gt;  </div><div class="line"></div><div class="line">&lt;!-- Whereas normal scripts execute multiple times --&gt;  </div><div class="line">&lt;script src=&quot;2.js&quot;&gt;&lt;/script&gt;  </div><div class="line">&lt;script src=&quot;2.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure><p>参考：<a href="https://jakearchibald.com/2017/es-modules-in-browsers/" target="_blank" rel="external">ECMAScript modules in browsers</a></p><p><a href="http://blog.leanote.com/post/dujuncheng/defer-async-%25E5%258A%25A0%25E8%25BD%25BD%25E7%259A%2584%25E5%258C%25BA%25E5%2588%25AB" target="_blank" rel="external">defer async 加载的区别</a></p><p><a href="http://ued.ctrip.com/blog/script-defer-and-async.html" target="_blank" rel="external">script的defer和async</a></p><p><a href="https://segmentfault.com/q/1010000000640869" target="_blank" rel="external">defer和async的区别</a></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;加载js代码主要方法就是在html文件内通过 &lt;code&gt;&amp;lt;script src=&#39;...&#39;&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt; 标签完成。主要有两种方式，一种直接在 &lt;code&gt;script&lt;/code&gt; 标签内插入js代码，另一种通过 &lt;code&gt;
+      
+      
+        &lt;p&gt;加载js代码主要方法就是在html文件内通过 &lt;code&gt;&amp;lt;script src=&#39;...&#39;&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt; 标签完成。主要有两种方式，一种直接在 &lt;code&gt;script&lt;/code&gt; 标签内插入js代码，另一种通过 &lt;code&gt;
+      
     
     </summary>
     
@@ -207,59 +312,17 @@
     <published>2017-09-25T06:27:40.824Z</published>
     <updated>2017-09-25T06:27:25.545Z</updated>
     
-    <content type="html"><![CDATA[<h2>发布——订阅模式</h2>
-<p>全文为阅读《Javascript设计模式与开发实践》一书读书笔记。该篇，发布——订阅模式，在使用前端框架时这种设计理念被大量运用。</p>
-<blockquote>
-<p>发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状 态发生改变时，所有依赖于它的对象都将得到通知。在 JavaScript 开发中，我们一般用事件模型 来替代传统的发布—订阅模式。</p>
-</blockquote>
-<p>发布——订阅模式常应用于异步编程，这是一种代替传递回调函数的方案。例如订阅 ajax 请求的 error、succ 事件（突然想到axios 拦截器功能），总之是用发布——订阅模式可以无需关注异步过程内部状态，只需要订阅特定情况的发生。另外一点，发布——订阅模式不再显示由一个对象调用另一个对象的接口，降低耦合，互不影响，当新增订阅者出现，既不会影响之前订阅者，也不会需要对发布者修改，同样，发布者需要修改时，也不会影响到之前订阅者（前提是两者约定事件名称没有改变）。</p>
-<h3>DOM 事件</h3>
-<p>在接触 JS 的时候会学习到 <code>addEventListener</code> ，绑定事件函数，比起如 <code>onClick</code> 这样的直接绑定，<code>addEventListener</code> 不会覆盖之前绑定事件，实际上它就是一个简单的发布——订阅模式。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">document.querySelector(&apos;.btn-submit&apos;).addEventListener(&apos;click&apos;, function () &#123;</div><div class="line">	console.log(&apos;something&apos;);</div><div class="line">&#125;, false);</div><div class="line"></div><div class="line">document.querySelector(&apos;.btn-submit&apos;).click()</div></pre></td></tr></table></figure>
-<p>这里监听了用户点击事件行为，当点击特定的按钮就会触发相应事件，但重要的是无法预知用户何时点击。所以订阅 <code>.btn-submit</code> 这个按钮的 <code>click</code> 事件。当其被点击，便会向订阅者发布消息。</p>
-<h3>自定义事件</h3>
-<p>除去常见 DOM 事件，还会需求实现一些自定义事件，这种依靠自定义事件完成的发布——订阅模式适用性广，无侵入性。
-如何一步步实现发布——订阅模式？</p>
-<ol>
-<li>指定发布者</li>
-<li>为发布者添加缓存列表，用于存储回调函数以便通知订阅者（函数存放在缓存列表中表明同一事件可以依次触发多个回调函数）</li>
-<li>发布消息，发布者遍历缓存列表，依次触发其中存放订阅者回调函数。</li>
-</ol>
-<p>值得一提，为增强功能丰富语义，回调函数可以填入一些参数，订阅者接收这些参数，订阅者接收到后可以进一步处理。</p>
-<p>书中以售楼处为例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"> let salesOffices = &#123;&#125;;</div><div class="line"> salesOffices.clientList = [];</div><div class="line"> salesOffices.listen = function (fn) &#123;</div><div class="line">   this.clientList.push(fn);</div><div class="line"> &#125;;</div><div class="line"></div><div class="line"> salesOffices.trigger = function (...arg) &#123;</div><div class="line">   this.clientList.forEach((fn) =&gt; &#123;</div><div class="line">  fn(...arg);</div><div class="line">&#125;)</div><div class="line"> &#125;;</div><div class="line"></div><div class="line"> salesOffices.listen( function( price, squareMeter )&#123; // 小明订阅消息</div><div class="line">   console.log( &apos;价格= &apos;  +  price );</div><div class="line">   console.log( &apos;squareMeter= &apos;  +  squareMeter );</div><div class="line"> &#125;);</div><div class="line"></div><div class="line"> salesOffices.listen( function( price, squareMeter )&#123; // 小红订阅消息</div><div class="line">console.log( &apos;价格= &apos;  +  price );</div><div class="line">console.log( &apos;squareMeter= &apos;  +  squareMeter );</div><div class="line"> &#125;);</div><div class="line"></div><div class="line"> salesOffices.trigger( 2000000, 88 ); // 输出两次，因为存在两个订阅者，输出：200 万，88 平方米</div><div class="line"></div><div class="line"> salesOffices.trigger( 3000000, 110 ); // 输出两次，输出：300 万，110 平方米</div></pre></td></tr></table></figure>
-<p>书中例子实现一个最简单发布——订阅模式，明显看得出不足，没有针对性，一旦事件发布无论订阅者是否愿意必须接收，最简单改善方法就是给定标识，增加一个标识key来区分订阅者的“兴趣”。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">var salesOffices = &#123;&#125;; // 定义售楼处</div><div class="line"></div><div class="line">salesOffices.clientList = &#123;&#125;; // 缓存列表，存放订阅者的回调函数，注意，此处缓存列表从数组变为对象</div><div class="line"></div><div class="line">salesOffices.listen = function( key, fn )&#123;</div><div class="line"></div><div class="line">  if ( !this.clientList[ key ] )&#123; // 如果还没有订阅过此类消息，给该类消息创建一个缓存列表</div><div class="line">    this.clientList[ key ] = [];</div><div class="line">  &#125;</div><div class="line">  this.clientList[ key ].push( fn ); // 订阅的消息添加进消息缓存列表</div><div class="line">&#125;;</div><div class="line"></div><div class="line">salesOffices.trigger  =  function()&#123; // 发布消息</div><div class="line"></div><div class="line">  var  key  =  Array.prototype.shift.call(arguments), // 取出消息类型</div><div class="line"></div><div class="line">  fns  =  this.clientList[key]; // 取出该消息对应的回调函数集合</div><div class="line"></div><div class="line">  if (!fns  ||  fns.length  ===  0) &#123; // 如果没有订阅该消息，则返回</div><div class="line">    return  false;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  for (var  i  =  0, fn; fn  =  fns[i++];) &#123;</div><div class="line">    fn.apply(this, arguments); // (2) // arguments 是发布消息时附送的参数</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">salesOffices.listen(&apos;squareMeter88&apos;, function (price) &#123; // 小明订阅 88 平方米房子的消息</div><div class="line"></div><div class="line">  console.log(&apos;价格= &apos;  +  price); // 输出： 2000000</div><div class="line">&#125;);</div><div class="line"></div><div class="line">salesOffices.listen(&apos;squareMeter110&apos;, function (price) &#123; // 小红订阅 110 平方米房子的消息</div><div class="line"></div><div class="line">  console.log(&apos;价格= &apos;  +  price); // 输出： 3000000</div><div class="line">&#125;);</div><div class="line"></div><div class="line">salesOffices.trigger(&apos;squareMeter88&apos;, 2000000); // 发布 88 平方米房子的价格</div><div class="line"></div><div class="line">salesOffices.trigger(&apos;squareMeter110&apos;, 3000000); // 发布 110 平方米房子的价格</div></pre></td></tr></table></figure>
-<p>改造后的代码与第一次相差不多，唯一增加判断订阅者感兴趣的“key”值，在发布者缓存列表中找到对应key值的value（value 是数组，数组每一项均是一个可执行的函数，严谨来说，应该在发布者 <code>listen</code> 方法中去判断传入参数是否为函数）</p>
-<h3>通用模式</h3>
-<p>以上基本实现最基本发布——订阅模式，此刻又出现新问题也是最常谈及——代码复用，书上的售楼处实现了模式，但当出现新“售楼处”该如何解决，书中解决的办法非常简单，浅克隆。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">var  event  = &#123;</div><div class="line"></div><div class="line">clientList: [],</div><div class="line"></div><div class="line">	listen:  function (key, fn) &#123;</div><div class="line">	</div><div class="line">		if (!this.clientList[key]) &#123;</div><div class="line">		</div><div class="line">		  this.clientList[key] = [];</div><div class="line">		</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		this.clientList[key].push(fn); // 订阅的消息添加进缓存列表</div><div class="line">	</div><div class="line">	&#125;,</div><div class="line"></div><div class="line">	trigger:  function () &#123;</div><div class="line">	</div><div class="line">		var  key  =  Array.prototype.shift.call(arguments), // (1);</div><div class="line">		</div><div class="line">		fns  =  this.clientList[key];</div><div class="line">		</div><div class="line">		if (!fns  ||  fns.length  ===  0) &#123; // 如果没有绑定对应的消息</div><div class="line">		</div><div class="line">			return  false;</div><div class="line">	</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		for (var  i  =  0, fn; fn  =  fns[i++];) &#123;</div><div class="line">		</div><div class="line">		fn.apply(this, arguments); // (2) // arguments 是 trigger 时带上的参数</div><div class="line">		</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"></div><div class="line">// 再定义一个 installEvent 函数，这个函数可以给所有的对象都动态安装发布—订阅功能</div><div class="line">var installEvent = function( obj )&#123; </div><div class="line">	for ( var i in event )&#123; </div><div class="line">		obj[ i ] = event[ i ]; </div><div class="line">	&#125; </div><div class="line">&#125;;</div><div class="line"></div><div class="line">var  salesOffices  = &#123;&#125;;</div><div class="line"></div><div class="line">installEvent( salesOffices );</div><div class="line"></div><div class="line">salesOffices.listen( &apos;squareMeter88&apos;, function( price )&#123; // 小明订阅消息</div><div class="line"></div><div class="line">	console.log( &apos;价格= &apos;  +  price );</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line">salesOffices.listen( &apos;squareMeter100&apos;, function( price )&#123; // 小红订阅消息</div><div class="line"></div><div class="line">	console.log( &apos;价格= &apos;  +  price );</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line">salesOffices.trigger( &apos;squareMeter88&apos;, 2000000 ); // 输出：2000000</div><div class="line"></div><div class="line">salesOffices.trigger( &apos;squareMeter100&apos;, 3000000 ); // 输出：3000000</div></pre></td></tr></table></figure>
-<h3>取消订阅</h3>
-<p>实现完简单的代码复用后，又抛出另一个问题——如何取消事件订阅，思路大概概括：</p>
-<ol>
-<li>清空发布者缓存列表中对应事件
-1.1 若事件未被订阅直接返回false
-1.2 删除对应订阅者传入的回调函数</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">event.remove  =  function (key, fn) &#123;</div><div class="line"></div><div class="line">	var  fns  =  this.clientList[key];</div><div class="line">	</div><div class="line">	if (!fns) &#123; // 如果 key 对应的消息没有被人订阅，则直接返回</div><div class="line">		</div><div class="line">		return  false;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">		</div><div class="line">	if (!fn) &#123; // 如果没有传入具体的回调函数，表示需要取消 key 对应消息的所有订阅</div><div class="line">		</div><div class="line">		fns  &amp;&amp; (fns.length  =  0);</div><div class="line">		</div><div class="line">	&#125; else &#123;</div><div class="line">		</div><div class="line">		for (var  l  =  fns.length  -  1; l  &gt;=  0; l--) &#123; // 反向遍历订阅的回调函数列表</div><div class="line">			</div><div class="line">			var  _fn  =  fns[l];</div><div class="line">			</div><div class="line">			if (_fn  ===  fn) &#123;</div><div class="line">			</div><div class="line">				fns.splice(l, 1); // 删除订阅者的回调函数</div><div class="line">			</div><div class="line">			&#125;</div><div class="line">			</div><div class="line">		&#125;</div><div class="line">	</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"></div><div class="line">var  salesOffices  = &#123;&#125;;</div><div class="line"></div><div class="line">var  installEvent  =  function (obj) &#123;</div><div class="line"></div><div class="line">	for (var  i  in  event) &#123;</div><div class="line">	</div><div class="line">		obj[i] =  event[i];</div><div class="line">	</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">installEvent(salesOffices);</div><div class="line"></div><div class="line">salesOffices.listen(&apos;squareMeter88&apos;, fn1  =  function (price) &#123; // 小明订阅消息</div><div class="line"></div><div class="line">	console.log(&apos;价格= &apos;  +  price);</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line">salesOffices.listen(&apos;squareMeter88&apos;, fn2  =  function (price) &#123; // 小红订阅消息</div><div class="line"></div><div class="line">	console.log(&apos;价格= &apos;  +  price);</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line">salesOffices.remove(&apos;squareMeter88&apos;, fn1); // 删除小明的订阅</div><div class="line"></div><div class="line">salesOffices.trigger(&apos;squareMeter88&apos;, 2000000); // 输出：2000000</div></pre></td></tr></table></figure>
-<h2>实例——登录</h2>
-<p>书中举出在实际项目中，用户登录完成后，用户信息可能需要派发到多个模块，诸如header，购物车等，如果使用过 <code>redux</code> 这一类数据管理库不能更容易，如果不使用框架如何解决？</p>
-<p>首先最粗暴的做法是在ajax请求成功回调里写入每个需要通知模块的接收事件方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">login.succ(function(data) &#123;</div><div class="line">	header.setAvatar(data.avatar); //设置header头像</div><div class="line">	nav.setAvatar(data.avatar);    //设置导航模块头像</div><div class="line">	message.refresh();			   //刷新信息列表</div><div class="line">	cart.refresh();				   //刷新购物车列表</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>试想这样做虽然能解决问题，但当新的功能模块上线时并且也需要用户登录相关信息时，就不得不折回修改 <code>login.succ</code> 函数，为它回调函数内增添新的模块对应接收信息的方法。虽然良好命名规则可以解决一部分代码维护问题，但如果模块接收用户登录信息的方法名更改后，就得疲于应付更改多处，这时改错名或漏掉情况就会出现，所以为什么不偷偷懒？啊！偷懒才是生产力进步的钥匙。</p>
-<p>按照发布——订阅模式来改善一下代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">login.succ(function(data) &#123;</div><div class="line">	login.trigger(&apos;loginSucc&apos;, data)</div><div class="line">&#125;;  // 当登录成功后仅仅发布这一事件，并将服务器返回数据当做参数传入</div></pre></td></tr></table></figure>
-<p>而其他模块只需要像所有订阅者一样，订阅这个事件就行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">const header = (function()&#123;</div><div class="line">	login.listen(&apos;loginSucc&apos;, (data) =&gt; &#123;</div><div class="line">		header.setAvatar(data.avatar)</div><div class="line">	&#125;);</div><div class="line">	return &#123;</div><div class="line">		setAvatar (avatar) &#123;</div><div class="line">			console.log(&apos;为顶部栏设置用户头像&apos;)</div><div class="line">		&#125;</div><div class="line">	&#125; // 此处需显示地返回在上方传入的回调函数</div><div class="line">&#125;)()</div></pre></td></tr></table></figure>
-<p>这样一来就解耦登录模块和其他需要登录信息的模块，模块内部维护一个方法当然是更安全省心</p>
-]]></content>
+    <content type="html"><![CDATA[<h2>发布——订阅模式</h2><p>全文为阅读《Javascript设计模式与开发实践》一书读书笔记。该篇，发布——订阅模式，在使用前端框架时这种设计理念被大量运用。</p><blockquote><p>发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状 态发生改变时，所有依赖于它的对象都将得到通知。在 JavaScript 开发中，我们一般用事件模型 来替代传统的发布—订阅模式。</p></blockquote><p>发布——订阅模式常应用于异步编程，这是一种代替传递回调函数的方案。例如订阅 ajax 请求的 error、succ 事件（突然想到axios 拦截器功能），总之是用发布——订阅模式可以无需关注异步过程内部状态，只需要订阅特定情况的发生。另外一点，发布——订阅模式不再显示由一个对象调用另一个对象的接口，降低耦合，互不影响，当新增订阅者出现，既不会影响之前订阅者，也不会需要对发布者修改，同样，发布者需要修改时，也不会影响到之前订阅者（前提是两者约定事件名称没有改变）。</p><h3>DOM 事件</h3><p>在接触 JS 的时候会学习到 <code>addEventListener</code> ，绑定事件函数，比起如 <code>onClick</code> 这样的直接绑定，<code>addEventListener</code> 不会覆盖之前绑定事件，实际上它就是一个简单的发布——订阅模式。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">document.querySelector(&apos;.btn-submit&apos;).addEventListener(&apos;click&apos;, function () &#123;</div><div class="line">console.log(&apos;something&apos;);</div><div class="line">&#125;, false);</div><div class="line"></div><div class="line">document.querySelector(&apos;.btn-submit&apos;).click()</div></pre></td></tr></table></figure><p>这里监听了用户点击事件行为，当点击特定的按钮就会触发相应事件，但重要的是无法预知用户何时点击。所以订阅 <code>.btn-submit</code> 这个按钮的 <code>click</code> 事件。当其被点击，便会向订阅者发布消息。</p><h3>自定义事件</h3><p>除去常见 DOM 事件，还会需求实现一些自定义事件，这种依靠自定义事件完成的发布——订阅模式适用性广，无侵入性。如何一步步实现发布——订阅模式？</p><ol><li>指定发布者</li><li>为发布者添加缓存列表，用于存储回调函数以便通知订阅者（函数存放在缓存列表中表明同一事件可以依次触发多个回调函数）</li><li>发布消息，发布者遍历缓存列表，依次触发其中存放订阅者回调函数。</li></ol><p>值得一提，为增强功能丰富语义，回调函数可以填入一些参数，订阅者接收这些参数，订阅者接收到后可以进一步处理。</p><p>书中以售楼处为例</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"> let salesOffices = &#123;&#125;;</div><div class="line"> salesOffices.clientList = [];</div><div class="line"> salesOffices.listen = function (fn) &#123;</div><div class="line">   this.clientList.push(fn);</div><div class="line"> &#125;;</div><div class="line"></div><div class="line"> salesOffices.trigger = function (...arg) &#123;</div><div class="line">   this.clientList.forEach((fn) =&gt; &#123;</div><div class="line">  fn(...arg);</div><div class="line">&#125;)</div><div class="line"> &#125;;</div><div class="line"></div><div class="line"> salesOffices.listen( function( price, squareMeter )&#123; // 小明订阅消息</div><div class="line">   console.log( &apos;价格= &apos;  +  price );</div><div class="line">   console.log( &apos;squareMeter= &apos;  +  squareMeter );</div><div class="line"> &#125;);</div><div class="line"></div><div class="line"> salesOffices.listen( function( price, squareMeter )&#123; // 小红订阅消息</div><div class="line">console.log( &apos;价格= &apos;  +  price );</div><div class="line">console.log( &apos;squareMeter= &apos;  +  squareMeter );</div><div class="line"> &#125;);</div><div class="line"></div><div class="line"> salesOffices.trigger( 2000000, 88 ); // 输出两次，因为存在两个订阅者，输出：200 万，88 平方米</div><div class="line"></div><div class="line"> salesOffices.trigger( 3000000, 110 ); // 输出两次，输出：300 万，110 平方米</div></pre></td></tr></table></figure><p>书中例子实现一个最简单发布——订阅模式，明显看得出不足，没有针对性，一旦事件发布无论订阅者是否愿意必须接收，最简单改善方法就是给定标识，增加一个标识key来区分订阅者的“兴趣”。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">var salesOffices = &#123;&#125;; // 定义售楼处</div><div class="line"></div><div class="line">salesOffices.clientList = &#123;&#125;; // 缓存列表，存放订阅者的回调函数，注意，此处缓存列表从数组变为对象</div><div class="line"></div><div class="line">salesOffices.listen = function( key, fn )&#123;</div><div class="line"></div><div class="line">  if ( !this.clientList[ key ] )&#123; // 如果还没有订阅过此类消息，给该类消息创建一个缓存列表</div><div class="line">    this.clientList[ key ] = [];</div><div class="line">  &#125;</div><div class="line">  this.clientList[ key ].push( fn ); // 订阅的消息添加进消息缓存列表</div><div class="line">&#125;;</div><div class="line"></div><div class="line">salesOffices.trigger  =  function()&#123; // 发布消息</div><div class="line"></div><div class="line">  var  key  =  Array.prototype.shift.call(arguments), // 取出消息类型</div><div class="line"></div><div class="line">  fns  =  this.clientList[key]; // 取出该消息对应的回调函数集合</div><div class="line"></div><div class="line">  if (!fns  ||  fns.length  ===  0) &#123; // 如果没有订阅该消息，则返回</div><div class="line">    return  false;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  for (var  i  =  0, fn; fn  =  fns[i++];) &#123;</div><div class="line">    fn.apply(this, arguments); // (2) // arguments 是发布消息时附送的参数</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">salesOffices.listen(&apos;squareMeter88&apos;, function (price) &#123; // 小明订阅 88 平方米房子的消息</div><div class="line"></div><div class="line">  console.log(&apos;价格= &apos;  +  price); // 输出： 2000000</div><div class="line">&#125;);</div><div class="line"></div><div class="line">salesOffices.listen(&apos;squareMeter110&apos;, function (price) &#123; // 小红订阅 110 平方米房子的消息</div><div class="line"></div><div class="line">  console.log(&apos;价格= &apos;  +  price); // 输出： 3000000</div><div class="line">&#125;);</div><div class="line"></div><div class="line">salesOffices.trigger(&apos;squareMeter88&apos;, 2000000); // 发布 88 平方米房子的价格</div><div class="line"></div><div class="line">salesOffices.trigger(&apos;squareMeter110&apos;, 3000000); // 发布 110 平方米房子的价格</div></pre></td></tr></table></figure><p>改造后的代码与第一次相差不多，唯一增加判断订阅者感兴趣的“key”值，在发布者缓存列表中找到对应key值的value（value 是数组，数组每一项均是一个可执行的函数，严谨来说，应该在发布者 <code>listen</code> 方法中去判断传入参数是否为函数）</p><h3>通用模式</h3><p>以上基本实现最基本发布——订阅模式，此刻又出现新问题也是最常谈及——代码复用，书上的售楼处实现了模式，但当出现新“售楼处”该如何解决，书中解决的办法非常简单，浅克隆。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">var  event  = &#123;</div><div class="line"></div><div class="line">clientList: [],</div><div class="line"></div><div class="line">listen:  function (key, fn) &#123;</div><div class="line"></div><div class="line">if (!this.clientList[key]) &#123;</div><div class="line"></div><div class="line">  this.clientList[key] = [];</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">this.clientList[key].push(fn); // 订阅的消息添加进缓存列表</div><div class="line"></div><div class="line">&#125;,</div><div class="line"></div><div class="line">trigger:  function () &#123;</div><div class="line"></div><div class="line">var  key  =  Array.prototype.shift.call(arguments), // (1);</div><div class="line"></div><div class="line">fns  =  this.clientList[key];</div><div class="line"></div><div class="line">if (!fns  ||  fns.length  ===  0) &#123; // 如果没有绑定对应的消息</div><div class="line"></div><div class="line">return  false;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">for (var  i  =  0, fn; fn  =  fns[i++];) &#123;</div><div class="line"></div><div class="line">fn.apply(this, arguments); // (2) // arguments 是 trigger 时带上的参数</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"></div><div class="line">// 再定义一个 installEvent 函数，这个函数可以给所有的对象都动态安装发布—订阅功能</div><div class="line">var installEvent = function( obj )&#123; </div><div class="line">for ( var i in event )&#123; </div><div class="line">obj[ i ] = event[ i ]; </div><div class="line">&#125; </div><div class="line">&#125;;</div><div class="line"></div><div class="line">var  salesOffices  = &#123;&#125;;</div><div class="line"></div><div class="line">installEvent( salesOffices );</div><div class="line"></div><div class="line">salesOffices.listen( &apos;squareMeter88&apos;, function( price )&#123; // 小明订阅消息</div><div class="line"></div><div class="line">console.log( &apos;价格= &apos;  +  price );</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line">salesOffices.listen( &apos;squareMeter100&apos;, function( price )&#123; // 小红订阅消息</div><div class="line"></div><div class="line">console.log( &apos;价格= &apos;  +  price );</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line">salesOffices.trigger( &apos;squareMeter88&apos;, 2000000 ); // 输出：2000000</div><div class="line"></div><div class="line">salesOffices.trigger( &apos;squareMeter100&apos;, 3000000 ); // 输出：3000000</div></pre></td></tr></table></figure><h3>取消订阅</h3><p>实现完简单的代码复用后，又抛出另一个问题——如何取消事件订阅，思路大概概括：</p><ol><li>清空发布者缓存列表中对应事件1.1 若事件未被订阅直接返回false1.2 删除对应订阅者传入的回调函数</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">event.remove  =  function (key, fn) &#123;</div><div class="line"></div><div class="line">var  fns  =  this.clientList[key];</div><div class="line"></div><div class="line">if (!fns) &#123; // 如果 key 对应的消息没有被人订阅，则直接返回</div><div class="line"></div><div class="line">return  false;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">if (!fn) &#123; // 如果没有传入具体的回调函数，表示需要取消 key 对应消息的所有订阅</div><div class="line"></div><div class="line">fns  &amp;&amp; (fns.length  =  0);</div><div class="line"></div><div class="line">&#125; else &#123;</div><div class="line"></div><div class="line">for (var  l  =  fns.length  -  1; l  &gt;=  0; l--) &#123; // 反向遍历订阅的回调函数列表</div><div class="line"></div><div class="line">var  _fn  =  fns[l];</div><div class="line"></div><div class="line">if (_fn  ===  fn) &#123;</div><div class="line"></div><div class="line">fns.splice(l, 1); // 删除订阅者的回调函数</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"></div><div class="line">var  salesOffices  = &#123;&#125;;</div><div class="line"></div><div class="line">var  installEvent  =  function (obj) &#123;</div><div class="line"></div><div class="line">for (var  i  in  event) &#123;</div><div class="line"></div><div class="line">obj[i] =  event[i];</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">installEvent(salesOffices);</div><div class="line"></div><div class="line">salesOffices.listen(&apos;squareMeter88&apos;, fn1  =  function (price) &#123; // 小明订阅消息</div><div class="line"></div><div class="line">console.log(&apos;价格= &apos;  +  price);</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line">salesOffices.listen(&apos;squareMeter88&apos;, fn2  =  function (price) &#123; // 小红订阅消息</div><div class="line"></div><div class="line">console.log(&apos;价格= &apos;  +  price);</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line">salesOffices.remove(&apos;squareMeter88&apos;, fn1); // 删除小明的订阅</div><div class="line"></div><div class="line">salesOffices.trigger(&apos;squareMeter88&apos;, 2000000); // 输出：2000000</div></pre></td></tr></table></figure><h2>实例——登录</h2><p>书中举出在实际项目中，用户登录完成后，用户信息可能需要派发到多个模块，诸如header，购物车等，如果使用过 <code>redux</code> 这一类数据管理库不能更容易，如果不使用框架如何解决？</p><p>首先最粗暴的做法是在ajax请求成功回调里写入每个需要通知模块的接收事件方法</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">login.succ(function(data) &#123;</div><div class="line">header.setAvatar(data.avatar); //设置header头像</div><div class="line">nav.setAvatar(data.avatar);    //设置导航模块头像</div><div class="line">message.refresh();   //刷新信息列表</div><div class="line">cart.refresh();   //刷新购物车列表</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>试想这样做虽然能解决问题，但当新的功能模块上线时并且也需要用户登录相关信息时，就不得不折回修改 <code>login.succ</code> 函数，为它回调函数内增添新的模块对应接收信息的方法。虽然良好命名规则可以解决一部分代码维护问题，但如果模块接收用户登录信息的方法名更改后，就得疲于应付更改多处，这时改错名或漏掉情况就会出现，所以为什么不偷偷懒？啊！偷懒才是生产力进步的钥匙。</p><p>按照发布——订阅模式来改善一下代码</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">login.succ(function(data) &#123;</div><div class="line">login.trigger(&apos;loginSucc&apos;, data)</div><div class="line">&#125;;  // 当登录成功后仅仅发布这一事件，并将服务器返回数据当做参数传入</div></pre></td></tr></table></figure><p>而其他模块只需要像所有订阅者一样，订阅这个事件就行</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">const header = (function()&#123;</div><div class="line">login.listen(&apos;loginSucc&apos;, (data) =&gt; &#123;</div><div class="line">header.setAvatar(data.avatar)</div><div class="line">&#125;);</div><div class="line">return &#123;</div><div class="line">setAvatar (avatar) &#123;</div><div class="line">console.log(&apos;为顶部栏设置用户头像&apos;)</div><div class="line">&#125;</div><div class="line">&#125; // 此处需显示地返回在上方传入的回调函数</div><div class="line">&#125;)()</div></pre></td></tr></table></figure><p>这样一来就解耦登录模块和其他需要登录信息的模块，模块内部维护一个方法当然是更安全省心</p>]]></content>
     
     <summary type="html">
     
-      &lt;h2&gt;发布——订阅模式&lt;/h2&gt;
+      
+      
+        &lt;h2&gt;发布——订阅模式&lt;/h2&gt;
 &lt;p&gt;全文为阅读《Javascript设计模式与开发实践》一书读书笔记。该篇，发布——订阅模式，在使用前端框架时这种设计理念被大量运用。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，
+      
     
     </summary>
     
@@ -277,36 +340,18 @@
     <published>2017-09-19T14:49:52.000Z</published>
     <updated>2017-09-19T15:07:48.972Z</updated>
     
-    <content type="html"><![CDATA[<h2>前端性能优化常见方式</h2>
-<p>今天面试小姐姐问我常见前端性能优化举例，想想说了一些自己平常用到或看到的</p>
-<ul>
-<li>合并雪碧图（用来减少ajax请求次数），压缩图片</li>
-<li>base64替代小图片，适当可以用svg或者webp等格式替换.png|.jpg</li>
-<li>服务端开启Gzip</li>
-<li>CDN分发</li>
-<li>HTTP2压缩缓存请求头</li>
-<li>压缩代码，去掉多余空格换行，注释
-…
-随便说一些，然后想想其实还有没说到的缓存…因为马上问了cookie，sessionStorage，localStorage之间区别
-因此优化方式还有</li>
-<li>设置缓存策略（ETag，max-age，Expires，mainifest，localstorage…)</li>
-<li>减少DOM</li>
-<li>优先加载样式表（其实自己每次都是把样式放前面，所以一直忽略掉）</li>
-<li>异步加载JS</li>
-<li>避免使用滤镜（由于之前项目几乎没做过IE兼容，任性，IE用户不是目标群体，没考虑到）</li>
-<li>事件代理</li>
-</ul>
-<p>想到的其实也有部分在用，其实想想还有很多办法，优化代码逻辑之类，也有JS计算结果的缓存之类（譬如1+2的结果缓存到数组中，下次直接拿来用），webpack打包去掉无意义或重复引入。
-面试时候还是考虑欠缺当然也和平时项目实践有关。</p>
-]]></content>
+    <content type="html"><![CDATA[<h2>前端性能优化常见方式</h2><p>今天面试小姐姐问我常见前端性能优化举例，想想说了一些自己平常用到或看到的</p><ul><li>合并雪碧图（用来减少ajax请求次数），压缩图片</li><li>base64替代小图片，适当可以用svg或者webp等格式替换.png|.jpg</li><li>服务端开启Gzip</li><li>CDN分发</li><li>HTTP2压缩缓存请求头</li><li>压缩代码，去掉多余空格换行，注释…随便说一些，然后想想其实还有没说到的缓存…因为马上问了cookie，sessionStorage，localStorage之间区别因此优化方式还有</li><li>设置缓存策略（ETag，max-age，Expires，mainifest，localstorage…)</li><li>减少DOM</li><li>优先加载样式表（其实自己每次都是把样式放前面，所以一直忽略掉）</li><li>异步加载JS</li><li>避免使用滤镜（由于之前项目几乎没做过IE兼容，任性，IE用户不是目标群体，没考虑到）</li><li>事件代理</li></ul><p>想到的其实也有部分在用，其实想想还有很多办法，优化代码逻辑之类，也有JS计算结果的缓存之类（譬如1+2的结果缓存到数组中，下次直接拿来用），webpack打包去掉无意义或重复引入。面试时候还是考虑欠缺当然也和平时项目实践有关。</p>]]></content>
     
     <summary type="html">
     
-      &lt;h2&gt;前端性能优化常见方式&lt;/h2&gt;
+      
+      
+        &lt;h2&gt;前端性能优化常见方式&lt;/h2&gt;
 &lt;p&gt;今天面试小姐姐问我常见前端性能优化举例，想想说了一些自己平常用到或看到的&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;合并雪碧图（用来减少ajax请求次数），压缩图片&lt;/li&gt;
 &lt;li&gt;base64替代小图片，适当可以用svg或者webp等格式替换.p
+      
     
     </summary>
     
@@ -320,24 +365,16 @@
     <published>2017-09-14T15:58:07.000Z</published>
     <updated>2017-09-14T16:02:47.972Z</updated>
     
-    <content type="html"><![CDATA[<p>函数防抖：函数频繁执行的情况下，只有触发时间间隔超过指定间隔，函数才会执行，当等待时间时函数再次被触发则重新计算等待时间
-函数节流：只允许一个函数在n秒内执行一次</p>
-<p>两个概念最常用于onscroll事件的执行，onscroll触发频率高，优化后能得到性能提升。当然也用于诸如onchange，keyup，mousemove等。总之就是限制函数执行的频率，得到更好体验。</p>
-<h2>函数防抖</h2>
-<p>函数防抖这个概念很像搭乘电梯，进入电梯，按下楼层等待比如5秒，电梯开始移动，但如果等待过程中又有人进入，则重新计时。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">*</div><div class="line">* @param &#123;function&#125; fn 执行的函数</div><div class="line">* @param &#123;number&#125; wait 等待时间</div><div class="line">* @param &#123;number&#125; time 时间间隔</div><div class="line">*/</div><div class="line">function _debounce (fn, wait = 500, time = 2000) &#123;</div><div class="line">	let pervious = null;</div><div class="line">	let timer = null;</div><div class="line"></div><div class="line">	return function () &#123;</div><div class="line">		let now = new Date();</div><div class="line"></div><div class="line">		if(!pervious) &#123;</div><div class="line">			pervious = now</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		if(now - pervious &gt; time) &#123;</div><div class="line">			clearTimeout(timer); // 清除上一次的计时</div><div class="line">			fn();</div><div class="line">			pervious = now;</div><div class="line">		&#125; else &#123;</div><div class="line">			clearTime(timer);</div><div class="line">			timer = setTimeout(function()&#123;fn()&#125;, wait);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function print () &#123;</div><div class="line">	console.log(&apos;something&apos;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">window.onscroll = _debounce(print)</div></pre></td></tr></table></figure>
-<h2>函数节流</h2>
-<p>以判断页面是否滚动到底部来举例。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">function isBottom () &#123;</div><div class="line">	let viewHeight = document.documentElement.clientHeight // 页面可视高度</div><div class="line">	let pageHeight = document.documentElement.offsetHeight // 页面总高度</div><div class="line">	let scrollTop = document.documentElement.scrollTop || document.body.scrollTop // 滚动高度</div><div class="line"></div><div class="line">	let space = pageHeight - viewHeight - scrollTop  // 间距</div><div class="line">	console.log(&apos;space = &apos;, space)</div><div class="line">&#125;</div><div class="line"></div><div class="line">function throttle (fn, time = 300) &#123;</div><div class="line">	let isRun = true;</div><div class="line">	return function () &#123;</div><div class="line">		if (!isRun) return;</div><div class="line">		</div><div class="line">		isRun = false</div><div class="line">		setTimeout(function()&#123;</div><div class="line">			fn()</div><div class="line">			isRun = true</div><div class="line">		&#125;, time)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">window.onscroll = throttle(isBottom)</div></pre></td></tr></table></figure>
-<p>参考：
-<a href="https://juejin.im/entry/58c0379e44d9040068dc952f" target="_blank" rel="external">函数节流与函数防抖</a></p>
-]]></content>
+    <content type="html"><![CDATA[<p>函数防抖：函数频繁执行的情况下，只有触发时间间隔超过指定间隔，函数才会执行，当等待时间时函数再次被触发则重新计算等待时间函数节流：只允许一个函数在n秒内执行一次</p><p>两个概念最常用于onscroll事件的执行，onscroll触发频率高，优化后能得到性能提升。当然也用于诸如onchange，keyup，mousemove等。总之就是限制函数执行的频率，得到更好体验。</p><h2>函数防抖</h2><p>函数防抖这个概念很像搭乘电梯，进入电梯，按下楼层等待比如5秒，电梯开始移动，但如果等待过程中又有人进入，则重新计时。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">*</div><div class="line">* @param &#123;function&#125; fn 执行的函数</div><div class="line">* @param &#123;number&#125; wait 等待时间</div><div class="line">* @param &#123;number&#125; time 时间间隔</div><div class="line">*/</div><div class="line">function _debounce (fn, wait = 500, time = 2000) &#123;</div><div class="line">let pervious = null;</div><div class="line">let timer = null;</div><div class="line"></div><div class="line">return function () &#123;</div><div class="line">let now = new Date();</div><div class="line"></div><div class="line">if(!pervious) &#123;</div><div class="line">pervious = now</div><div class="line">&#125;</div><div class="line"></div><div class="line">if(now - pervious &gt; time) &#123;</div><div class="line">clearTimeout(timer); // 清除上一次的计时</div><div class="line">fn();</div><div class="line">pervious = now;</div><div class="line">&#125; else &#123;</div><div class="line">clearTime(timer);</div><div class="line">timer = setTimeout(function()&#123;fn()&#125;, wait);</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function print () &#123;</div><div class="line">console.log(&apos;something&apos;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">window.onscroll = _debounce(print)</div></pre></td></tr></table></figure><h2>函数节流</h2><p>以判断页面是否滚动到底部来举例。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">function isBottom () &#123;</div><div class="line">let viewHeight = document.documentElement.clientHeight // 页面可视高度</div><div class="line">let pageHeight = document.documentElement.offsetHeight // 页面总高度</div><div class="line">let scrollTop = document.documentElement.scrollTop || document.body.scrollTop // 滚动高度</div><div class="line"></div><div class="line">let space = pageHeight - viewHeight - scrollTop  // 间距</div><div class="line">console.log(&apos;space = &apos;, space)</div><div class="line">&#125;</div><div class="line"></div><div class="line">function throttle (fn, time = 300) &#123;</div><div class="line">let isRun = true;</div><div class="line">return function () &#123;</div><div class="line">if (!isRun) return;</div><div class="line"></div><div class="line">isRun = false</div><div class="line">setTimeout(function()&#123;</div><div class="line">fn()</div><div class="line">isRun = true</div><div class="line">&#125;, time)</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">window.onscroll = throttle(isBottom)</div></pre></td></tr></table></figure><p>参考：<a href="https://juejin.im/entry/58c0379e44d9040068dc952f" target="_blank" rel="external">函数节流与函数防抖</a></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;函数防抖：函数频繁执行的情况下，只有触发时间间隔超过指定间隔，函数才会执行，当等待时间时函数再次被触发则重新计算等待时间
+      
+      
+        &lt;p&gt;函数防抖：函数频繁执行的情况下，只有触发时间间隔超过指定间隔，函数才会执行，当等待时间时函数再次被触发则重新计算等待时间
 函数节流：只允许一个函数在n秒内执行一次&lt;/p&gt;
 &lt;p&gt;两个概念最常用于onscroll事件的执行，onscroll触发频率高，优化后能得到性能提升。当
+      
     
     </summary>
     
@@ -353,40 +390,17 @@
     <published>2017-09-14T08:32:22.000Z</published>
     <updated>2017-09-14T10:42:33.064Z</updated>
     
-    <content type="html"><![CDATA[<h1>css实现sticky footer</h1>
-<p>简单来说 <code>sticky footer</code> 就是当页面内容高度不足时，footer部分居于页面最下方，当页面高度超出一屏幕的高度，会居于内容最下方。</p>
-<h2>Flex</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// html</div><div class="line">.body&gt;.wrapper&gt;.content+.footer</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">// css</div><div class="line">body&#123;</div><div class="line">	margin:  0;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.wrapper&#123;</div><div class="line">	min-height:  100vh;</div><div class="line">	display:  flex;</div><div class="line">	flex-direction:  column;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.content&#123;</div><div class="line">	flex:1;</div><div class="line">	margin-bottom:  20px;</div><div class="line">	background:  red;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.footer&#123;</div><div class="line">	background: pink;</div><div class="line">	height:  40px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>实现的关键在于 <code>min-height: 100vh</code>
-<a href="http://fguizc.oschina.io/csslearn/stickyfooter/flex/index_content.html" target="_blank" rel="external">无内容demo</a>
-<a href="http://fguizc.oschina.io/csslearn/stickyfooter/flex/index_withoutcontent.html" target="_blank" rel="external">内容溢出demo</a></p>
-<h2>calc（）</h2>
-<p>calc是css实现的计算属性，原理几乎和flex实现一致，只是对footer部分给出固定的高度，再设置content部分的高度为calc（总高度 - footer高度)。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// html</div><div class="line">body&gt;.content+.footer</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//css</div><div class="line">.content&#123;</div><div class="line">	min-height: calc(100vh - 60px);</div><div class="line">	background-color: red;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.footer&#123;</div><div class="line">	height: 40px;</div><div class="line">	background-color: pink;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>calc中减去的高度大于实际footer高度是为了留出间隙。唯一值得注意的就是calc（）中的运算符左右皆须空格。</p>
-<h2>display: grid</h2>
-<p>同样grid也是css3新增的属性，栅格系统。而且在chrome59已经完全支持，但考虑实际情况，被大规模应用还需时间。
-<img src="http://7xv8p5.com1.z0.glb.clouddn.com/Snipaste_2017-09-14_18-08-58.png" alt="Snipaste_2017-09-14_18-08-58"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">body&gt;.content+.footer&#123;something&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">//css</div><div class="line">html&#123;</div><div class="line">	height: 100%;</div><div class="line">&#125;</div><div class="line">body&#123;</div><div class="line">	min-height: 100%;</div><div class="line">	display: grid;</div><div class="line">	grid-template-rows: 1fr 50px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.content&#123;</div><div class="line">	background-color:  red;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.footer&#123;</div><div class="line">	grid-row-start: 2;</div><div class="line">	grid-row-end:3;</div><div class="line">	background-color: pink;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="http://fguizc.oschina.io/csslearn/stickyfooter/grid/index.html" target="_blank" rel="external">GridDemo</a></p>
-<h2>position: sticky</h2>
-<p><code>position: sticky</code>是一个较为新的属性，专门用于这种情况，具体的表现是relative和fixed的结合体，因此它的效果和将要实现的效果有点出入。
-<img src="http://7xv8p5.com1.z0.glb.clouddn.com/Snipaste_2017-09-14_17-37-23.png" alt="Snipaste_2017-09-14_17-37-23"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;container&quot;&gt;    </div><div class="line">	&lt;nav&gt;我是导航栏&lt;/nav&gt;    </div><div class="line">	&lt;div class=&quot;content&quot;&gt;        </div><div class="line">		&lt;p&gt;我是内容栏&lt;/p&gt;        </div><div class="line">		&lt;p&gt;我是内容栏&lt;/p&gt;        </div><div class="line">		&lt;p&gt;我是内容栏&lt;/p&gt;        </div><div class="line">		&lt;p&gt;我是内容栏&lt;/p&gt;        </div><div class="line">		&lt;p&gt;我是内容栏&lt;/p&gt;        </div><div class="line">		&lt;p&gt;我是内容栏&lt;/p&gt;        </div><div class="line">		&lt;p&gt;我是内容栏&lt;/p&gt;        </div><div class="line">		&lt;p&gt;我是内容栏&lt;/p&gt;    </div><div class="line">	&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">.container &#123;    </div><div class="line">	background: #eee;    </div><div class="line">	width: 600px;    </div><div class="line">	height: 1000px;    </div><div class="line">	margin: 0 auto;</div><div class="line">&#125;</div><div class="line"></div><div class="line">nav &#123;    </div><div class="line">	position: -webkit-sticky;   </div><div class="line">	position: sticky;    </div><div class="line">	top:0;</div><div class="line">&#125;</div><div class="line"></div><div class="line">nav &#123;    </div><div class="line">	height: 50px;    </div><div class="line">	background: #999;    </div><div class="line">	color: #fff;    </div><div class="line">	font-size: 30px;    </div><div class="line">	line-height: 50px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.content &#123;    </div><div class="line">	margin-top: 30px;    </div><div class="line">	background: #ddd;</div><div class="line">&#125;</div><div class="line"></div><div class="line">p &#123;    </div><div class="line">	line-height: 40px;    </div><div class="line">	font-size: 20px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="http://fguizc.oschina.io/csslearn/stickyfooter/sticky/index.html" target="_blank" rel="external">StickyDemo</a></p>
-<p><code>sticky</code>生效是有限制的，必须添加<code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>四者（阈值）其一，并且verticalattr存在时，top优先，horizontalattr存在，left优先。只有当滚动打到阈值时，才会产生类似fixed效果。polyfill见<a href="https://github.com/filamentgroup/fixed-sticky" target="_blank" rel="external">github</a>。</p>
-]]></content>
+    <content type="html"><![CDATA[<h1>css实现sticky footer</h1><p>简单来说 <code>sticky footer</code> 就是当页面内容高度不足时，footer部分居于页面最下方，当页面高度超出一屏幕的高度，会居于内容最下方。</p><h2>Flex</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// html</div><div class="line">.body&gt;.wrapper&gt;.content+.footer</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">// css</div><div class="line">body&#123;</div><div class="line">margin:  0;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.wrapper&#123;</div><div class="line">min-height:  100vh;</div><div class="line">display:  flex;</div><div class="line">flex-direction:  column;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.content&#123;</div><div class="line">flex:1;</div><div class="line">margin-bottom:  20px;</div><div class="line">background:  red;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.footer&#123;</div><div class="line">background: pink;</div><div class="line">height:  40px;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>实现的关键在于 <code>min-height: 100vh</code><a href="http://fguizc.oschina.io/csslearn/stickyfooter/flex/index_content.html" target="_blank" rel="external">无内容demo</a><a href="http://fguizc.oschina.io/csslearn/stickyfooter/flex/index_withoutcontent.html" target="_blank" rel="external">内容溢出demo</a></p><h2>calc（）</h2><p>calc是css实现的计算属性，原理几乎和flex实现一致，只是对footer部分给出固定的高度，再设置content部分的高度为calc（总高度 - footer高度)。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// html</div><div class="line">body&gt;.content+.footer</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//css</div><div class="line">.content&#123;</div><div class="line">min-height: calc(100vh - 60px);</div><div class="line">background-color: red;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.footer&#123;</div><div class="line">height: 40px;</div><div class="line">background-color: pink;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>calc中减去的高度大于实际footer高度是为了留出间隙。唯一值得注意的就是calc（）中的运算符左右皆须空格。</p><h2>display: grid</h2><p>同样grid也是css3新增的属性，栅格系统。而且在chrome59已经完全支持，但考虑实际情况，被大规模应用还需时间。<img src="http://7xv8p5.com1.z0.glb.clouddn.com/Snipaste_2017-09-14_18-08-58.png" alt="Snipaste_2017-09-14_18-08-58"></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">body&gt;.content+.footer&#123;something&#125;</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">//css</div><div class="line">html&#123;</div><div class="line">height: 100%;</div><div class="line">&#125;</div><div class="line">body&#123;</div><div class="line">min-height: 100%;</div><div class="line">display: grid;</div><div class="line">grid-template-rows: 1fr 50px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.content&#123;</div><div class="line">background-color:  red;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.footer&#123;</div><div class="line">grid-row-start: 2;</div><div class="line">grid-row-end:3;</div><div class="line">background-color: pink;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p><a href="http://fguizc.oschina.io/csslearn/stickyfooter/grid/index.html" target="_blank" rel="external">GridDemo</a></p><h2>position: sticky</h2><p><code>position: sticky</code>是一个较为新的属性，专门用于这种情况，具体的表现是relative和fixed的结合体，因此它的效果和将要实现的效果有点出入。<img src="http://7xv8p5.com1.z0.glb.clouddn.com/Snipaste_2017-09-14_17-37-23.png" alt="Snipaste_2017-09-14_17-37-23"></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;container&quot;&gt;    </div><div class="line">&lt;nav&gt;我是导航栏&lt;/nav&gt;    </div><div class="line">&lt;div class=&quot;content&quot;&gt;        </div><div class="line">&lt;p&gt;我是内容栏&lt;/p&gt;        </div><div class="line">&lt;p&gt;我是内容栏&lt;/p&gt;        </div><div class="line">&lt;p&gt;我是内容栏&lt;/p&gt;        </div><div class="line">&lt;p&gt;我是内容栏&lt;/p&gt;        </div><div class="line">&lt;p&gt;我是内容栏&lt;/p&gt;        </div><div class="line">&lt;p&gt;我是内容栏&lt;/p&gt;        </div><div class="line">&lt;p&gt;我是内容栏&lt;/p&gt;        </div><div class="line">&lt;p&gt;我是内容栏&lt;/p&gt;    </div><div class="line">&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">.container &#123;    </div><div class="line">background: #eee;    </div><div class="line">width: 600px;    </div><div class="line">height: 1000px;    </div><div class="line">margin: 0 auto;</div><div class="line">&#125;</div><div class="line"></div><div class="line">nav &#123;    </div><div class="line">position: -webkit-sticky;   </div><div class="line">position: sticky;    </div><div class="line">top:0;</div><div class="line">&#125;</div><div class="line"></div><div class="line">nav &#123;    </div><div class="line">height: 50px;    </div><div class="line">background: #999;    </div><div class="line">color: #fff;    </div><div class="line">font-size: 30px;    </div><div class="line">line-height: 50px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.content &#123;    </div><div class="line">margin-top: 30px;    </div><div class="line">background: #ddd;</div><div class="line">&#125;</div><div class="line"></div><div class="line">p &#123;    </div><div class="line">line-height: 40px;    </div><div class="line">font-size: 20px;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p><a href="http://fguizc.oschina.io/csslearn/stickyfooter/sticky/index.html" target="_blank" rel="external">StickyDemo</a></p><p><code>sticky</code>生效是有限制的，必须添加<code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>四者（阈值）其一，并且verticalattr存在时，top优先，horizontalattr存在，left优先。只有当滚动打到阈值时，才会产生类似fixed效果。polyfill见<a href="https://github.com/filamentgroup/fixed-sticky" target="_blank" rel="external">github</a>。</p>]]></content>
     
     <summary type="html">
     
-      &lt;h1&gt;css实现sticky footer&lt;/h1&gt;
+      
+      
+        &lt;h1&gt;css实现sticky footer&lt;/h1&gt;
 &lt;p&gt;简单来说 &lt;code&gt;sticky footer&lt;/code&gt; 就是当页面内容高度不足时，footer部分居于页面最下方，当页面高度超出一屏幕的高度，会居于内容最下方。&lt;/p&gt;
 &lt;h2&gt;Flex&lt;/h2&gt;
 &lt;figur
+      
     
     </summary>
     
@@ -402,44 +416,17 @@
     <published>2017-09-05T08:34:17.000Z</published>
     <updated>2017-09-05T09:26:57.083Z</updated>
     
-    <content type="html"><![CDATA[<h1>React-Native踩坑</h1>
-<p>主要总结最近几天在写RN时遇到的一些差异以及坑。</p>
-<h3>百分比</h3>
-<p>在书写样式时，可以使用<code>absolute</code>绝对定位，但是以往在浏览器中使用的百分比无法在RN中使用，可以用另一种折中的方式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">import &#123;</div><div class="line">  Dimensions,</div><div class="line">  StyleSheet</div><div class="line">&#125; from &apos;react-native&apos;;</div><div class="line"></div><div class="line">......</div><div class="line"></div><div class="line">const &#123;width,height&#125; = Dimensions.get(&quot;window&quot;);</div><div class="line"></div><div class="line">const styles = StyleSheet.create(&#123;</div><div class="line">  demostyle: &#123;</div><div class="line">    position: &apos;absolute&apos;,</div><div class="line">    left: width*0.5,</div><div class="line">    top: height*0.5</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>在 <a href="https://reactnative.cn/post/3526" target="_blank" rel="external">0.42 版本</a> 中RN支持了样式百分比，属性值为字符串</p>
-<p>目前支持的属性有：padding，margin，width，height，minWidth，minHeight，maxWidth，maxHeight，flexBasis。</p>
-<h3>文字省略-Text</h3>
-<ul>
-<li>
-<p>ellipsizeMode enum(‘head’, ‘middle’, ‘tail’, ‘clip’) 这个功能相当于我们android中的ellipsize，文本很长时，省略号显示的位置，是开头，中间还是末尾显示省略号。</p>
-<blockquote>
-<p>clip是ios上独有的，设置这个属性时，必须先设置text的行数。</p>
-</blockquote>
-</li>
-<li>
-<p>numberOfLines 文本的行数</p>
-</li>
-</ul>
-<h3>用户登录</h3>
-<p>用户在登录界面登录后，轻触返回按钮（安卓）会跳转回登录页面，利用<code>React Navigation</code>去重置路由状态，使得登录跳转后的首页此时状态为首位（<code>index: 0</code>）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// 当前routeName: &apos;Login&apos;</div><div class="line">// 在登录页绑定Press事件去重置路由状态</div><div class="line">import &#123;NavigationActions&#125; from &apos;react-navigation&apos;</div><div class="line">...</div><div class="line">const resetActions = NavigationActions.reset(&#123;</div><div class="line"> 	index: 0,</div><div class="line"> 	actions: [NavigationActions.navigate(&#123;routeName: &apos;Main&apos;&#125;)]</div><div class="line"> &#125;);</div><div class="line"> this.props.navigation.dispatch(resetActions);</div></pre></td></tr></table></figure>
-<h3>图片</h3>
-<p>RN中，本地图片的导入使用<code>require(路径)</code>，多数情况下，会根据一些情况动态替换路径，但在RN中，不能直接使用一个变量传递在require中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">tmp = this.stateisLogin ? &apos;./loout.png&apos; : &apos;./login.png&apos;  // 错误</div><div class="line">&lt;Image source=&#123;tmp&#125; /&gt;  // 错误</div><div class="line">-----------</div><div class="line"></div><div class="line">imgSource = this.state.isLogin ? require(&apos;./logout.png&apos;) : require(&apos;./login.png&apos;)</div><div class="line">&lt;Image source=&#123;imgSource &#125; /&gt;  // 正确</div></pre></td></tr></table></figure>
-<h3>公共样式</h3>
-<p>为方便管理一下样式，减少样板代码，把部分样式单独抽离成一个JS文件，根据项目需求把颜色赋值给变量导出，方便多处使用。
-以及在写组件时，根据参考其他优秀组件库，添加props允许传递样式到子组件，扩充UI组件灵活性。</p>
-<h3>其他</h3>
-<p>最不习惯的是，RN中没有伪类、伪元素也没有类似css3中 <code>fixed</code> 这样的属性，只能依靠<code>absolute</code>定位，导致有时候一些布局的结构没有html简洁。以及 <code>flex-direction</code> 默认值是<code>column</code>而不是 <code>row</code>，好在RN中不存在跨域问题，也可以使用 axios 库来进行请求。</p>
-]]></content>
+    <content type="html"><![CDATA[<h1>React-Native踩坑</h1><p>主要总结最近几天在写RN时遇到的一些差异以及坑。</p><h3>百分比</h3><p>在书写样式时，可以使用<code>absolute</code>绝对定位，但是以往在浏览器中使用的百分比无法在RN中使用，可以用另一种折中的方式</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">import &#123;</div><div class="line">  Dimensions,</div><div class="line">  StyleSheet</div><div class="line">&#125; from &apos;react-native&apos;;</div><div class="line"></div><div class="line">......</div><div class="line"></div><div class="line">const &#123;width,height&#125; = Dimensions.get(&quot;window&quot;);</div><div class="line"></div><div class="line">const styles = StyleSheet.create(&#123;</div><div class="line">  demostyle: &#123;</div><div class="line">    position: &apos;absolute&apos;,</div><div class="line">    left: width*0.5,</div><div class="line">    top: height*0.5</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure><p>在 <a href="https://reactnative.cn/post/3526" target="_blank" rel="external">0.42 版本</a> 中RN支持了样式百分比，属性值为字符串</p><p>目前支持的属性有：padding，margin，width，height，minWidth，minHeight，maxWidth，maxHeight，flexBasis。</p><h3>文字省略-Text</h3><ul><li><p>ellipsizeMode enum(‘head’, ‘middle’, ‘tail’, ‘clip’) 这个功能相当于我们android中的ellipsize，文本很长时，省略号显示的位置，是开头，中间还是末尾显示省略号。</p><blockquote><p>clip是ios上独有的，设置这个属性时，必须先设置text的行数。</p></blockquote></li><li><p>numberOfLines 文本的行数</p></li></ul><h3>用户登录</h3><p>用户在登录界面登录后，轻触返回按钮（安卓）会跳转回登录页面，利用<code>React Navigation</code>去重置路由状态，使得登录跳转后的首页此时状态为首位（<code>index: 0</code>）</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// 当前routeName: &apos;Login&apos;</div><div class="line">// 在登录页绑定Press事件去重置路由状态</div><div class="line">import &#123;NavigationActions&#125; from &apos;react-navigation&apos;</div><div class="line">...</div><div class="line">const resetActions = NavigationActions.reset(&#123;</div><div class="line"> index: 0,</div><div class="line"> actions: [NavigationActions.navigate(&#123;routeName: &apos;Main&apos;&#125;)]</div><div class="line"> &#125;);</div><div class="line"> this.props.navigation.dispatch(resetActions);</div></pre></td></tr></table></figure><h3>图片</h3><p>RN中，本地图片的导入使用<code>require(路径)</code>，多数情况下，会根据一些情况动态替换路径，但在RN中，不能直接使用一个变量传递在require中</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">tmp = this.stateisLogin ? &apos;./loout.png&apos; : &apos;./login.png&apos;  // 错误</div><div class="line">&lt;Image source=&#123;tmp&#125; /&gt;  // 错误</div><div class="line">-----------</div><div class="line"></div><div class="line">imgSource = this.state.isLogin ? require(&apos;./logout.png&apos;) : require(&apos;./login.png&apos;)</div><div class="line">&lt;Image source=&#123;imgSource &#125; /&gt;  // 正确</div></pre></td></tr></table></figure><h3>公共样式</h3><p>为方便管理一下样式，减少样板代码，把部分样式单独抽离成一个JS文件，根据项目需求把颜色赋值给变量导出，方便多处使用。以及在写组件时，根据参考其他优秀组件库，添加props允许传递样式到子组件，扩充UI组件灵活性。</p><h3>其他</h3><p>最不习惯的是，RN中没有伪类、伪元素也没有类似css3中 <code>fixed</code> 这样的属性，只能依靠<code>absolute</code>定位，导致有时候一些布局的结构没有html简洁。以及 <code>flex-direction</code> 默认值是<code>column</code>而不是 <code>row</code>，好在RN中不存在跨域问题，也可以使用 axios 库来进行请求。</p>]]></content>
     
     <summary type="html">
     
-      &lt;h1&gt;React-Native踩坑&lt;/h1&gt;
+      
+      
+        &lt;h1&gt;React-Native踩坑&lt;/h1&gt;
 &lt;p&gt;主要总结最近几天在写RN时遇到的一些差异以及坑。&lt;/p&gt;
 &lt;h3&gt;百分比&lt;/h3&gt;
 &lt;p&gt;在书写样式时，可以使用&lt;code&gt;absolute&lt;/code&gt;绝对定位，但是以往在浏览器中使用的百分比无法在RN中使用，可以用另一种折
+      
     
     </summary>
     
@@ -453,44 +440,18 @@
     <published>2017-09-05T08:33:48.000Z</published>
     <updated>2017-09-05T09:26:57.079Z</updated>
     
-    <content type="html"><![CDATA[<h2>AMD CMD之间的区别</h2>
-<h3>CMD规范</h3>
-<h4>define</h4>
-<p>cmd规范中，一个文件就是一个模块，并通过<code>define</code>关键字来定义模块。
-<code>define</code>是一个全局函数，接受参数factory，factory可以是字符串、对象或函数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">define(factory) // string/object/function of factory</div></pre></td></tr></table></figure>
-<p>当factory是函数时，接受三个参数<code>require</code>、<code>exports</code>、<code>module</code>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports, module)&#123;</div><div class="line">	//...dosomething</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p><code>define.cmd</code>是一个空对象，用来判断当前页面是否存在cmd模块加载器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">if(typeof define === &apos;function&apos; &amp;&amp; define.cmd)&#123;...&#125;</div></pre></td></tr></table></figure>
-<h4>require</h4>
-<p>require是factory中第一个参数，require作为一个<strong>方法</strong>，接受模块标识作为唯一参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports, module)&#123;</div><div class="line">	var a = require(&apos;./a&apos;);</div><div class="line">	a.someFunc(); // 调用a模块中某方法</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>require.async()可以通过异步方式加载模块，并在加载完成后执行callback（*可选）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports, module) &#123;</div><div class="line"></div><div class="line">  // 异步加载一个模块，在加载完成时，执行回调</div><div class="line">  require.async(&apos;./b&apos;, function(b) &#123;</div><div class="line">    b.doSomething();</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  // 异步加载多个模块，在加载完成时，执行回调</div><div class="line">  require.async([&apos;./c&apos;, &apos;./d&apos;], function(c, d) &#123;</div><div class="line">    c.doSomething();</div><div class="line">    d.doSomething();</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>require.resolve使用模块系统内部路径解析机制来解析并返回模块路径。该函数<strong>不会加载模块</strong>，只返回解析后的绝对路径。</p>
-<h4>exports</h4>
-<p>exports 是一个对象，用来对外提供接口。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports) &#123;</div><div class="line">	exports.bar = &apos;hello world&apos; // 对外提供bar属性</div><div class="line"></div><div class="line">	exports.foo = function()&#123;</div><div class="line">		console.log(&apos;javascript&apos;)</div><div class="line">	&#125;	// 对外提供foo方法</div></pre></td></tr></table></figure>
-<p>上面提供一种单个导出功能，亦可使用return直接返回接口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports) &#123;</div><div class="line">	</div><div class="line">	return &#123;</div><div class="line">		foo: function()&#123;&#125;,</div><div class="line">		bar: &apos;hello world&apos;</div><div class="line">	&#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>如果return语句是模块中唯一代码，可以简写为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">define(&#123;</div><div class="line">	foo: function()&#123;&#125;,</div><div class="line">	bar: &apos;hello world&apos;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p><strong>tip</strong>: <code>exports</code>是<code>module.exports</code>的引用，在<code>factory</code>中对exports重新赋值不会改变<code>module.exports</code>，只通过 <code>exports</code> 参数来提供接口，有时无法满足开发者的所有需求。 比如当模块的接口是某个类的实例时，需要通过 <code>module.exports</code>实现。</p>
-<h3>参考</h3>
-<ul>
-<li><a href="https://github.com/seajs/seajs/issues/242" target="_blank" rel="external">CMD 模块定义规范</a></li>
-<li><a href="https://div.io/topic/430" target="_blank" rel="external">再谈 SeaJS 与 RequireJS 的差异</a></li>
-</ul>
-]]></content>
+    <content type="html"><![CDATA[<h2>AMD CMD之间的区别</h2><h3>CMD规范</h3><h4>define</h4><p>cmd规范中，一个文件就是一个模块，并通过<code>define</code>关键字来定义模块。<code>define</code>是一个全局函数，接受参数factory，factory可以是字符串、对象或函数。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">define(factory) // string/object/function of factory</div></pre></td></tr></table></figure><p>当factory是函数时，接受三个参数<code>require</code>、<code>exports</code>、<code>module</code>:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports, module)&#123;</div><div class="line">//...dosomething</div><div class="line">&#125;)</div></pre></td></tr></table></figure><p><code>define.cmd</code>是一个空对象，用来判断当前页面是否存在cmd模块加载器</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">if(typeof define === &apos;function&apos; &amp;&amp; define.cmd)&#123;...&#125;</div></pre></td></tr></table></figure><h4>require</h4><p>require是factory中第一个参数，require作为一个<strong>方法</strong>，接受模块标识作为唯一参数</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports, module)&#123;</div><div class="line">var a = require(&apos;./a&apos;);</div><div class="line">a.someFunc(); // 调用a模块中某方法</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>require.async()可以通过异步方式加载模块，并在加载完成后执行callback（*可选）。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports, module) &#123;</div><div class="line"></div><div class="line">  // 异步加载一个模块，在加载完成时，执行回调</div><div class="line">  require.async(&apos;./b&apos;, function(b) &#123;</div><div class="line">    b.doSomething();</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  // 异步加载多个模块，在加载完成时，执行回调</div><div class="line">  require.async([&apos;./c&apos;, &apos;./d&apos;], function(c, d) &#123;</div><div class="line">    c.doSomething();</div><div class="line">    d.doSomething();</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure><p>require.resolve使用模块系统内部路径解析机制来解析并返回模块路径。该函数<strong>不会加载模块</strong>，只返回解析后的绝对路径。</p><h4>exports</h4><p>exports 是一个对象，用来对外提供接口。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports) &#123;</div><div class="line">exports.bar = &apos;hello world&apos; // 对外提供bar属性</div><div class="line"></div><div class="line">exports.foo = function()&#123;</div><div class="line">console.log(&apos;javascript&apos;)</div><div class="line">&#125;// 对外提供foo方法</div></pre></td></tr></table></figure><p>上面提供一种单个导出功能，亦可使用return直接返回接口</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports) &#123;</div><div class="line"></div><div class="line">return &#123;</div><div class="line">foo: function()&#123;&#125;,</div><div class="line">bar: &apos;hello world&apos;</div><div class="line">&#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure><p>如果return语句是模块中唯一代码，可以简写为</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">define(&#123;</div><div class="line">foo: function()&#123;&#125;,</div><div class="line">bar: &apos;hello world&apos;</div><div class="line">&#125;)</div></pre></td></tr></table></figure><p><strong>tip</strong>: <code>exports</code>是<code>module.exports</code>的引用，在<code>factory</code>中对exports重新赋值不会改变<code>module.exports</code>，只通过 <code>exports</code> 参数来提供接口，有时无法满足开发者的所有需求。 比如当模块的接口是某个类的实例时，需要通过 <code>module.exports</code>实现。</p><h3>参考</h3><ul><li><a href="https://github.com/seajs/seajs/issues/242" target="_blank" rel="external">CMD 模块定义规范</a></li><li><a href="https://div.io/topic/430" target="_blank" rel="external">再谈 SeaJS 与 RequireJS 的差异</a></li></ul>]]></content>
     
     <summary type="html">
     
-      &lt;h2&gt;AMD CMD之间的区别&lt;/h2&gt;
+      
+      
+        &lt;h2&gt;AMD CMD之间的区别&lt;/h2&gt;
 &lt;h3&gt;CMD规范&lt;/h3&gt;
 &lt;h4&gt;define&lt;/h4&gt;
 &lt;p&gt;cmd规范中，一个文件就是一个模块，并通过&lt;code&gt;define&lt;/code&gt;关键字来定义模块。
 &lt;code&gt;define&lt;/code&gt;是一个全局函数，接受参数fac
+      
     
     </summary>
     
@@ -504,38 +465,17 @@
     <published>2017-06-26T15:02:24.000Z</published>
     <updated>2017-09-05T09:26:57.083Z</updated>
     
-    <content type="html"><![CDATA[<h2>setState()</h2>
-<p>在使用React编写组件的过程中，几乎就是和props与state打交道的过程。</p>
-<p>维护组件内部state时，直接使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">this.setState(&#123;</div><div class="line">  key: value</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>这样去更新state的值，这样操作的方式有三点值得注意</p>
-<ol>
-<li>setState()操作是异步的</li>
-<li>多次的setState操作会合并，只执行最后一次</li>
-<li>setState通过引起组件更新来使UI层响应</li>
-</ol>
-<p>当出现一种需求，更新完state后去执行一些操作，可以这样</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">this.setState(&#123;</div><div class="line">  key: value</div><div class="line">&#125;, ()=&gt;&#123;</div><div class="line">  //do something</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>尽管这样完成了需求，但是可能会引发另一个问题，回调地狱。</p>
-<p>另一方面，this.setState()方法内不仅可以传入一个对象，也可以传入一个函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">state = &#123;</div><div class="line">  count: 0</div><div class="line">&#125;</div><div class="line">//参数state是前一刻的state，props是当前的props</div><div class="line">increment = (state, props)=&gt;&#123;</div><div class="line">  return &#123;</div><div class="line">    count: state.count + 1</div><div class="line">  &#125;</div><div class="line">&#125; </div><div class="line"></div><div class="line">incrementMultiple = () =&gt; &#123;</div><div class="line">  this.setState(increment)</div><div class="line">  this.setState(increment)</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;div onClick=&#123;incrementMultiple&#125; /&gt;</div><div class="line">//count: 2</div></pre></td></tr></table></figure>
-<p>类似于这样多次调用函数式setState，React会保证每次<code>increment</code>时，state都得到了更新。</p>
-<p>在<code>setState()</code>过程中，React将传递给<code>setState()</code>的参数对象合并到state对象中，然后启动<strong>Reconciliation</strong>，ji即创建一个新的React Element tree(UI 层面的对象表示)，然后和之前的tree做比较，根据<code>setState()</code>的对象找出变化，更新DOM重绘。</p>
-<p>在直接对<code>setState()</code>传入一个对象参数时，多次<em>调用</em>并不会得到多次执行，如同JS中<code>Object.assign()</code>方法一样，同样的key值合并，最后一次<code>key:value</code>会覆盖之前，<code>setState()</code>的多次调用也只会得到一次执行。</p>
-<p>而函数式的<code>setState()</code>是基于<strong>前一刻的state</strong>来更新当前<strong>state</strong>。</p>
-<h2>组件外部与组件内部</h2>
-<p>在以往的项目中，编写业务逻辑的代码，对state进行改变，函数总是在组件内部声明再调用，而<code>setState()</code>可以在组件外部声明state更新逻辑，在组件内部调用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">const fn (state, props) =&gt; &#123;</div><div class="line">  return &#123;score: state.score + 1&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">class OneComponent extends Component&#123;</div><div class="line">  </div><div class="line">  state = &#123;score: 0&#125;</div><div class="line">  </div><div class="line">  handleOnClick = () =&gt; &#123;</div><div class="line">    this.setState(fn)</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  render()&#123;</div><div class="line">    return(</div><div class="line">    	&lt;div onClick=&#123;this.handleOnClick&#125;&gt;&#123;this.state.score&#125;&lt;/div&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这样做有什么好处？当然不是为了炫技，这样<em>声明式</em>地更新组件，组件类无需继续关心state更新实现的逻辑，只需要在需要的时候去声明即可。</p>
-<p>甚至可以将一部分含有公共逻辑的代码抽离成模块，在组件内按需使用。</p>
-]]></content>
+    <content type="html"><![CDATA[<h2>setState()</h2><p>在使用React编写组件的过程中，几乎就是和props与state打交道的过程。</p><p>维护组件内部state时，直接使用</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">this.setState(&#123;</div><div class="line">  key: value</div><div class="line">&#125;)</div></pre></td></tr></table></figure><p>这样去更新state的值，这样操作的方式有三点值得注意</p><ol><li>setState()操作是异步的</li><li>多次的setState操作会合并，只执行最后一次</li><li>setState通过引起组件更新来使UI层响应</li></ol><p>当出现一种需求，更新完state后去执行一些操作，可以这样</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">this.setState(&#123;</div><div class="line">  key: value</div><div class="line">&#125;, ()=&gt;&#123;</div><div class="line">  //do something</div><div class="line">&#125;)</div></pre></td></tr></table></figure><p>尽管这样完成了需求，但是可能会引发另一个问题，回调地狱。</p><p>另一方面，this.setState()方法内不仅可以传入一个对象，也可以传入一个函数</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">state = &#123;</div><div class="line">  count: 0</div><div class="line">&#125;</div><div class="line">//参数state是前一刻的state，props是当前的props</div><div class="line">increment = (state, props)=&gt;&#123;</div><div class="line">  return &#123;</div><div class="line">    count: state.count + 1</div><div class="line">  &#125;</div><div class="line">&#125; </div><div class="line"></div><div class="line">incrementMultiple = () =&gt; &#123;</div><div class="line">  this.setState(increment)</div><div class="line">  this.setState(increment)</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;div onClick=&#123;incrementMultiple&#125; /&gt;</div><div class="line">//count: 2</div></pre></td></tr></table></figure><p>类似于这样多次调用函数式setState，React会保证每次<code>increment</code>时，state都得到了更新。</p><p>在<code>setState()</code>过程中，React将传递给<code>setState()</code>的参数对象合并到state对象中，然后启动<strong>Reconciliation</strong>，ji即创建一个新的React Element tree(UI 层面的对象表示)，然后和之前的tree做比较，根据<code>setState()</code>的对象找出变化，更新DOM重绘。</p><p>在直接对<code>setState()</code>传入一个对象参数时，多次<em>调用</em>并不会得到多次执行，如同JS中<code>Object.assign()</code>方法一样，同样的key值合并，最后一次<code>key:value</code>会覆盖之前，<code>setState()</code>的多次调用也只会得到一次执行。</p><p>而函数式的<code>setState()</code>是基于<strong>前一刻的state</strong>来更新当前<strong>state</strong>。</p><h2>组件外部与组件内部</h2><p>在以往的项目中，编写业务逻辑的代码，对state进行改变，函数总是在组件内部声明再调用，而<code>setState()</code>可以在组件外部声明state更新逻辑，在组件内部调用。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">const fn (state, props) =&gt; &#123;</div><div class="line">  return &#123;score: state.score + 1&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">class OneComponent extends Component&#123;</div><div class="line">  </div><div class="line">  state = &#123;score: 0&#125;</div><div class="line">  </div><div class="line">  handleOnClick = () =&gt; &#123;</div><div class="line">    this.setState(fn)</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  render()&#123;</div><div class="line">    return(</div><div class="line">    &lt;div onClick=&#123;this.handleOnClick&#125;&gt;&#123;this.state.score&#125;&lt;/div&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>这样做有什么好处？当然不是为了炫技，这样<em>声明式</em>地更新组件，组件类无需继续关心state更新实现的逻辑，只需要在需要的时候去声明即可。</p><p>甚至可以将一部分含有公共逻辑的代码抽离成模块，在组件内按需使用。</p>]]></content>
     
     <summary type="html">
     
-      &lt;h2&gt;setState()&lt;/h2&gt;
+      
+      
+        &lt;h2&gt;setState()&lt;/h2&gt;
 &lt;p&gt;在使用React编写组件的过程中，几乎就是和props与state打交道的过程。&lt;/p&gt;
 &lt;p&gt;维护组件内部state时，直接使用&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td 
+      
     
     </summary>
     
@@ -549,711 +489,19 @@
     <published>2017-06-15T13:48:36.000Z</published>
     <updated>2017-09-05T09:26:57.086Z</updated>
     
-    <content type="html"><![CDATA[<h1>基于Express&amp;githook的自动化部署</h1>
-<h2>需求</h2>
-<p>项目有一个简单的静态网站要部署到服务器，由于一些神秘的东方力量，就算是静态页面也需要改动，频繁地(22Commits，当然大多数也是样式的改写)使用SSH登陆到远程服务器，替换源文件，十分没有效率，作为2017年最会造名词搞概念的前端🐶 。懒是解放生产力进步第一要素。</p>
-<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.png" alt="示意图"></p>
-<h2>原理</h2>
-<p>git仓库支持hook（钩子），团队选用了国内开源中国的 <a href="git.oschina.net"><strong>码云</strong></a> 来托管，设置一个url，让git仓库得到push后去自动触发转发POST请求，服务器拿到POST请求后执行shell脚本，shell执行<code>git pull</code>并重启服务器，进行自动部署。</p>
-<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste_20170615_144402.png" alt="码云"></p>
-<h2>Node.js</h2>
-<p>使用express来启动一个服务，并且依赖<code>execa</code>来执行shell脚本，因为需求简单所以直接在js里写了脚本内容去执行<code>git pull</code>一条命令。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">const</span> app = express();</div><div class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>);</div><div class="line"><span class="keyword">const</span> execa = <span class="built_in">require</span>(<span class="string">'execa'</span>);</div><div class="line"><span class="keyword">const</span> PORT = <span class="number">1234</span>;</div><div class="line"><span class="keyword">const</span> PATH = <span class="string">'../projectPath'</span>;</div><div class="line"><span class="keyword">const</span> TOKEN = <span class="string">'something'</span></div><div class="line"></div><div class="line">app.use(bodyParser.json());</div><div class="line"></div><div class="line">app.post(<span class="string">'/'</span>, (req, res)=&gt;&#123;</div><div class="line"></div><div class="line">  <span class="comment">//可以根据post请求内容过滤，确保一些微小的安全性</span></div><div class="line">  <span class="keyword">if</span>(req.body.password === TOKEN)&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'post request was received'</span>)</div><div class="line">    res.send(<span class="string">'post request to server'</span>)</div><div class="line"></div><div class="line">    <span class="keyword">let</span> commands = [</div><div class="line">      <span class="string">`cd <span class="subst">$&#123;PATH&#125;</span>`</span>,</div><div class="line">      <span class="string">'git pull'</span></div><div class="line">    ].join(<span class="string">' &amp;&amp; '</span>)</div><div class="line"></div><div class="line">    execa.shell(commands).catch(<span class="function"><span class="params">err</span> =&gt;</span> <span class="built_in">console</span>.log(err))</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.listen(PORT, ()=&gt;&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`Server running at <span class="subst">$&#123;PORT&#125;</span>`</span>)</div><div class="line"></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<h2>服务器项目</h2>
-<p>首先需要在git服务器上初始化项目</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git init .</div><div class="line">//为了方便直接clone 托管在码云上的项目</div><div class="line">git clone target_address</div><div class="line">git pull</div></pre></td></tr></table></figure>
-<p>并且在服务器生成SSH，并且码云上配置好对应SSH，在本地仓库push一次然后在服务器项目中<code>git log</code>打印commit日志可以验证是否成功。</p>
-]]></content>
+    <content type="html"><![CDATA[<h1>基于Express&amp;githook的自动化部署</h1><h2>需求</h2><p>项目有一个简单的静态网站要部署到服务器，由于一些神秘的东方力量，就算是静态页面也需要改动，频繁地(22Commits，当然大多数也是样式的改写)使用SSH登陆到远程服务器，替换源文件，十分没有效率，作为2017年最会造名词搞概念的前端🐶 。懒是解放生产力进步第一要素。</p><p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.png" alt="示意图"></p><h2>原理</h2><p>git仓库支持hook（钩子），团队选用了国内开源中国的 <a href="git.oschina.net"><strong>码云</strong></a> 来托管，设置一个url，让git仓库得到push后去自动触发转发POST请求，服务器拿到POST请求后执行shell脚本，shell执行<code>git pull</code>并重启服务器，进行自动部署。</p><p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste_20170615_144402.png" alt="码云"></p><h2>Node.js</h2><p>使用express来启动一个服务，并且依赖<code>execa</code>来执行shell脚本，因为需求简单所以直接在js里写了脚本内容去执行<code>git pull</code>一条命令。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">const</span> app = express();</div><div class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>);</div><div class="line"><span class="keyword">const</span> execa = <span class="built_in">require</span>(<span class="string">'execa'</span>);</div><div class="line"><span class="keyword">const</span> PORT = <span class="number">1234</span>;</div><div class="line"><span class="keyword">const</span> PATH = <span class="string">'../projectPath'</span>;</div><div class="line"><span class="keyword">const</span> TOKEN = <span class="string">'something'</span></div><div class="line"></div><div class="line">app.use(bodyParser.json());</div><div class="line"></div><div class="line">app.post(<span class="string">'/'</span>, (req, res)=&gt;&#123;</div><div class="line"></div><div class="line">  <span class="comment">//可以根据post请求内容过滤，确保一些微小的安全性</span></div><div class="line">  <span class="keyword">if</span>(req.body.password === TOKEN)&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'post request was received'</span>)</div><div class="line">    res.send(<span class="string">'post request to server'</span>)</div><div class="line"></div><div class="line">    <span class="keyword">let</span> commands = [</div><div class="line">      <span class="string">`cd <span class="subst">$&#123;PATH&#125;</span>`</span>,</div><div class="line">      <span class="string">'git pull'</span></div><div class="line">    ].join(<span class="string">' &amp;&amp; '</span>)</div><div class="line"></div><div class="line">    execa.shell(commands).catch(<span class="function"><span class="params">err</span> =&gt;</span> <span class="built_in">console</span>.log(err))</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.listen(PORT, ()=&gt;&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`Server running at <span class="subst">$&#123;PORT&#125;</span>`</span>)</div><div class="line"></div><div class="line">&#125;)</div></pre></td></tr></table></figure><h2>服务器项目</h2><p>首先需要在git服务器上初始化项目</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git init .</div><div class="line">//为了方便直接clone 托管在码云上的项目</div><div class="line">git clone target_address</div><div class="line">git pull</div></pre></td></tr></table></figure><p>并且在服务器生成SSH，并且码云上配置好对应SSH，在本地仓库push一次然后在服务器项目中<code>git log</code>打印commit日志可以验证是否成功。</p>]]></content>
     
     <summary type="html">
     
-      &lt;h1&gt;基于Express&amp;amp;githook的自动化部署&lt;/h1&gt;
+      
+      
+        &lt;h1&gt;基于Express&amp;amp;githook的自动化部署&lt;/h1&gt;
 &lt;h2&gt;需求&lt;/h2&gt;
 &lt;p&gt;项目有一个简单的静态网站要部署到服务器，由于一些神秘的东方力量，就算是静态页面也需要改动，频繁地(22Commits，当然大多数也是样式的改写)使用SSH登陆到远程服务器，替换
+      
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>Javascript 单例模式</title>
-    <link href="http://fguizc.me/2017/06/15/Javascript-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://fguizc.me/2017/06/15/Javascript-单例模式/</id>
-    <published>2017-06-15T13:48:09.000Z</published>
-    <updated>2017-09-05T09:26:57.082Z</updated>
-    
-    <content type="html"><![CDATA[<h1>Javascript 单例模式</h1>
-<p>本篇为学习《JavaScript设计模式与开发实践》——单例模式笔记。</p>
-<h2>定义</h2>
-<blockquote>
-<p>单例模式定义：保证一个类仅有一个实例，并提供一个访问它的全局访问点</p>
-</blockquote>
-<p>具体的业务应用例如：页面存在一个唯一的登录框，点击button创建登陆框，但无论点击多少次始终只创建一次登录框。</p>
-<h2>基本实现</h2>
-<p>实现的关键在于<strong>使用一个变量来标志是否已经为某个类创建过对象</strong>，如果是则直接返回之前创建过的对象。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Singleton = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name</div><div class="line">  <span class="keyword">this</span>.instance = <span class="literal">null</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">Singleton.prototype.getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</div><div class="line">&#125;</div><div class="line"></div><div class="line">Singleton.getInstance = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span>(!<span class="keyword">this</span>.instance)&#123;</div><div class="line">    <span class="keyword">this</span>.instance = <span class="keyword">new</span> Singleton(name)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.instance</div><div class="line">  </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = Singleton.getInstance(<span class="string">'tom'</span>)</div><div class="line"><span class="keyword">var</span> b = Singleton.getInstance(<span class="string">'jerry'</span>)</div><div class="line"></div><div class="line">a === b <span class="comment">// a.name === b.name === 'tom'</span></div></pre></td></tr></table></figure>
-<p>通过<code>Singleton.getInstance</code>来获取Singleton类的唯一对象，而不是像以往通过<code>new</code>关键字来获取，使用者必须知道<code>Singleton</code>是一个单例类。</p>
-<h2>透明的单例模式</h2>
-<p>目标是实现像往常一样通过<code>new</code>关键字来实例化一个对象。以下代码的作用是在页面中创建唯一的div</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> CreateDiv = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  </div><div class="line">  <span class="keyword">var</span> instance = <span class="literal">null</span></div><div class="line">  </div><div class="line">  <span class="keyword">var</span> CreateDiv = <span class="function"><span class="keyword">function</span>(<span class="params">html</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (instance) &#123;</div><div class="line">      <span class="keyword">return</span> instance</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">this</span>.html = html</div><div class="line">    <span class="keyword">this</span>.init()</div><div class="line">    <span class="keyword">return</span> instance = <span class="keyword">this</span></div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  CreateDiv.prototype.init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> div = <span class="built_in">document</span>.createElment(<span class="string">'div'</span>)</div><div class="line">    div.innerHTML = <span class="keyword">this</span>.html</div><div class="line">    <span class="built_in">document</span>.body.appendChild(div)</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="keyword">return</span> CreateDiv</div><div class="line">&#125;)()</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> CreateDiv(<span class="string">'demo1'</span>)</div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> CreateDiv(<span class="string">'demo2'</span>)</div><div class="line"></div><div class="line">a === b <span class="comment">// true</span></div></pre></td></tr></table></figure>
-<p>以上的代码，通过创建一个立执行函数创建了一个局部变量<code>instance</code>，并且让匿名函数返回真正的<code>Singleton</code>构造方法。</p>
-<p>在内部的<code>CreateDiv</code>构造方法中，确定了两件事</p>
-<ul>
-<li>创建对象和执行初始化init方法</li>
-<li>通过一个外层的局部变量确保只创建一个对象</li>
-</ul>
-<p>根据<strong>单一职责</strong>原则，要尽可能解耦逻辑。</p>
-<h2>代理实现的单例模式</h2>
-<p>通过引入<strong>代理类</strong>的方式解决上述问题。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> CreateDiv = <span class="function"><span class="keyword">function</span>(<span class="params">html</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.html = html</div><div class="line">  <span class="keyword">this</span>.init()</div><div class="line">&#125;</div><div class="line"></div><div class="line">CreateDiv.prototype.init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> div = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>)</div><div class="line">  div.innerHTML = <span class="keyword">this</span>.html</div><div class="line">  <span class="built_in">document</span>.body.appendChild(div)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//引入代理类</span></div><div class="line"><span class="keyword">var</span> ProxySingletonCreateDiv = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  </div><div class="line">  <span class="keyword">var</span> instance = <span class="literal">null</span></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">html</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>( !instance )&#123;</div><div class="line">      instance = <span class="keyword">new</span> CreateDiv(html)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> instance</div><div class="line">  &#125;</div><div class="line">&#125;)()</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> ProxySingletonCreateDiv(<span class="string">'tom'</span>)</div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> ProxySingletonCreateDiv(<span class="string">'jerry'</span>)</div><div class="line"></div><div class="line">a === b <span class="comment">//true</span></div></pre></td></tr></table></figure>
-<p>通过引入代理类，解耦逻辑，使代理类负责管理单例的逻辑，同时CreateDiv变成了一个普通的类，通过组合它们达到单例模式的效果。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1&gt;Javascript 单例模式&lt;/h1&gt;
-&lt;p&gt;本篇为学习《JavaScript设计模式与开发实践》——单例模式笔记。&lt;/p&gt;
-&lt;h2&gt;定义&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;单例模式定义：保证一个类仅有一个实例，并提供一个访问它的全局访问点&lt;/p&gt;
-&lt;/bloc
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>DOMContentLoaded</title>
-    <link href="http://fguizc.me/2017/06/01/DOMContentLoaded/"/>
-    <id>http://fguizc.me/2017/06/01/DOMContentLoaded/</id>
-    <published>2017-06-01T13:16:10.000Z</published>
-    <updated>2017-09-05T09:26:57.081Z</updated>
-    
-    <content type="html"><![CDATA[<h1>DOMContentLoaded</h1>
-<p>本篇记录 ：Dom操作中，检测页面是否加载完毕，确保正确执行js。</p>
-<p>页面加载的过程大致可以简单分为</p>
-<ol>
-<li>DOM结构的构建</li>
-<li>解析样式，构建渲染树</li>
-<li>布局渲染树</li>
-<li>绘制渲染树</li>
-<li>加载请求资源</li>
-<li>页面加载完成</li>
-</ol>
-<h2>1. onload 事件</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">window.onload = function() &#123; //do something &#125;</div></pre></td></tr></table></figure>
-<p>以上代码是经常出现的一句，是指等待页面上<strong>所有资源</strong>加载完成后，触发window对象的load事件。</p>
-<p>而且因为浏览器渲染的过程中，代码是从上往下执行，在实际开发过程中，大量引入第三方库，相互调用，依靠onload事件的触发去执行代码。</p>
-<p>但是onload事件实际是在<strong>页面上所有元素加载完毕，并且请求资源也加载完成</strong>才触发，当页面或项目轻量时，并不会带来什么影响，但在页面上存在大量请求资源时，往往一些操作得不到反馈会降低用户体验。</p>
-<h2>2.jQuery  ready</h2>
-<p>jquery中的$(document).ready(function(){})方法，就是对onload事件的一个改良，它被触发是在DOM结构被绘制完成，要先于window.onload。实际上jq就是监听了DOMContentLoaded事件。</p>
-<h2>3.DOMContentLoaded 事件</h2>
-<p>DOMContentLoaded事件是w3c对onload事件的一个补充。当初始 HTML 文档已经完成加载和解析时，DOMContentLoaded 事件将被触发，无需等待样式表、图像和子框架的完全加载。</p>
-<pre><code>window.onload = function() {
-  console.log('页面加载完成')
-}
-
-document.addEventListener('DOMContentLoaded', function(e){
-  console.log('dom绘制完成')
-}, false)
-
-// dom绘制完成  页面加载完成
-</code></pre>
-<p>在现代浏览器中，通过添加事件监听的方式来绑定事件。</p>
-<p>虽然IE不支持<code>DOMContentLoaded</code>，但它支持<code>onreadystatechange</code>事件。同时，为js设置异步加载的“defer”和“async”属性也会影响DOMContentLoaded的执行。在开发中，我们可以使用DOMContentLoaded事件的监听来提升用户体验。</p>
-<p>参考：</p>
-<p><a href="https://segmentfault.com/a/1190000005869515" target="_blank" rel="external"><a href="https://segmentfault.com/a/1190000005869515" target="_blank" rel="external">浅谈DOMContentLoaded事件及其封装方法</a></a></p>
-<p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&mid=2651226247&idx=1&sn=8595a53fe98a3225d0cf0ce3f8ff2acc&chksm=bd4959038a3ed015c3d03fcdadcdabf4225a7eee4efb1988becd9ae3cd87f2216a34717383bc&mpshare=1&scene=1&srcid=0403gXzWL8aSq91TuBoqyFtm&key=19bca82a00e28dcd2ee4826d029205065cd6e6bbcc6f97f2da04129789e26a00b82cc9fccc4f838fc1bda9d9935ab03cc482bfcee734dd40c175fe0d882d0518c4ecf63d82e3d78471415eee960f66cc&ascene=0&uin=NzM0NTM5MzQx&devicetype=iMac+MacBookPro12%2C1+OSX+OSX+10.11.6+build(15G31)&version=12020110&nettype=WIFI&fontScale=100&pass_ticket=2uOqWTPNenLxF7wD%2F%2Bi%2F0TK60XMDQLdZ%2Bk2hyDjtKZsM9jitnQM4c%2B5cVfq0SJLP" target="_blank" rel="external">你不知道的 DOMContentLoaded</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1&gt;DOMContentLoaded&lt;/h1&gt;
-&lt;p&gt;本篇记录 ：Dom操作中，检测页面是否加载完毕，确保正确执行js。&lt;/p&gt;
-&lt;p&gt;页面加载的过程大致可以简单分为&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;DOM结构的构建&lt;/li&gt;
-&lt;li&gt;解析样式，构建渲染树&lt;/li&gt;
-&lt;li&gt;布局渲
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>mongoDB</title>
-    <link href="http://fguizc.me/2017/04/30/mongoDB/"/>
-    <id>http://fguizc.me/2017/04/30/mongoDB/</id>
-    <published>2017-04-30T09:40:03.000Z</published>
-    <updated>2017-09-05T09:26:57.084Z</updated>
-    
-    <content type="html"><![CDATA[<h3>阿里云上部署Node.js</h3>
-<p>使用了<strong>xshell</strong> 教育版去远程连接阿里云，如下图所示，填写完相应的主机号和登陆账户密码后即可连接。
-<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20170430_174229.png" alt=""></p>
-<ol>
-<li>首先更新系统</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y update</div></pre></td></tr></table></figure>
-<ol start="2">
-<li>安装开发工具
-因为阿里云的centOS是纯净的所以需要安装开发者工具，此处踩坑，因为第一次没有安装，后面报了丢失<code>g++</code>的错误</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y groupinstall &quot;Development Tools&quot;</div></pre></td></tr></table></figure>
-<ol start="3">
-<li>安装Node.js
-从<a href="http://nodejs.org/dist" target="_blank" rel="external">Node.js的官网</a>上安装压缩包，个人选择版本是最新的版本，因为想用async/awit语法</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//进入对应的文件夹</div><div class="line">cd /usr/src</div><div class="line">//安装Node</div><div class="line">wget http://nodejs.org/dist/latest/node-v7.9.0.tar.gz</div></pre></td></tr></table></figure>
-<ol start="4">
-<li>解压
-等待一段时间下载完成后(暂时没有遇到网络问题，也可通过下载到本地，再推送到阿里云上安装Node)，解压下载的Node压缩文件，(Linux系统中不以文件后缀名区分文件，后缀名仅供用户了解是何种文件以及声明解压方式)</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar zxf node-v7.9.0.tar.gz </div><div class="line">cd node-v7.9.0</div></pre></td></tr></table></figure>
-<ol start="5">
-<li>执行配置脚本和编译</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//执行配置脚本</div><div class="line">./configure</div><div class="line">//完成后编译源码</div><div class="line">//此处可能出现丢失g++等错误!原因如步骤2</div><div class="line">make</div><div class="line">//编译完成后再执行</div><div class="line">make install</div></pre></td></tr></table></figure>
-<ol start="6">
-<li>安装需求模块
-这个时候我们的Node已经安装完成，可以通过npm -v 来查看，然后再通过npm命令行安装模块，此处因为网络问题我用<code>nrm</code>切换到了淘宝源进行安装</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm -g install express forever</div></pre></td></tr></table></figure>
-<ol start="7">
-<li>建立超级连接
-这一步不知道是干什么用的，但是搜了好几个教程都有就老老实实跟着复制粘贴</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sudo ln -s /usr/local/bin/node /usr/bin/node </div><div class="line">sudo ln -s /usr/local/lib/node /usr/lib/node </div><div class="line">sudo ln -s /usr/local/bin/npm /usr/bin/npm </div><div class="line">sudo ln -s /usr/local/bin/node-waf /usr/bin/node-waf </div><div class="line">sudo ln -s /usr/local/bin/forever /usr/bin/forever</div></pre></td></tr></table></figure>
-<p>到此Node就算安装完成</p>
-<h3>安装MongoDB</h3>
-<h3>Node.js操作MongoDB——Mongoose</h3>
-<p>因为没有后端和数据库经验，所以选择容易上手Mongoose库，Mongoose将数据库中的数据转换为JS对象来进行操作。</p>
-<p>参考:</p>
-<p><a href="https://segmentfault.com/a/1190000004051670" target="_blank" rel="external">把Node.js项目部署到阿里云服务器（CentOs）</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3&gt;阿里云上部署Node.js&lt;/h3&gt;
-&lt;p&gt;使用了&lt;strong&gt;xshell&lt;/strong&gt; 教育版去远程连接阿里云，如下图所示，填写完相应的主机号和登陆账户密码后即可连接。
-&lt;img src=&quot;http://7xv8p5.com1.z0.glb.clouddn.co
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>基于Node和MongoDB实现Vue.js简单的JWT单点登录</title>
-    <link href="http://fguizc.me/2017/04/26/%E5%9F%BA%E4%BA%8ENode%E5%92%8CMongoDB%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84JWT%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
-    <id>http://fguizc.me/2017/04/26/基于Node和MongoDB实现简单的JWT单点登录/</id>
-    <published>2017-04-26T13:30:21.000Z</published>
-    <updated>2017-09-05T09:26:57.086Z</updated>
-    
-    <content type="html"><![CDATA[<p>该篇主要记录毕业设计中基于Vue全家桶+Node+MongoDB实现的简单登陆。
-##什么是JWT
-JWT即JSON Web Token，它是一个<strong>规范</strong>，允许我们使用JWT在用户和服务器之间传递信息。
-JWT的组成是由三个部分。</p>
-<ol>
-<li>头部</li>
-<li>载荷</li>
-<li>签名
-载荷(Payload)</li>
-</ol>
-<h2>Vuex</h2>
-<p>本来最开始想着毕业设计这个小项目也没有多复杂，就不上状态管理了，结果…，一天不用浑身难受。
-其实我们主要是实现<strong>登录</strong>，<strong>注销</strong>这两个操作的action分发。
-代码如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">//action</div><div class="line">import * as types from &apos;./types&apos;</div><div class="line">const actions = &#123;</div><div class="line">    UserLogin(&#123;commit&#125;, data) &#123;</div><div class="line">        commit(types.LOGIN, data)</div><div class="line">    &#125;,</div><div class="line">    UserLogout(&#123;commit&#125;) &#123;</div><div class="line">        commit(types.LOGOUT)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//mutation</div><div class="line">import * as types from &apos;./types&apos;</div><div class="line">const mutations = &#123;</div><div class="line">    [types.LOGIN]: (state, token) =&gt; &#123;</div><div class="line">    localStorage.setItem(&apos;token&apos;, token)</div><div class="line">    state.token = token</div><div class="line">  &#125;,</div><div class="line">  [types.LOGOUT]: (state) =&gt;　&#123;</div><div class="line">    state.token = null</div><div class="line">    localStorage.removeItem(&apos;token&apos;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2>Vue Router</h2>
-<p>使用vue router设置路由的时候，我们依靠<strong>导航钩子</strong>来实现对用户登录信息的检测，**beforeEach(to, from, next)**钩子函数是关键。
-我们如下定义</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">const router = new VueRouter()</div><div class="line">router.beforeEach((to, from, next) =&gt; &#123;</div><div class="line">// do something    </div><div class="line"> &#125;)</div></pre></td></tr></table></figure>
-<p>此处三个参数<code>to</code>,<code>from</code>,<code>next</code>:
-<code>to: Route</code>: 表示即将要进入的目标的<strong>路由对象</strong>
-<code>from Route</code>: 表示当前导航将要离开的路由
-<code>next Function</code>: 确保要准确调用next()来resolve钩子，可以通过<code>next({path: '/...'})</code>来手动跳转，
-在<strong>路由对象</strong>中，我们可以设置一个<strong>路由元信息</strong>即<code>meta</code>，举个栗子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">const router = new VueRouter(&#123;</div><div class="line">  routes: [</div><div class="line">    &#123;</div><div class="line">      path: &apos;/foo&apos;,</div><div class="line">      component: Foo,</div><div class="line">      children: [</div><div class="line">        &#123;</div><div class="line">          path: &apos;bar&apos;,</div><div class="line">          component: Bar,</div><div class="line">          // a meta field</div><div class="line">          meta: &#123; requiresAuth: true &#125;</div><div class="line">        &#125;</div><div class="line">      ]</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>在这里我们就设置了<code>meta</code>以及它的一个属性<code>requireAuth</code>，结合上面的<code>beforeEach()</code>函数，我们可以去检测，当每一次路由发生改变时的jwt是否合法，如果不合法我们就可以通过<code>next()</code>跳转到登录页。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">router.beforeEach((to, from, next) =&gt; &#123;</div><div class="line">  let token = localStorage.getItem(&apos;token&apos;)  </div><div class="line">  if (to.matched.some(record =&gt; record.meta.requiresAuth)) &#123;</div><div class="line">    // this route requires auth, check if logged in</div><div class="line">    // if not, redirect to login page.</div><div class="line">    if (!token) &#123;</div><div class="line">      next(&#123;</div><div class="line">        path: &apos;/login&apos;,</div><div class="line">        query: &#123; redirect: to.fullPath &#125;</div><div class="line">      &#125;)</div><div class="line">    &#125; else &#123;</div><div class="line">      next()</div><div class="line">    &#125;</div><div class="line">  &#125; else &#123;</div><div class="line">    next() // 确保一定要调用 next()</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>至此，我们就算实现了一个简单的登陆拦截</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;该篇主要记录毕业设计中基于Vue全家桶+Node+MongoDB实现的简单登陆。
-##什么是JWT
-JWT即JSON Web Token，它是一个&lt;strong&gt;规范&lt;/strong&gt;，允许我们使用JWT在用户和服务器之间传递信息。
-JWT的组成是由三个部分。&lt;/p&gt;
-&lt;o
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>less</title>
-    <link href="http://fguizc.me/2017/03/01/less/"/>
-    <id>http://fguizc.me/2017/03/01/less/</id>
-    <published>2017-03-01T12:55:29.000Z</published>
-    <updated>2017-09-05T09:26:57.084Z</updated>
-    
-    <content type="html"><![CDATA[<p>记录LESS中常用的语法及规则</p>
-<h3>定义变量</h3>
-<pre><code>@contentBox_width: 20px;
-.contentBox{
-    width: @contentBox_width;
-}
-
-//编译后
-.contentBox{width:20px}
-</code></pre>
-<h3>混合</h3>
-<p>less中的混合实际上就是调用了已存在的样式</p>
-<pre><code>.demo_01{color: red}
-.demo_02{.demo_01}
-//编译后
-.demo_01{color: red}
-.demo_02{color: red}
-</code></pre>
-<p>和sass中的mixin类似，可以用变量替代属性的具体值，并且能设定默认值</p>
-<pre><code>.demo_01(@direction: row) {
- display: flex;
- flex-direction: @direction;
-}
-.demo_02{
- .demo_01(column)
-}
-//编译后
-.demo_01{
- display:flex;
- flex-direction:row;
-}
-.demo_02{
-  display:flex;
-  flex-direction: column
-}
-</code></pre>
-<p><strong>注意</strong>: 不推荐使用混合来兼容浏览器私有前缀，请使用postcss—autoprefixer</p>
-<h3>匹配模式</h3>
-<p>即判断语句,和sass中的if语句是有略微区别的</p>
-<pre><code>.less
-.pos(r){position: relative}
-.pos(a){position: absolute}
-.demo{.pos(r)}
-//编译后
-.demo{position: relative}
-</code></pre>
-<p>个人觉得less中的匹配模式并非真正意义上的判断，充其量也是基于<code>混合</code>语法来做冗余代码</p>
-<pre><code>.scss
-$fontSize: 10px;
-	p{
-		@if $fontSize == 10px {
-			font-size: 1rem;
-			}
-		@else {
-			font-size: 2rem;
-			}
-	}
-</code></pre>
-<h3>运算</h3>
-<p>less中的运算实际上在<code>css3</code>有一部分支持比如</p>
-<pre><code>.less
-@w:200px
-.content{ width: @w - 20 }
-//编译后
-.content{ width: 180px}
-
-.css
-.content{ calc( 200px -20 ) }
-</code></pre>
-<p>less中的运算也可用于颜色</p>
-<h3>嵌套</h3>
-<p>和scss一致</p>
-<pre><code>.a{
-color:red;
-span{
-    font-size: 20px;
-    &amp;:hover{color: green}
- }}
-//编译后
-.a{color: red}
-.a span {font-size: 20px}
-.a span:hover{color: green}
-</code></pre>
-<h3>argument</h3>
-<p>语法规则类似于es6中的<code>...</code>展开运算符</p>
-<pre><code>.demo(@w: 10px,@c: #ccc, @s: solid){
-    border: @arguments
-}
-//编译后
-.demo{border: 10px #ccc solid}
-</code></pre>
-<h3>字符串插值</h3>
-<p>类似于ES6中字符串模板
-@base-url: “<a href="//demo.test.com">//demo.test.com</a>”
-.demo{background-image: url(&quot;@{base-url}/img/pic01.png&quot;)}</p>
-<h3>避免编译</h3>
-<p>规则为 [属性名]: ~`属性值`</p>
-<pre><code>.demo{width: ~&quot;calc( 200px -20px )&quot;}
-</code></pre>
-<p>为避免less直接编译</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;记录LESS中常用的语法及规则&lt;/p&gt;
-&lt;h3&gt;定义变量&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;@contentBox_width: 20px;
-.contentBox{
-    width: @contentBox_width;
-}
-
-//编译后
-.contentBox{wid
-    
-    </summary>
-    
-    
-      <category term="css" scheme="http://fguizc.me/tags/css/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>async&amp;await&amp;fetchAPI</title>
-    <link href="http://fguizc.me/2017/02/15/async_await&amp;fetchAPI/"/>
-    <id>http://fguizc.me/2017/02/15/async_await&amp;fetchAPI/</id>
-    <published>2017-02-15T12:51:30.000Z</published>
-    <updated>2017-09-05T09:26:57.083Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>async function 声明了一个异步函数，并返回一个AsyncFunction 对象</p>
-</blockquote>
-<p>async 表示一个 <code>async function</code> , await 只能用在该函数内, 而且await需要<strong>等待Promise返回值后</strong>才会继续执行</p>
-<h4>语法</h4>
-<pre>async function name (arguments) {
-	do something
-}</pre>
-<p>name : 函数名<br>
-arguments: 参数<br></p>
-<pre><code>function printf(val){
-	return new Promise(function(resolve, reject){
-		setTimeout(function(){
-			resolve(val)
-		},2000)
-	})
-}
-
-let fn = async function () {
-	console.log('start')
-	let a = await printf(10)
-	console.log(a)
-	console.log('end')
-}
-
-fn()
-//start
-//等待2s后打印出10
-//end
-</code></pre>
-<p>上面的例子中，写法看起来就像写同步代码一样，而且await虽然等待的是Promise对象，但是不用<code>then(...)</code>就可以得到返回值</p>
-<p>!<strong>注意</strong>:Promise分为三个阶段,<br>分别是 <strong>pending,fulfilled,rejected</strong>,<br>且只能 pending &gt;&gt;&gt; fulfilled 或 pending &gt;&gt;&gt; rejected 状态不可逆</p>
-<pre><code>let fn = (time)=&gt;{
-	return new Promise((resolve, reject)=&gt;{
-		setTimeout(function(){
-			reject('error')
-		},time)
-	})
-}
-
-let start = async function () {
-	try {
-		console.log('start')
-		await fn(2000)
-		// console.log('end') 不会被执行
-		console.log('end')
-	} catch (err) {
-		console.log(err)
-		}
-}
-
-start()
-//start
-//2s后打印 error
-//不会执行console.log('end')
-</code></pre>
-<p>循环中的await<br>
-在es5中我们不使用闭包情况下</p>
-<pre><code>for(var i = 0 ; i &lt; 5 ; i++){
-	setTimeout(function(){
-		console.log(i) //打印5次5
-	},0)
-}
-</code></pre>
-<p>使用await</p>
-<pre><code>let fn1 = function () {
-	return new Promise((resolve)=&gt;{
-		setTimeout(function(){
-			resolve()
-		},1000)
-	})
-}
-
-let fn2 = async function () {
-	for(var i = 0 ; i &lt; 5 ; i++){
-		console.log(`第${i}次输出`)
-		await fn1()
-	}
-}
-
-fn2()
-</code></pre>
-<p>虽然看起来复杂很多，重点其实还是上面提到<strong>await必须在async function 上下文环境中使用</strong></p>
-<hr>
-<p>下次再写fetchAPI</p>
-<p>参考:
-<a href="http://ju.outofmemory.cn/entry/300679" target="_blank" rel="external">1</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;async function 声明了一个异步函数，并返回一个AsyncFunction 对象&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;async 表示一个 &lt;code&gt;async function&lt;/code&gt; , await 只能用在该函数内,
-    
-    </summary>
-    
-    
-      <category term="es7" scheme="http://fguizc.me/tags/es7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>什么姿势才能得到正确微博时间线</title>
-    <link href="http://fguizc.me/2017/01/13/%E4%BB%80%E4%B9%88%E5%A7%BF%E5%8A%BF%E6%89%8D%E8%83%BD%E5%BE%97%E5%88%B0%E6%AD%A3%E7%A1%AE%E5%BE%AE%E5%8D%9A%E6%97%B6%E9%97%B4%E7%BA%BF/"/>
-    <id>http://fguizc.me/2017/01/13/什么姿势才能得到正确微博时间线/</id>
-    <published>2017-01-13T10:57:07.000Z</published>
-    <updated>2017-09-05T09:26:57.085Z</updated>
-    
-    <content type="html"><![CDATA[<h1>如何在[文明用语]的微博下找到刷微博的正确姿势？</h1>
-<p>最近帮助了一些小伙伴重新找回畅快刷微博，为了帮助更多人，由此有了这篇教程，仅仅针对于使用<strong>网页微博</strong>的环境。</p>
-<h2>一.准备工作</h2>
-<p>工欲善其事必先利其器，Chrome或者国内Chrome内核浏览器，以及<strong>自备梯子</strong>。<br>
-在Chrome Appstroe里面找到我们必备的两款插件。</p>
-<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20170113_191539.png" alt=""><br></p>
-<p><a href="https://chrome.google.com/webstore/search/violent%20monkey?utm_source=chrome-ntp-icon" target="_blank" rel="external">Violent monkey</a></p>
-<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20170113_191526.png" alt=""><br></p>
-<p><a href="https://chrome.google.com/webstore/search/Stylish?utm_source=chrome-ntp-icon" target="_blank" rel="external">Stylish</a></p>
-<p>Violent Monkey负责加载第三方JS文件，Stylish负责更改样式。</p>
-<h2>二.少说话看东西</h2>
-<p>在我们安装完上述两款插件后，打开<a href="http://weibo.com" target="_blank" rel="external">weibo</a>并登陆，可以在插件栏上看到这两款图标 <img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20170113_192314.png" alt="">，当然你可以没有角标数字。<br>
-我们先打开<a href="https://tiansh.github.io/yawf/zh-cn.html" target="_blank" rel="external">这个网站</a>(可能需要梯子)，我们可以看到下图，点击安装脚本。
-<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20170113_193040.png" alt=""><br>
-接着我们点击Stylish，找到你觉得合适美观的样式并安装。此处个人推荐<strong>weibo_v6</strong>，当然你如果了解CSS你也可以根据自己的需求来更改。
-<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20170113_193226.png" alt="">
-<br></p>
-<p>我们刷新微博页面。在顶部可以找到下图标记。
-<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20170113_193549.png" alt="">
-<br></p>
-<p>点击后如下图<br>
-<img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20170113_193622.png" alt="">
-勾选后，就能使用<strong>正常顺序的时间线</strong>浏览微博，再也不用把所有关注放在一个分组或者其他玄学方法。而且在过滤器设置里面还可以<strong>改造版面</strong>屏蔽微博上莫名其妙活动让ID后面带上的小图标，以及其他功能可以自行探索。<br>
-最后感谢一下 <strong>YAWF脚本脚本</strong> 作者<a href="http://weibo.com/tsh90?profile_ftype=1&amp;is_all=1#_0" target="_blank" rel="external">@tsh90 </a>带来的便利。</p>
-<h2>三.结语和其他</h2>
-<p>对于微博打乱时间线这件事不做评价，但必须说网页微博的体验实在是糟糕，于是有了更清奇的访问方式。</p>
-<p><img src="http://7xv8p5.com1.z0.glb.clouddn.com/snipaste20170113_194847.png" alt="">
-<br></p>
-<p>以及两款插件均可搜索到适配<strong>大部分主流网站(诸如B站)</strong><br>
-最后希望大家早日找回自己想要的时间线。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1&gt;如何在[文明用语]的微博下找到刷微博的正确姿势？&lt;/h1&gt;
-&lt;p&gt;最近帮助了一些小伙伴重新找回畅快刷微博，为了帮助更多人，由此有了这篇教程，仅仅针对于使用&lt;strong&gt;网页微博&lt;/strong&gt;的环境。&lt;/p&gt;
-&lt;h2&gt;一.准备工作&lt;/h2&gt;
-&lt;p&gt;工欲善其事必先利其器
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>JS中的遍历方法</title>
-    <link href="http://fguizc.me/2017/01/08/JS%E4%B8%AD%E7%9A%84%E9%81%8D%E5%8E%86%E6%96%B9%E6%B3%95/"/>
-    <id>http://fguizc.me/2017/01/08/JS中的遍历方法/</id>
-    <published>2017-01-08T15:00:46.000Z</published>
-    <updated>2017-09-05T09:26:57.082Z</updated>
-    
-    <content type="html"><![CDATA[<h1>记录JS中主要的循环方法(forEach、map、reduce、for of、for in)之间的异同</h1>
-<p>笔记中的“循环”并非严格意义上的循环，包括像 <code>Array.prototype.reduce()</code> 这种 <code>累加器</code> 也一并记录，应该用 [遍历] 更符合。</p>
-<h2>Array.prototype.forEach()</h2>
-<p>先看🌰再说话</p>
-<pre><code>//假定我们有一个数组
-let arr = [1,2,undefined,'a','b',{key1:'val1',key2:'val2'}]
-arr.forEach(function(value){
-	console.log(value)
-	//1,2,'a','b',Object {key1: &quot;val1&quot;,key2: &quot;val2&quot;}
-})
-</code></pre>
-<h4>语法</h4>
-<blockquote>
-<p>Array.forEach(callback[, thisArg])</p>
-</blockquote>
-<h4>参数</h4>
-<p>callback<br>
-　　函数为数组中的每个元素执行方法，并接受最多三个参数<br>
-　　currentValue,index,array<br>
-　　<strong>currentValue</strong>　代表callback正在处理的数组的当前元素<br>
-　　<strong>index</strong> 　　　　 代表其索引<br>
-　　<strong>array</strong>　　　　　代表正在应用forEach()的数组</p>
-<p>thisArg<br>
-　　当callback执行时，this的指向</p>
-<h4>理解</h4>
-<p>forEach()为数组每一个有效元素 <strong>(包括值为undefined)</strong> 进行遍历并执行callback</p>
-<h2>Array.prototype.map()</h2>
-<pre><code>let arr = [1,2,undefined,'a','b',{key1:'val1',key2:'val2'}]
-const new_arr = arr.map(val=&gt;val)
-console.log(new_arr)
-//1,2,'a','b',Object {key1: &quot;val1&quot;,key2: &quot;val2&quot;}
-</code></pre>
-<p>粗略看map()似乎和forEach()方法没有不同，再看一个栗子</p>
-<pre><code>let arr = [1,2,3,4]
-arr.map(val=&gt;val += 1)
-//[2,3,4,5]
-console.log(arr)
-//[1,2,3,4]
-</code></pre>
-<p>可见map()返回了一个新数组，新数组是由回调函数的返回值组成<br>
-例如</p>
-<pre><code>let ele = document.querySelectorAll('input:checked')
-let val = Array.prototype.map.call(ele,function (obj) {
-	return obj.value
-})
-</code></pre>
-<p>通过map()来取得所有复选框的值</p>
-<h2>Array.prototype.reduce()</h2>
-<pre><code>let arr = [23,315,67,2]
-arr.reduce((a,b)=&gt;{return a+b})
-//407
-</code></pre>
-<h4>语法</h4>
-<blockquote>
-<p>arr.prototype.reduce(callback[,initialValue])</p>
-</blockquote>
-<h4>参数</h4>
-<p>callback<br>
-　　callback提供最多四个参数prev,currentValue,index,array<br>
-　　prev 代表上一次调用回调返回的值或者提供的初始值<strong>initialValue</strong><br>
-　　currentValue 代表当前callback处理的array的元素<br>
-　　index 代表其在数组中的索引值<br>
-　　array 代表调用的数组</p>
-<p>initialValue<br>
-　　第一次调用callback时callback的第一个参数值</p>
-<h2>for…of</h2>
-<p>for…of作为在<strong>可迭代对象</strong>上创建一个迭代循环</p>
-<h4>语法</h4>
-<blockquote>
-<p>for (variable of obj) {
-	statement
-}</p>
-</blockquote>
-<h4>参数</h4>
-<p>variable<br>
-　　每一次迭代不同属性的属性值会被赋值给该变量</p>
-<p>obj<br>
-　　一个可以迭代的对象</p>
-<h4>理解</h4>
-<p>for…of相比forEach()支持了 <code>break,continue,return</code> 语句
-，for…of不仅仅支持对数组的遍历，还支持遍历 <strong>字符串、类数组（如DOM对象合集）等</strong></p>
-<h2>for…in</h2>
-<pre><code>//依旧使用上面的数组
-let arr = [1,2,undefined,'a','b',{key1:'val1',key2:'val2'}]
-for( let i in arr ) { console.log( i ) }
-//0,1,2,3,4,5
-for( let j in arr[5]) {console.log( j ) }
-//key1,key2
-</code></pre>
-<h4>语法</h4>
-<blockquote>
-<p>for( variable in object ) {…}</p>
-</blockquote>
-<h4>参数</h4>
-<p>variable<br>
-　　每次迭代，一个不同的属性名将会赋予 variable</p>
-<p>object<br>
-　　可枚举属性被迭代的对象</p>
-<h4>理解</h4>
-<p>for…in循环只遍历可枚举属性，for…in更适合用于迭代一个对象的属性，如果用for…in在数组中，迭代的是index值</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1&gt;记录JS中主要的循环方法(forEach、map、reduce、for of、for in)之间的异同&lt;/h1&gt;
-&lt;p&gt;笔记中的“循环”并非严格意义上的循环，包括像 &lt;code&gt;Array.prototype.reduce()&lt;/code&gt; 这种 &lt;code&gt;累加器&lt;/c
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>httP_header</title>
-    <link href="http://fguizc.me/2017/01/01/http-header/"/>
-    <id>http://fguizc.me/2017/01/01/http-header/</id>
-    <published>2017-01-01T12:50:34.000Z</published>
-    <updated>2017-09-05T09:26:57.084Z</updated>
-    
-    <content type="html"><![CDATA[<p><code>HTTP消息头</code> 是指在超文本传输协议（HTTP）的请求和响应消息中的消息头部分。它们定义了一个超文本传输协议事务中的操作参数。是在请求（request）或响应（response）行（一条消息的第一行内容）之后传输的。</p>
-<h4>HTTP请求头</h4>
-<table style="text-align:center;">
-	<thead>
-		<th>协议头</th><th>说明</th><th>示例</th><th>状态</th>
-	</thead>
-	<tbody>
-		<tr><td>Accept</td><td>可接受的响应内容类型(Content-Types)</td><td>Accept: text/plain</td><td>固定</td></tr>
-		<tr><td>Accept-Charset</td><td>可接受的字符集</td><td>Accept-Charset: utf-8</td><td>固定</td></tr>
-		<tr><td>Accept-Encoding</td><td>可接受的编码方式</td><td>Accept-Encoding: gzip,deflate/plain</td><td>固定</td></tr>
-		<tr><td>Cache-Control</td><td>指定本次请求/响应链中的缓存机制都必须执行的指令</td><td>Cache-Control: no-cache || max-age = 0</td><td>固定</td></tr>
-		<tr><td>Content-Type</td><td>请求体的多媒体类型</td><td>Content-Type: text/plain;charset=UTF-8</td><td>固定</td></tr>
-		<tr><td>Cookie</td><td>由之前服务器通过Set-Cookie（见下文）设置的一个HTTP协议Cookie</td><td>Cookie: $Version=1; Skin=new;</td><td>固定</td></tr>
-		<tr><td>User-Agent</td><td>用户代理（标记用户浏览器身份的字符串）</td><td>Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.8</td><td>固定</td></tr>
-	</tbody>
-</table>
-<h4>HTTP响应头</h4>
-<table style="text-align:center">
-	<thead>
-		<th>协议头</th><th>说明</th><th>示例</th><th>状态</th>
-	</thead>
-	<tbody>
-		<tr><td>Status</td><td>通用网关接口的响应头字段，用来说明当前HTTP连接的响应状态</td><td>Status: 200 </td><td></td></tr>
-		<tr><td>Server</td><td>服务器的名字</td><td>Server: mw1252.eqiad.wmnet</td><td>固定</td></tr>
-		<tr><td>Date</td><td>此条消息被发送时的日期和时间</td><td>Date: Wed, 15 Feb 2017 14:41:22 GMT</td><td>固定</td></tr>
-		<tr><td>Last-Modified</td><td>所请求的对象的最后修改日期</td><td>Last-Modified: Tue, 15 Nov 1994 12:45:26 GMT</td><td>固定</td></tr>
-	</tbody>
-</table>
-<br>
-<br>
-<p><a href="http://fguizc.xyz/2016/12/08/About-cache/" target="_blank" rel="external">关于缓存</a><br>
-<a href="http://fguizc.xyz/2016/12/05/About%20Ajax/" target="_blank" rel="external">关于常见status code</a></p>
-<p>参考：<a href="https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5%E5%88%97%E8%A1%A8" target="_blank" rel="external">维基百科</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;code&gt;HTTP消息头&lt;/code&gt; 是指在超文本传输协议（HTTP）的请求和响应消息中的消息头部分。它们定义了一个超文本传输协议事务中的操作参数。是在请求（request）或响应（response）行（一条消息的第一行内容）之后传输的。&lt;/p&gt;
-&lt;h4&gt;HTTP请求头
-    
-    </summary>
-    
-    
-      <category term="http" scheme="http://fguizc.me/tags/http/"/>
     
   </entry>
   
