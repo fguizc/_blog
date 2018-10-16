@@ -5,9 +5,9 @@
   <subtitle>鲜衣白马千街游你从眉梢过</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://fguizc.xyz/"/>
-  <updated>2018-06-03T09:22:43.910Z</updated>
-  <id>http://fguizc.xyz/</id>
+  <link href="https://fguizc.xyz/"/>
+  <updated>2018-10-08T08:15:23.320Z</updated>
+  <id>https://fguizc.xyz/</id>
   
   <author>
     <name>fguizc</name>
@@ -17,74 +17,58 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>vue-loader 原理</title>
-    <link href="http://fguizc.xyz/2018/06/03/vue-loader%20%E5%8E%9F%E7%90%86/"/>
-    <id>http://fguizc.xyz/2018/06/03/vue-loader 原理/</id>
-    <published>2018-06-03T09:21:48.601Z</published>
-    <updated>2018-06-03T09:22:43.910Z</updated>
+    <title>VSCode 配置 Golang</title>
+    <link href="https://fguizc.xyz/2018/10/16/VSCode%20%E9%85%8D%E7%BD%AE%20Golang/"/>
+    <id>https://fguizc.xyz/2018/10/16/VSCode 配置 Golang/</id>
+    <published>2018-10-16T12:05:43.081Z</published>
+    <updated>2018-10-08T08:15:23.320Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://www.technotification.com/wp-content/uploads/2016/06/New-Programming-Languages-GO.png" alt="Golang"></p><p>由于一个众所周知的原因，并不能顺畅地在VSCode内安装完Go插件后自动安装其所需要的依赖。</p><h2>Windows</h2><p>在win10下安装完成Go后（没有更改默认配置，直接装到了C盘），可以找到系统配置并且自动完成了<code>GoPath</code>和<code>GoRoot</code>的配置。</p><ol><li>命令行进入到<code>GoPath</code>对应路径，于<code>src</code>目录下创建<code>golang.org/x</code>路径</li><li>执行<code>git clone [https://github.com/golang/tools.git](https://github.com/golang/tools.git) tools</code>，将Golang在github上提供的镜像包clone到本地</li><li>在VSCode使用命令行进入到步骤2的路径，依次安装Go插件提示的缺失部分</li><li>其中<code>golint</code>没有直接包含在<code>tools</code>，需要额外在<code>$GOPATH/src/golang.org/x</code>下再下次一次<code>git clone https://github.com/golang/lint.git</code></li><li>再次于命令行内进入<code>GoPath</code>执行<code>go install golang.org/x/lint/golint</code></li></ol><p>事实上在我查询google的过程中，大多数推荐使用<code>go get -u -v url</code>去下载，然而即便挂上了全局代理也依旧失败。<code>go get</code>本质是从给定的url下载或更新指定的包，并对他们进行编译和安装。因此曲折一点的办法就是先把这些包下载下来，再通过<code>go install</code>完成安装。</p>]]></content>
     
     <summary type="html">
     
+      
+      
+        &lt;p&gt;&lt;img src=&quot;https://www.technotification.com/wp-content/uploads/2016/06/New-Programming-Languages-GO.png&quot; alt=&quot;Golang&quot;&gt;&lt;/p&gt;
+&lt;p&gt;由于一个众所周知的原因，
+      
+    
     </summary>
     
+    
+      <category term="go" scheme="https://fguizc.xyz/tags/go/"/>
     
   </entry>
   
   <entry>
-    <title>网络协议</title>
-    <link href="http://fguizc.xyz/2018/05/30/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/"/>
-    <id>http://fguizc.xyz/2018/05/30/网络协议/</id>
-    <published>2018-05-29T17:20:02.160Z</published>
-    <updated>2018-05-29T17:24:13.888Z</updated>
+    <title>Vue项目中的踩坑</title>
+    <link href="https://fguizc.xyz/2018/10/16/Vue%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E8%B8%A9%E5%9D%91/"/>
+    <id>https://fguizc.xyz/2018/10/16/Vue项目中的踩坑/</id>
+    <published>2018-10-16T11:59:22.031Z</published>
+    <updated>2018-10-16T12:04:19.336Z</updated>
     
-    <content type="html"><![CDATA[<h2>域名解析的过程</h2><h2>TCP为什么是三次握手，而不能是两次或者四次</h2><h2>为什么有了ip地址，还要有mac地址</h2>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2&gt;域名解析的过程&lt;/h2&gt;
-&lt;h2&gt;TCP为什么是三次握手，而不能是两次或者四次&lt;/h2&gt;
-&lt;h2&gt;为什么有了ip地址，还要有mac地址&lt;/h2&gt;
-
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>职责链模式</title>
-    <link href="http://fguizc.xyz/2018/05/20/%E8%81%8C%E8%B4%A3%E9%93%BE%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://fguizc.xyz/2018/05/20/职责链模式/</id>
-    <published>2018-05-20T08:27:19.958Z</published>
-    <updated>2018-05-20T09:01:44.183Z</updated>
-    
-    <content type="html"><![CDATA[<h2>定义</h2><blockquote><p>职责链模式的定义是：使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间 的耦合关系，将这些对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。</p></blockquote><h2>应用</h2><p>在重构项目时，由于历史久转手多，代码风格不统一质量也参差不齐，其中在部分reducer和container组件里存在大量的<code>if else</code></p>]]></content>
+    <content type="html"><![CDATA[<p>在之前的工作中公司前端技术选型主要是ng1.x和React，后面逐步演变到React和Vue开发，当然基于Vue也做了后台管理系统和前台的toC的业务。本章主要记录一下在开发过程中一些踩过坑和简单解决办法。</p><h2>setInterval和setTimeout</h2><p>在没有上websocket的情况下，有一个消息通知是要做轮询的，那么必然少不了<strong>定时器</strong>，如何清除定时器？</p><ol><li>利用组件声明周期</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// xx.vue</span><br><span class="line"></span><br><span class="line">data () &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    timer: null</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">  querySomething() &#123;</span><br><span class="line">    this.timer = setInterval(() =&gt; &#123;</span><br><span class="line">      ...</span><br><span class="line">    &#125;, xxxx)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">beforeDestory() &#123;</span><br><span class="line">  clearInterval(this.timer)</span><br><span class="line">  this.timer = null</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>利用组件生命周期<code>beforeDestory</code>来销毁清除，但这样有几个瑕疵：</p><ul><li>需要在组件data内保存这个timer，那就可以通过<code>this.timer</code>在组件内随意访问</li><li>创建timer和销毁timer是分开的，不是特别清晰</li></ul><ol start="2"><li>利用程式化的侦听器</li></ol><p><a href="https://cn.vuejs.org/v2/guide/components-edge-cases.html#%E7%A8%8B%E5%BA%8F%E5%8C%96%E7%9A%84%E4%BA%8B%E4%BB%B6%E4%BE%A6%E5%90%AC%E5%99%A8" target="_blank" rel="noopener">官网介绍</a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">  querySomething() &#123;</span><br><span class="line">    const timer = setInterval(() =&gt; &#123;</span><br><span class="line">      ...</span><br><span class="line">    &#125;, xxx)</span><br><span class="line">    this.$once(&apos;hook:beforeDestory&apos;, () =&gt; &#123;</span><br><span class="line">      clearInterval(timer)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>通过这种方式避免了在data保留一个<code>timer</code>属性，而且在同一个方法内进行了创建和销毁timer的逻辑，同时timer还只是一个局部常量</p><h2>filter 和 mixins</h2><p>通常服务端和前端对参数值都有一些约定，比如最常见的0和1、true和false、male和female etc…，往往这些值频繁出现，但是无法直接展示给用户，需要显示成更为直观的词汇展示给用户。甚至还有一些方法，比如大小图的展示（事实上就是根据从服务端拿到的url地址进行一些拼接操作）。当然可以抽象出各个公共方法在需要使用的地方引入文件，但在Vue中可以定义全局的<code>filter</code>来简单实现。但filter也有局限，它只能作用域：</p><ol><li>模板插槽</li><li>v-bind表达式。</li></ol><p>比起mixins个人更倾向于使用filter，当然mixins也有一些filter无法做到的事情，比如定义更完整的方法并在生命周期中调用，定义data内的数据，因为Vue并不像React那样原生地拥有高阶组件的概念，mixins是退而求次更适合的解决办法。</p><p>但mixins带来最痛苦的一个问题是，在<code>mixins</code>内定义的方法、数据它们在代码层面上是半隐藏的，在某个.vue文件中过多的注入<code>minxins</code>，会让开发者找不到data或function的具体来源，因此我在项目中和小伙伴们强调一定要在script头部就显示地注册所需<code>mixins</code>尽量增强代码可读性。</p><h2>fastClick</h2><p>其实这个没什么好说的，若移动端项目应该在初始化构建的时候就想到这个常见问题。</p><p>在<code>main.js</code>引入并初始化</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// main.js</span><br><span class="line">import FastClick from &apos;fastclick</span><br><span class="line">...</span><br><span class="line">FastClick.attach(document.body)</span><br></pre></td></tr></table></figure><h2>复写第三方组件(库)样式</h2><p>Vue支持 通过添加<code>scoped</code>来实现scoped css。</p><p>但在实际开发过程中，会遇到两种情况：</p><ol><li>当某父组件引用到子组件时，子组件的样式不是默认样式</li><li>第三方组件样式无法满足设计稿</li></ol><p>可以通过<code>&gt;&gt;&gt;</code>或<code>/deep/</code>来解决</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// xx.vue</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.parent &gt;&gt;&gt; .child &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.xx-container /deep/ .hx-header-title&#123;&#125;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure><p>至于两者的不同在于，<code>less/sass</code>等预编译语言不认<code>&gt;&gt;&gt;</code>只能用<code>/deep/</code></p><p>当然还有另一种方法，写两个<code>style</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// xx.vue</span><br><span class="line">&lt;style&gt;</span><br><span class="line">// 全局样式</span><br><span class="line">.xx-container&#123;</span><br><span class="line"></span><br><span class="line">  .child&#123;...&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">// 组件样式</span><br><span class="line">.xx-header-title&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure><h2>路径问题</h2><p>网上解决办法千万种，我司之前采用的就是默认提供的<code>@</code>选择符。在<code>vue-cli@2.x</code>生成的项目中<code>~/project/build/webpack.base.conf.js</code>中</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const webpackConfig = &#123;</span><br><span class="line">  ...</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    extensions: [&apos;.js&apos;, &apos;.vue&apos;, &apos;.json&apos;],</span><br><span class="line">    alias: &#123;</span><br><span class="line">    &apos;vue$&apos;: &apos;vue/dist/vue.esm.js&apos;,</span><br><span class="line">    &apos;@&apos;: resolve(&apos;src&apos;),</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>提供了<code>@</code>选择符的解析，因此无论导入本地模块还是本地图片时都可以通过<code>@</code>符号解决。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;img src=&quot;@/assets/img/xxx/xxx.jpg&quot; alt=&quot;&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"> import UserDefault from &apos;@/components/User&quot;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure><h2>路由拆分</h2><p>在项目的PC-React版本中路由被整体放置在 router/index.js 中，长达上千行，其中混合大量的针对路由钩子函数的业务逻辑，难以维护。在Vue项目中，已功能模块组织文件，因此将路由文件同时拆分再导入 router/index.js 中。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue&apos; </span><br><span class="line">import Router from &apos;vue-router&apos; // 公共页面的路由文件 </span><br><span class="line"></span><br><span class="line">import GIFTS from &apos;./modules/public&apos; // a模块的路由文件 </span><br><span class="line">import USER from &apos;./modules/vote&apos; // b模块</span><br><span class="line"></span><br><span class="line">Vue.use(Router) </span><br><span class="line"></span><br><span class="line">const router = new Router(&#123;</span><br><span class="line">  mode: &apos;history&apos;,</span><br><span class="line">  routes: [ ...GIFTS, ...USER, ]</span><br><span class="line">&#125;) </span><br><span class="line"></span><br><span class="line">export default router</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">export default [&#123;</span><br><span class="line">    path: &apos;/gifts&apos;,</span><br><span class="line">    name: &apos;Gifts&apos;,</span><br><span class="line">    component: resolve =&gt; require([&apos;@/view/gifts/index&apos;], resolve),</span><br><span class="line">    meta: &#123;</span><br><span class="line">      title: &apos;礼物池&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    path: &apos;/gift/:id&apos;,</span><br><span class="line">    name: &apos;GiftItem&apos;</span><br><span class="line">    component: resolve =&gt; require([&apos;@/view/gifts/GiftItem&apos;], resolve),</span><br><span class="line">    meta: &#123;</span><br><span class="line">      auth: true,</span><br><span class="line">      title: &apos;礼物详情页&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">]</span><br></pre></td></tr></table></figure><p>通过ES6的扩展运算符和模块导入导出，分割路由文件。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2&gt;定义&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;职责链模式的定义是：使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间 的耦合关系，将这些对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;应用&lt;/h2
+        &lt;p&gt;在之前的工作中公司前端技术选型主要是ng1.x和React，后面逐步演变到React和Vue开发，当然基于Vue也做了后台管理系统和前台的toC的业务。
+本章主要记录一下在开发过程中一些踩过坑和简单解决办法。&lt;/p&gt;
+&lt;h2&gt;setInterval和setTimeout&lt;/
       
     
     </summary>
     
     
-      <category term="设计模式" scheme="http://fguizc.xyz/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="vue" scheme="https://fguizc.xyz/tags/vue/"/>
     
   </entry>
   
   <entry>
     <title>移动端常见小问题</title>
-    <link href="http://fguizc.xyz/2018/05/20/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%B8%B8%E8%A7%81%E5%B0%8F%E9%97%AE%E9%A2%98/"/>
-    <id>http://fguizc.xyz/2018/05/20/移动端常见小问题/</id>
+    <link href="https://fguizc.xyz/2018/05/20/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%B8%B8%E8%A7%81%E5%B0%8F%E9%97%AE%E9%A2%98/"/>
+    <id>https://fguizc.xyz/2018/05/20/移动端常见小问题/</id>
     <published>2018-05-20T07:37:39.455Z</published>
     <updated>2018-05-20T07:52:09.830Z</updated>
     
@@ -102,14 +86,14 @@
     </summary>
     
     
-      <category term="css" scheme="http://fguizc.xyz/tags/css/"/>
+      <category term="css" scheme="https://fguizc.xyz/tags/css/"/>
     
   </entry>
   
   <entry>
     <title>React 小记</title>
-    <link href="http://fguizc.xyz/2018/04/30/React%E5%B0%8F%E8%AE%B0/"/>
-    <id>http://fguizc.xyz/2018/04/30/React小记/</id>
+    <link href="https://fguizc.xyz/2018/04/30/React%E5%B0%8F%E8%AE%B0/"/>
+    <id>https://fguizc.xyz/2018/04/30/React小记/</id>
     <published>2018-04-30T10:01:00.748Z</published>
     <updated>2018-05-20T08:14:35.077Z</updated>
     
@@ -131,8 +115,8 @@
   
   <entry>
     <title>页面重绘与回流</title>
-    <link href="http://fguizc.xyz/2018/03/06/%E9%A1%B5%E9%9D%A2%E9%87%8D%E7%BB%98%E4%B8%8E%E5%9B%9E%E6%B5%81/"/>
-    <id>http://fguizc.xyz/2018/03/06/页面重绘与回流/</id>
+    <link href="https://fguizc.xyz/2018/03/06/%E9%A1%B5%E9%9D%A2%E9%87%8D%E7%BB%98%E4%B8%8E%E5%9B%9E%E6%B5%81/"/>
+    <id>https://fguizc.xyz/2018/03/06/页面重绘与回流/</id>
     <published>2018-03-05T17:04:23.404Z</published>
     <updated>2018-03-05T17:05:38.433Z</updated>
     
@@ -156,8 +140,8 @@
   
   <entry>
     <title>transfrom对fixed影响</title>
-    <link href="http://fguizc.xyz/2017/10/06/transfrom%E5%AF%B9fixed%E5%BD%B1%E5%93%8D/"/>
-    <id>http://fguizc.xyz/2017/10/06/transfrom对fixed影响/</id>
+    <link href="https://fguizc.xyz/2017/10/06/transfrom%E5%AF%B9fixed%E5%BD%B1%E5%93%8D/"/>
+    <id>https://fguizc.xyz/2017/10/06/transfrom对fixed影响/</id>
     <published>2017-10-05T18:10:48.351Z</published>
     <updated>2017-10-05T18:10:33.953Z</updated>
     
@@ -175,14 +159,14 @@
     </summary>
     
     
-      <category term="css" scheme="http://fguizc.xyz/tags/css/"/>
+      <category term="css" scheme="https://fguizc.xyz/tags/css/"/>
     
   </entry>
   
   <entry>
     <title>async&amp;defer</title>
-    <link href="http://fguizc.xyz/2017/10/05/async&amp;defer/"/>
-    <id>http://fguizc.xyz/2017/10/05/async&amp;defer/</id>
+    <link href="https://fguizc.xyz/2017/10/05/async&amp;defer/"/>
+    <id>https://fguizc.xyz/2017/10/05/async&amp;defer/</id>
     <published>2017-10-05T10:09:02.153Z</published>
     <updated>2017-10-05T10:08:23.184Z</updated>
     
@@ -198,14 +182,14 @@
     </summary>
     
     
-      <category term="JS" scheme="http://fguizc.xyz/tags/JS/"/>
+      <category term="JS" scheme="https://fguizc.xyz/tags/JS/"/>
     
   </entry>
   
   <entry>
     <title>JS发布——订阅模式</title>
-    <link href="http://fguizc.xyz/2017/09/25/%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F%E2%80%94%E2%80%94JS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
-    <id>http://fguizc.xyz/2017/09/25/发布订阅模式——JS设计模式阅读笔记/</id>
+    <link href="https://fguizc.xyz/2017/09/25/%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F%E2%80%94%E2%80%94JS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
+    <id>https://fguizc.xyz/2017/09/25/发布订阅模式——JS设计模式阅读笔记/</id>
     <published>2017-09-25T06:27:40.824Z</published>
     <updated>2017-09-25T06:27:25.545Z</updated>
     
@@ -224,16 +208,16 @@
     </summary>
     
     
-      <category term="js" scheme="http://fguizc.xyz/tags/js/"/>
+      <category term="js" scheme="https://fguizc.xyz/tags/js/"/>
     
-      <category term="设计模式" scheme="http://fguizc.xyz/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://fguizc.xyz/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>前端性能优化常见方式</title>
-    <link href="http://fguizc.xyz/2017/09/19/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/"/>
-    <id>http://fguizc.xyz/2017/09/19/前端性能优化方法/</id>
+    <link href="https://fguizc.xyz/2017/09/19/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/"/>
+    <id>https://fguizc.xyz/2017/09/19/前端性能优化方法/</id>
     <published>2017-09-19T14:49:52.000Z</published>
     <updated>2017-09-19T15:07:48.972Z</updated>
     
@@ -257,8 +241,8 @@
   
   <entry>
     <title>函数防抖与节流</title>
-    <link href="http://fguizc.xyz/2017/09/14/%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/"/>
-    <id>http://fguizc.xyz/2017/09/14/函数防抖与节流/</id>
+    <link href="https://fguizc.xyz/2017/09/14/%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/"/>
+    <id>https://fguizc.xyz/2017/09/14/函数防抖与节流/</id>
     <published>2017-09-14T15:58:07.000Z</published>
     <updated>2017-09-14T16:02:47.972Z</updated>
     
@@ -276,14 +260,14 @@
     </summary>
     
     
-      <category term="js" scheme="http://fguizc.xyz/tags/js/"/>
+      <category term="js" scheme="https://fguizc.xyz/tags/js/"/>
     
   </entry>
   
   <entry>
     <title>css实现sticky footer</title>
-    <link href="http://fguizc.xyz/2017/09/14/css%E5%AE%9E%E7%8E%B0stick%20footer/"/>
-    <id>http://fguizc.xyz/2017/09/14/css实现stick footer/</id>
+    <link href="https://fguizc.xyz/2017/09/14/css%E5%AE%9E%E7%8E%B0stick%20footer/"/>
+    <id>https://fguizc.xyz/2017/09/14/css实现stick footer/</id>
     <published>2017-09-14T08:32:22.000Z</published>
     <updated>2017-09-14T10:42:33.064Z</updated>
     
@@ -302,14 +286,14 @@
     </summary>
     
     
-      <category term="CSS" scheme="http://fguizc.xyz/tags/CSS/"/>
+      <category term="CSS" scheme="https://fguizc.xyz/tags/CSS/"/>
     
   </entry>
   
   <entry>
     <title>React-Native踩坑</title>
-    <link href="http://fguizc.xyz/2017/09/05/React-Native%20%E8%B8%A9%E5%9D%91/"/>
-    <id>http://fguizc.xyz/2017/09/05/React-Native 踩坑/</id>
+    <link href="https://fguizc.xyz/2017/09/05/React-Native%20%E8%B8%A9%E5%9D%91/"/>
+    <id>https://fguizc.xyz/2017/09/05/React-Native 踩坑/</id>
     <published>2017-09-05T08:34:17.000Z</published>
     <updated>2017-09-05T09:26:57.083Z</updated>
     
@@ -332,8 +316,8 @@
   
   <entry>
     <title>AMD&amp;CMD&amp;Native Module</title>
-    <link href="http://fguizc.xyz/2017/09/05/AMD&amp;CMD&amp;NativeModule/"/>
-    <id>http://fguizc.xyz/2017/09/05/AMD&amp;CMD&amp;NativeModule/</id>
+    <link href="https://fguizc.xyz/2017/09/05/AMD&amp;CMD&amp;NativeModule/"/>
+    <id>https://fguizc.xyz/2017/09/05/AMD&amp;CMD&amp;NativeModule/</id>
     <published>2017-09-05T08:33:48.000Z</published>
     <updated>2017-09-05T09:26:57.079Z</updated>
     
@@ -357,8 +341,8 @@
   
   <entry>
     <title>React_setState</title>
-    <link href="http://fguizc.xyz/2017/06/26/React-setState/"/>
-    <id>http://fguizc.xyz/2017/06/26/React-setState/</id>
+    <link href="https://fguizc.xyz/2017/06/26/React-setState/"/>
+    <id>https://fguizc.xyz/2017/06/26/React-setState/</id>
     <published>2017-06-26T15:02:24.000Z</published>
     <updated>2017-09-05T09:26:57.083Z</updated>
     
@@ -381,8 +365,8 @@
   
   <entry>
     <title>基于githook的自动化部署</title>
-    <link href="http://fguizc.xyz/2017/06/15/%E5%9F%BA%E4%BA%8Egithook%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/"/>
-    <id>http://fguizc.xyz/2017/06/15/基于githook的自动化部署/</id>
+    <link href="https://fguizc.xyz/2017/06/15/%E5%9F%BA%E4%BA%8Egithook%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/"/>
+    <id>https://fguizc.xyz/2017/06/15/基于githook的自动化部署/</id>
     <published>2017-06-15T13:48:36.000Z</published>
     <updated>2017-09-05T09:26:57.086Z</updated>
     
@@ -404,8 +388,8 @@
   
   <entry>
     <title>Javascript 单例模式</title>
-    <link href="http://fguizc.xyz/2017/06/15/Javascript-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://fguizc.xyz/2017/06/15/Javascript-单例模式/</id>
+    <link href="https://fguizc.xyz/2017/06/15/Javascript-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://fguizc.xyz/2017/06/15/Javascript-单例模式/</id>
     <published>2017-06-15T13:48:09.000Z</published>
     <updated>2017-09-05T09:26:57.082Z</updated>
     
@@ -430,8 +414,8 @@
   
   <entry>
     <title>DOMContentLoaded</title>
-    <link href="http://fguizc.xyz/2017/06/01/DOMContentLoaded/"/>
-    <id>http://fguizc.xyz/2017/06/01/DOMContentLoaded/</id>
+    <link href="https://fguizc.xyz/2017/06/01/DOMContentLoaded/"/>
+    <id>https://fguizc.xyz/2017/06/01/DOMContentLoaded/</id>
     <published>2017-06-01T13:16:10.000Z</published>
     <updated>2017-09-05T09:26:57.081Z</updated>
     
@@ -457,8 +441,8 @@
   
   <entry>
     <title>mongoDB</title>
-    <link href="http://fguizc.xyz/2017/04/30/mongoDB/"/>
-    <id>http://fguizc.xyz/2017/04/30/mongoDB/</id>
+    <link href="https://fguizc.xyz/2017/04/30/mongoDB/"/>
+    <id>https://fguizc.xyz/2017/04/30/mongoDB/</id>
     <published>2017-04-30T09:40:03.000Z</published>
     <updated>2017-09-05T09:26:57.084Z</updated>
     
@@ -480,8 +464,8 @@
   
   <entry>
     <title>基于Node和MongoDB实现Vue.js简单的JWT单点登录</title>
-    <link href="http://fguizc.xyz/2017/04/26/%E5%9F%BA%E4%BA%8ENode%E5%92%8CMongoDB%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84JWT%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
-    <id>http://fguizc.xyz/2017/04/26/基于Node和MongoDB实现简单的JWT单点登录/</id>
+    <link href="https://fguizc.xyz/2017/04/26/%E5%9F%BA%E4%BA%8ENode%E5%92%8CMongoDB%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84JWT%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
+    <id>https://fguizc.xyz/2017/04/26/基于Node和MongoDB实现简单的JWT单点登录/</id>
     <published>2017-04-26T13:30:21.000Z</published>
     <updated>2017-09-05T09:26:57.086Z</updated>
     
@@ -500,6 +484,37 @@ JWT的组成是由三个部分。&lt;/p&gt;
     
     </summary>
     
+    
+  </entry>
+  
+  <entry>
+    <title>less</title>
+    <link href="https://fguizc.xyz/2017/03/01/less/"/>
+    <id>https://fguizc.xyz/2017/03/01/less/</id>
+    <published>2017-03-01T12:55:29.000Z</published>
+    <updated>2017-09-05T09:26:57.084Z</updated>
+    
+    <content type="html"><![CDATA[<p>记录LESS中常用的语法及规则</p><h3>定义变量</h3><pre><code>@contentBox_width: 20px;.contentBox{    width: @contentBox_width;}//编译后.contentBox{width:20px}</code></pre><h3>混合</h3><p>less中的混合实际上就是调用了已存在的样式</p><pre><code>.demo_01{color: red}.demo_02{.demo_01}//编译后.demo_01{color: red}.demo_02{color: red}</code></pre><p>和sass中的mixin类似，可以用变量替代属性的具体值，并且能设定默认值</p><pre><code>.demo_01(@direction: row) { display: flex; flex-direction: @direction;}.demo_02{ .demo_01(column)}//编译后.demo_01{ display:flex; flex-direction:row;}.demo_02{  display:flex;  flex-direction: column}</code></pre><p><strong>注意</strong>: 不推荐使用混合来兼容浏览器私有前缀，请使用postcss—autoprefixer</p><h3>匹配模式</h3><p>即判断语句,和sass中的if语句是有略微区别的</p><pre><code>.less.pos(r){position: relative}.pos(a){position: absolute}.demo{.pos(r)}//编译后.demo{position: relative}</code></pre><p>个人觉得less中的匹配模式并非真正意义上的判断，充其量也是基于<code>混合</code>语法来做冗余代码</p><pre><code>.scss$fontSize: 10px;p{@if $fontSize == 10px {font-size: 1rem;}@else {font-size: 2rem;}}</code></pre><h3>运算</h3><p>less中的运算实际上在<code>css3</code>有一部分支持比如</p><pre><code>.less@w:200px.content{ width: @w - 20 }//编译后.content{ width: 180px}.css.content{ calc( 200px -20 ) }</code></pre><p>less中的运算也可用于颜色</p><h3>嵌套</h3><p>和scss一致</p><pre><code>.a{color:red;span{    font-size: 20px;    &amp;:hover{color: green} }}//编译后.a{color: red}.a span {font-size: 20px}.a span:hover{color: green}</code></pre><h3>argument</h3><p>语法规则类似于es6中的<code>...</code>展开运算符</p><pre><code>.demo(@w: 10px,@c: #ccc, @s: solid){    border: @arguments}//编译后.demo{border: 10px #ccc solid}</code></pre><h3>字符串插值</h3><p>类似于ES6中字符串模板@base-url: “<a href="//demo.test.com">//demo.test.com</a>”.demo{background-image: url(&quot;@{base-url}/img/pic01.png&quot;)}</p><h3>避免编译</h3><p>规则为 [属性名]: ~`属性值`</p><pre><code>.demo{width: ~&quot;calc( 200px -20px )&quot;}</code></pre><p>为避免less直接编译</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;记录LESS中常用的语法及规则&lt;/p&gt;
+&lt;h3&gt;定义变量&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;@contentBox_width: 20px;
+.contentBox{
+    width: @contentBox_width;
+}
+
+//编译后
+.contentBox{wid
+      
+    
+    </summary>
+    
+    
+      <category term="css" scheme="https://fguizc.xyz/tags/css/"/>
     
   </entry>
   
